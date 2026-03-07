@@ -37,12 +37,53 @@ Every surface is a standalone HTML file. Shared styles live in `css/`, shared be
 - **Brand purple `#745AFF`**: Logo accent only, never for data visualization
 - **Font stack**: Space Grotesk → Inter → JetBrains Mono (display → body → data)
 
+### Glass Box Panels
+
+Every surface that displays data claims should include a Glass Box panel:
+
+```html
+<div class="glass-box-panel">
+  <div class="glass-box-header">
+    <span class="glass-box-icon">☐</span>
+    <span class="glass-box-label">GLASS BOX — SECTION TITLE</span>
+    <button class="glass-box-toggle">SHOW MY WORK ▾</button>
+  </div>
+  <div class="glass-box-content">
+    <!-- Attribution content here -->
+  </div>
+</div>
+```
+
+## Testing
+
+### Manual QA Checklist
+
+Before any PR, verify:
+
+1. All 7 pages load without JS console errors
+2. Navigation between all pages works
+3. Glass Box toggles expand/collapse on each surface
+4. Signal Terminal filters update the feed
+5. Scenario Lab tabs switch correctly (all 4)
+6. Analyst panel (diamond icon) opens from any page
+7. Intelligence feed ticker scrolls at the bottom
+
+### Automated Testing
+
+```bash
+# Install Playwright
+npm init -y && npm install playwright
+
+# Run QA suite (if test script exists)
+node test-interactions.js
+```
+
 ## Code Style
 
-- **HTML**: Semantic elements, BEM-ish class naming
-- **CSS**: Mobile-last, CSS custom properties for tokens
-- **JS**: Vanilla — no frameworks. Module pattern
-- **Data**: JSON files in `data/`, never hardcode data
+- **HTML**: Semantic elements, BEM-ish class naming, inline styles for page-specific CSS only
+- **CSS**: Mobile-last (this is a desktop presentation tool), CSS custom properties for tokens
+- **JS**: Vanilla — no frameworks. Module pattern with namespace objects (`BIE`, `SignalNexus`, `DITL`)
+- **Data**: JSON files in `data/`, never hardcode data that could change
 
 ## Commit Conventions
 

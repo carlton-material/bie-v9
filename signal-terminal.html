@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal Terminal — Brand Intelligence Engine v9</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/glass-box.css">
+  <style>
+    /* Signal Terminal Page Styles */
+
+    @keyframes terminal-fade-in {
+      0% {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes signal-cascade {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+        filter: blur(3px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes signal-highlight-pulse {
+      0% {
+        background: rgba(129, 140, 248, 0.08);
+        border-left-color: rgba(129, 140, 248, 0.4);
+      }
+      50% {
+        background: rgba(129, 140, 248, 0.12);
+        border-left-color: rgba(129, 140, 248, 0.6);
+      }
+      100% {
+        background: rgba(129, 140, 248, 0.08);
+        border-left-color: rgba(129, 140, 248, 0.4);
+      }
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.4;
+      }
+    }
+
+    .signal-terminal {
+      padding: 48px 64px 120px;
+      animation: terminal-fade-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    /* ── Header Section ── */
+    .st-header {
+      margin-bottom: 40px;
+      animation: terminal-fade-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s backwards;
+    }
+
+    .st-header-micro {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    .st-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 24px;
+    }
+
+    .st-header-title {
+      font-family: var(--font-grotesk);
+      font-size: 48px;
+      font-weight: 300;
+      line-height: 1.2;
+      color: #f0f0f0;
+      letter-spacing: -0.02em;
+    }
+
+    .st-signal-count {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: #999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .st-pulse-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--violet-500);
+      border-radius: 50%;
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+
+    /* ── Search & Filters Bar ── */
+    .st-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+      animation: terminal-fade-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s backwards;
+    }
+
+    .st-search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .st-search-icon {
+      position: absolute;
+      left: 16px;
+      color: #666;
+      font-size: 12px;
+    }
+
+    .st-search {
+      flex: 1;
+      padding: 12px 16px 12px 40px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      background: #0f0f0f;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 4px;
+      color: #f0f0f0;
+    }
+
+    .st-search::placeholder {
+      color: #666;
+    }
+
+    .st-search:focus {
+      outline: none;
+      border-color: var(--violet-400);
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+    }
+
+    .st-search-hint {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    .st-filters {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .st-filter-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      color: #999;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .st-filter-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .st-pill {
+      padding: 6px 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #0a0a0a;
+      border-radius: 3px;
+      color: #ccc;
+      cursor: pointer;
+      transition: all 200ms ease;
+    }
+
+    .st-pill:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      background: #141414;
+    }
+
+    .st-pill.active {
+      background: #141414;
+      color: #f0f0f0;
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .st-pill.layer-human.active {
+      background: var(--violet-500);
+      border-color: var(--violet-500);
+    }
+
+    .st-pill.layer-behavioral.active {
+      background: var(--teal-500);
+      border-color: var(--teal-500);
+    }
+
+    .st-pill.layer-cultural.active {
+      background: var(--amber-500);
+      border-color: var(--amber-500);
+    }
+
+    /* ── Keyboard Hints ── */
+    .st-shortcuts {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #666;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .st-shortcut {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .st-key {
+      background: #141414;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 2px 6px;
+      border-radius: 2px;
+      font-weight: 600;
+      font-size: 9px;
+      color: #ccc;
+    }
+
+    /* ── Three-Column Signal Feed ── */
+    .st-feed-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+      animation: terminal-fade-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s backwards;
+      min-height: 600px;
+    }
+
+    .st-signal-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .st-column-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid;
+    }
+
+    .st-column-header.human {
+      border-bottom-color: var(--violet-500);
+    }
+
+    .st-column-header.behavioral {
+      border-bottom-color: var(--teal-500);
+    }
+
+    .st-column-header.cultural {
+      border-bottom-color: var(--amber-500);
+    }
+
+    .st-column-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .st-column-header.human .st-column-dot {
+      background: var(--violet-500);
+    }
+
+    .st-column-header.behavioral .st-column-dot {
+      background: var(--teal-500);
+    }
+
+    .st-column-header.cultural .st-column-dot {
+      background: var(--amber-500);
+    }
+
+    .st-column-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #f0f0f0;
+    }
+
+    .st-column-count {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #666;
+      margin-left: auto;
+    }
+
+    /* ── Individual Signal Card ── */
+    .st-signal {
+      padding: 14px;
+      border-left: 3px solid;
+      background: #0a0a0a;
+      border-radius: 0 3px 3px 0;
+      font-size: 12px;
+      line-height: 1.5;
+      transition: all 300ms ease;
+      cursor: pointer;
+    }
+
+    .st-signal:hover {
+      background: #0f0f0f;
+      transform: translateX(4px);
+    }
+
+    .st-signal.human {
+      border-left-color: var(--violet-500);
+    }
+
+    .st-signal.behavioral {
+      border-left-color: var(--teal-500);
+    }
+
+    .st-signal.cultural {
+      border-left-color: var(--amber-500);
+    }
+
+    .st-signal.new {
+      animation: signal-cascade 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .st-signal.highlight {
+      animation: signal-highlight-pulse 1.2s ease-in-out;
+    }
+
+    .st-signal-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .st-signal-time {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #666;
+      font-weight: 500;
+    }
+
+    .st-signal-severity {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 6px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .st-signal-severity.high {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+    }
+
+    .st-signal-severity.medium {
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+    }
+
+    .st-signal-severity.low {
+      background: rgba(107, 114, 128, 0.15);
+      color: #999;
+    }
+
+    .st-signal-brand {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      color: #f0f0f0;
+      margin-bottom: 4px;
+    }
+
+    .st-signal-text {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: #ccc;
+      line-height: 1.45;
+    }
+
+    .st-signal-text strong {
+      color: #f0f0f0;
+      font-weight: 600;
+    }
+
+    /* ── Brand Fidelity Driver Badges ── */
+    .st-signal-drivers {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .st-driver-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      transition: all 150ms ease;
+    }
+
+    .st-driver-badge::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .st-driver-badge.human {
+      border-color: rgba(129, 140, 248, 0.2);
+      background: rgba(129, 140, 248, 0.08);
+      color: #818cf8;
+    }
+
+    .st-driver-badge.human::before {
+      background: #818cf8;
+    }
+
+    .st-driver-badge.behavioral {
+      border-color: rgba(52, 211, 153, 0.2);
+      background: rgba(52, 211, 153, 0.08);
+      color: #34d399;
+    }
+
+    .st-driver-badge.behavioral::before {
+      background: #34d399;
+    }
+
+    .st-driver-badge.cultural {
+      border-color: rgba(245, 158, 11, 0.2);
+      background: rgba(245, 158, 11, 0.08);
+      color: #f59e0b;
+    }
+
+    .st-driver-badge.cultural::before {
+      background: #f59e0b;
+    }
+
+    /* ── Anomaly Detection Panel ── */
+    .st-anomaly {
+      padding: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #0a0a0a;
+      border-radius: 4px;
+      animation: terminal-fade-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s backwards;
+    }
+
+    .st-anomaly-header {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 24px;
+    }
+
+    .st-anomaly-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .st-anomaly-card {
+      padding: 20px;
+      background: #0f0f0f;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .st-anomaly-number {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    .st-anomaly-title {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: #f0f0f0;
+      margin-bottom: 8px;
+    }
+
+    .st-anomaly-detail {
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 1.5;
+      color: #ccc;
+    }
+
+    .st-anomaly-detail strong {
+      color: #f0f0f0;
+      font-weight: 600;
+    }
+
+    /* ── Empty State ── */
+    .st-empty {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      color: #666;
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1600px) {
+      .st-feed-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .st-feed-container {
+        grid-template-columns: 1fr;
+      }
+
+      .st-anomaly-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body data-page="signal-terminal">
+  <div class="app">
+    <!-- Navigation -->
+    <nav class="nav">
+    <div class="nav-logo">
+      <img src="assets/logos/material-plus.png" alt="Material+" style="height: 24px; opacity: 0.9;">
+    </div>
+    <div class="nav-confidential">Confidential · Internal Use Only</div>
+    <div class="nav-section">
+      <div class="nav-section-label">Foundation</div>
+      <a href="index.html" class="nav-item" data-page="strategic-brief"><span class="nav-item-icon">◇</span> Strategic Brief</a>
+      <a href="day-in-the-life.html" class="nav-item" data-page="day-in-the-life"><span class="nav-item-icon">◉</span> Day in the Life</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Methodology</div>
+      <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon">◈</span> How It Works</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Intelligence</div>
+      <a href="command-center.html" class="nav-item" data-page="command-center"><span class="nav-item-icon">▣</span> Command Center</a>
+      <a href="signal-terminal.html" class="nav-item active" data-page="signal-terminal"><span class="nav-item-icon">▤</span> Signal Terminal</a>
+      <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis"><span class="nav-item-icon">▥</span> Guided Analysis</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Simulation</div>
+      <a href="scenario-lab.html" class="nav-item" data-page="scenario-lab"><span class="nav-item-icon">◬</span> Scenario Lab</a>
+    </div>
+    <div class="nav-pulse">
+      <div class="nav-pulse-bar"></div>
+      <div class="nav-pulse-label"><span>Signal Activity</span><span><span class="signal-count">847</span> live</span></div>
+    </div>
+  </nav>
+
+    <!-- Main Content -->
+    <main class="app-content signal-terminal">
+    <!-- Header -->
+    <section class="st-header">
+      <div class="st-header-micro">Signal Terminal</div>
+      <div class="st-header-top">
+        <h1 class="st-header-title">Live Signal Feed</h1>
+        <div class="st-signal-count">
+          <div class="st-pulse-dot"></div>
+          <span><span class="st-live-count">847</span> live signals</span>
+        </div>
+      </div>
+      <div class="glass-box-panel" style="margin-top: 24px;">
+        <div class="glass-box-header">
+          <div class="glass-box-header-left">
+            <svg class="glass-box-header-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+            <span class="glass-box-header-title">Glass Box — Signal Data Provenance</span>
+          </div>
+          <button class="glass-box-toggle" data-target="st-glassbox" aria-expanded="false">
+            Show My Work <span class="chevron">▾</span>
+          </button>
+        </div>
+        <div class="glass-box-content" id="st-glassbox">
+          <div class="glass-box-inner">
+            <div class="glass-box-pipeline-container"></div>
+            <div class="glass-box-timestamp-container"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Controls & Search -->
+    <section class="st-controls">
+      <div class="st-search-container">
+        <span class="st-search-icon">🔍</span>
+        <input type="text" class="st-search" id="signal-search" placeholder="Search signals by keyword, brand, or layer...">
+        <span class="st-search-hint" id="search-hint"></span>
+      </div>
+
+      <div class="st-filters">
+        <span class="st-filter-label">Filter:</span>
+        <div class="st-filter-pills">
+          <button class="st-pill active" data-filter="all">All</button>
+          <button class="st-pill layer-human" data-filter="human">Human-Expressive</button>
+          <button class="st-pill layer-behavioral" data-filter="behavioral">Behavioral</button>
+          <button class="st-pill layer-cultural" data-filter="cultural">Cultural</button>
+          <button class="st-pill" data-filter="high">HIGH only</button>
+        </div>
+      </div>
+
+      <div class="st-shortcuts">
+        <span class="st-shortcut"><span class="st-key">/</span> to search</span>
+        <span class="st-shortcut"><span class="st-key">ESC</span> to clear</span>
+        <span class="st-shortcut"><span class="st-key">H</span> Human · <span class="st-key">B</span> Behavioral · <span class="st-key">C</span> Cultural</span>
+      </div>
+    </section>
+
+    <!-- Three-Column Signal Feed -->
+    <section class="st-feed-container">
+      <!-- Human-Expressive Column -->
+      <div class="st-signal-column" id="column-human">
+        <div class="st-column-header human">
+          <span class="st-column-dot"></span>
+          <span class="st-column-title">Human-Expressive</span>
+          <span class="st-column-count" data-layer="human">5</span>
+        </div>
+        <div class="st-signals" data-layer="human"></div>
+      </div>
+
+      <!-- Behavioral & Market Column -->
+      <div class="st-signal-column" id="column-behavioral">
+        <div class="st-column-header behavioral">
+          <span class="st-column-dot"></span>
+          <span class="st-column-title">Behavioral & Market</span>
+          <span class="st-column-count" data-layer="behavioral">5</span>
+        </div>
+        <div class="st-signals" data-layer="behavioral"></div>
+      </div>
+
+      <!-- Cultural & Contextual Column -->
+      <div class="st-signal-column" id="column-cultural">
+        <div class="st-column-header cultural">
+          <span class="st-column-dot"></span>
+          <span class="st-column-title">Cultural & Contextual</span>
+          <span class="st-column-count" data-layer="cultural">5</span>
+        </div>
+        <div class="st-signals" data-layer="cultural"></div>
+      </div>
+    </section>
+
+    <!-- Anomaly Detection Panel -->
+    <section class="st-anomaly">
+      <div class="st-anomaly-header">Anomaly Detection</div>
+      <div class="st-anomaly-grid">
+        <div class="st-anomaly-card">
+          <div class="st-anomaly-number">Signal #9</div>
+          <div class="st-anomaly-title">Positive Demographic Spike (25-34)</div>
+          <div class="st-anomaly-detail">
+            <strong>Confidence: HIGH</strong><br>
+            Unexplained positive sentiment surge in 25–34 age cohort contradicts overall downward trend. Potential correlation with recent <strong>UGC campaign launch</strong>. Investigating causality.
+          </div>
+        </div>
+
+        <div class="st-anomaly-card">
+          <div class="st-anomaly-number">Signal #3 + #8 Compound</div>
+          <div class="st-anomaly-title">Booking Abandonment → UX Friction</div>
+          <div class="st-anomaly-detail">
+            <strong>Confidence: MEDIUM</strong><br>
+            Booking abandonment surge (+7pp in 14 days) temporally aligned with mobile app session decline (−12%). Likely compound effect on <strong>User Friendly</strong> driver. Recommend UX audit.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <!-- Feed -->
+    <footer class="feed">
+      <span class="feed-label">Intelligence Feed</span>
+      <div class="feed-ticker"><div class="feed-ticker-track"></div></div>
+    </footer>
+  </div>
+
+  <!-- Analyst -->
+  <div class="analyst-trigger" title="Material Analyst">
+    <span class="analyst-trigger-icon">◆</span><span class="analyst-dot"></span>
+  </div>
+  <div class="analyst-panel">
+    <div class="analyst-panel-header">
+      <span class="analyst-panel-title">Material Analyst</span>
+      <button class="analyst-panel-close">×</button>
+    </div>
+    <div class="analyst-panel-messages"></div>
+    <div class="analyst-panel-input">
+      <input type="text" placeholder="Ask about signals, anomalies, brands...">
+      <button>Send</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    // ─── Signal Database ───
+    const signalDatabase = {
+      human: [
+        {
+          time: '06:12',
+          severity: 'HIGH',
+          brand: 'Stayworthy',
+          text: 'Trust sentiment divergence: stated 78%, behavioral repeat 56%. <strong>Gap widening.</strong>'
+        },
+        {
+          time: '07:22',
+          severity: 'MED',
+          brand: 'Stayworthy',
+          text: 'Gen Z "authentic stays" keyword frequency up <strong>340% in brand narratives</strong>'
+        },
+        {
+          time: '08:33',
+          severity: 'LOW',
+          brand: 'Airbnb',
+          text: 'Host satisfaction declining — communication quality complaints up 18%'
+        },
+        {
+          time: '09:55',
+          severity: 'HIGH',
+          brand: 'Stayworthy',
+          text: '<strong>ANOMALY:</strong> Positive spike in 25-34 cohort. Contradicts overall trend.'
+        },
+        {
+          time: '11:08',
+          severity: 'MED',
+          brand: 'Vrbo',
+          text: 'Family segment loyalty eroding — competing on price, losing on <strong>Personal</strong>'
+        },
+        {
+          time: '12:34',
+          severity: 'MED',
+          brand: 'Booking.com',
+          text: 'User reviews increasingly cite "unexpected fees" — transparency emerging as hygiene'
+        },
+        {
+          time: '13:47',
+          severity: 'LOW',
+          brand: 'Stayworthy',
+          text: 'NPS shift by geography: Europe flat, APAC +8pts, Americas −3pts'
+        },
+        {
+          time: '14:55',
+          severity: 'HIGH',
+          brand: 'Category',
+          text: '<strong>Narrative shift detected:</strong> "Sustainable travel" now top 3 booking motivation'
+        }
+      ],
+      behavioral: [
+        {
+          time: '06:15',
+          severity: 'HIGH',
+          brand: 'Stayworthy',
+          text: 'Booking abandonment: 34% → 41% in 14 days. <strong>Pricing display correlation.</strong>'
+        },
+        {
+          time: '07:45',
+          severity: 'LOW',
+          brand: 'Booking.com',
+          text: 'Loyalty tier adoption: Premium members +23% QoQ. <strong>Dependable strengthening.</strong>'
+        },
+        {
+          time: '09:05',
+          severity: 'MED',
+          brand: 'Stayworthy',
+          text: 'Mobile app session duration −12%. <strong>UX friction in search-to-book flow.</strong>'
+        },
+        {
+          time: '10:15',
+          severity: 'HIGH',
+          brand: 'Category',
+          text: 'Google Travel AI planning launch — <strong>OTA disintermediation risk elevated</strong>'
+        },
+        {
+          time: '11:30',
+          severity: 'MED',
+          brand: 'Stayworthy',
+          text: 'Support response: 4.2h → 6.8h over 30 days. Dependable correlation r=0.82'
+        },
+        {
+          time: '13:12',
+          severity: 'HIGH',
+          brand: 'Airbnb',
+          text: 'Avg booking value declining −$28. Shift to budget segment accelerating'
+        },
+        {
+          time: '14:28',
+          severity: 'LOW',
+          brand: 'Marriott Homes',
+          text: 'Repeat bookings +6% QoQ. Loyalty program engagement highest in 18mo'
+        },
+        {
+          time: '15:33',
+          severity: 'MED',
+          brand: 'Category',
+          text: 'Last-minute bookings (24h) up 31% YoY. Demand volatility increasing'
+        }
+      ],
+      cultural: [
+        {
+          time: '06:18',
+          severity: 'MED',
+          brand: 'Category',
+          text: 'Barcelona STR regulation accelerated. <strong>12,000 licenses at risk.</strong> Occupancy shift Q3.'
+        },
+        {
+          time: '08:10',
+          severity: 'HIGH',
+          brand: 'Category',
+          text: 'Climate-conscious travel +63% YoY. <strong>Sustainability now material for BF scores.</strong>'
+        },
+        {
+          time: '09:28',
+          severity: 'MED',
+          brand: 'Category',
+          text: 'SE Asian travel surges 47% YoY. Digital nomad infrastructure expanding'
+        },
+        {
+          time: '10:42',
+          severity: 'LOW',
+          brand: 'Category',
+          text: 'Restorative travel: Wellness-adjacent now 28% of premium bookings'
+        },
+        {
+          time: '11:55',
+          severity: 'HIGH',
+          brand: 'Category',
+          text: '<strong>TikTok #1 travel inspiration for under-30.</strong> Visual-first discovery shift'
+        },
+        {
+          time: '13:20',
+          severity: 'MED',
+          brand: 'Category',
+          text: 'Venice day-trip cap: 25,000/day enforcement begins June 1. Supply restructuring'
+        },
+        {
+          time: '14:44',
+          severity: 'LOW',
+          brand: 'Category',
+          text: 'Bleisure trend accelerating. 41% of bookings include work-capable space'
+        },
+        {
+          time: '15:59',
+          severity: 'HIGH',
+          brand: 'Category',
+          text: 'Micro-moments: Mobile search-to-book window now 180min avg (was 8h). Urgency rising'
+        }
+      ]
+    };
+
+    // ─── Signal Queue for Live Cascade ───
+    const extraSignals = [
+      { layer: 'human', time: '16:12', severity: 'MED', brand: 'Stayworthy', text: 'Brand perception: "Modern" attribute now resonates with 62% (was 41%)' },
+      { layer: 'behavioral', time: '16:18', severity: 'LOW', brand: 'Category', text: 'Payment method shift: Apple Pay adoption +18pp YoY across iOS users' },
+      { layer: 'cultural', time: '16:25', severity: 'HIGH', brand: 'Category', text: 'LinkedIn workplace travel policies: Remote-friendly companies +4x travel spend' },
+      { layer: 'human', time: '16:33', severity: 'HIGH', brand: 'Vrbo', text: 'Trust score sliding: "Would recommend" declined 12pts in 3 weeks' },
+      { layer: 'behavioral', time: '16:40', severity: 'MED', brand: 'Booking.com', text: 'Filter precision: Users now apply 5.2 filters avg (was 3.1). Complexity index rising' },
+      { layer: 'cultural', time: '16:48', severity: 'MED', brand: 'Category', text: 'Influencer impact: #travel content now 8.4B views/month (was 5.2B)' },
+      { layer: 'human', time: '16:55', severity: 'LOW', brand: 'Airbnb', text: 'Host reviews: "Cleanliness" now mentioned 2.3x more than "Communication"' },
+      { layer: 'behavioral', time: '17:03', severity: 'HIGH', brand: 'Stayworthy', text: 'Cart abandonment peak: 11:00–13:00 UTC window. Content clash with rival campaign?' }
+    ];
+
+    let cascadeQueue = [...extraSignals];
+    let currentFilters = { layer: 'all', severity: null, search: '' };
+    let visibleSignalCount = 0;
+
+    // ─── Render Signals ───
+    function renderSignals() {
+      const humanContainer = document.querySelector('.st-signals[data-layer="human"]');
+      const behavioralContainer = document.querySelector('.st-signals[data-layer="behavioral"]');
+      const culturalContainer = document.querySelector('.st-signals[data-layer="cultural"]');
+
+      // Clear
+      humanContainer.innerHTML = '';
+      behavioralContainer.innerHTML = '';
+      culturalContainer.innerHTML = '';
+
+      // Render each layer
+      ['human', 'behavioral', 'cultural'].forEach(layer => {
+        const container = document.querySelector(`.st-signals[data-layer="${layer}"]`);
+        const signals = filterSignals(signalDatabase[layer], layer);
+
+        signals.forEach(signal => {
+          const el = createSignalElement(signal, layer);
+          container.appendChild(el);
+        });
+
+        // Update count
+        document.querySelector(`[data-layer="${layer}"].st-column-count`).textContent = signals.length;
+      });
+
+      updateTotalCount();
+    }
+
+    function filterSignals(signals, layer) {
+      return signals.filter(signal => {
+        // Layer filter
+        if (currentFilters.layer !== 'all' && currentFilters.layer !== layer) return false;
+
+        // Severity filter
+        if (currentFilters.severity === 'high' && signal.severity !== 'HIGH') return false;
+
+        // Search filter
+        if (currentFilters.search) {
+          const query = currentFilters.search.toLowerCase();
+          const text = (signal.text + signal.brand).toLowerCase();
+          if (!text.includes(query)) return false;
+        }
+
+        return true;
+      });
+    }
+
+    function createSignalElement(signal, layer) {
+      const el = document.createElement('div');
+      el.className = `st-signal ${layer}`;
+      // Extract drivers from signal text
+      const driverMap = {
+        'User Friendly': 'behavioral',
+        'user friendly': 'behavioral',
+        'Personal': 'human',
+        'personal': 'human',
+        'Accessible': 'cultural',
+        'accessible': 'cultural',
+        'Dependable': 'behavioral',
+        'dependable': 'behavioral',
+        'Meaningful': 'human',
+        'meaningful': 'human',
+        'Salient': 'cultural',
+        'salient': 'cultural'
+      };
+
+      let driverBadges = '';
+      const textForDrivers = signal.text.toLowerCase();
+      const detectedDrivers = new Set();
+
+      // Detect drivers mentioned in signal text
+      if (textForDrivers.includes('user friendly')) detectedDrivers.add('user friendly');
+      if (textForDrivers.includes('personal')) detectedDrivers.add('personal');
+      if (textForDrivers.includes('accessible')) detectedDrivers.add('accessible');
+      if (textForDrivers.includes('dependable')) detectedDrivers.add('dependable');
+      if (textForDrivers.includes('meaningful')) detectedDrivers.add('meaningful');
+      if (textForDrivers.includes('salient')) detectedDrivers.add('salient');
+
+      if (detectedDrivers.size > 0) {
+        driverBadges = '<div class="st-signal-drivers">' +
+          Array.from(detectedDrivers).map(driver => {
+            const layer = driverMap[driver] || 'human';
+            const driverName = driver.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            return `<span class="st-driver-badge ${layer}">${driverName}</span>`;
+          }).join('') +
+          '</div>';
+      }
+
+      el.innerHTML = `
+        <div class="st-signal-header">
+          <span class="st-signal-time">${signal.time}</span>
+          <span class="st-signal-severity ${signal.severity.toLowerCase()}">${signal.severity}</span>
+        </div>
+        <div class="st-signal-brand">${signal.brand}</div>
+        <div class="st-signal-text">${signal.text}</div>
+        ${driverBadges}
+      `;
+      return el;
+    }
+
+    function updateTotalCount() {
+      const counts = {
+        human: document.querySelector('.st-signals[data-layer="human"]')?.children.length || 0,
+        behavioral: document.querySelector('.st-signals[data-layer="behavioral"]')?.children.length || 0,
+        cultural: document.querySelector('.st-signals[data-layer="cultural"]')?.children.length || 0
+      };
+      visibleSignalCount = counts.human + counts.behavioral + counts.cultural;
+    }
+
+    // ─── Search & Filter Handlers ───
+    document.getElementById('signal-search').addEventListener('input', (e) => {
+      currentFilters.search = e.target.value;
+      renderSignals();
+      updateSearchHint();
+    });
+
+    document.getElementById('signal-search').addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        e.target.value = '';
+        currentFilters.search = '';
+        renderSignals();
+        updateSearchHint();
+      }
+    });
+
+    document.querySelectorAll('.st-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        // Toggle active state
+        const filter = pill.dataset.filter;
+
+        // For layer filters, toggle exclusive
+        if (['human', 'behavioral', 'cultural'].includes(filter)) {
+          document.querySelectorAll('.st-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          currentFilters.layer = 'all';
+          currentFilters.severity = null;
+
+          // Toggle this filter
+          if (currentFilters.layer === filter) {
+            currentFilters.layer = 'all';
+          } else {
+            currentFilters.layer = filter;
+          }
+        } else if (filter === 'all') {
+          document.querySelectorAll('.st-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          currentFilters.layer = 'all';
+          currentFilters.severity = null;
+        } else if (filter === 'high') {
+          pill.classList.toggle('active');
+          currentFilters.severity = pill.classList.contains('active') ? 'high' : null;
+        }
+
+        renderSignals();
+      });
+    });
+
+    // ─── Keyboard Shortcuts ───
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/') {
+        e.preventDefault();
+        document.getElementById('signal-search').focus();
+      }
+      if (e.key === 'h' || e.key === 'H') {
+        toggleLayerFilter('human');
+      }
+      if (e.key === 'b' || e.key === 'B') {
+        toggleLayerFilter('behavioral');
+      }
+      if (e.key === 'c' || e.key === 'C') {
+        toggleLayerFilter('cultural');
+      }
+    });
+
+    function toggleLayerFilter(layer) {
+      const pill = document.querySelector(`[data-filter="${layer}"]`);
+      if (pill) {
+        pill.click();
+      }
+    }
+
+    function updateSearchHint() {
+      const hint = document.getElementById('search-hint');
+      if (visibleSignalCount === 0 && currentFilters.search) {
+        hint.textContent = 'No signals match';
+      } else if (currentFilters.search) {
+        hint.textContent = `${visibleSignalCount} signals`;
+      } else {
+        hint.textContent = '';
+      }
+    }
+
+    // ─── Live Signal Cascade ───
+    function cascadeNewSignal() {
+      if (cascadeQueue.length === 0) return;
+
+      const signal = cascadeQueue.shift();
+      const container = document.querySelector(`.st-signals[data-layer="${signal.layer}"]`);
+
+      // Create new signal element
+      const el = createSignalElement(signal, signal.layer);
+      el.classList.add('new');
+
+      // Insert at top
+      container.insertBefore(el, container.firstChild);
+
+      // Keep only first 6 signals visible (max per column in this design)
+      if (container.children.length > 6) {
+        container.removeChild(container.lastChild);
+      }
+
+      // Update count
+      document.querySelector(`[data-layer="${signal.layer}"].st-column-count`).textContent = container.children.length;
+
+      // Apply highlight to anomaly signals
+      if (signal.text.includes('ANOMALY') || signal.text.includes('compound')) {
+        el.classList.add('highlight');
+      }
+
+      updateTotalCount();
+    }
+
+    // Cascade every 5 seconds
+    setInterval(cascadeNewSignal, 5000);
+
+    // ─── Initialize ───
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSignals();
+      updateTotalCount();
+
+      // Link active nav item
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      const currentPage = document.querySelector('[data-page="signal-terminal"]');
+      if (currentPage) {
+        currentPage.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>

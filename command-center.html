@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command Center — Brand Intelligence Engine v9</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/glass-box.css">
+  <style>
+    /* Command Center Page Styles */
+    
+    /* Morning Flash Envelope Animation */
+    @keyframes morning-flash-reveal {
+      0% {
+        opacity: 0;
+        transform: translateY(12px);
+        filter: blur(4px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+    
+    @keyframes morning-flash-slide-left {
+      0% {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes count-up {
+      0% { opacity: 0.6; }
+      100% { opacity: 1; }
+    }
+    
+    .command-center {
+      padding: 48px 64px 120px;
+      animation: morning-flash-reveal 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    
+    /* Header Section */
+    .cc-header {
+      margin-bottom: 56px;
+      animation: morning-flash-slide-left 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s backwards;
+    }
+    
+    .cc-header-micro {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 12px;
+    }
+    
+    .cc-header-title {
+      font-family: var(--font-grotesk);
+      font-size: 48px;
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    
+    .cc-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    .cc-header-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .cc-header-alert {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--red-500);
+      font-weight: 500;
+      margin-left: 32px;
+    }
+    
+    .cc-header-alert::before {
+      content: '⚠';
+      display: inline-block;
+      width: 16px;
+      text-align: center;
+    }
+    
+    /* Brand Fidelity Composite */
+    .cc-composite {
+      margin-bottom: 56px;
+      padding: 40px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-primary);
+      animation: morning-flash-slide-left 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s backwards;
+    }
+    
+    .cc-composite-header {
+      display: flex;
+      align-items: baseline;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    
+    .cc-composite-metric {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+    }
+    
+    .cc-composite-number {
+      font-family: var(--font-grotesk);
+      font-size: 96px;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1;
+      min-width: 140px;
+    }
+    
+    .cc-composite-delta {
+      font-family: var(--font-grotesk);
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--red-600);
+    }
+    
+    .cc-composite-delta.positive {
+      color: var(--green-600);
+    }
+    
+    .cc-composite-label {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    
+    .cc-composite-drivers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 32px;
+    }
+    
+    .cc-driver {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .cc-driver-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+    }
+    
+    .cc-driver-value {
+      font-family: var(--font-grotesk);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    
+    .cc-driver-value.crisis {
+      color: var(--red-600);
+    }
+    
+    .cc-driver-value.critical {
+      color: var(--red-700);
+    }
+    
+    .cc-driver-value.strength {
+      color: var(--green-600);
+    }
+    
+    .cc-driver-bar {
+      height: 6px;
+      background: var(--border-default);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    
+    .cc-driver-bar-fill {
+      height: 100%;
+      background: var(--text-secondary);
+      border-radius: 3px;
+      transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .cc-driver-bar.crisis .cc-driver-bar-fill {
+      background: var(--red-500);
+    }
+    
+    .cc-driver-bar.critical .cc-driver-bar-fill {
+      background: var(--red-600);
+    }
+    
+    .cc-driver-bar.strength .cc-driver-bar-fill {
+      background: var(--green-500);
+    }
+    
+    .cc-composite-glass {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-tertiary);
+      line-height: 1.6;
+    }
+    
+    .cc-composite-glass-label {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    
+    /* Dashboard Grid - 3 Columns */
+    .cc-dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1.2fr;
+      gap: 32px;
+      margin-bottom: 56px;
+      animation: morning-flash-slide-left 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.3s backwards;
+    }
+    
+    .cc-panel {
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      padding: 32px;
+    }
+    
+    .cc-panel-header {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 24px;
+    }
+    
+    /* Signal Volume Panel */
+    .cc-signals-primary {
+      text-align: center;
+    }
+    
+    .cc-signals-number {
+      font-family: var(--font-grotesk);
+      font-size: 72px;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    
+    .cc-signals-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+    
+    .cc-signals-breakdown {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 32px;
+      margin-top: 32px;
+    }
+    
+    .cc-signal-sub {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .cc-signal-sub-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .cc-signal-sub-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    
+    .cc-signal-sub-dot.human {
+      background: var(--violet-500);
+    }
+    
+    .cc-signal-sub-dot.behavioral {
+      background: var(--teal-500);
+    }
+    
+    .cc-signal-sub-dot.cultural {
+      background: var(--amber-500);
+    }
+    
+    .cc-signal-sub-value {
+      font-family: var(--font-grotesk);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    
+    .cc-sparkline {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    
+    .cc-sparkline-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-tertiary);
+      margin-bottom: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    
+    .cc-sparkline-svg {
+      width: 100%;
+      height: 40px;
+    }
+    
+    /* Priority Alerts Panel */
+    .cc-alerts {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .cc-alert-card {
+      border-left: 4px solid var(--red-500);
+      background: var(--bg-card);
+      padding: 20px;
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .cc-alert-card.medium {
+      border-left-color: var(--amber-500);
+      background: var(--bg-card);
+    }
+    
+    .cc-alert-severity {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red-500);
+      margin-bottom: 6px;
+    }
+    
+    .cc-alert-card.medium .cc-alert-severity {
+      color: var(--amber-500);
+    }
+    
+    .cc-alert-title {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    
+    .cc-alert-detail {
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+    
+    /* Competitive Position Panel */
+    .cc-competitive {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    
+    .cc-competitive-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .cc-competitive-label {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text-secondary);
+      min-width: 120px;
+    }
+    
+    .cc-competitive-label.self {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .cc-competitive-bar-container {
+      flex: 1;
+      height: 20px;
+      background: var(--border-default);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .cc-competitive-bar-fill {
+      height: 100%;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .cc-competitive-bar-fill.self {
+      background: var(--text-primary);
+    }
+    
+    .cc-competitive-value {
+      font-family: var(--font-grotesk);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      min-width: 40px;
+      text-align: right;
+    }
+    
+    /* Animated Signal Ring */
+    .cc-signal-ring-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .cc-signal-ring-svg {
+      width: 200px;
+      height: 200px;
+      filter: drop-shadow(0 0 20px rgba(129, 140, 248, 0.1));
+    }
+
+    .cc-signal-ring-text {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: center;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    @keyframes signal-pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.02);
+        opacity: 1;
+      }
+    }
+
+    .cc-signal-ring-center {
+      animation: signal-pulse 3s ease-in-out infinite;
+    }
+
+    /* Active Patterns Grid */
+    .cc-patterns {
+      animation: morning-flash-slide-left 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.4s backwards;
+    }
+    
+    .cc-patterns-header {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 24px;
+    }
+    
+    .cc-patterns-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    
+    .cc-pattern-card {
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 160px;
+    }
+    
+    .cc-pattern-title {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    
+    .cc-pattern-description {
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+    
+    .cc-pattern-signal {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    
+    .cc-pattern-signal-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      background: var(--border-default);
+      border: 1px solid var(--border-default);
+      border-radius: 2px;
+      color: var(--text-tertiary);
+    }
+    
+    .cc-pattern-signal-badge.human {
+      background: var(--signal-human-dim);
+      border-color: rgba(129,140,248,0.3);
+      color: var(--signal-human);
+    }
+    
+    .cc-pattern-signal-badge.behavioral {
+      background: var(--signal-behavioral-dim);
+      border-color: rgba(52,211,153,0.3);
+      color: var(--signal-behavioral);
+    }
+    
+    .cc-pattern-signal-badge.cultural {
+      background: var(--signal-cultural-dim);
+      border-color: rgba(245,158,11,0.3);
+      color: var(--signal-cultural);
+    }
+    
+    /* Sentiment Trend Section */
+    .cc-sentiment {
+      animation: morning-flash-slide-left 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.5s backwards;
+    }
+    
+    .cc-sentiment-header {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 24px;
+    }
+    
+    .cc-sentiment-chart {
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      padding: 32px;
+      min-height: 280px;
+    }
+    
+    .cc-sentiment-svg {
+      width: 100%;
+      height: 240px;
+    }
+    
+    .cc-sentiment-legend {
+      display: flex;
+      gap: 32px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    
+    .cc-sentiment-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .cc-sentiment-legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+    }
+    
+    .cc-sentiment-legend-dot.expressive {
+      background: var(--violet-500);
+    }
+    
+    .cc-sentiment-legend-dot.behavioral {
+      background: var(--teal-500);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1600px) {
+      .cc-dashboard {
+        grid-template-columns: 1fr;
+      }
+      
+      .cc-composite-drivers {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body data-page="command-center">
+  <div class="app">
+    <!-- Navigation -->
+    <nav class="nav">
+    <div class="nav-logo">
+      <img src="assets/logos/material-plus.png" alt="Material+" style="height: 24px; opacity: 0.9;">
+    </div>
+    <div class="nav-confidential">Confidential · Internal Use Only</div>
+    <div class="nav-section">
+      <div class="nav-section-label">Foundation</div>
+      <a href="index.html" class="nav-item" data-page="strategic-brief"><span class="nav-item-icon">◇</span> Strategic Brief</a>
+      <a href="day-in-the-life.html" class="nav-item" data-page="day-in-the-life"><span class="nav-item-icon">◉</span> Day in the Life</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Methodology</div>
+      <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon">◈</span> How It Works</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Intelligence</div>
+      <a href="command-center.html" class="nav-item active" data-page="command-center"><span class="nav-item-icon">▣</span> Command Center</a>
+      <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal"><span class="nav-item-icon">▤</span> Signal Terminal</a>
+      <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis"><span class="nav-item-icon">▥</span> Guided Analysis</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-section-label">Simulation</div>
+      <a href="scenario-lab.html" class="nav-item" data-page="scenario-lab"><span class="nav-item-icon">◬</span> Scenario Lab</a>
+    </div>
+    <div class="nav-pulse">
+      <div class="nav-pulse-bar"></div>
+      <div class="nav-pulse-label"><span>Signal Activity</span><span><span class="signal-count">847</span> live</span></div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="app-content command-center">
+    <!-- Header Section -->
+    <section class="cc-header">
+      <div class="cc-header-micro">Command Center</div>
+      <h1 class="cc-header-title">Morning Intelligence Brief</h1>
+      <div class="cc-header-meta">
+        <span class="cc-header-meta-item">March 6, 2026</span>
+        <span class="cc-header-meta-item">06:15 EST</span>
+        <div class="cc-header-alert">3 signals require attention</div>
+      </div>
+    </section>
+
+    <!-- Brand Fidelity Composite -->
+    <section class="cc-composite">
+      <div class="cc-composite-header">
+        <div class="cc-composite-micro" style="font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 0;">Brand Fidelity</div>
+      </div>
+      <div class="cc-composite-metric">
+        <div>
+          <div class="cc-composite-number" data-count="72">72</div>
+          <div class="cc-composite-label">Brand Fidelity Composite · <img src="assets/logos/stayworthy.png" alt="Stayworthy" style="height: 20px; opacity: 0.8; vertical-align: middle;"></div>
+        </div>
+        <div class="cc-composite-delta" data-delta="-4">−4</div>
+      </div>
+      
+      <!-- Brand Fidelity Radar Chart -->
+      <div style="margin-bottom: 32px; border: 1px solid var(--border-subtle); background: var(--bg-primary); padding: 32px; border-radius: 2px;">
+        <div style="font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 24px;">6-Driver Visualization</div>
+        <div id="bf-radar" style="display: flex; justify-content: center;"></div>
+      </div>
+
+      <div class="cc-composite-drivers">
+        <div class="cc-driver">
+          <div class="cc-driver-header">
+            <span>User Friendly</span>
+            <span class="cc-driver-value" data-value="72">72</span>
+          </div>
+          <div class="cc-driver-bar">
+            <div class="cc-driver-bar-fill" style="width: 72%;"></div>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary);">−4</div>
+        </div>
+        
+        <div class="cc-driver crisis">
+          <div class="cc-driver-header">
+            <span>Personal</span>
+            <span class="cc-driver-value crisis" data-value="64">64</span>
+          </div>
+          <div class="cc-driver-bar crisis">
+            <div class="cc-driver-bar-fill" style="width: 64%;"></div>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--red-600);">−8 ⚠ Crisis</div>
+        </div>
+        
+        <div class="cc-driver">
+          <div class="cc-driver-header">
+            <span>Accessible</span>
+            <span class="cc-driver-value" data-value="71">71</span>
+          </div>
+          <div class="cc-driver-bar">
+            <div class="cc-driver-bar-fill" style="width: 71%;"></div>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary);">+1</div>
+        </div>
+        
+        <div class="cc-driver critical">
+          <div class="cc-driver-header">
+            <span>Dependable</span>
+            <span class="cc-driver-value critical" data-value="58">58</span>
+          </div>
+          <div class="cc-driver-bar critical">
+            <div class="cc-driver-bar-fill" style="width: 58%;"></div>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--red-700);">−6 Critical</div>
+        </div>
+        
+        <div class="cc-driver">
+          <div class="cc-driver-header">
+            <span>Meaningful</span>
+            <span class="cc-driver-value" data-value="66">66</span>
+          </div>
+          <div class="cc-driver-bar">
+            <div class="cc-driver-bar-fill" style="width: 66%;"></div>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary);">−3</div>
+        </div>
+        
+        <div class="cc-driver strength">
+          <div class="cc-driver-header">
+            <span>Salient</span>
+            <span class="cc-driver-value strength" data-value="74">74</span>
+          </div>
+          <div class="cc-driver-bar strength">
+            <div class="cc-driver-bar-fill" style="width: 74%;"></div>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--green-600);">+2 ✓ Strength</div>
+        </div>
+      </div>
+      
+      <!-- Glass Box: Show My Work -->
+      <div class="glass-box-panel" style="margin-top: 32px;">
+        <div class="glass-box-header">
+          <div class="glass-box-header-left">
+            <svg class="glass-box-header-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+            <span class="glass-box-header-title">Glass Box — Data Provenance</span>
+          </div>
+          <button class="glass-box-toggle" data-target="cc-bf-glassbox" aria-expanded="false">
+            Show My Work <span class="chevron">▾</span>
+          </button>
+        </div>
+        <div class="glass-box-content" id="cc-bf-glassbox">
+          <div class="glass-box-inner">
+            <div class="glass-box-pipeline-container"></div>
+            <div class="glass-box-tiers-container"></div>
+            <div class="glass-box-methodology-container" data-metric="brandFidelity"></div>
+            <div class="glass-box-assumptions-container" data-metric="brandFidelity"></div>
+            <div class="glass-box-timestamp-container"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Grid: 3 Columns -->
+    <section class="cc-dashboard">
+      <!-- Column 1: Signal Volume with Animated Ring -->
+      <div class="cc-panel">
+        <div class="cc-panel-header">Signals Monitored</div>
+
+        <div class="cc-signal-ring-container">
+          <!-- Animated SVG Ring -->
+          <svg class="cc-signal-ring-svg" viewBox="0 0 200 200">
+            <!-- Background circle -->
+            <circle cx="100" cy="100" r="95" fill="transparent" stroke="rgba(255, 255, 255, 0.05)" stroke-width="2"/>
+
+            <!-- Human-Expressive arc (312 signals = 36.8%) -->
+            <path d="M 100 20 A 80 80 0 0 1 149.24 28.41" fill="none" stroke="#818cf8" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+
+            <!-- Behavioral arc (289 signals = 34.1%) -->
+            <path d="M 149.24 28.41 A 80 80 0 0 1 167.43 106.27" fill="none" stroke="#34d399" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+
+            <!-- Cultural arc (246 signals = 29.1%) -->
+            <path d="M 167.43 106.27 A 80 80 0 0 1 100 20" fill="none" stroke="#f59e0b" stroke-width="8" stroke-linecap="round" opacity="0.8"/>
+
+            <!-- Center circle with number -->
+            <circle cx="100" cy="100" r="50" fill="rgba(129, 140, 248, 0.08)" stroke="rgba(129, 140, 248, 0.15)" stroke-width="1"/>
+            <g class="cc-signal-ring-center">
+              <text x="100" y="105" font-family="'Space Grotesk', sans-serif" font-size="36" font-weight="400" fill="rgba(255, 255, 255, 0.95)" text-anchor="middle">847</text>
+            </g>
+          </svg>
+
+          <div class="cc-signal-ring-text">Live Signal Volume</div>
+        </div>
+
+        <div class="cc-signals-breakdown">
+          <div class="cc-signal-sub">
+            <span class="cc-signal-sub-label">
+              <span class="cc-signal-sub-dot human"></span>
+              Human-Expressive
+            </span>
+            <span class="cc-signal-sub-value" data-count="312">0</span>
+          </div>
+          <div class="cc-signal-sub">
+            <span class="cc-signal-sub-label">
+              <span class="cc-signal-sub-dot behavioral"></span>
+              Behavioral
+            </span>
+            <span class="cc-signal-sub-value" data-count="289">0</span>
+          </div>
+          <div class="cc-signal-sub">
+            <span class="cc-signal-sub-label">
+              <span class="cc-signal-sub-dot cultural"></span>
+              Cultural
+            </span>
+            <span class="cc-signal-sub-value" data-count="246">0</span>
+          </div>
+        </div>
+        
+        <div class="cc-sparkline">
+          <div class="cc-sparkline-label">7-Day Trend</div>
+          <svg class="cc-sparkline-svg" id="sparkline-volume"></svg>
+        </div>
+      </div>
+
+      <!-- Column 2: Priority Alerts -->
+      <div class="cc-panel">
+        <div class="cc-panel-header">Priority Alerts</div>
+        <div class="cc-alerts">
+          <div class="cc-alert-card">
+            <div class="cc-alert-severity">HIGH</div>
+            <div class="cc-alert-title">Trust-Behavior Gap Widening</div>
+            <div class="cc-alert-detail">22-point divergence between stated satisfaction and repeat booking rate. Expressive signals show high trust, but behavioral abandonment is accelerating.</div>
+          </div>
+          
+          <div class="cc-alert-card">
+            <div class="cc-alert-severity">HIGH</div>
+            <div class="cc-alert-title">Booking Abandonment Spike</div>
+            <div class="cc-alert-detail">Abandonment rate climbed from 34% → 41% in 14 days. Behavioral signals correlate spike with pricing display opacity in search results.</div>
+          </div>
+          
+          <div class="cc-alert-card medium">
+            <div class="cc-alert-severity">MEDIUM</div>
+            <div class="cc-alert-title">Barcelona STR Regulation</div>
+            <div class="cc-alert-detail">Phase-out timeline accelerated. Approximately 12,000 licenses at risk. Seasonal rental supply impact expected Q3 2026.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 3: Competitive Position -->
+      <div class="cc-panel">
+        <div class="cc-panel-header">Competitive Landscape</div>
+        <div class="cc-competitive">
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label">Booking.com</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill" style="width: 100%;"></div>
+            </div>
+            <span class="cc-competitive-value">74.0</span>
+          </div>
+          
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label self">Stayworthy</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill self" style="width: 97%;"></div>
+            </div>
+            <span class="cc-competitive-value">72.0</span>
+          </div>
+          
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label">Marriott Homes</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill" style="width: 96%;"></div>
+            </div>
+            <span class="cc-competitive-value">71.0</span>
+          </div>
+          
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label">Airbnb</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill" style="width: 93%;"></div>
+            </div>
+            <span class="cc-competitive-value">68.9</span>
+          </div>
+          
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label">Vrbo</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill" style="width: 92%;"></div>
+            </div>
+            <span class="cc-competitive-value">68.0</span>
+          </div>
+          
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label">Hilton Home2</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill" style="width: 88%;"></div>
+            </div>
+            <span class="cc-competitive-value">65.0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Active Patterns -->
+    <section class="cc-patterns">
+      <div class="cc-patterns-header">Active Patterns</div>
+      <div class="cc-patterns-grid">
+        <div class="cc-pattern-card">
+          <div class="cc-pattern-title">Trust Erosion Cascade</div>
+          <div class="cc-pattern-description">Behavioral signals confirming expressive decline. Repeat booking rate falling 3.2% weekly despite maintained stated satisfaction.</div>
+          <div class="cc-pattern-signal">
+            <span class="cc-pattern-signal-badge human">Human+</span>
+            <span class="cc-pattern-signal-badge behavioral">Behavioral</span>
+          </div>
+        </div>
+        
+        <div class="cc-pattern-card">
+          <div class="cc-pattern-title">Gen Z Sentiment Shift</div>
+          <div class="cc-pattern-description">Experience-over-product movement accelerating. Younger demographics increasingly weight "story" and "authenticity" above price/convenience.</div>
+          <div class="cc-pattern-signal">
+            <span class="cc-pattern-signal-badge cultural">Cultural</span>
+          </div>
+        </div>
+        
+        <div class="cc-pattern-card">
+          <div class="cc-pattern-title">Pricing Transparency Gap</div>
+          <div class="cc-pattern-description">User Friendly driver linked to opaque pricing model. Search results hide final cost; revealed only in checkout. Behavioral signal surge in abandoned carts.</div>
+          <div class="cc-pattern-signal">
+            <span class="cc-pattern-signal-badge behavioral">Behavioral</span>
+          </div>
+        </div>
+        
+        <div class="cc-pattern-card">
+          <div class="cc-pattern-title">Regulatory Pressure Wave</div>
+          <div class="cc-pattern-description">STR regulation spreading across EU destinations. Barcelona, Venice, Amsterdam, Rome all tightening supply. Q2–Q3 revenue headwinds expected.</div>
+          <div class="cc-pattern-signal">
+            <span class="cc-pattern-signal-badge cultural">Cultural</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sentiment Trend -->
+    <section class="cc-sentiment">
+      <div class="cc-sentiment-header">Sentiment Divergence: 30-Day Trend</div>
+      <div class="cc-sentiment-chart">
+        <svg class="cc-sentiment-svg" id="sentiment-chart"></svg>
+        <div class="cc-sentiment-legend">
+          <div class="cc-sentiment-legend-item">
+            <div class="cc-sentiment-legend-dot expressive"></div>
+            <span>Expressive (Human Signal)</span>
+          </div>
+          <div class="cc-sentiment-legend-item">
+            <div class="cc-sentiment-legend-dot behavioral"></div>
+            <span>Behavioral (Action Signal)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Feed -->
+  <footer class="feed app-feed">
+    <span class="feed-label">Intelligence Feed</span>
+    <div class="feed-ticker"><div class="feed-ticker-track"></div></div>
+  </footer>
+
+  <!-- Analyst -->
+  <div class="analyst-trigger" title="Material Analyst">
+    <span class="analyst-trigger-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Material+ Symbol: stylized geometric plus -->
+        <path d="M12 2 L12 22 M2 12 L22 12" stroke="#f0f0f0" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="8" stroke="#f0f0f0" stroke-width="1.5" fill="none" opacity="0.4"/>
+      </svg>
+    </span>
+    <span class="analyst-dot"></span>
+  </div>
+  <div class="analyst-panel">
+    <div class="analyst-panel-header">
+      <span class="analyst-panel-title">Material Analyst</span>
+      <div class="analyst-mode-toggle">
+        <button class="mode-btn active" data-mode="guide">Guide</button>
+        <button class="mode-btn" data-mode="guardian">Guardian</button>
+      </div>
+      <button class="analyst-panel-close">×</button>
+    </div>
+    <div class="analyst-panel-messages"></div>
+    <div class="analyst-panel-input">
+      <input type="text" placeholder="Ask about signals, drivers, competitors...">
+      <button>Send</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    // Count-up animation utility
+    function animateCount(element, target, duration = 1200) {
+      const start = 0;
+      const range = target - start;
+      const increment = range / (duration / 16);
+      let current = start;
+      
+      const counter = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target;
+          clearInterval(counter);
+        } else {
+          element.textContent = Math.floor(current);
+        }
+      }, 16);
+    }
+    
+    // Initialize count-up animations
+    document.addEventListener('DOMContentLoaded', () => {
+      // Main composite number
+      const compositeNum = document.querySelector('.cc-composite-number');
+      if (compositeNum) {
+        animateCount(compositeNum, 72, 1200);
+      }
+      
+      // Signal volume
+      const signalNum = document.querySelector('.cc-signals-number');
+      if (signalNum) {
+        animateCount(signalNum, 847, 1200);
+      }
+      
+      // Signal breakdown
+      document.querySelectorAll('.cc-signal-sub-value').forEach((el, idx) => {
+        const targets = [312, 289, 246];
+        animateCount(el, targets[idx], 1000 + idx * 100);
+      });
+      
+      // Driver values with staggered timing
+      document.querySelectorAll('.cc-driver-value').forEach((el, idx) => {
+        const targets = [72, 64, 71, 58, 66, 74];
+        animateCount(el, targets[idx], 1100 + idx * 50);
+      });
+      
+      // Initialize sparkline
+      drawSignalVolumeTrendline();
+      
+      // Initialize sentiment chart
+      drawSentimentTrendChart();
+    });
+    
+    // Draw 7-day signal volume trend sparkline
+    function drawSignalVolumeTrendline() {
+      const svg = document.getElementById('sparkline-volume');
+      if (!svg) return;
+      
+      const width = svg.parentElement.offsetWidth;
+      const height = 40;
+      const padding = 2;
+      const dataPoints = 7;
+      
+      // Realistic signal volume data (trending downward)
+      const data = [920, 895, 871, 847, 834, 812, 847];
+      const min = Math.min(...data);
+      const max = Math.max(...data);
+      const range = max - min;
+      
+      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      svg.setAttribute('width', width);
+      svg.setAttribute('height', height);
+      
+      // Draw baseline
+      const baseline = height - padding - ((data[0] - min) / range) * (height - padding * 2);
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+      
+      let points = [];
+      const xStep = (width - padding * 2) / (dataPoints - 1);
+      
+      data.forEach((value, i) => {
+        const x = padding + i * xStep;
+        const y = height - padding - ((value - min) / range) * (height - padding * 2);
+        points.push(`${x},${y}`);
+      });
+      
+      line.setAttribute('points', points.join(' '));
+      line.setAttribute('fill', 'none');
+      line.setAttribute('stroke', 'var(--gray-800)');
+      line.setAttribute('stroke-width', '1.5');
+      line.setAttribute('stroke-linecap', 'round');
+      
+      svg.appendChild(line);
+      
+      // Subtle area fill
+      const pathStr = `M ${points[0]} L ${points.join(' L ')} L ${points[points.length - 1].split(',')[0]},${height} L ${points[0].split(',')[0]},${height} Z`;
+      const area = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      area.setAttribute('d', pathStr);
+      area.setAttribute('fill', 'var(--gray-100)');
+      area.setAttribute('opacity', '0.3');
+      
+      svg.insertBefore(area, line);
+    }
+    
+    // Draw 30-day sentiment divergence chart
+    function drawSentimentTrendChart() {
+      const svg = document.getElementById('sentiment-chart');
+      if (!svg) return;
+      
+      const width = svg.parentElement.offsetWidth - 64;
+      const height = 200;
+      const padding = 40;
+      
+      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      svg.setAttribute('width', width);
+      svg.setAttribute('height', height);
+      
+      // 30-day data: Expressive declining, Behavioral declining faster (divergence)
+      const expressive = [78, 77, 76, 75, 74, 73, 71, 70, 68, 67, 65, 64, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45];
+      const behavioral = [81, 79, 76, 73, 70, 66, 62, 58, 54, 50, 47, 44, 41, 38, 35, 33, 31, 29, 27, 26, 25, 24, 23, 22, 22, 21, 21, 20, 20, 20];
+      
+      const days = expressive.length;
+      const xStep = (width - padding * 2) / (days - 1);
+      const yMin = 20;
+      const yMax = 81;
+      const yRange = yMax - yMin;
+      
+      // Draw grid
+      for (let i = 0; i <= 4; i++) {
+        const y = padding + (i / 4) * (height - padding * 2);
+        const gridLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        gridLine.setAttribute('x1', padding);
+        gridLine.setAttribute('x2', width - padding);
+        gridLine.setAttribute('y1', y);
+        gridLine.setAttribute('y2', y);
+        gridLine.setAttribute('stroke', 'var(--gray-200)');
+        gridLine.setAttribute('stroke-width', '0.5');
+        svg.appendChild(gridLine);
+      }
+      
+      // Function to draw line
+      function drawLine(data, color) {
+        let points = [];
+        data.forEach((value, i) => {
+          const x = padding + i * xStep;
+          const y = height - padding - ((value - yMin) / yRange) * (height - padding * 2);
+          points.push(`${x},${y}`);
+        });
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+        line.setAttribute('points', points.join(' '));
+        line.setAttribute('fill', 'none');
+        line.setAttribute('stroke', color);
+        line.setAttribute('stroke-width', '2');
+        line.setAttribute('stroke-linecap', 'round');
+        line.setAttribute('stroke-linejoin', 'round');
+        
+        svg.appendChild(line);
+        
+        return points;
+      }
+      
+      // Draw behavioral line (teal) first so expressive appears on top
+      const behavioralPoints = drawLine(behavioral, 'var(--teal-500)');
+      const expressivePoints = drawLine(expressive, 'var(--violet-500)');
+      
+      // Draw divergence area
+      const pathStr = `M ${expressivePoints[0]} L ${expressivePoints.join(' L ')} L ${behavioralPoints.reverse().join(' L ')} Z`;
+      const divergence = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      divergence.setAttribute('d', pathStr);
+      divergence.setAttribute('fill', 'var(--red-100)');
+      divergence.setAttribute('opacity', '0.3');
+      
+      svg.insertBefore(divergence, svg.firstChild.nextSibling.nextSibling);
+      
+      // Draw axes
+      const xAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      xAxis.setAttribute('x1', padding);
+      xAxis.setAttribute('x2', width - padding);
+      xAxis.setAttribute('y1', height - padding);
+      xAxis.setAttribute('y2', height - padding);
+      xAxis.setAttribute('stroke', 'var(--gray-400)');
+      xAxis.setAttribute('stroke-width', '1');
+      svg.appendChild(xAxis);
+      
+      const yAxis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      yAxis.setAttribute('x1', padding);
+      yAxis.setAttribute('x2', padding);
+      yAxis.setAttribute('y1', padding);
+      yAxis.setAttribute('y2', height - padding);
+      yAxis.setAttribute('stroke', 'var(--gray-400)');
+      yAxis.setAttribute('stroke-width', '1');
+      svg.appendChild(yAxis);
+    }
+    
+    // Link active nav item
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      const currentPage = document.querySelector('[data-page="command-center"]');
+      if (currentPage) {
+        currentPage.classList.add('active');
+      }
+    });
+  </script>
+  </div>
+</body>
+</html>

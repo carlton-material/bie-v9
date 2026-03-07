@@ -64,12 +64,12 @@
         "value": 72,
         "delta": -4,
         "confidence": "high",
-        "formula": "BF Composite = Î£(Driver_i Ã Weight_i) / Î£(Weight_i)",
+        "formula": "BF Composite = Σ(Driver_i × Weight_i) / Σ(Weight_i)",
         "approach": "Weighted composite of 6 Brand Fidelity drivers measured via mixed-method signal integration. In-the-Moment drivers weighted 45%, Over-Time drivers weighted 55%.",
         "assumptions": [
           "Survey respondents representative of Stayworthy's active user base (N=24,000)",
-          "AI interview responses directionally accurate to Â±5% of quantitative benchmarks",
-          "Behavioral signals lag attitudinal shifts by 2â4 weeks",
+          "AI interview responses directionally accurate to ±5% of quantitative benchmarks",
+          "Behavioral signals lag attitudinal shifts by 2–4 weeks",
           "Cultural signals weighted by recency (30-day trailing window)"
         ],
         "dataStatus": "ai-enriched",

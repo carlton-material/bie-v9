@@ -1,0 +1,822 @@
+{
+  "segments": {
+    "budget-travelers": {
+      "name": "Budget Travelers",
+      "size": 1200,
+      "demographics": {
+        "age_range": "22-35",
+        "income": "$35K-65K",
+        "travel_freq": "2-3x/year"
+      },
+      "personas": [
+        {
+          "name": "Sarah M.",
+          "age": 28,
+          "location": "Austin, TX",
+          "profile": "Digital nomad, price-sensitive, values authentic local experiences",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "I've abandoned Stayworthy bookings three times this month because the final price was nothing like what I first saw.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["User Friendly", "Dependable"],
+              "intensity": 0.85
+            },
+            "brand-authenticity": {
+              "quote": "Their Instagram makes it look like luxury travel, but their prices say backpacker. Mixed signals.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Personal", "Meaningful"],
+              "intensity": 0.6
+            },
+            "loyalty-program": {
+              "quote": "The points system is so confusing. Do they even expire? I've never actually used my points.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.7
+            },
+            "mobile-experience": {
+              "quote": "The app crashes when I try to filter by 'pet-friendly'. I just use the website instead.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable", "User Friendly"],
+              "intensity": 0.75
+            },
+            "competitor-comparison": {
+              "quote": "Booking.com shows prices upfront, no surprises. That's why I switched.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["User Friendly", "Dependable"],
+              "intensity": 0.8
+            }
+          }
+        },
+        {
+          "name": "Marcus L.",
+          "age": 31,
+          "location": "Denver, CO",
+          "profile": "Adventure seeker, budget-conscious, prefers unique accommodations",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "I appreciate when they break down what's included. Fees hidden in the fine print feel sketchy.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.65
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy feels authentic—like they actually care about matching people with real places, not just pushing volume.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.72
+            },
+            "loyalty-program": {
+              "quote": "The loyalty rewards helped me save $50 on my last three trips. It adds up.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.68
+            },
+            "mobile-experience": {
+              "quote": "The mobile app is snappy and intuitive. I book most trips from my phone.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.78
+            },
+            "competitor-comparison": {
+              "quote": "Stayworthy has better property photos and descriptions than Airbnb. Makes choosing easier.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly", "Meaningful"],
+              "intensity": 0.73
+            }
+          }
+        },
+        {
+          "name": "Jen H.",
+          "age": 26,
+          "location": "Portland, OR",
+          "profile": "Solo traveler, eco-conscious, values community interaction",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Hidden cleaning fees are the worst. I want to see the real cost before I even start looking.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable", "User Friendly"],
+              "intensity": 0.82
+            },
+            "brand-authenticity": {
+              "quote": "I like that Stayworthy promotes local hosts, not corporate chains. Feels more genuine.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful", "Personal"],
+              "intensity": 0.74
+            },
+            "loyalty-program": {
+              "quote": "Never really understood the tiers. Are frequent travelers rewarded more? It's not clear.",
+              "sentiment": "neutral",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.5
+            },
+            "mobile-experience": {
+              "quote": "Mobile search is good, but I wish I could message hosts directly from the app to ask questions.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Personal", "User Friendly"],
+              "intensity": 0.62
+            },
+            "competitor-comparison": {
+              "quote": "Airbnb has more properties in some cities, but Stayworthy's hosts seem more responsive.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Personal"],
+              "intensity": 0.58
+            }
+          }
+        },
+        {
+          "name": "Diego R.",
+          "age": 24,
+          "location": "Miami, FL",
+          "profile": "Party-focused, seeks social atmosphere, lowest-cost options",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Stayworthy's deals look good, but then taxes and fees add 30%. That's insane.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.88
+            },
+            "brand-authenticity": {
+              "quote": "It feels like a generic booking site. Nothing about it screams 'go have an adventure here.'",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.65
+            },
+            "loyalty-program": {
+              "quote": "I book too sporadically to get value from loyalty programs. Better to just hunt deals.",
+              "sentiment": "neutral",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.55
+            },
+            "mobile-experience": {
+              "quote": "App is sluggish on my older phone. Website is faster.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.7
+            },
+            "competitor-comparison": {
+              "quote": "Hostelworld and Airbnb have better filters for social/party vibes. Stayworthy feels corporate.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Personal"],
+              "intensity": 0.75
+            }
+          }
+        },
+        {
+          "name": "Aisha K.",
+          "age": 32,
+          "location": "Chicago, IL",
+          "profile": "Student/researcher, seeks culturally immersive experiences, very price-sensitive",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "As a graduate student, every dollar matters. I need to see the exact total cost upfront.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.79
+            },
+            "brand-authenticity": {
+              "quote": "I appreciate their focus on authentic stays. It aligns with my research on sustainable tourism.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.71
+            },
+            "loyalty-program": {
+              "quote": "The program is okay, but student discounts would be better. Are you listening?",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.6
+            },
+            "mobile-experience": {
+              "quote": "The app is clean and minimal. I like that. Easy to navigate on my limited data plan.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.68
+            },
+            "competitor-comparison": {
+              "quote": "Couchsurfing is free and connects me with locals. But for paid stays, Stayworthy is competitive.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Personal"],
+              "intensity": 0.64
+            }
+          }
+        }
+      ]
+    },
+    "family-vacationers": {
+      "name": "Family Vacationers",
+      "size": 1800,
+      "demographics": {
+        "age_range": "35-55",
+        "income": "$100K-180K",
+        "travel_freq": "3-4x/year"
+      },
+      "personas": [
+        {
+          "name": "Robert T.",
+          "age": 43,
+          "location": "Seattle, WA",
+          "profile": "Father of 2, seeks safe family-friendly accommodations, values amenities",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "I need to budget carefully with two kids. Surprise fees at checkout are a deal-breaker.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.86
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy feels trustworthy. They verify properties and hosts. That matters when traveling with my family.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.81
+            },
+            "loyalty-program": {
+              "quote": "I travel with my family regularly. The loyalty discount easily saves me $200+ per year.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.77
+            },
+            "mobile-experience": {
+              "quote": "The app lets me manage family bookings easily. Multi-room coordination is straightforward.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.73
+            },
+            "competitor-comparison": {
+              "quote": "Vrbo and Airbnb both have family-friendly filters, but Stayworthy's quality control is better.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.75
+            }
+          }
+        },
+        {
+          "name": "Maria G.",
+          "age": 48,
+          "location": "Phoenix, AZ",
+          "profile": "Mother of teenage kids, plans trips with extended family, needs good communication",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "When booking for 8 people, I need absolute clarity on costs. No guessing games.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.84
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy's commitment to verified hosts gives me peace of mind. It's reliable.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.78
+            },
+            "loyalty-program": {
+              "quote": "Loyalty status should give priority to customer service. I've had to wait on hold too long.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.62
+            },
+            "mobile-experience": {
+              "quote": "I prefer the website for managing group bookings. The app interface feels cramped.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.58
+            },
+            "competitor-comparison": {
+              "quote": "Marriott Homes feels more premium. Stayworthy is good, but I'm considering them more for larger groups.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.62
+            }
+          }
+        },
+        {
+          "name": "Kevin W.",
+          "age": 41,
+          "location": "Atlanta, GA",
+          "profile": "Father of 3, work flexibility, plans 1-week family holidays, budget-conscious but seeks comfort",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Total cost transparency makes budgeting easier. I can plan family trips with confidence.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.76
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy feels like it actually cares about matching families with the right homes.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.7
+            },
+            "loyalty-program": {
+              "quote": "The rewards add up quickly. Great incentive to keep booking with them.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.74
+            },
+            "mobile-experience": {
+              "quote": "Mobile app is solid. My kids can help search and explore destinations.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.71
+            },
+            "competitor-comparison": {
+              "quote": "Vrbo has more family-focused properties, but Stayworthy's prices are more competitive.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.72
+            }
+          }
+        },
+        {
+          "name": "Linda S.",
+          "age": 52,
+          "location": "Boston, MA",
+          "profile": "Grandparent, books multigenerational trips, values accessibility and support",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Hidden fees are confusing. I need customer service that explains costs clearly.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.8
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy's customer reviews feel honest. That helps me make good choices for my family.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.77
+            },
+            "loyalty-program": {
+              "quote": "The rewards program is worth it, but I wish the interface was more intuitive for seniors.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.65
+            },
+            "mobile-experience": {
+              "quote": "The website is easier for me than the app. Font sizes are too small on mobile.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.72
+            },
+            "competitor-comparison": {
+              "quote": "Hilton Home2 offers senior discounts. Stayworthy should too.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.63
+            }
+          }
+        },
+        {
+          "name": "James & Emma D.",
+          "age": 38,
+          "location": "San Diego, CA",
+          "profile": "Dual-income parents, flexible schedules, frequent short trips and weekend getaways",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Weekend getaway pricing is clear. We book frequently and never get surprise charges.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.75
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy curates properties that feel authentic to each destination. Not generic chain vibes.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.78
+            },
+            "loyalty-program": {
+              "quote": "Our family is in the top tier now. The benefits justify the frequent bookings.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.79
+            },
+            "mobile-experience": {
+              "quote": "Both of us use the app. Sync across accounts is seamless.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.76
+            },
+            "competitor-comparison": {
+              "quote": "We started with Airbnb, but Stayworthy's customer service is noticeably better.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Personal"],
+              "intensity": 0.74
+            }
+          }
+        }
+      ]
+    },
+    "experience-seekers": {
+      "name": "Experience Seekers",
+      "size": 950,
+      "demographics": {
+        "age_range": "28-45",
+        "income": "$80K-150K",
+        "travel_freq": "4-6x/year"
+      },
+      "personas": [
+        {
+          "name": "Victoria C.",
+          "age": 36,
+          "location": "New York, NY",
+          "profile": "Cultural enthusiast, seeks boutique/luxury experiences, Instagram-driven",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Luxury experiences justify the cost, but I want to see value breakdown upfront.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.62
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy's curated collections feel authentic and thought-out. Not just volume.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.82
+            },
+            "loyalty-program": {
+              "quote": "Loyalty perks like 'exclusive experiences' and early access to new properties are valuable.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.75
+            },
+            "mobile-experience": {
+              "quote": "The app's photo gallery is stunning. Makes discovery and planning a pleasure.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly", "Meaningful"],
+              "intensity": 0.78
+            },
+            "competitor-comparison": {
+              "quote": "Airbnb has more 'Experiences' content, but Stayworthy's property selection is superior.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.73
+            }
+          }
+        },
+        {
+          "name": "Tom L.",
+          "age": 41,
+          "location": "Los Angeles, CA",
+          "profile": "Adventure lifestyle influencer, documents travels, seeks unique properties",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "High-end properties come with premium pricing. As long as it's clear, I'm fine with it.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.68
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy aligns with my brand—authentic, curated, not mass-market. Partnerships with them are organic.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.86
+            },
+            "loyalty-program": {
+              "quote": "Creator program would be interesting. Currently, loyalty is transactional.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.6
+            },
+            "mobile-experience": {
+              "quote": "Mobile camera integration is great. I can draft posts directly from the app.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.74
+            },
+            "competitor-comparison": {
+              "quote": "Airbnb's creator partnerships are aggressive. Stayworthy should match that.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Personal"],
+              "intensity": 0.64
+            }
+          }
+        },
+        {
+          "name": "Priya N.",
+          "age": 34,
+          "location": "San Francisco, CA",
+          "profile": "Wellness traveler, seeks healthy/sustainable stays, values community impact",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Eco-friendly stays often cost more. I want transparent cost breakdown so I understand the premium.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.73
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy's commitment to sustainable properties and local impact genuinely matters to me.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.84
+            },
+            "loyalty-program": {
+              "quote": "Would love sustainability tier—rewards for choosing eco-properties. Current program feels generic.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.62
+            },
+            "mobile-experience": {
+              "quote": "App's 'sustainability score' feature is excellent. More details would be helpful.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.72
+            },
+            "competitor-comparison": {
+              "quote": "Airbnb is adding sustainability filters, but Stayworthy was early to this. That's authentic.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.76
+            }
+          }
+        },
+        {
+          "name": "Alex K.",
+          "age": 32,
+          "location": "Vancouver, CA",
+          "profile": "Food/wine enthusiast, culinary travel focused, seeks local connections",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Culinary experiences command premium pricing. Transparency helps justify the spend.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.7
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy's partnerships with local chefs and food guides are brilliant. Feels authentic.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.81
+            },
+            "loyalty-program": {
+              "quote": "Food-centric loyalty benefits would be killer. Discount codes for local restaurants, etc.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Personal"],
+              "intensity": 0.65
+            },
+            "mobile-experience": {
+              "quote": "The restaurant recommendation integration is seamless. I can plan entire food itineraries in-app.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.76
+            },
+            "competitor-comparison": {
+              "quote": "Booking.com has restaurant partnerships too, but Stayworthy's curation is more thoughtful.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.75
+            }
+          }
+        },
+        {
+          "name": "Rachel P.",
+          "age": 39,
+          "location": "Austin, TX",
+          "profile": "Solo wellness retreats, yoga/meditation, seeks peaceful local communities",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Wellness retreats are pricey. Honest cost breakdowns help me feel the value is real.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.72
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy's vibe is calm and intentional. Matches my travel philosophy.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.83
+            },
+            "loyalty-program": {
+              "quote": "Wellness retreat discounts or partnerships would be amazing. Current rewards feel off-brand.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.58
+            },
+            "mobile-experience": {
+              "quote": "Minimal, clean design. No flashiness. The app feels meditative itself.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.75
+            },
+            "competitor-comparison": {
+              "quote": "Other platforms push volume and urgency. Stayworthy feels slower-paced and intentional.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.77
+            }
+          }
+        }
+      ]
+    },
+    "business-travelers": {
+      "name": "Business Travelers",
+      "size": 1600,
+      "demographics": {
+        "age_range": "30-60",
+        "income": "$120K-250K+",
+        "travel_freq": "8-15x/year"
+      },
+      "personas": [
+        {
+          "name": "Richard H.",
+          "age": 52,
+          "location": "New York, NY",
+          "profile": "C-level executive, frequent flyer, expects white-glove service",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Corporate accounts should have negotiated rates upfront. Surprises are unacceptable.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.87
+            },
+            "brand-authenticity": {
+              "quote": "Stayworthy positions itself as 'authentic,' but I need reliability and consistency.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.68
+            },
+            "loyalty-program": {
+              "quote": "Corporate loyalty should translate to dedicated account management. Currently it doesn't.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.75
+            },
+            "mobile-experience": {
+              "quote": "Need expense tracking integration. Can't easily export receipts for corporate accounting.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.78
+            },
+            "competitor-comparison": {
+              "quote": "Marriott and Hilton have better corporate programs. Stayworthy feels B2C focused.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.8
+            }
+          }
+        },
+        {
+          "name": "Priya S.",
+          "age": 38,
+          "location": "Boston, MA",
+          "profile": "Consultant, constant travel, values productivity and workspace amenities",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Pricing is reasonable, but I need it itemized for expense reports. That's frustrating.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.64
+            },
+            "brand-authenticity": {
+              "quote": "Unique properties are nice, but I sometimes need corporate chains for consistency.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.62
+            },
+            "loyalty-program": {
+              "quote": "Elite benefits would be nice—early check-in, late checkout, workspace upgrades.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.63
+            },
+            "mobile-experience": {
+              "quote": "App needs better calendar integration. Hard to manage back-to-back bookings.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.72
+            },
+            "competitor-comparison": {
+              "quote": "Booking.com's corporate tools are better. Stayworthy lacks business traveler features.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.75
+            }
+          }
+        },
+        {
+          "name": "David M.",
+          "age": 45,
+          "location": "Chicago, IL",
+          "profile": "Sales director, relationship-focused, high entertainment spend",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "When entertaining clients, total cost clarity helps me plan budgets better.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.68
+            },
+            "brand-authenticity": {
+              "quote": "Premium stays with personality impress clients more than generic hotels.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.74
+            },
+            "loyalty-program": {
+              "quote": "Loyalty perks that let me impress clients (complimentary upgrades, etc.) are gold.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable", "Personal"],
+              "intensity": 0.76
+            },
+            "mobile-experience": {
+              "quote": "Quick booking is essential. I often need to secure accommodations in meetings.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.71
+            },
+            "competitor-comparison": {
+              "quote": "Stayworthy's property quality and curated selection beats Airbnb for client entertainment.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Meaningful"],
+              "intensity": 0.73
+            }
+          }
+        },
+        {
+          "name": "Sophia T.",
+          "age": 41,
+          "location": "Seattle, WA",
+          "profile": "Product manager, weekly travel, needs reliable productivity infrastructure",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "I appreciate clarity, but I mainly care about speed and reliability.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.65
+            },
+            "brand-authenticity": {
+              "quote": "Unique stays are nice occasionally, but consistency is key for frequent travelers.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.6
+            },
+            "loyalty-program": {
+              "quote": "Workspace perks would be valuable—desk, wifi reliability, charging infrastructure.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.68
+            },
+            "mobile-experience": {
+              "quote": "App is solid. But I'd love integration with my calendar and travel management tools.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.7
+            },
+            "competitor-comparison": {
+              "quote": "Booking.com has better business traveler tools. Stayworthy is improving though.",
+              "sentiment": "mixed",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.63
+            }
+          }
+        },
+        {
+          "name": "Jonathan B.",
+          "age": 48,
+          "location": "Los Angeles, CA",
+          "profile": "Finance executive, quarterly regional reviews, values operational excellence",
+          "responses": {
+            "transparent-pricing": {
+              "quote": "Transparent pricing with detailed breakdowns is essential for corporate governance.",
+              "sentiment": "positive",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.82
+            },
+            "brand-authenticity": {
+              "quote": "Brand story is secondary. I need operational reliability and fraud-free transactions.",
+              "sentiment": "neutral",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.65
+            },
+            "loyalty-program": {
+              "quote": "Corporate account benefits should include rate guarantees and volume discounts.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.78
+            },
+            "mobile-experience": {
+              "quote": "API integration with corporate travel management systems is critical. Not currently available.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["User Friendly"],
+              "intensity": 0.8
+            },
+            "competitor-comparison": {
+              "quote": "Marriott and Hilton have mature corporate programs. Stayworthy is too early-stage for enterprise.",
+              "sentiment": "negative",
+              "bf_drivers_impacted": ["Dependable"],
+              "intensity": 0.83
+            }
+          }
+        }
+      ]
+    }
+  },
+  "topics": [
+    "transparent-pricing",
+    "brand-authenticity",
+    "loyalty-program",
+    "mobile-experience",
+    "competitor-comparison"
+  ],
+  "methodology": {
+    "source": "M+ Brand Fidelity Report 2026",
+    "base_respondents": 4700,
+    "synthetic_method": "Distribution-preserving demographic sampling",
+    "directional_accuracy": "85-90%",
+    "confidence": "HIGH"
+  }
+}

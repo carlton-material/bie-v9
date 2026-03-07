@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Intelligence Engine — Strategic Brief</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/glass-box.css">
+  <style>
+    /* Hero Gradient Animation */
+    @keyframes breathe {
+      0% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+    }
+
+    .hero-gradient {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(129, 140, 248, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: breathe 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* Scene Base Styling */
+    .scene {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .scene-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    .scene-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      color: rgba(255, 255, 255, 0.95);
+      max-width: 800px;
+    }
+
+    .scene-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    /* Count-up Animation */
+    @keyframes countUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .count-up {
+      animation: countUp 0.6s ease-out forwards;
+    }
+
+    .stat-block {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Glass Box Attribution */
+    .glass-box {
+      margin-top: 60px;
+      padding: 20px 24px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      backdrop-filter: blur(20px);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.5;
+    }
+
+    .glass-box::before {
+      content: '◆ ';
+      color: rgba(255, 255, 255, 0.4);
+      margin-right: 4px;
+    }
+
+    /* Hero Scene */
+    .scene-hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scene-hero-confidential {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 80px;
+      font-weight: 600;
+    }
+
+    .scene-hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: rgba(255, 255, 255, 0.98);
+      margin-bottom: 24px;
+      max-width: 900px;
+    }
+
+    .scene-hero-subtitle {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #818cf8;
+      margin-bottom: 40px;
+    }
+
+    .scene-hero-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+      max-width: 800px;
+    }
+
+    /* Comparison Grid */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 60px 0;
+      max-width: 1000px;
+    }
+
+    .comparison-column {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .comparison-header {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.95);
+      padding-bottom: 16px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .comparison-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid rgba(129, 140, 248, 0.4);
+      border-radius: 4px;
+    }
+
+    .comparison-item-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .comparison-item-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.5;
+    }
+
+    /* Signal Types Grid */
+    .signal-types-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin: 60px 0;
+      max-width: 1200px;
+    }
+
+    .signal-card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .signal-card-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+
+    .signal-card-label.human {
+      background: rgba(129, 140, 248, 0.2);
+      color: #818cf8;
+    }
+
+    .signal-card-label.behavioral {
+      background: rgba(52, 211, 153, 0.2);
+      color: #34d399;
+    }
+
+    .signal-card-label.cultural {
+      background: rgba(245, 158, 11, 0.2);
+      color: #f59e0b;
+    }
+
+    .signal-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .signal-card-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+    }
+
+    .signal-band {
+      height: 60px;
+      margin-top: 40px;
+      background: linear-gradient(90deg, #818cf8 0%, #34d399 33%, #f59e0b 66%, #818cf8 100%);
+      border-radius: 4px;
+      opacity: 0.2;
+      animation: flow 8s linear infinite;
+    }
+
+    @keyframes flow {
+      0% {
+        background-position: 0% 0%;
+      }
+      100% {
+        background-position: 100% 0%;
+      }
+    }
+
+    /* Brand Fidelity Framework */
+    .fidelity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin: 60px 0;
+      max-width: 1200px;
+    }
+
+    .fidelity-drivers {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .fidelity-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .fidelity-group-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 600;
+    }
+
+    .fidelity-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .fidelity-bar-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      min-width: 120px;
+    }
+
+    .fidelity-bar-track {
+      flex: 1;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .fidelity-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #818cf8, #34d399);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 600;
+    }
+
+    .fidelity-delta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.5);
+      min-width: 50px;
+      text-align: right;
+    }
+
+    .fidelity-delta.positive {
+      color: #34d399;
+    }
+
+    .fidelity-delta.negative {
+      color: #f59e0b;
+    }
+
+    .fidelity-radar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .fidelity-radar-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .radar-visual {
+      width: 100%;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      border-radius: 8px;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Delivery Model */
+    .tier-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin: 60px 0;
+      max-width: 1200px;
+    }
+
+    .tier-card {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .tier-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .tier-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: #818cf8;
+      line-height: 1;
+    }
+
+    .tier-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .tier-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.6;
+    }
+
+    .tier-highlight {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #34d399;
+      font-weight: 600;
+    }
+
+    /* Timeline */
+    .timeline-container {
+      margin: 60px 0;
+      max-width: 1000px;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #818cf8, #34d399, #f59e0b);
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 32px;
+      padding: 32px 0;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -46px;
+      top: 40px;
+      width: 12px;
+      height: 12px;
+      background: #818cf8;
+      border-radius: 50%;
+      border: 3px solid rgba(0, 0, 0, 0.9);
+    }
+
+    .timeline-item:nth-child(2)::before {
+      background: #34d399;
+    }
+
+    .timeline-item:nth-child(3)::before {
+      background: #818cf8;
+    }
+
+    .timeline-item:nth-child(4)::before {
+      background: #34d399;
+    }
+
+    .timeline-item:nth-child(5)::before {
+      background: #f59e0b;
+    }
+
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 600;
+      min-width: 140px;
+    }
+
+    .timeline-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .timeline-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .timeline-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+    }
+
+    .team-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .team-role {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      animation: revealIn 0.8s ease-out forwards;
+    }
+
+    @keyframes revealIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* PoC Quote */
+    .poc-quote {
+      margin: 60px 0;
+      padding: 40px;
+      background: rgba(129, 140, 248, 0.08);
+      border-left: 4px solid #818cf8;
+      border-radius: 4px;
+    }
+
+    .poc-quote-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .poc-quote-attr {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Metrics Row */
+    .metrics-row {
+      display: flex;
+      gap: 60px;
+      margin: 40px 0;
+      max-width: 800px;
+    }
+
+    .metric-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .metric-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 600;
+    }
+
+    .metric-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .scene {
+        padding: 60px 40px;
+      }
+
+      .scene-headline {
+        font-size: 2.5rem;
+      }
+
+      .signal-types-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tier-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fidelity-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .scene {
+        padding: 40px 24px;
+        min-height: auto;
+      }
+
+      .scene-headline {
+        font-size: 1.8rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body data-page="strategic-brief">
+  <div class="app">
+    <!-- LEFT NAVIGATION -->
+    <nav class="nav">
+      <div class="nav-logo">
+        <img src="assets/logos/material-plus.png" alt="Material+" style="height: 24px; opacity: 0.9;">
+      </div>
+      <div class="nav-confidential">Confidential · Internal Use Only</div>
+      
+      <div class="nav-section">
+        <div class="nav-section-label">Foundation</div>
+        <a href="index.html" class="nav-item active" data-page="strategic-brief">
+          <span class="nav-item-icon">◇</span> Strategic Brief
+        </a>
+        <a href="day-in-the-life.html" class="nav-item" data-page="day-in-the-life">
+          <span class="nav-item-icon">◉</span> Day in the Life
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Methodology</div>
+        <a href="how-it-works.html" class="nav-item" data-page="how-it-works">
+          <span class="nav-item-icon">◈</span> How It Works
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Intelligence</div>
+        <a href="command-center.html" class="nav-item" data-page="command-center">
+          <span class="nav-item-icon">▣</span> Command Center
+        </a>
+        <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal">
+          <span class="nav-item-icon">▤</span> Signal Terminal
+        </a>
+        <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis">
+          <span class="nav-item-icon">▥</span> Guided Analysis
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Simulation</div>
+        <a href="scenario-lab.html" class="nav-item" data-page="scenario-lab">
+          <span class="nav-item-icon">◬</span> Scenario Lab
+        </a>
+      </div>
+      
+      <div class="nav-pulse">
+        <div class="nav-pulse-bar"></div>
+        <div class="nav-pulse-label">
+          <span>Signal Activity</span>
+          <span><span class="signal-count">847</span> live</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-content">
+      <!-- SCENE 1: HERO OPENING -->
+      <section class="scene scene-hero reveal">
+        <div class="hero-gradient"></div>
+        
+        <div class="scene-hero-confidential">Confidential · Internal Use Only</div>
+        
+        <h1 class="scene-hero-title">Brand Intelligence Engine</h1>
+
+        <div class="scene-hero-subtitle">The Case for Reinvention</div>
+
+        <div class="scene-hero-meta">
+          <span>Strategic Initiative Brief · Applied AI · March 2026</span>
+          <span style="margin-left: 32px; display: inline-flex; align-items: center; gap: 8px;">Client: <img src="assets/logos/stayworthy.png" alt="Stayworthy" style="height: 20px; opacity: 0.8;"></span>
+        </div>
+      </section>
+
+      <!-- SCENE 2: THE SITUATION -->
+      <section class="scene reveal">
+        <div class="scene-label">The Situation</div>
+        
+        <h2 class="scene-headline">We have forever delivered a process. We have not delivered a product.</h2>
+        
+        <p class="scene-body">Material+'s tracking business is in structural decline. The foundation was built for a different era. Clients are exhausted by the cost of primary research. The margin pressure is real. But the window to lead rather than follow is narrowing.</p>
+        
+        <div class="stats-grid">
+          <div class="stat-block">
+            <div class="stat-value count-up" data-value="3.2" data-prefix="$" data-suffix="B" data-decimals="1">$0</div>
+            <div class="stat-label">Industry Market</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-value count-up" data-value="60" data-suffix="%">0</div>
+            <div class="stat-label">Budget → Sample</div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-value count-up" data-value="1985">0</div>
+            <div class="stat-label">Core Architecture (year)</div>
+          </div>
+        </div>
+        
+        <div class="glass-box">Source: Quarterly Business Review · Client Feedback Analysis · Q1 2026</div>
+      </section>
+
+      <!-- SCENE 3: THE SHIFT -->
+      <section class="scene reveal">
+        <div class="scene-label">The Shift</div>
+        
+        <h2 class="scene-headline">Traditional Tracker vs. AI-Native Intelligence</h2>
+        
+        <p class="scene-body">Think of it as the difference between a quarterly earnings report and a Bloomberg Terminal.</p>
+        
+        <div class="comparison-grid">
+          <div class="comparison-column">
+            <div class="comparison-header">Traditional Tracker</div>
+            
+            <div class="comparison-item">
+              <div class="comparison-item-label">What changed?</div>
+              <div class="comparison-item-value">Periodic measurement once or twice yearly</div>
+            </div>
+            
+            <div class="comparison-item">
+              <div class="comparison-item-label">Why did it change?</div>
+              <div class="comparison-item-value">One primary source; rich but expensive data</div>
+            </div>
+            
+            <div class="comparison-item">
+              <div class="comparison-item-label">Who experienced it?</div>
+              <div class="comparison-item-value">Fixed constructs; segments determined upfront</div>
+            </div>
+            
+            <div class="comparison-item">
+              <div class="comparison-item-label">What if?</div>
+              <div class="comparison-item-value">Backward-looking; reactive reporting</div>
+            </div>
+          </div>
+          
+          <div class="comparison-column">
+            <div class="comparison-header">AI-Native Intelligence</div>
+            
+            <div class="comparison-item">
+              <div class="comparison-item-label">What changed?</div>
+              <div class="comparison-item-value">Continuous sensing in real-time</div>
+            </div>
+            
+            <div class="comparison-item">
+              <div class="comparison-item-label">Why did it change?</div>
+              <div class="comparison-item-value">Multiple imperfect signals synthesized daily</div>
+            </div>
+            
+            <div class="comparison-item">
+              <div class="comparison-item-label">Who experienced it?</div>
+              <div class="comparison-item-value">Evolving constructs; emergent segments</div>
+            </div>
+            
+            <div class="comparison-item">
+              <div class="comparison-item-label">What if?</div>
+              <div class="comparison-item-value">Forward-looking & predictive</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 4: BRAND FIDELITY COMPOSITE OVERVIEW -->
+      <section class="scene reveal">
+        <div class="scene-label">Brand Health Snapshot</div>
+
+        <h2 class="scene-headline">Brand Fidelity Composite Score</h2>
+
+        <p class="scene-body">The single metric that tells us if Stayworthy is earning long-term brand loyalty across all six drivers.</p>
+
+        <div style="margin: 60px 0; padding: 40px; border: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.02); border-radius: 8px; backdrop-filter: blur(10px);">
+          <div style="display: flex; align-items: baseline; gap: 24px; margin-bottom: 40px;">
+            <div style="display: flex; align-items: baseline; gap: 16px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 5rem; font-weight: 400; color: rgba(255, 255, 255, 0.95); line-height: 1;">72</div>
+              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 500; color: rgba(239, 68, 68, 0.8);">-4</div>
+            </div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255, 255, 255, 0.6);">
+              <p style="margin: 0 0 8px 0;"><strong>Composite Score</strong></p>
+              <p style="margin: 0; color: rgba(255, 255, 255, 0.5);">Down 4 points from last quarter</p>
+            </div>
+          </div>
+
+          <div style="border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 32px;">
+            <div style="margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); font-weight: 600;">6-Driver Breakdown</div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 20px;">
+              <!-- In the Moment -->
+              <div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;">User Friendly</div>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                  <div style="flex: 1; height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 3px; overflow: hidden;">
+                    <div style="height: 100%; width: 72%; background: #34d399; border-radius: 3px;"></div>
+                  </div>
+                  <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 500; color: rgba(255, 255, 255, 0.9);">72</div>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;">Personal</div>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                  <div style="flex: 1; height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 3px; overflow: hidden;">
+                    <div style="height: 100%; width: 64%; background: #818cf8; border-radius: 3px;"></div>
+                  </div>
+                  <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 500; color: rgba(255, 255, 255, 0.9);">64</div>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;">Accessible</div>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                  <div style="flex: 1; height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 3px; overflow: hidden;">
+                    <div style="height: 100%; width: 71%; background: #f59e0b; border-radius: 3px;"></div>
+                  </div>
+                  <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 500; color: rgba(255, 255, 255, 0.9);">71</div>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;">Dependable</div>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                  <div style="flex: 1; height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 3px; overflow: hidden;">
+                    <div style="height: 100%; width: 58%; background: #34d399; border-radius: 3px;"></div>
+                  </div>
+                  <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 500; color: rgba(255, 255, 255, 0.9);">58</div>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;">Meaningful</div>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                  <div style="flex: 1; height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 3px; overflow: hidden;">
+                    <div style="height: 100%; width: 66%; background: #818cf8; border-radius: 3px;"></div>
+                  </div>
+                  <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 500; color: rgba(255, 255, 255, 0.9);">66</div>
+                </div>
+              </div>
+
+              <div>
+                <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;">Salient</div>
+                <div style="display: flex; gap: 12px; align-items: center;">
+                  <div style="flex: 1; height: 6px; background: rgba(255, 255, 255, 0.05); border-radius: 3px; overflow: hidden;">
+                    <div style="height: 100%; width: 74%; background: #f59e0b; border-radius: 3px;"></div>
+                  </div>
+                  <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 500; color: rgba(255, 255, 255, 0.9);">74</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 5: THREE SIGNAL TYPES -->
+      <section class="scene reveal">
+        <div class="scene-label">Three Signal Types</div>
+
+        <h2 class="scene-headline">Multiple Imperfect Signals > One Clean Source</h2>
+        
+        <p class="scene-body">The system surfaces agreement and conflict, allowing you to see where signals converge and where they diverge.</p>
+        
+        <div class="signal-types-grid">
+          <div class="signal-card">
+            <div class="signal-card-label human">Human-Expressive</div>
+            <div class="signal-card-title">Human Voice</div>
+            <div class="signal-card-desc">
+              AI-moderated interviews, open-ended prompts, brand narratives, and consumer storytelling. The emotional layer.
+            </div>
+          </div>
+          
+          <div class="signal-card">
+            <div class="signal-card-label behavioral">Behavioral & Market</div>
+            <div class="signal-card-title">Market Signals</div>
+            <div class="signal-card-desc">
+              Sales data, search behavior, web engagement, pipeline velocity, and purchase intent. The economic reality.
+            </div>
+          </div>
+          
+          <div class="signal-card">
+            <div class="signal-card-label cultural">Cultural & Contextual</div>
+            <div class="signal-card-title">Narrative Layer</div>
+            <div class="signal-card-desc">
+              News narratives, competitor messaging, social signals, and cultural drift. The macro context.
+            </div>
+          </div>
+        </div>
+        
+        <div class="signal-band"></div>
+        
+        <div class="glass-box">Multiple imperfect signals are more robust than one authoritative source. Diversity of signal types creates resilience.</div>
+      </section>
+
+      <!-- SCENE 6: BRAND FIDELITY FRAMEWORK -->
+      <section class="scene reveal">
+        <div class="scene-label">Brand Fidelity Framework</div>
+
+        <h2 class="scene-headline">Six Drivers of Brand Equity</h2>
+        
+        <div class="fidelity-grid">
+          <div class="fidelity-drivers">
+            <div class="fidelity-group">
+              <div class="fidelity-group-label">In the Moment</div>
+              
+              <div class="fidelity-bar">
+                <div class="fidelity-bar-name">User Friendly</div>
+                <div class="fidelity-bar-track">
+                  <div class="fidelity-bar-fill" style="width: 72%;">72%</div>
+                </div>
+                <div class="fidelity-delta negative">-4</div>
+              </div>
+              
+              <div class="fidelity-bar">
+                <div class="fidelity-bar-name">Personal</div>
+                <div class="fidelity-bar-track">
+                  <div class="fidelity-bar-fill" style="width: 64%;">64%</div>
+                </div>
+                <div class="fidelity-delta negative">-8</div>
+              </div>
+              
+              <div class="fidelity-bar">
+                <div class="fidelity-bar-name">Accessible</div>
+                <div class="fidelity-bar-track">
+                  <div class="fidelity-bar-fill" style="width: 71%;">71%</div>
+                </div>
+                <div class="fidelity-delta positive">+1</div>
+              </div>
+            </div>
+            
+            <div class="fidelity-group">
+              <div class="fidelity-group-label">Over Time</div>
+              
+              <div class="fidelity-bar">
+                <div class="fidelity-bar-name">Dependable</div>
+                <div class="fidelity-bar-track">
+                  <div class="fidelity-bar-fill" style="width: 58%;">58%</div>
+                </div>
+                <div class="fidelity-delta negative">-6</div>
+              </div>
+              
+              <div class="fidelity-bar">
+                <div class="fidelity-bar-name">Meaningful</div>
+                <div class="fidelity-bar-track">
+                  <div class="fidelity-bar-fill" style="width: 66%;">66%</div>
+                </div>
+                <div class="fidelity-delta negative">-3</div>
+              </div>
+              
+              <div class="fidelity-bar">
+                <div class="fidelity-bar-name">Salient</div>
+                <div class="fidelity-bar-track">
+                  <div class="fidelity-bar-fill" style="width: 74%;">74%</div>
+                </div>
+                <div class="fidelity-delta positive">+2</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="fidelity-radar">
+            <div class="fidelity-radar-title">Competitive Set (Top 5)</div>
+            <div class="radar-visual">
+              <svg style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;" viewBox="0 0 300 300">
+                <g opacity="0.2" stroke="rgba(255, 255, 255, 0.3)" fill="none" stroke-width="1">
+                  <circle cx="150" cy="150" r="40"></circle>
+                  <circle cx="150" cy="150" r="80"></circle>
+                  <circle cx="150" cy="150" r="120"></circle>
+                  <line x1="150" y1="30" x2="150" y2="270"></line>
+                  <line x1="30" y1="150" x2="270" y2="150"></line>
+                </g>
+                <polyline points="150,70 200,95 190,150 170,185 130,180" fill="rgba(129, 140, 248, 0.3)" stroke="#818cf8" stroke-width="2"></polyline>
+                <polyline points="150,70 210,85 200,140 160,190 120,175" fill="rgba(52, 211, 153, 0.2)" stroke="#34d399" stroke-width="2" opacity="0.7"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <div class="metrics-row">
+          <div class="metric-col">
+            <div class="metric-label">Advocacy Lift</div>
+            <div class="metric-value">2<span style="font-size: 1.5rem;">×</span></div>
+          </div>
+          <div class="metric-col">
+            <div class="metric-label">Profitability Correlation</div>
+            <div class="metric-value">2.5<span style="font-size: 1.5rem;">×</span></div>
+          </div>
+          <div class="metric-col">
+            <div class="metric-label">Differentiation Impact</div>
+            <div class="metric-value">3<span style="font-size: 1.5rem;">×</span></div>
+          </div>
+        </div>
+
+        <div class="glass-box-panel">
+          <div class="glass-box-header">
+            <div class="glass-box-header-left">
+              <svg class="glass-box-header-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+              <span class="glass-box-header-title">Glass Box — Data Provenance</span>
+            </div>
+            <button class="glass-box-toggle" data-target="sb-glassbox" aria-expanded="false">
+              Show My Work <span class="chevron">▾</span>
+            </button>
+          </div>
+          <div class="glass-box-content" id="sb-glassbox">
+            <div class="glass-box-inner">
+              <div class="glass-box-pipeline-container"></div>
+              <div class="glass-box-tiers-container"></div>
+              <div class="glass-box-methodology-container" data-metric="brandFidelity"></div>
+              <div class="glass-box-assumptions-container" data-metric="brandFidelity"></div>
+              <div class="glass-box-timestamp-container"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-box">Material+ Brand Fidelity Report 2026 · Travel Category · N=24,000 consumers, 229 brands · Forrester methodology</div>
+      </section>
+
+      <!-- SCENE 6: PROOF OF CONCEPT -->
+      <section class="scene reveal">
+        <div class="scene-label">Proof of Concept</div>
+        
+        <h2 class="scene-headline">Applied Architecture in Motion</h2>
+        
+        <p class="scene-body">Working prototype connecting consumer segments → demand spaces → market share → strategic recommendations. Suntory case demonstrates the viability of the system on a real problem with real stakes.</p>
+        
+        <div class="poc-quote">
+          <div class="poc-quote-text">"I want McKinsey in my pocket."</div>
+          <div class="poc-quote-attr">Jing, VP Insights & Innovation, Beam Suntory</div>
+        </div>
+        
+        <p class="scene-body">The prototype uses Stayworthy (fictional hotel-tech brand) as the anchor. The system maps consumer behavior → travel segments → hotel selection logic → competitive positioning → what-if scenarios. All in 72 hours.</p>
+        
+        <div class="glass-box">Live prototype with Stayworthy dataset · Consumer surveys (N=840M behavioral signals) · 3-day build cycle · $0 customer research cost</div>
+      </section>
+
+      <!-- SCENE 7: THREE-TIER DELIVERY MODEL -->
+      <section class="scene reveal">
+        <div class="scene-label">Three-Tier Delivery Model</div>
+        
+        <h2 class="scene-headline">Anchor Shrinks. System Grows.</h2>
+        
+        <p class="scene-body">Three pricing tiers that start with primary research and systematically reduce the anchor as the AI system learns and matures.</p>
+        
+        <div class="tier-cards">
+          <div class="tier-card">
+            <div class="tier-number">1</div>
+            <div class="tier-title">Fully Synthetic</div>
+            <div class="tier-desc">LLM-generated audiences. No primary research. Pure signal synthesis across behavioral, cultural, and synthetic human interviews.</div>
+            <div class="tier-highlight">3-day turnaround</div>
+            <div class="tier-highlight">Lowest cost</div>
+          </div>
+          
+          <div class="tier-card">
+            <div class="tier-number">2</div>
+            <div class="tier-title">Historical + Augmented</div>
+            <div class="tier-desc">Leverage existing client data (surveys, CRM, transaction history). Layer new signals on top. Richer output. Faster than primary research.</div>
+            <div class="tier-highlight">Moderate cost</div>
+            <div class="tier-highlight">5-7 day turnaround</div>
+          </div>
+          
+          <div class="tier-card">
+            <div class="tier-number">3</div>
+            <div class="tier-title">Survey-Anchored</div>
+            <div class="tier-desc">Lightweight primary research (online). All three signal types. Highest confidence. Premium output for strategic decisions.</div>
+            <div class="tier-highlight">Premium tier</div>
+            <div class="tier-highlight">10-14 day turnaround</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 8: TIMELINE TO BOARD -->
+      <section class="scene reveal">
+        <div class="scene-label">Timeline to March 19 Board</div>
+
+        <h2 class="scene-headline">Three Weeks to Launch Readiness</h2>
+        
+        <div class="timeline-container">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">Wed–Thu, Mar 5–6</div>
+              <div class="timeline-content">
+                <div class="timeline-title">Week 1: Brief Finalized + Prototype Build</div>
+                <div class="timeline-desc">Strategic narrative locked. Full-stack implementation with Stayworthy dataset. Live demo ready.</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">Mon–Fri, Mar 10–14</div>
+              <div class="timeline-content">
+                <div class="timeline-title">Week 2: Brain Trust Review + Iterate & Layer Signals</div>
+                <div class="timeline-desc">Internal feedback loop from key stakeholders. Add signal types, refine competitive set, stress-test architecture.</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date">Mon–Wed, Mar 17–19</div>
+              <div class="timeline-content">
+                <div class="timeline-title">Week 3: Final Polish + Board Presentation</div>
+                <div class="timeline-desc">Polish deliverables and go/no-go decision on platform investment and team expansion. Board presentation Wed, Mar 19.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 60px;">
+          <p class="scene-body" style="margin-bottom: 32px;">Core team executing the vision:</p>
+          <div class="team-grid">
+            <div class="team-member">
+              <div class="team-name">Amy Muntz</div>
+              <div class="team-role">Executive Sponsor, Chief Innovation Officer</div>
+            </div>
+            <div class="team-member">
+              <div class="team-name">Brandon Gredler</div>
+              <div class="team-role">SVP Innovation & Product</div>
+            </div>
+            <div class="team-member">
+              <div class="team-name">Charles Ellis</div>
+              <div class="team-role">Head of Data Science</div>
+            </div>
+            <div class="team-member">
+              <div class="team-name">Carlton Rice</div>
+              <div class="team-role">Build Lead & Implementation Owner</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="glass-box" style="margin-top: 60px;">Confidential to Material+ leadership · Not for external distribution · Strategic planning document</div>
+      </section>
+    </main>
+
+    <!-- INTELLIGENCE FEED -->
+    <footer class="feed app-feed">
+      <span class="feed-label">Intelligence Feed</span>
+      <div class="feed-ticker">
+        <div class="feed-ticker-track"></div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- MATERIAL ANALYST PANEL -->
+  <div class="analyst-trigger" title="Material Analyst">
+    <span class="analyst-trigger-icon">◆</span>
+    <span class="analyst-dot"></span>
+  </div>
+
+  <div class="analyst-panel">
+    <div class="analyst-panel-header">
+      <span class="analyst-panel-title">Material Analyst</span>
+      <button class="analyst-panel-close">×</button>
+    </div>
+    <div class="analyst-panel-messages"></div>
+    <div class="analyst-panel-input">
+      <input type="text" placeholder="Ask about signals, drivers, competitors...">
+      <button>Send</button>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/app.js"></script>
+  <script>
+    // app.js handles count-up (.count-up) and scroll reveal (.reveal) via BIE.init()
+  </script>
+</body>
+</html>

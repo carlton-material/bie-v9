@@ -1,11 +1,11 @@
-/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-   BRAND INTELLIGENCE ENGINE v9 â Global Styles
+/* ═══════════════════════════════════════════════════════════
+   BRAND INTELLIGENCE ENGINE v9 — Global Styles
    Shared layout, navigation, typography, and core architecture
-   âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+   ═══════════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
-/* ââ Reset ââ */
+/* ── Reset ── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body {
@@ -20,7 +20,7 @@ a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 img { max-width: 100%; display: block; }
 
-/* ââ App Shell ââ */
+/* ── App Shell ── */
 .app {
   display: grid;
   grid-template-columns: var(--nav-width) 1fr;
@@ -40,9 +40,9 @@ img { max-width: 100%; display: block; }
   grid-row: 2;
 }
 
-/* âââââââââââââââââââââââââââââââââââââââââââââââ
-   NAVIGATION â The intellectual architecture
-   âââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ═══════════════════════════════════════════════
+   NAVIGATION — The intellectual architecture
+   ═══════════════════════════════════════════════ */
 .nav {
   grid-column: 1;
   grid-row: 1 / -1;
@@ -87,11 +87,11 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-muted);
-  padding: 0 var(---space-lg);
+  padding: 0 var(--space-lg);
   margin-bottom: var(--space-sm);
 }
 
-.dav-item {
+.nav-item {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
@@ -102,7 +102,7 @@ img { max-width: 100%; display: block; }
   position: relative;
   text-decoration: none;
 }
-.hav-item:hover {
+.nav-item:hover {
   color: var(--text-secondary);
   background: var(--bg-glass);
 }
@@ -110,7 +110,7 @@ img { max-width: 100%; display: block; }
   color: var(--text-primary);
   background: var(--bg-glass-hover);
 }
-.active::before {
+.nav-item.active::before {
   content: '';
   position: absolute;
   left: 0;
@@ -127,21 +127,21 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
   font-size: var(--text-micro);
 }
-.active .nav-item-icon { opacity: 0.9; }
+.nav-item.active .nav-item-icon { opacity: 0.9; }
 
-/* ââ Signal Pulse (ambient heartbeat in nav) ââ */
-.cav-pulse {
+/* ── Signal Pulse (ambient heartbeat in nav) ── */
+.nav-pulse {
   margin-top: auto;
   padding: var(--space-lg);
 }
-.cav-pulse-bar {
+.nav-pulse-bar {
   height: 2px;
   background: var(--bg-card);
   position: relative;
   overflow: hidden;
-  border-radius: 1px
+  border-radius: 1px;
 }
-.cav-pulse-bar::after {
+.nav-pulse-bar::after {
   content: '';
   position: absolute;
   top: 0;
@@ -155,7 +155,7 @@ img { max-width: 100%; display: block; }
   0% { left: -30%; }
   100% { left: 100%; }
 }
-.cav-pulse-label {
+.nav-pulse-label {
   font-family: var(--font-mono);
   font-size: var(--text-nano);
   color: var(--text-muted);
@@ -164,9 +164,9 @@ img { max-width: 100%; display: block; }
   justify-content: space-between;
 }
 
-/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-   RSS INTELLIGENCE FEED â The living pulse
-   âââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ═══════════════════════════════════════════════
+   RSS INTELLIGENCE FEED — The living pulse
+   ═══════════════════════════════════════════════ */
 .feed {
   background: var(--bg-deep);
   border-top: 1px solid var(--border-subtle);
@@ -226,9 +226,9 @@ img { max-width: 100%; display: block; }
   100% { transform: translateX(-50%); }
 }
 
-/* âââââââââââââââââââââââââââââââââââââââââââââââ
-   MATERIAL ANALYST â The persistent intelligence
-   âââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ═══════════════════════════════════════════════
+   MATERIAL ANALYST — The persistent intelligence
+   ═══════════════════════════════════════════════ */
 .analyst-trigger {
   position: fixed;
   bottom: calc(var(--feed-height) + var(--space-lg));
@@ -395,9 +395,9 @@ img { max-width: 100%; display: block; }
   border-color: var(--border-strong);
 }
 
-/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-   ONBOARDING WIZARD â First-time user experience
-   âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ═══════════════════════════════════════════════════════════
+   ONBOARDING WIZARD — First-time user experience
+   ═══════════════════════════════════════════════════════════ */
 .onboarding-overlay {
   position: fixed;
   inset: 0;
@@ -518,7 +518,7 @@ img { max-width: 100%; display: block; }
   background: var(--bg-glass);
 }
 
-/* ââ Help Button ââ */
+/* ── Help Button ── */
 .help-trigger {
   position: fixed;
   bottom: calc(var(--feed-height) + var(--space-md));

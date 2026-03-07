@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day in the Life — Brand Intelligence Engine v9</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/glass-box.css">
+  <style>
+    /* ═══════════════════════════════════════════════════════════
+       DAY IN THE LIFE — Cinematic Scrollytelling
+       ═══════════════════════════════════════════════════════════ */
+
+    .ditl-container {
+      position: relative;
+      padding-left: 120px;
+    }
+
+    /* ── Timeline Spine (Fixed Left) ── */
+    .ditl-timeline {
+      position: fixed;
+      left: var(--nav-width);
+      top: 0;
+      width: 80px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: var(--space-2xl);
+      z-index: 50;
+      pointer-events: none;
+    }
+
+    .ditl-spine {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 100%;
+      background: var(--border-subtle);
+    }
+
+    .ditl-dots {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: var(--space-2xl) 0;
+    }
+
+    .ditl-dot {
+      position: relative;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-out);
+      pointer-events: auto;
+    }
+
+    .ditl-dot:hover {
+      background: var(--border-default);
+      transform: scale(1.15);
+    }
+
+    .ditl-dot.active {
+      background: var(--signal-human);
+      border-color: var(--signal-human);
+      transform: scale(1.3);
+      box-shadow: 0 0 24px rgba(129,140,248,0.4);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% {
+        box-shadow: 0 0 24px rgba(129,140,248,0.4);
+        transform: scale(1.3);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(129,140,248,0.6);
+        transform: scale(1.4);
+      }
+    }
+
+    .ditl-dot-label {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      color: var(--text-muted);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity var(--duration-normal);
+      pointer-events: none;
+    }
+
+    .ditl-dot:hover .ditl-dot-label,
+    .ditl-dot.active .ditl-dot-label {
+      opacity: 1;
+    }
+
+    /* ── Opening Section ── */
+    .ditl-opening {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: var(--space-4xl) var(--space-2xl);
+      padding-left: var(--space-3xl);
+    }
+
+    .ditl-opening-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--space-lg);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ditl-opening-headline {
+      font-family: var(--font-display);
+      font-size: var(--text-headline);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: var(--space-xl);
+      max-width: 800px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.15s;
+    }
+
+    .ditl-opening-tagline {
+      font-size: var(--text-body);
+      color: var(--text-secondary);
+      max-width: 700px;
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.3s;
+    }
+
+    .ditl-opening.scene-visible .ditl-opening-label,
+    .ditl-opening.scene-visible .ditl-opening-headline,
+    .ditl-opening.scene-visible .ditl-opening-tagline {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Scene Container ── */
+    .ditl-scene {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-4xl) var(--space-2xl);
+      padding-left: var(--space-3xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ditl-scene::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ditl-scene.scene-visible::before {
+      opacity: 0.35;
+    }
+
+    /* ── Scene Divider Lines ── */
+    .ditl-scene::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(129,140,248,0.15) 30%, rgba(129,140,248,0.15) 70%, transparent 100%);
+      z-index: 1;
+    }
+
+    .ditl-scene:last-of-type::after {
+      display: none;
+    }
+
+    /* Cinematic background gradients per scene — deeper, more immersive */
+    .ditl-scene[data-time="dawn"]::before {
+      background: radial-gradient(ellipse at 20% 50%, #1a237e 0%, #0d47a1 40%, #01579b 70%, transparent 100%);
+    }
+
+    .ditl-scene[data-time="morning"]::before {
+      background: radial-gradient(ellipse at 30% 40%, #e65100 0%, #ff6f00 35%, #ffab00 60%, transparent 100%);
+    }
+
+    .ditl-scene[data-time="midday"]::before {
+      background: radial-gradient(ellipse at 50% 30%, #f57f17 0%, #fbc02d 40%, #fff176 65%, transparent 100%);
+    }
+
+    .ditl-scene[data-time="afternoon"]::before {
+      background: radial-gradient(ellipse at 60% 50%, #e65100 0%, #bf360c 35%, #4e342e 65%, transparent 100%);
+    }
+
+    .ditl-scene[data-time="evening"]::before {
+      background: radial-gradient(ellipse at 40% 60%, #1a237e 0%, #311b92 35%, #4a148c 65%, transparent 100%);
+    }
+
+    .ditl-scene[data-time="night"]::before {
+      background: radial-gradient(ellipse at 50% 50%, #0d0d2a 0%, #1a0a2e 40%, #000000 70%, transparent 100%);
+    }
+
+    /* Ensure content stays above background layer */
+    .ditl-scene-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Brand Fidelity Driver Badges ── */
+    .ditl-drivers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      margin-top: var(--space-2xl);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.45s;
+    }
+
+    .scene-visible .ditl-drivers {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ditl-driver-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border: 1px solid;
+      transition: all var(--duration-normal);
+    }
+
+    .ditl-driver-badge.in-the-moment {
+      background: rgba(100, 200, 255, 0.1);
+      border-color: rgba(100, 200, 255, 0.3);
+      color: rgba(100, 200, 255, 0.8);
+    }
+
+    .ditl-driver-badge.over-time {
+      background: rgba(100, 255, 200, 0.1);
+      border-color: rgba(100, 255, 200, 0.3);
+      color: rgba(100, 255, 200, 0.8);
+    }
+
+    .ditl-driver-badge::before {
+      content: '◆';
+      font-size: 10px;
+      opacity: 0.6;
+    }
+
+    .ditl-driver-context {
+      font-family: var(--font-body);
+      font-size: var(--text-small);
+      color: var(--text-tertiary);
+      margin-top: var(--space-md);
+      font-style: italic;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.5s;
+    }
+
+    .scene-visible .ditl-driver-context {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ditl-scene-content {
+      max-width: 800px;
+    }
+
+    .ditl-scene-time {
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--space-md);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.1s;
+    }
+
+    .ditl-scene-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--space-sm);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.15s;
+    }
+
+    .ditl-scene-persona {
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+      letter-spacing: 0.05em;
+      color: var(--signal-human);
+      margin-bottom: var(--space-lg);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.2s;
+    }
+
+    .ditl-scene-headline {
+      font-family: var(--font-display);
+      font-size: var(--text-headline);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: var(--space-lg);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.25s;
+    }
+
+    .ditl-scene-body {
+      font-size: var(--text-body);
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: var(--space-3xl);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.35s;
+    }
+
+    /* Scroll-triggered reveal state */
+    .ditl-scene.scene-visible .ditl-scene-time,
+    .ditl-scene.scene-visible .ditl-scene-label,
+    .ditl-scene.scene-visible .ditl-scene-persona,
+    .ditl-scene.scene-visible .ditl-scene-headline,
+    .ditl-scene.scene-visible .ditl-scene-body {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes revealUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Surface Preview Cards ── */
+    .ditl-preview {
+      width: 280px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-2xl);
+      opacity: 0;
+      transform: translateY(24px) scale(0.97);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.55s;
+      border-radius: 2px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+
+    .scene-visible .ditl-preview {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .ditl-preview-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--space-sm);
+    }
+
+    .ditl-preview-content {
+      font-size: var(--text-small);
+      color: var(--text-secondary);
+    }
+
+    /* Command Center Preview */
+    .preview-cc {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .preview-cc-metric {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-md);
+    }
+
+    .preview-cc-value {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--text-primary);
+    }
+
+    .preview-cc-label {
+      font-size: var(--text-small);
+      color: var(--text-tertiary);
+    }
+
+    .preview-cc-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-size: var(--text-micro);
+      color: var(--text-tertiary);
+    }
+
+    .preview-cc-bar-track {
+      flex: 1;
+      height: 4px;
+      background: var(--bg-elevated);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .preview-cc-bar-fill {
+      height: 100%;
+      background: var(--signal-behavioral);
+    }
+
+    /* Guided Analysis Preview */
+    .preview-ga {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .preview-ga-thread {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      font-size: var(--text-micro);
+      color: var(--text-tertiary);
+    }
+
+    .preview-ga-msg {
+      padding: var(--space-xs) var(--space-sm);
+      background: var(--bg-elevated);
+      border-radius: 2px;
+      line-height: 1.4;
+    }
+
+    .preview-ga-msg.system {
+      border-left: 2px solid var(--signal-human);
+      color: var(--text-secondary);
+    }
+
+    /* Signal Terminal Preview */
+    .preview-st {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+    }
+
+    .preview-st-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: var(--space-sm);
+      padding: var(--space-xs) 0;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-tertiary);
+      align-items: center;
+    }
+
+    .preview-st-row:last-child {
+      border-bottom: none;
+    }
+
+    .preview-st-status {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--signal-cultural);
+    }
+
+    .preview-st-signal {
+      color: var(--text-secondary);
+    }
+
+    .preview-st-severity {
+      color: var(--scenario-contract);
+      font-weight: 500;
+    }
+
+    /* Scenario Lab Preview */
+    .preview-sl {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .preview-sl-scenario {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .preview-sl-name {
+      font-size: var(--text-small);
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .preview-sl-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 32px;
+    }
+
+    .preview-sl-bar {
+      flex: 1;
+      background: var(--signal-behavioral);
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* Brief Preview */
+    .preview-brief {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .preview-brief-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .preview-brief-title {
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .preview-brief-item {
+      font-size: var(--text-small);
+      color: var(--text-secondary);
+      padding-left: var(--space-sm);
+      position: relative;
+    }
+
+    .preview-brief-item::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--text-tertiary);
+    }
+
+    /* Terminal Preview (Scene 6) */
+    .preview-terminal {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+    }
+
+    .preview-terminal-line {
+      display: flex;
+      gap: var(--space-sm);
+      color: var(--text-tertiary);
+      padding: var(--space-xs) 0;
+    }
+
+    .preview-terminal-prompt {
+      color: var(--signal-human);
+      opacity: 0.6;
+    }
+
+    .preview-terminal-text {
+      opacity: 0.7;
+    }
+
+    .preview-terminal-pulse {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--signal-cultural);
+      animation: blink 0.8s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ── Ecosystem Echo Badge ── */
+    .ditl-echo {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      color: var(--text-muted);
+      margin-top: var(--space-lg);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.6s;
+    }
+
+    .scene-visible .ditl-echo {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ditl-echo-arrow {
+      opacity: 0.5;
+    }
+
+    /* ── Closing Section ── */
+    .ditl-closing {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: var(--space-4xl) var(--space-2xl);
+      padding-left: var(--space-3xl);
+      background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.3));
+    }
+
+    .ditl-closing-statement {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: var(--space-xl);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ditl-closing.scene-visible .ditl-closing-statement {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ditl-closing.scene-visible .ditl-closing-statement:nth-child(2) { transition-delay: 0.2s; }
+    .ditl-closing.scene-visible .ditl-closing-statement:nth-child(3) { transition-delay: 0.4s; }
+    .ditl-closing.scene-visible .ditl-closing-statement:nth-child(4) { transition-delay: 0.6s; }
+    .ditl-closing.scene-visible .ditl-closing-statement:nth-child(5) { transition-delay: 0.9s; }
+    .ditl-closing.scene-visible .ditl-closing-statement:nth-child(6) { transition-delay: 1.2s; }
+
+    .ditl-closing-statement .emphasis {
+      color: var(--signal-human);
+      text-shadow: 0 0 40px rgba(129,140,248,0.3);
+    }
+
+    /* ── Responsive Adjustments ── */
+    @media (max-width: 1200px) {
+      .ditl-timeline {
+        width: 60px;
+        padding-top: var(--space-lg);
+      }
+
+      .ditl-container {
+        padding-left: 100px;
+      }
+
+      .ditl-dot-label {
+        font-size: var(--text-micro);
+        left: 18px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .ditl-timeline {
+        width: 50px;
+        left: var(--nav-width);
+      }
+
+      .ditl-container {
+        padding-left: 70px;
+      }
+
+      .ditl-scene {
+        min-height: 70vh;
+        padding: var(--space-2xl) var(--space-lg);
+        padding-left: var(--space-2xl);
+      }
+
+      .ditl-opening {
+        padding: var(--space-3xl) var(--space-lg);
+        padding-left: var(--space-2xl);
+      }
+
+      .ditl-preview {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .ditl-opening-headline {
+        font-size: var(--text-title);
+      }
+
+      .ditl-scene-headline {
+        font-size: var(--text-title);
+      }
+
+      .ditl-dot-label {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body data-page="day-in-the-life">
+  <div class="app">
+    <nav class="nav">
+      <div class="nav-logo"><img src="assets/logos/material-plus.png" alt="Material+" style="height: 24px; opacity: 0.9;"></div>
+      <div class="nav-confidential">Confidential · Internal Use Only</div>
+      <div class="nav-section">
+        <div class="nav-section-label">Foundation</div>
+        <a href="index.html" class="nav-item" data-page="strategic-brief"><span class="nav-item-icon">◇</span> Strategic Brief</a>
+        <a href="day-in-the-life.html" class="nav-item active" data-page="day-in-the-life"><span class="nav-item-icon">◉</span> Day in the Life</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">Methodology</div>
+        <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon">◈</span> How It Works</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">Intelligence</div>
+        <a href="command-center.html" class="nav-item" data-page="command-center"><span class="nav-item-icon">▣</span> Command Center</a>
+        <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal"><span class="nav-item-icon">▤</span> Signal Terminal</a>
+        <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis"><span class="nav-item-icon">▥</span> Guided Analysis</a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-label">Simulation</div>
+        <a href="scenario-lab.html" class="nav-item" data-page="scenario-lab"><span class="nav-item-icon">◬</span> Scenario Lab</a>
+      </div>
+      <div class="nav-pulse">
+        <div class="nav-pulse-bar"></div>
+        <div class="nav-pulse-label"><span>Signal Activity</span><span><span class="signal-count">847</span> live</span></div>
+      </div>
+    </nav>
+
+    <div class="app-content">
+      <div class="ditl-timeline">
+        <div class="ditl-spine"></div>
+        <div class="ditl-dots">
+          <div class="ditl-dot" data-scene="1">
+            <div class="ditl-dot-label">6:15 AM</div>
+          </div>
+          <div class="ditl-dot" data-scene="2">
+            <div class="ditl-dot-label">9:30 AM</div>
+          </div>
+          <div class="ditl-dot" data-scene="3">
+            <div class="ditl-dot-label">11:00 AM</div>
+          </div>
+          <div class="ditl-dot" data-scene="4">
+            <div class="ditl-dot-label">2:00 PM</div>
+          </div>
+          <div class="ditl-dot" data-scene="5">
+            <div class="ditl-dot-label">5:00 PM</div>
+          </div>
+          <div class="ditl-dot" data-scene="6">
+            <div class="ditl-dot-label">11:45 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ditl-container">
+        <!-- Opening -->
+        <section class="ditl-opening">
+          <div class="ditl-opening-label">Day in the Life</div>
+          <h1 class="ditl-opening-headline">One System. Six Moments. A Brand Strategy That Never Sleeps.</h1>
+          <p class="ditl-opening-tagline">Follow a day inside the Brand Intelligence Engine — from the CMO's 6:15 AM briefing to the system's midnight autonomous learning cycle. Each moment reveals how intelligence flows through every decision.</p>
+          <div class="glass-box-panel" style="margin-top: 40px;">
+            <div class="glass-box-header">
+              <div class="glass-box-header-left">
+                <svg class="glass-box-header-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+                <span class="glass-box-header-title">Glass Box — Narrative Data Timestamp</span>
+              </div>
+              <button class="glass-box-toggle" data-target="ditl-glassbox" aria-expanded="false">
+                Show My Work <span class="chevron">▾</span>
+              </button>
+            </div>
+            <div class="glass-box-content" id="ditl-glassbox">
+              <div class="glass-box-inner">
+                <div class="glass-box-timestamp-container"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Scene 1: 6:15 AM — The Morning Brief -->
+        <section class="ditl-scene scene-1" data-time="dawn">
+          <div class="ditl-scene-content">
+            <div class="ditl-scene-time">6:15 AM</div>
+            <div class="ditl-scene-label">Scene 1: The Morning Brief</div>
+            <div class="ditl-scene-persona">Sarah Chen, Chief Marketing Officer</div>
+            <h2 class="ditl-scene-headline">Three Red Flags Before Sunrise</h2>
+            <div class="ditl-scene-body">
+              Sarah's phone buzzes at 6:15. Not an alarm — an intelligence brief that won't wait. Overnight, the engine detected a widening chasm: customers rave about Stayworthy (stated satisfaction 78%), but they're not coming back (repeat bookings down to 56%). Words and actions diverged, and the gap is growing.<br><br>
+              She taps Command Center. Three urgent alerts. Brand Fidelity composite at 72 — a four-point drop. The Dependable driver: 58. Below critical threshold for the first time. Before her first coffee, before anyone else in the office is awake, she has the intelligence she needs to move.
+            </div>
+
+            <div class="ditl-drivers">
+              <div class="ditl-driver-badge over-time">Dependable</div>
+              <div class="ditl-driver-badge over-time">Salient</div>
+            </div>
+            <div class="ditl-driver-context">Trust indicators flagged as critical — overnight signal processing from 847 data points</div>
+
+            <div class="ditl-preview">
+              <div class="ditl-preview-label">Command Center Preview</div>
+              <div class="ditl-preview-content">
+                <div class="preview-cc">
+                  <div class="preview-cc-metric">
+                    <div class="preview-cc-value">72</div>
+                    <div class="preview-cc-label">Brand Fidelity</div>
+                  </div>
+                  <div class="preview-cc-bar">
+                    <span style="min-width: 80px;">Dependable</span>
+                    <div class="preview-cc-bar-track"><div class="preview-cc-bar-fill" style="width: 58%;"></div></div>
+                    <span>58</span>
+                  </div>
+                  <div class="preview-cc-bar">
+                    <span style="min-width: 80px;">Salient</span>
+                    <div class="preview-cc-bar-track"><div class="preview-cc-bar-fill" style="width: 74%;"></div></div>
+                    <span>74</span>
+                  </div>
+                  <div class="preview-cc-bar">
+                    <span style="min-width: 80px;">Meaningful</span>
+                    <div class="preview-cc-bar-track"><div class="preview-cc-bar-fill" style="width: 82%;"></div></div>
+                    <span>82</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ditl-echo">
+              <span class="ditl-echo-arrow">↗</span>
+              <span>This alert originated from Signal Nexus at 11:47 PM</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Scene 2: 9:30 AM — The Deep Dive -->
+        <section class="ditl-scene scene-2" data-time="morning">
+          <div class="ditl-scene-content">
+            <div class="ditl-scene-time">9:30 AM</div>
+            <div class="ditl-scene-label">Scene 2: The Deep Dive</div>
+            <div class="ditl-scene-persona">Marcus Rivera, Brand Strategist</div>
+            <h2 class="ditl-scene-headline">Where Words Diverge from Action</h2>
+            <div class="ditl-scene-body">
+              Marcus reads Sarah's forwarded brief at 9:30 and immediately sees the problem: customers love talking about Stayworthy, but something in the friction is breaking them. He opens Guided Analysis and asks it a single question: why is the trust signal fraying?<br><br>
+              The engine asks back: which time horizon? He chooses 'Over Time' — Dependable is the anchor. Three diagnostic questions branch into a pattern that the system surfaces with surgical precision: support response times degraded from 4.2 hours to 6.8 hours over the past month. Correlation with Dependable decline: r=0.82. This is not a perception problem. This is operational. This is real.
+            </div>
+
+            <div class="ditl-drivers">
+              <div class="ditl-driver-badge in-the-moment">User Friendly</div>
+              <div class="ditl-driver-badge in-the-moment">Personal</div>
+            </div>
+            <div class="ditl-driver-context">Friction surfaces at the moment of transaction — where customer expectations meet reality</div>
+
+            <div class="ditl-preview">
+              <div class="ditl-preview-label">Guided Analysis Preview</div>
+              <div class="ditl-preview-content">
+                <div class="preview-ga">
+                  <div class="preview-ga-thread">
+                    <div class="preview-ga-msg system">Which time horizon? (Last 30 days, 90 days, 1 year)</div>
+                    <div style="padding: var(--space-xs); color: var(--text-primary);">→ Over Time (past 30 days)</div>
+                  </div>
+                  <div class="preview-ga-thread">
+                    <div class="preview-ga-msg system">Key driver identified: Support response time</div>
+                    <div style="padding: var(--space-xs); color: var(--text-primary);">Correlation: r=0.82</div>
+                  </div>
+                  <div class="preview-ga-thread">
+                    <div class="preview-ga-msg system">Recommendation: Operational review</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ditl-echo">
+              <span class="ditl-echo-arrow">↗</span>
+              <span>Triggered by trust gap alert in Command Center</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Scene 3: 12:00 PM — The Raw Signal -->
+        <section class="ditl-scene scene-3" data-time="midday">
+          <div class="ditl-scene-content">
+            <div class="ditl-scene-time">12:00 PM</div>
+            <div class="ditl-scene-label">Scene 3: Full Composite Review</div>
+            <div class="ditl-scene-persona">Dr. Anika Patel, Research Lead</div>
+            <h2 class="ditl-scene-headline">Signal Unfiltered</h2>
+            <div class="ditl-scene-body">
+              Anika doesn't read summaries — she reads signals. At noon, she goes straight to Signal Terminal. 847 raw data points, streaming across three layers: Human-Expressive, Behavioral, Cultural. Every data source, every time horizon, all at once.<br><br>
+              Four signals cluster like a warning light: booking abandonment up 41%, mobile sessions down 12%, support response degraded to 6.8 hours, and something unexpected — the 25-34 cohort is behaving differently. Younger users aren't experiencing the same friction. This is the clue. This is where the intervention lives.
+            </div>
+
+            <div class="ditl-drivers">
+              <div class="ditl-driver-badge in-the-moment">User Friendly</div>
+              <div class="ditl-driver-badge in-the-moment">Personal</div>
+              <div class="ditl-driver-badge in-the-moment">Accessible</div>
+              <div class="ditl-driver-badge over-time">Dependable</div>
+              <div class="ditl-driver-badge over-time">Meaningful</div>
+              <div class="ditl-driver-badge over-time">Salient</div>
+            </div>
+            <div class="ditl-driver-context">Full composite review — all six drivers cross-referenced for holistic brand health assessment</div>
+
+            <div class="ditl-preview">
+              <div class="ditl-preview-label">Signal Terminal Preview</div>
+              <div class="ditl-preview-content">
+                <div class="preview-st">
+                  <div class="preview-st-row">
+                    <div class="preview-st-status"></div>
+                    <div class="preview-st-signal">Booking Abandonment ↑41%</div>
+                    <div class="preview-st-severity">HIGH</div>
+                  </div>
+                  <div class="preview-st-row">
+                    <div class="preview-st-status"></div>
+                    <div class="preview-st-signal">Mobile Session ↓12%</div>
+                    <div class="preview-st-severity">HIGH</div>
+                  </div>
+                  <div class="preview-st-row">
+                    <div class="preview-st-status"></div>
+                    <div class="preview-st-signal">Support Response ↑6.8h</div>
+                    <div class="preview-st-severity">HIGH</div>
+                  </div>
+                  <div class="preview-st-row">
+                    <div class="preview-st-status"></div>
+                    <div class="preview-st-signal">25-34 Cohort Sentiment ↑</div>
+                    <div class="preview-st-severity">ANOM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ditl-echo">
+              <span class="ditl-echo-arrow">↗</span>
+              <span>Guided Analysis findings loaded as context</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Scene 4: 3:00 PM — The War Room -->
+        <section class="ditl-scene scene-4" data-time="afternoon">
+          <div class="ditl-scene-content">
+            <div class="ditl-scene-time">3:00 PM</div>
+            <div class="ditl-scene-label">Scene 4: Three Futures Modeled</div>
+            <div class="ditl-scene-persona">Jordan Walsh, VP Strategy + The Strategy Team</div>
+            <h2 class="ditl-scene-headline">Strategic Levers in Motion</h2>
+            <div class="ditl-scene-body">
+              The CEO needs a decision by 5 PM. Jordan and the team load Scenario Lab. They're testing three futures: transparent pricing (attack the User Friendly gap), AI-driven concierge (defend against Booking.com's moat), EU regulatory tightening (insurance scenario). <br><br>
+              650 agents simulate 100 iterations of each future. The composites move: Transparent Pricing drives a 3.2-point lift over 8 weeks (78% confidence). AI Concierge expands category reach but risks brand loyalty erosion. The team sketches the arc: Attack on pricing, Defend the Salient advantage, Bridge through Meaningful storytelling. Intelligence becomes strategy. Strategy becomes action.
+            </div>
+
+            <div class="ditl-drivers">
+              <div class="ditl-driver-badge over-time">Meaningful</div>
+              <div class="ditl-driver-badge over-time">Dependable</div>
+            </div>
+            <div class="ditl-driver-context">Strategic levers identified through simulation — which drivers move the composite and when</div>
+
+            <div class="ditl-preview">
+              <div class="ditl-preview-label">Scenario Lab Preview</div>
+              <div class="ditl-preview-content">
+                <div class="preview-sl">
+                  <div class="preview-sl-scenario">
+                    <div class="preview-sl-name">Transparent Pricing</div>
+                    <div class="preview-sl-chart">
+                      <div class="preview-sl-bar" style="height: 65%;"></div>
+                      <div class="preview-sl-bar" style="height: 72%;"></div>
+                      <div class="preview-sl-bar" style="height: 75%;"></div>
+                    </div>
+                  </div>
+                  <div class="preview-sl-scenario">
+                    <div class="preview-sl-name">AI Concierge</div>
+                    <div class="preview-sl-chart">
+                      <div class="preview-sl-bar" style="height: 68%; background: var(--signal-cultural);"></div>
+                      <div class="preview-sl-bar" style="height: 61%; background: var(--signal-cultural);"></div>
+                      <div class="preview-sl-bar" style="height: 59%; background: var(--scenario-contract);"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ditl-echo">
+              <span class="ditl-echo-arrow">↗</span>
+              <span>Signal Terminal data feeding scenario projections</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Scene 5: 9:00 PM — The Strategic Brief -->
+        <section class="ditl-scene scene-5" data-time="evening">
+          <div class="ditl-scene-content">
+            <div class="ditl-scene-time">9:00 PM</div>
+            <div class="ditl-scene-label">Scene 5: Market Positioning Check</div>
+            <div class="ditl-scene-persona">Sarah Chen, CMO (returning)</div>
+            <h2 class="ditl-scene-headline">From Intelligence to Execution</h2>
+            <div class="ditl-scene-body">
+              By 9:00 PM, Sarah's screen shows a single-page Instant Brief. Not a report. Not a dashboard. A decision engine output. Diagnostic: the trust-behavior gap is operational, not perceptual — support friction is the root. Attack: transparent pricing pilot in top 3 markets (projects 3.2-point lift). Defend: maintain Salient advantage through frictionless booking. Bridge: partner with verified-review platforms to convert trust into advocacy.<br><br>
+              Three actions. One strategic question for the board. Every number traces back to a data source. Glass box throughout. She sends it to the CEO with a note: 'This is what happens when intelligence runs 24/7.'
+            </div>
+
+            <div class="ditl-drivers">
+              <div class="ditl-driver-badge over-time">Salient</div>
+              <div class="ditl-driver-badge in-the-moment">Accessible</div>
+            </div>
+            <div class="ditl-driver-context">Repositioning check — market signals and competitive positioning against category leaders</div>
+
+            <div class="ditl-preview">
+              <div class="ditl-preview-label">Instant Brief Preview</div>
+              <div class="ditl-preview-content">
+                <div class="preview-brief">
+                  <div class="preview-brief-section">
+                    <div class="preview-brief-title">Diagnostic</div>
+                    <div class="preview-brief-item">Trust-behavior gap</div>
+                    <div class="preview-brief-item">Operational degradation</div>
+                  </div>
+                  <div class="preview-brief-section">
+                    <div class="preview-brief-title">Attack</div>
+                    <div class="preview-brief-item">Transparent pricing pilot</div>
+                  </div>
+                  <div class="preview-brief-section">
+                    <div class="preview-brief-title">Defend</div>
+                    <div class="preview-brief-item">Maintain Salient advantage</div>
+                  </div>
+                  <div class="preview-brief-section">
+                    <div class="preview-brief-title">Bridge</div>
+                    <div class="preview-brief-item">Verified-review partnerships</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ditl-echo">
+              <span class="ditl-echo-arrow">↗</span>
+              <span>Scenario Lab projections integrated into recommendations</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Scene 6: 11:45 PM — The System Never Sleeps -->
+        <section class="ditl-scene scene-6" data-time="night">
+          <div class="ditl-scene-content">
+            <div class="ditl-scene-time">11:45 PM</div>
+            <div class="ditl-scene-label">Scene 6: Signal Nexus Autonomous Cycle</div>
+            <div class="ditl-scene-persona">Signal Nexus (Autonomous Intelligence)</div>
+            <h2 class="ditl-scene-headline">The Intelligence That Never Sleeps</h2>
+            <div class="ditl-scene-body">
+              The office is dark. The lights are off. The conference rooms are empty. The intelligence engine is awake. At 11:45 PM, Cultural signals detect a tremor: TikTok travel content mentioning 'authentic stays' has spiked 340% in 48 hours. Reddit discussions about trust in hospitality pivot toward 'genuine connection.' Google Trends show 'real vs. fake reviews' search volume up 167%.<br><br>
+              The system doesn't log and forget. It cross-references these signals with Human-Expressive data from the day, recalibrates weighting, factors the pattern into the Brand Fidelity composite. By 6:15 AM, a new Morning Brief will be waiting for Sarah. The trust-behavior gap may have narrowed — or widened further. But she'll know. The system will have been thinking about it all night.
+            </div>
+
+            <div class="ditl-drivers">
+              <div class="ditl-driver-badge in-the-moment">Accessible</div>
+              <div class="ditl-driver-badge over-time">Salient</div>
+            </div>
+            <div class="ditl-driver-context">All drivers monitored continuously — 847 signals flowing, patterns emerging, intelligence building for tomorrow</div>
+
+            <div class="ditl-preview">
+              <div class="ditl-preview-label">Signal Terminal — Autonomous</div>
+              <div class="ditl-preview-content">
+                <div class="preview-terminal">
+                  <div class="preview-terminal-line">
+                    <span class="preview-terminal-prompt">></span>
+                    <span class="preview-terminal-text">cultural_signals scan</span>
+                  </div>
+                  <div class="preview-terminal-line">
+                    <span class="preview-terminal-prompt">></span>
+                    <span class="preview-terminal-text">authentic_stays +340%</span>
+                  </div>
+                  <div class="preview-terminal-line">
+                    <span class="preview-terminal-prompt">></span>
+                    <span class="preview-terminal-text">weight adjustment: 0.67</span>
+                  </div>
+                  <div class="preview-terminal-line">
+                    <span class="preview-terminal-prompt">></span>
+                    <span class="preview-terminal-text">brief ready: 06:15</span>
+                    <span class="preview-terminal-pulse"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ditl-echo">
+              <span class="ditl-echo-arrow">↗</span>
+              <span>Sim projections factored into signal weighting</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Closing -->
+        <section class="ditl-closing">
+          <h2 class="ditl-closing-statement">One system.</h2>
+          <h2 class="ditl-closing-statement">Continuous intelligence.</h2>
+          <h2 class="ditl-closing-statement">Every decision <span class="emphasis">traceable</span>.</h2>
+          <h2 class="ditl-closing-statement">Every insight <span class="emphasis">actionable</span>.</h2>
+          <h2 class="ditl-closing-statement" style="margin-top: var(--space-2xl);">This is not a dashboard.</h2>
+          <h2 class="ditl-closing-statement"><span class="emphasis">This is a decision engine.</span></h2>
+        </section>
+      </div>
+    </div>
+
+    <div class="feed">
+      <div class="feed-label">INTELLIGENCE FEED</div>
+      <div class="feed-ticker">
+        <div class="feed-ticker-track">
+          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">TikTok</span> Authentic stays sentiment spike +340% · <span class="feed-item-time">now</span></div>
+          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Trustpilot</span> Support response time trending −6.8h · <span class="feed-item-time">4h ago</span></div>
+          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Google Analytics</span> Mobile abandonment rate spike +41% · <span class="feed-item-time">2h ago</span></div>
+          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Stayworthy CRM</span> Booking velocity declined across 4 regions · <span class="feed-item-time">6h ago</span></div>
+          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Reddit</span> Brand Dependable discussions −22pt correlation · <span class="feed-item-time">12h ago</span></div>
+          <!-- Duplicate for seamless scroll -->
+          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">TikTok</span> Authentic stays sentiment spike +340% · <span class="feed-item-time">now</span></div>
+          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Trustpilot</span> Support response time trending −6.8h · <span class="feed-item-time">4h ago</span></div>
+          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Google Analytics</span> Mobile abandonment rate spike +41% · <span class="feed-item-time">2h ago</span></div>
+          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Stayworthy CRM</span> Booking velocity declined across 4 regions · <span class="feed-item-time">6h ago</span></div>
+          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Reddit</span> Brand Dependable discussions −22pt correlation · <span class="feed-item-time">12h ago</span></div>
+        </div>
+      </div>
+    </div>
+
+    <button class="analyst-trigger">
+      <div class="analyst-dot"></div>
+      <div class="analyst-trigger-icon">◆</div>
+    </button>
+  </div>
+
+  <div class="analyst-panel">
+    <div class="analyst-panel-header">
+      <div class="analyst-panel-title">MATERIAL ANALYST</div>
+      <button class="analyst-panel-close">✕</button>
+    </div>
+    <div class="analyst-panel-messages">
+      <div class="analyst-msg system">Hello. I'm Material Analyst. Ask me anything about the day's intelligence or this case study.</div>
+    </div>
+    <div class="analyst-panel-input">
+      <input type="text" placeholder="Ask a question...">
+      <button>Send</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    /* ═══════════════════════════════════════════════════════════
+       DAY IN THE LIFE — Timeline & Scene Management
+       ═══════════════════════════════════════════════════════════ */
+
+    const DITL = {
+      currentScene: null,
+      sceneObserver: null,
+      revealObserver: null,
+
+      init() {
+        this.initTimelineSpine();
+        this.initScrollReveals();
+      },
+
+      initTimelineSpine() {
+        const scenes = document.querySelectorAll('.ditl-scene');
+        const dots = document.querySelectorAll('.ditl-dot');
+
+        this.sceneObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const sceneIndex = Array.from(scenes).indexOf(entry.target);
+              if (sceneIndex !== -1) {
+                this.setActiveScene(sceneIndex);
+              }
+            }
+          });
+        }, {
+          threshold: 0.4,
+          rootMargin: '0px 0px -40% 0px'
+        });
+
+        scenes.forEach(scene => this.sceneObserver.observe(scene));
+
+        // Click dots to scroll to scene
+        dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            scenes[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          });
+        });
+      },
+
+      initScrollReveals() {
+        // Observe all scenes + closing for scroll-triggered reveal
+        const revealTargets = document.querySelectorAll('.ditl-scene, .ditl-closing, .ditl-opening');
+
+        this.revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('scene-visible');
+            }
+          });
+        }, {
+          threshold: 0.15,
+          rootMargin: '0px 0px -10% 0px'
+        });
+
+        revealTargets.forEach(el => this.revealObserver.observe(el));
+      },
+
+      setActiveScene(index) {
+        const dots = document.querySelectorAll('.ditl-dot');
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[index]) {
+          dots[index].classList.add('active');
+        }
+        this.currentScene = index;
+      }
+    };
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        BIE.init();
+        DITL.init();
+      });
+    } else {
+      BIE.init();
+      DITL.init();
+    }
+  </script>
+</body>
+</html>

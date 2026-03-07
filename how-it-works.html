@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works — Brand Intelligence Engine</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/glass-box.css">
+  <style>
+    /* Scene Base Styling */
+    .scene {
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .scene:first-child {
+      min-height: 50vh;
+    }
+
+    .scene-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    .scene-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      color: rgba(255, 255, 255, 0.95);
+      max-width: 900px;
+    }
+
+    .scene-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    /* Hero Section */
+    .scene-hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(129, 140, 248, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: breathe 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes breathe {
+      0% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+    }
+
+    .scene-hero-confidential {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 80px;
+      font-weight: 600;
+    }
+
+    .scene-hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      color: rgba(255, 255, 255, 0.98);
+      margin-bottom: 24px;
+      max-width: 800px;
+    }
+
+    .scene-hero-subtitle {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #818cf8;
+      margin-bottom: 40px;
+    }
+
+    .scene-hero-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Architecture Diagram */
+    .architecture-diagram {
+      margin: 60px 0;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      overflow-x: auto;
+    }
+
+    .diagram-container {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      min-width: max-content;
+      padding: 20px 0;
+    }
+
+    .diagram-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .diagram-stage-box {
+      padding: 16px 32px;
+      background: rgba(129, 140, 248, 0.1);
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      border-radius: 6px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+
+    .diagram-stage-box:hover {
+      background: rgba(129, 140, 248, 0.15);
+      border-color: rgba(129, 140, 248, 0.5);
+      transform: translateY(-4px);
+    }
+
+    .diagram-arrow {
+      font-size: 1.5rem;
+      color: rgba(129, 140, 248, 0.4);
+    }
+
+    .diagram-sublabel {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin-top: 8px;
+    }
+
+    /* Three-Lane Flow Diagram */
+    .flow-diagram {
+      margin: 60px 0;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .flow-lane {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.01);
+      border-left: 4px solid;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .flow-lane:hover {
+      background: rgba(255, 255, 255, 0.03);
+      transform: translateX(4px);
+    }
+
+    .flow-lane.human {
+      border-left-color: #818cf8;
+    }
+
+    .flow-lane.behavioral {
+      border-left-color: #34d399;
+    }
+
+    .flow-lane.cultural {
+      border-left-color: #f59e0b;
+    }
+
+    .flow-lane-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .flow-lane-title span {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .flow-lane.human .flow-lane-title span {
+      background: #818cf8;
+    }
+
+    .flow-lane.behavioral .flow-lane-title span {
+      background: #34d399;
+    }
+
+    .flow-lane.cultural .flow-lane-title span {
+      background: #f59e0b;
+    }
+
+    .flow-lane-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
+    }
+
+    .flow-lanes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .flow-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 0;
+      padding: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      align-items: start;
+    }
+
+    .flow-row:last-child {
+      border-bottom: none;
+    }
+
+    .flow-row-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      margin-bottom: 12px;
+      grid-column: 1;
+    }
+
+    .flow-row-cells {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      grid-column: 2 / -1;
+    }
+
+    .flow-cell {
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .flow-cell.human {
+      border-left-color: #818cf8;
+    }
+
+    .flow-cell.behavioral {
+      border-left-color: #34d399;
+    }
+
+    .flow-cell.cultural {
+      border-left-color: #f59e0b;
+    }
+
+    /* Confidence Scoring */
+    .confidence-section {
+      margin: 60px 0;
+      max-width: 1000px;
+    }
+
+    .confidence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin: 40px 0;
+    }
+
+    .confidence-card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .confidence-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .confidence-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .confidence-bars {
+      display: flex;
+      gap: 8px;
+    }
+
+    .confidence-bar {
+      height: 24px;
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .confidence-bar.filled {
+      background: linear-gradient(90deg, #34d399, #34d399);
+    }
+
+    .confidence-bar.filled.high {
+      background: #34d399;
+    }
+
+    .confidence-bar.filled.medium {
+      background: #f59e0b;
+    }
+
+    .confidence-bar.filled.low {
+      background: #ef4444;
+    }
+
+    .confidence-criteria {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .confidence-criteria li {
+      margin-bottom: 8px;
+    }
+
+    /* Data Provenance */
+    .provenance-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 40px 0;
+      max-width: 1000px;
+    }
+
+    .provenance-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .provenance-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .provenance-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.65);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .provenance-metric:last-child {
+      border-bottom: none;
+    }
+
+    .provenance-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #818cf8;
+    }
+
+    /* Brand Fidelity Framework */
+    .fidelity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin: 60px 0;
+      max-width: 1200px;
+    }
+
+    .fidelity-drivers {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .fidelity-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .fidelity-group-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 600;
+    }
+
+    .fidelity-driver-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 3px solid rgba(129, 140, 248, 0.4);
+      border-radius: 4px;
+    }
+
+    .fidelity-driver-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+    }
+
+    .fidelity-driver-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1.4;
+    }
+
+    .fidelity-validation {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding: 32px;
+      background: rgba(129, 140, 248, 0.08);
+      border: 1px solid rgba(129, 140, 248, 0.2);
+      border-radius: 8px;
+      border-left: 4px solid #818cf8;
+    }
+
+    .validation-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .validation-metrics {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .validation-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .validation-metric:last-child {
+      border-bottom: none;
+    }
+
+    .validation-metric-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #34d399;
+    }
+
+    /* Differentiators */
+    .differentiators-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin: 40px 0;
+      max-width: 1200px;
+    }
+
+    .differentiator-card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .differentiator-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .differentiator-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: #818cf8;
+      line-height: 1;
+    }
+
+    .differentiator-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .differentiator-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      animation: revealIn 0.8s ease-out forwards;
+    }
+
+    @keyframes revealIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .scene {
+        padding: 60px 40px;
+      }
+
+      .scene-headline {
+        font-size: 2.5rem;
+      }
+
+      .provenance-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .differentiators-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .fidelity-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .confidence-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .scene {
+        padding: 40px 24px;
+        min-height: auto;
+      }
+
+      .scene-headline {
+        font-size: 1.8rem;
+      }
+
+      .diagram-container {
+        gap: 16px;
+      }
+
+      .diagram-stage-box {
+        padding: 12px 16px;
+        font-size: 0.8rem;
+      }
+
+      .flow-row {
+        grid-template-columns: 1fr;
+        padding: 16px;
+      }
+
+      .flow-row-cells {
+        grid-template-columns: 1fr;
+        grid-column: 1;
+        margin-top: 12px;
+      }
+
+      .flow-row-label {
+        grid-column: 1;
+      }
+    }
+  </style>
+</head>
+<body data-page="how-it-works">
+  <div class="app">
+    <!-- LEFT NAVIGATION -->
+    <nav class="nav">
+      <div class="nav-logo">
+        <img src="assets/logos/material-plus.png" alt="Material+" style="height: 24px; opacity: 0.9;">
+      </div>
+      <div class="nav-confidential">Confidential · Internal Use Only</div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Foundation</div>
+        <a href="index.html" class="nav-item" data-page="strategic-brief">
+          <span class="nav-item-icon">◇</span> Strategic Brief
+        </a>
+        <a href="day-in-the-life.html" class="nav-item" data-page="day-in-the-life">
+          <span class="nav-item-icon">◉</span> Day in the Life
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Methodology</div>
+        <a href="how-it-works.html" class="nav-item active" data-page="how-it-works">
+          <span class="nav-item-icon">◈</span> How It Works
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Intelligence</div>
+        <a href="command-center.html" class="nav-item" data-page="command-center">
+          <span class="nav-item-icon">▣</span> Command Center
+        </a>
+        <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal">
+          <span class="nav-item-icon">▤</span> Signal Terminal
+        </a>
+        <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis">
+          <span class="nav-item-icon">▥</span> Guided Analysis
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Simulation</div>
+        <a href="scenario-lab.html" class="nav-item" data-page="scenario-lab">
+          <span class="nav-item-icon">◬</span> Scenario Lab
+        </a>
+      </div>
+
+      <div class="nav-pulse">
+        <div class="nav-pulse-bar"></div>
+        <div class="nav-pulse-label">
+          <span>Signal Activity</span>
+          <span><span class="signal-count">847</span> live</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-content">
+      <!-- SCENE 1: HERO OPENING -->
+      <section class="scene scene-hero reveal">
+        <div class="hero-gradient"></div>
+
+        <div class="scene-hero-confidential">Confidential · Internal Use Only</div>
+
+        <h1 class="scene-hero-title">How It Works</h1>
+
+        <div class="scene-hero-subtitle">Glass Box, Not Black Box</div>
+
+        <p class="scene-body" style="margin-top: 40px; max-width: 800px;">
+          Every data point traces to its source. Every confidence score to a methodology. Every recommendation to a framework. Transparency is not a feature — it is the architecture.
+        </p>
+      </section>
+
+      <!-- SCENE 2: THREE-LAYER SIGNAL ARCHITECTURE -->
+      <section class="scene reveal">
+        <div class="scene-label">Architecture</div>
+
+        <h2 class="scene-headline">Three-Layer Signal Architecture</h2>
+
+        <p class="scene-body">The system ingests, processes, and synthesizes three parallel signal types into a unified intelligence output.</p>
+
+        <div class="architecture-diagram">
+          <div class="diagram-container">
+            <div class="diagram-stage">
+              <div class="diagram-stage-box">INGEST</div>
+              <div class="diagram-sublabel">Raw Signals</div>
+            </div>
+            <div class="diagram-arrow">→</div>
+            <div class="diagram-stage">
+              <div class="diagram-stage-box">PROCESS</div>
+              <div class="diagram-sublabel">Clean & Analyze</div>
+            </div>
+            <div class="diagram-arrow">→</div>
+            <div class="diagram-stage">
+              <div class="diagram-stage-box">SYNTHESIZE</div>
+              <div class="diagram-sublabel">Harmonize Signals</div>
+            </div>
+            <div class="diagram-arrow">→</div>
+            <div class="diagram-stage">
+              <div class="diagram-stage-box">DELIVER</div>
+              <div class="diagram-sublabel">Intelligence Output</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-diagram">
+          <div class="flow-lanes-grid">
+            <!-- INGEST Row -->
+            <div class="flow-row">
+              <div class="flow-row-label">SOURCES</div>
+              <div class="flow-row-cells">
+                <div class="flow-cell human">
+                  <strong>AI-moderated interviews</strong>, open-ended surveys, social narratives
+                </div>
+                <div class="flow-cell behavioral">
+                  <strong>Booking data</strong>, search patterns, app engagement, pricing signals
+                </div>
+                <div class="flow-cell cultural">
+                  <strong>News feeds</strong>, regulatory filings, social trends, analyst commentary
+                </div>
+              </div>
+            </div>
+
+            <!-- PROCESS Row -->
+            <div class="flow-row">
+              <div class="flow-row-label">PROCESSING</div>
+              <div class="flow-row-cells">
+                <div class="flow-cell human">
+                  <strong>NLP sentiment analysis</strong>, vector embedding, theme extraction
+                </div>
+                <div class="flow-cell behavioral">
+                  <strong>Time-series analysis</strong>, anomaly detection, correlation mining
+                </div>
+                <div class="flow-cell cultural">
+                  <strong>Frame analysis</strong>, trend detection, narrative categorization
+                </div>
+              </div>
+            </div>
+
+            <!-- OUTPUT Row -->
+            <div class="flow-row">
+              <div class="flow-row-label">OUTPUT</div>
+              <div class="flow-row-cells">
+                <div class="flow-cell human">
+                  <strong>Perceptual brand meaning</strong>, emotional resonance, narrative shifts
+                </div>
+                <div class="flow-cell behavioral">
+                  <strong>Observable outcomes</strong>, transactional health, competitive gaps
+                </div>
+                <div class="flow-cell cultural">
+                  <strong>Environmental forces</strong>, category dynamics, regulatory risk
+                </div>
+              </div>
+            </div>
+
+            <!-- SYNTHESIS Row -->
+            <div class="flow-row" style="background: rgba(129, 140, 248, 0.08); border-top: 2px solid rgba(129, 140, 248, 0.3);">
+              <div class="flow-row-label" style="color: #818cf8;">SYNTHESIS</div>
+              <div class="flow-row-cells">
+                <div style="grid-column: 1 / -1; padding: 16px; background: transparent; border: none; color: rgba(255, 255, 255, 0.8); font-family: 'Space Grotesk', sans-serif; font-size: 1rem;">
+                  ↓ Signal Synthesis Engine ↓ → <strong>Brand Fidelity Composite</strong> + <strong>Priority Alerts</strong> + <strong>Strategic Recommendations</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inline Glass Box: Signal Architecture Methodology -->
+        <div class="glass-box-panel inline" style="margin-top: 48px; max-width: 100%;">
+          <div class="glass-box-inner" style="padding: 0; gap: var(--space-lg);">
+            <div class="glass-box-methodology">
+              <div class="glass-box-methodology-label">Signal Synthesis Methodology</div>
+              <div class="glass-box-formula">Composite = Σ(Human_i × 0.33 + Behavioral_i × 0.33 + Cultural_i × 0.33) → Unified Intelligence Score</div>
+              <div class="glass-box-approach">Human-Expressive signals capture perception and emotion through NLP analysis of N=4,700 AI-moderated interviews. Behavioral signals reveal actual market movements from 15M+ booking events and 3.2M search sessions. Cultural signals contextualize environmental forces across 47 news feeds and 12 social platforms. Signal synthesis uses a consensus-weighted engine that detects convergence and conflict across all three layers, producing a resilient intelligence output with documented confidence at every step.</div>
+            </div>
+            <div class="glass-box-assumptions">
+              <div class="glass-box-assumptions-label">Key Assumptions</div>
+              <div class="glass-box-assumption">
+                <span class="glass-box-assumption-number">01</span>
+                <span>Three imperfect signal types produce more robust intelligence than one clean signal</span>
+              </div>
+              <div class="glass-box-assumption">
+                <span class="glass-box-assumption-number">02</span>
+                <span>Signal convergence across types indicates higher confidence than volume alone</span>
+              </div>
+              <div class="glass-box-assumption">
+                <span class="glass-box-assumption-number">03</span>
+                <span>Behavioral signals lag attitudinal shifts by 2-4 weeks; synthesis engine accounts for temporal offset</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 3: CONFIDENCE SCORING METHODOLOGY -->
+      <section class="scene reveal">
+        <div class="scene-label">Confidence Framework</div>
+
+        <h2 class="scene-headline">Confidence Scoring Methodology</h2>
+
+        <p class="scene-body">Every number in this platform carries a confidence score. No exceptions. Confidence is determined by signal convergence, sample size, and recency.</p>
+
+        <div class="confidence-grid">
+          <div class="confidence-card">
+            <div class="confidence-title">HIGH</div>
+            <div class="confidence-bars">
+              <div class="confidence-bar filled high"></div>
+              <div class="confidence-bar filled high"></div>
+              <div class="confidence-bar filled high"></div>
+            </div>
+            <ul class="confidence-criteria">
+              <li>Multiple signal types converge</li>
+              <li>Sample N > 1,000</li>
+              <li>Data < 30 days old</li>
+            </ul>
+          </div>
+
+          <div class="confidence-card">
+            <div class="confidence-title">MEDIUM</div>
+            <div class="confidence-bars">
+              <div class="confidence-bar filled medium"></div>
+              <div class="confidence-bar filled medium"></div>
+              <div class="confidence-bar"></div>
+            </div>
+            <ul class="confidence-criteria">
+              <li>Two signal types align</li>
+              <li>Sample N > 500</li>
+              <li>Data < 60 days old</li>
+            </ul>
+          </div>
+
+          <div class="confidence-card">
+            <div class="confidence-title">LOW</div>
+            <div class="confidence-bars">
+              <div class="confidence-bar filled low"></div>
+              <div class="confidence-bar"></div>
+              <div class="confidence-bar"></div>
+            </div>
+            <ul class="confidence-criteria">
+              <li>Single signal source</li>
+              <li>Sample N < 500</li>
+              <li>Data > 60 days old</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin: 60px 0; padding: 32px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px;">
+          <p style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255, 255, 255, 0.7); line-height: 1.6; margin-bottom: 16px;">
+            <strong>Example:</strong> "User Friendly improved 3 points this quarter" surfaces with HIGH confidence because:
+          </p>
+          <ul style="font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(255, 255, 255, 0.65); line-height: 1.8; margin-left: 20px;">
+            <li>AI interview sentiment agrees with behavioral app ratings (+)</li>
+            <li>Survey sample N = 2,400 across 6 segments (+)</li>
+            <li>Data collected last week (+)</li>
+          </ul>
+        </div>
+
+        <!-- Inline Glass Box: Confidence Calculation -->
+        <div class="glass-box-panel inline" style="margin-top: 48px; max-width: 100%;">
+          <div class="glass-box-inner" style="padding: 0; gap: var(--space-lg);">
+            <div class="glass-box-methodology">
+              <div class="glass-box-methodology-label">Confidence Calculation</div>
+              <div class="glass-box-formula">Confidence = f(Signal_Convergence, Sample_N, Data_Recency) → HIGH | MEDIUM | LOW</div>
+              <div class="glass-box-approach">Confidence is not subjective. It is calculated from three objective criteria: (1) how many signal types converge on the same direction, (2) sample size relative to population, and (3) data recency relative to market cycle speed. Every claim in the platform displays its confidence score and the criteria behind it. No exceptions.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 4: DATA PROVENANCE -->
+      <section class="scene reveal">
+        <div class="scene-label">Data Provenance</div>
+
+        <h2 class="scene-headline">Signal Sources & Recency</h2>
+
+        <p class="scene-body">Every signal has a documented origin, update frequency, and sample composition. Transparency starts with traceability.</p>
+
+        <div class="provenance-grid">
+          <div class="provenance-card">
+            <div class="provenance-name">AI Interviews</div>
+            <div class="provenance-metric">
+              <span>Annual Volume</span>
+              <span class="provenance-value">2,400</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Segments</span>
+              <span class="provenance-value">6</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Respondents/Segment</span>
+              <span class="provenance-value">400</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Update Frequency</span>
+              <span class="provenance-value">Quarterly</span>
+            </div>
+          </div>
+
+          <div class="provenance-card">
+            <div class="provenance-name">Behavioral Pipeline</div>
+            <div class="provenance-metric">
+              <span>Booking Events</span>
+              <span class="provenance-value">15M</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Search Sessions</span>
+              <span class="provenance-value">3.2M</span>
+            </div>
+            <div class="provenance-metric">
+              <span>App Engagement</span>
+              <span class="provenance-value">Real-time</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Update Frequency</span>
+              <span class="provenance-value">Daily</span>
+            </div>
+          </div>
+
+          <div class="provenance-card">
+            <div class="provenance-name">Cultural Monitor</div>
+            <div class="provenance-metric">
+              <span>News Feeds</span>
+              <span class="provenance-value">47</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Social Platforms</span>
+              <span class="provenance-value">12</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Regulatory Trackers</span>
+              <span class="provenance-value">3</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Update Frequency</span>
+              <span class="provenance-value">Real-time</span>
+            </div>
+          </div>
+
+          <div class="provenance-card">
+            <div class="provenance-name">Brand Fidelity Survey</div>
+            <div class="provenance-metric">
+              <span>Sample Size</span>
+              <span class="provenance-value">24,000</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Brands Tracked</span>
+              <span class="provenance-value">229</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Categories</span>
+              <span class="provenance-value">30</span>
+            </div>
+            <div class="provenance-metric">
+              <span>Update Frequency</span>
+              <span class="provenance-value">Annual Calibration</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inline Glass Box: Source Tiers & Pipeline -->
+        <div class="glass-box-panel inline" style="margin-top: 48px; max-width: 100%;">
+          <div class="glass-box-inner" style="padding: 0; gap: var(--space-lg);">
+            <!-- Source Tier Grid -->
+            <div class="glass-box-tiers">
+              <div class="glass-box-tiers-label">Source Tier Weightage</div>
+              <div class="glass-box-tier">
+                <div class="glass-box-tier-header">
+                  Primary <span class="glass-box-tier-weight">40%</span>
+                </div>
+                <div class="glass-box-tier-sources">
+                  <div class="glass-box-tier-source"><span class="data-status-badge research">RES</span> N=24,000 Quantitative Panel</div>
+                  <div class="glass-box-tier-source"><span class="data-status-badge ai-enriched">AI</span> N=4,700 AI Moderated Interviews</div>
+                </div>
+              </div>
+              <div class="glass-box-tier">
+                <div class="glass-box-tier-header">
+                  Secondary <span class="glass-box-tier-weight">30%</span>
+                </div>
+                <div class="glass-box-tier-sources">
+                  <div class="glass-box-tier-source"><span class="data-status-badge research">RES</span> <a href="https://brandwatch.com" target="_blank">Social Listening (Brandwatch)</a></div>
+                  <div class="glass-box-tier-source"><span class="data-status-badge research">RES</span> <a href="https://trends.google.com" target="_blank">Search Trend Data (Google Trends)</a></div>
+                </div>
+              </div>
+              <div class="glass-box-tier">
+                <div class="glass-box-tier-header">
+                  Tertiary <span class="glass-box-tier-weight">20%</span>
+                </div>
+                <div class="glass-box-tier-sources">
+                  <div class="glass-box-tier-source"><span class="data-status-badge research">RES</span> <a href="https://similarweb.com" target="_blank">Competitive Intelligence (SimilarWeb)</a></div>
+                  <div class="glass-box-tier-source"><span class="data-status-badge research">RES</span> <a href="https://phocuswright.com" target="_blank">Industry Reports (Phocuswright)</a></div>
+                </div>
+              </div>
+              <div class="glass-box-tier">
+                <div class="glass-box-tier-header">
+                  Internal <span class="glass-box-tier-weight">10%</span>
+                </div>
+                <div class="glass-box-tier-sources">
+                  <div class="glass-box-tier-source"><span class="data-status-badge internal">INT</span> Material+ Proprietary Data</div>
+                  <div class="glass-box-tier-source"><span class="data-status-badge internal">INT</span> Client CRM Analytics</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pipeline Runs -->
+            <div class="glass-box-pipeline">
+              <div class="glass-box-pipeline-label">Recent Pipeline Runs</div>
+              <div class="glass-box-pipeline-run">
+                <span class="pipeline-status success">● Success</span>
+                <span class="pipeline-timestamp">2026-03-06 14:56</span>
+                <span class="pipeline-source">Brand Fidelity Pipeline v3</span>
+                <span class="pipeline-counts">10 validated · 0 stored</span>
+              </div>
+              <div class="glass-box-pipeline-run">
+                <span class="pipeline-status success">● Success</span>
+                <span class="pipeline-timestamp">2026-03-04 15:29</span>
+                <span class="pipeline-source">Signal Integration Pipeline</span>
+                <span class="pipeline-counts">7 validated · 0 stored</span>
+              </div>
+            </div>
+
+            <div class="glass-box-methodology">
+              <div class="glass-box-methodology-label">Provenance Philosophy</div>
+              <div class="glass-box-approach">Data provenance eliminates the "black box" problem. Every signal traces to a named source with a documented collection methodology, update frequency, and sample composition. Source tiers ensure that higher-confidence data carries proportionally more weight in composite calculations.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 5: MEASUREMENT FRAMEWORK (BF 6-Driver Diagram) -->
+      <section class="scene reveal">
+        <div class="scene-label">The Measurement Framework</div>
+
+        <h2 class="scene-headline">Brand Fidelity: Six Drivers of Loyalty</h2>
+
+        <p class="scene-body">The Brand Fidelity Framework visualizes six drivers arranged across two dimensions: How does the brand perform in the moment? Does it earn sustained loyalty over time? Each driver maps to the signal layers that measure it.</p>
+
+        <div style="margin: 60px 0; padding: 40px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; backdrop-filter: blur(10px); display: flex; flex-direction: column; align-items: center;">
+          <!-- SVG Flower/Circle Diagram -->
+          <svg width="400" height="400" viewBox="0 0 400 400" style="margin-bottom: 40px;">
+            <!-- Center circle -->
+            <circle cx="200" cy="200" r="45" fill="rgba(129, 140, 248, 0.15)" stroke="rgba(129, 140, 248, 0.3)" stroke-width="2"/>
+            <text x="200" y="210" font-family="'Space Grotesk', sans-serif" font-size="32" font-weight="600" fill="rgba(255, 255, 255, 0.95)" text-anchor="middle">72</text>
+
+            <!-- Top-Left: User Friendly (Behavioral) -->
+            <circle cx="140" cy="100" r="35" fill="rgba(52, 211, 153, 0.15)" stroke="#34d399" stroke-width="2"/>
+            <text x="140" y="100" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dy="0.3em">User</text>
+            <text x="140" y="120" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dy="0.3em">Friendly</text>
+            <line x1="170" y1="130" x2="185" y2="175" stroke="rgba(52, 211, 153, 0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+
+            <!-- Top-Center: Personal (Human) -->
+            <circle cx="200" cy="80" r="35" fill="rgba(129, 140, 248, 0.15)" stroke="#818cf8" stroke-width="2"/>
+            <text x="200" y="105" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="600" fill="#818cf8" text-anchor="middle" dy="0.3em">Personal</text>
+            <line x1="200" y1="115" x2="200" y2="155" stroke="rgba(129, 140, 248, 0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+
+            <!-- Top-Right: Accessible (Cultural) -->
+            <circle cx="260" cy="100" r="35" fill="rgba(245, 158, 11, 0.15)" stroke="#f59e0b" stroke-width="2"/>
+            <text x="260" y="100" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="600" fill="#f59e0b" text-anchor="middle" dy="0.3em">Accessible</text>
+            <line x1="230" y1="130" x2="215" y2="175" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+
+            <!-- Bottom-Left: Dependable (Behavioral) -->
+            <circle cx="140" cy="300" r="35" fill="rgba(52, 211, 153, 0.15)" stroke="#34d399" stroke-width="2"/>
+            <text x="140" y="300" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="600" fill="#34d399" text-anchor="middle" dy="0.3em">Dependable</text>
+            <line x1="170" y1="270" x2="185" y2="225" stroke="rgba(52, 211, 153, 0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+
+            <!-- Bottom-Center: Meaningful (Human) -->
+            <circle cx="200" cy="320" r="35" fill="rgba(129, 140, 248, 0.15)" stroke="#818cf8" stroke-width="2"/>
+            <text x="200" y="315" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="600" fill="#818cf8" text-anchor="middle" dy="0.3em">Meaningful</text>
+            <line x1="200" y1="285" x2="200" y2="245" stroke="rgba(129, 140, 248, 0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+
+            <!-- Bottom-Right: Salient (Cultural) -->
+            <circle cx="260" cy="300" r="35" fill="rgba(245, 158, 11, 0.15)" stroke="#f59e0b" stroke-width="2"/>
+            <text x="260" y="300" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="600" fill="#f59e0b" text-anchor="middle" dy="0.3em">Salient</text>
+            <line x1="230" y1="270" x2="215" y2="225" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1" stroke-dasharray="3,3"/>
+
+            <!-- Dimension Labels -->
+            <text x="80" y="80" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" fill="rgba(255, 255, 255, 0.5)" letter-spacing="0.08em" text-transform="uppercase">IN THE MOMENT</text>
+            <text x="65" y="330" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600" fill="rgba(255, 255, 255, 0.5)" letter-spacing="0.08em" text-transform="uppercase">OVER TIME</text>
+          </svg>
+
+          <!-- Signal Layer Mapping -->
+          <div style="max-width: 800px;">
+            <div style="margin-bottom: 24px;">
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <div style="width: 12px; height: 12px; background: #818cf8; border-radius: 50%; flex-shrink: 0;"></div>
+                <span style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255, 255, 255, 0.9);">
+                  <strong>Human-Expressive Signals</strong> measure Personal and Meaningful drivers
+                </span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                <div style="width: 12px; height: 12px; background: #34d399; border-radius: 50%; flex-shrink: 0;"></div>
+                <span style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255, 255, 255, 0.9);">
+                  <strong>Behavioral Signals</strong> measure User Friendly and Dependable drivers
+                </span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 12px; height: 12px; background: #f59e0b; border-radius: 50%; flex-shrink: 0;"></div>
+                <span style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255, 255, 255, 0.9);">
+                  <strong>Cultural Signals</strong> measure Accessible and Salient drivers
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inline Glass Box: BF Composite Methodology -->
+        <div class="glass-box-panel inline" style="margin-top: 48px; max-width: 100%;">
+          <div class="glass-box-inner" style="padding: 0; gap: var(--space-lg);">
+            <div class="glass-box-methodology">
+              <div class="glass-box-methodology-label">Brand Fidelity Composite Methodology</div>
+              <div class="glass-box-formula">BF Composite = Σ(Driver_i × Weight_i) / Σ(Weight_i)</div>
+              <div class="glass-box-approach">Weighted composite of 6 Brand Fidelity drivers measured via mixed-method signal integration. In-the-Moment drivers (User Friendly, Personal, Accessible) weighted 45%, Over-Time drivers (Dependable, Meaningful, Salient) weighted 55%. Each driver is continuously measured by its signal layer. When any driver shifts, the composite updates automatically.</div>
+            </div>
+            <div class="glass-box-assumptions">
+              <div class="glass-box-assumptions-label">Assumptions</div>
+              <div class="glass-box-assumption">
+                <span class="glass-box-assumption-number">01</span>
+                <span>Survey respondents representative of Stayworthy's active user base</span>
+              </div>
+              <div class="glass-box-assumption">
+                <span class="glass-box-assumption-number">02</span>
+                <span>AI interview responses directionally accurate to ±5% of quantitative benchmarks</span>
+              </div>
+              <div class="glass-box-assumption">
+                <span class="glass-box-assumption-number">03</span>
+                <span>Behavioral signals lag attitudinal shifts by 2-4 weeks</span>
+              </div>
+              <div class="glass-box-assumption">
+                <span class="glass-box-assumption-number">04</span>
+                <span>Cultural signals provide leading indicators 4-8 weeks ahead of brand perception changes</span>
+              </div>
+            </div>
+            <div class="glass-box-timestamp">
+              <span class="glass-box-timestamp-icon">📌</span>
+              <span class="glass-box-timestamp-label">Flash Frozen</span>
+              <span class="glass-box-timestamp-value">2026-03-06T14:56:24Z · 847 signals processed</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 6: VALIDATED OUTCOMES (Replaces duplicate BF section) -->
+      <section class="scene reveal">
+        <div class="scene-label">Validation</div>
+
+        <h2 class="scene-headline">Validated at Scale</h2>
+
+        <p class="scene-body">The Brand Fidelity Framework has been validated across a large-scale empirical dataset. These six drivers are not theoretical — they predict real-world outcomes.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 48px 0; max-width: 900px;">
+          <div style="padding: 32px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; text-align: center;">
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 300; color: rgba(255, 255, 255, 0.95); letter-spacing: -0.03em;" class="count-up" data-value="229">229</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); margin-top: 8px;">Brands Tracked</div>
+          </div>
+          <div style="padding: 32px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; text-align: center;">
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 300; color: rgba(255, 255, 255, 0.95); letter-spacing: -0.03em;" class="count-up" data-value="30">30</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); margin-top: 8px;">Categories</div>
+          </div>
+          <div style="padding: 32px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 4px; text-align: center;">
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 300; color: rgba(255, 255, 255, 0.95); letter-spacing: -0.03em;" class="count-up" data-value="24000">24,000</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); margin-top: 8px;">Survey Respondents</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px;">
+          <div style="padding: 24px; background: rgba(52, 211, 153, 0.04); border: 1px solid rgba(52, 211, 153, 0.15); border-radius: 4px;">
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 400; color: #34d399;">2×</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); margin-top: 8px; line-height: 1.5;">Higher advocacy vs. competitors at equivalent spend</div>
+          </div>
+          <div style="padding: 24px; background: rgba(129, 140, 248, 0.04); border: 1px solid rgba(129, 140, 248, 0.15); border-radius: 4px;">
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 400; color: #818cf8;">2.5×</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); margin-top: 8px; line-height: 1.5;">Profitability correlation with high-fidelity brands</div>
+          </div>
+          <div style="padding: 24px; background: rgba(245, 158, 11, 0.04); border: 1px solid rgba(245, 158, 11, 0.15); border-radius: 4px;">
+            <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 400; color: #f59e0b;">3×</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); margin-top: 8px; line-height: 1.5;">Differentiation impact on market share growth</div>
+          </div>
+        </div>
+
+        <!-- Inline Glass Box: Validation Methodology -->
+        <div class="glass-box-panel inline" style="margin-top: 48px; max-width: 100%;">
+          <div class="glass-box-inner" style="padding: 0;">
+            <div class="glass-box-methodology">
+              <div class="glass-box-methodology-label">Validation Methodology</div>
+              <div class="glass-box-approach">Framework validated across 24,000 consumers, 229 brands, and 30 categories via annual calibration study. Six drivers predict advocacy (R²=0.78), profitability correlation (R²=0.72), and market share trajectory (R²=0.65). Cross-validated against behavioral outcomes (booking completion, repeat purchase) and cultural indicators (social sentiment, press coverage).</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 7: WHAT MAKES THIS DIFFERENT -->
+      <section class="scene reveal">
+        <div class="scene-label">The Difference</div>
+
+        <h2 class="scene-headline">Three Things That Set This Apart</h2>
+
+        <p class="scene-body">Not incremental improvements to traditional research. A fundamentally different approach to understanding brand movement.</p>
+
+        <div class="differentiators-grid">
+          <div class="differentiator-card">
+            <div class="differentiator-number">1</div>
+            <div class="differentiator-title">Multi-Signal Intelligence</div>
+            <div class="differentiator-desc">
+              We don't ask "what do you think?" We triangulate what people say, what they do, and what the world is doing around them. Three imperfect signals are more robust than one clean one.
+            </div>
+          </div>
+
+          <div class="differentiator-card">
+            <div class="differentiator-number">2</div>
+            <div class="differentiator-title">Continuous Learning</div>
+            <div class="differentiator-desc">
+              Not quarterly waves. Not annual studies. A system that learns every day, surfaces what matters now, and prioritizes signal conflicts the moment they appear.
+            </div>
+          </div>
+
+          <div class="differentiator-card">
+            <div class="differentiator-number">3</div>
+            <div class="differentiator-title">Glass Box Transparency</div>
+            <div class="differentiator-desc">
+              Every claim has a source. Every source has a confidence score. Every score has a methodology. No black boxes. No "trust us." Full architectural transparency.
+            </div>
+          </div>
+        </div>
+
+        <!-- Inline Glass Box: Architecture Summary -->
+        <div class="glass-box-panel inline" style="margin-top: 48px; max-width: 100%;">
+          <div class="glass-box-inner" style="padding: 0;">
+            <div class="glass-box-methodology">
+              <div class="glass-box-methodology-label">Architecture Principle</div>
+              <div class="glass-box-approach">The Brand Intelligence Engine is not a tool. It is a change in how brand understanding is produced: continuous, transparent, multi-signal, and real-time. Every surface in this platform — from Command Center to Scenario Lab — inherits the Glass Box principle. No claim without attribution. No metric without methodology. No recommendation without documented confidence.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- INTELLIGENCE FEED -->
+    <footer class="feed app-feed">
+      <span class="feed-label">Intelligence Feed</span>
+      <div class="feed-ticker">
+        <div class="feed-ticker-track"></div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- MATERIAL ANALYST PANEL -->
+  <div class="analyst-trigger" title="Material Analyst">
+    <span class="analyst-trigger-icon">◆</span>
+    <span class="analyst-dot"></span>
+  </div>
+
+  <div class="analyst-panel">
+    <div class="analyst-panel-header">
+      <span class="analyst-panel-title">Material Analyst</span>
+      <button class="analyst-panel-close">×</button>
+    </div>
+    <div class="analyst-panel-messages"></div>
+    <div class="analyst-panel-input">
+      <input type="text" placeholder="Ask about architecture, signals, confidence scoring...">
+      <button>Send</button>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/app.js"></script>
+  <script>
+    // Reveal animations on scroll
+    function initRevealAnimations() {
+      const revealElements = document.querySelectorAll('.reveal');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealElements.forEach(el => observer.observe(el));
+    }
+
+    // Count-up animation for provenance and validation metrics
+    function animateCountUp() {
+      const elements = document.querySelectorAll('.provenance-value, .validation-metric-value');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+            const text = entry.target.textContent;
+            const isLarge = text.includes('M') || text.includes('K');
+
+            if (isLarge) {
+              const baseValue = parseFloat(text);
+              const element = entry.target;
+              let current = 0;
+              const increment = baseValue / 30;
+              const suffix = text.replace(/[0-9.]/g, '');
+
+              const interval = setInterval(() => {
+                current += increment;
+                if (current >= baseValue) {
+                  element.textContent = baseValue + suffix;
+                  clearInterval(interval);
+                  element.classList.add('counted');
+                } else {
+                  element.textContent = Math.floor(current) + (suffix ? suffix : '');
+                }
+              }, 30);
+            }
+          }
+        });
+      }, { threshold: 0.5 });
+
+      elements.forEach(el => observer.observe(el));
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      initRevealAnimations();
+      animateCountUp();
+    });
+  </script>
+</body>
+</html>

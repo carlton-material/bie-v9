@@ -1,9 +1,9 @@
-/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-   BRAND INTELLIGENCE ENGINE v9 â Shared Components
+/* ═══════════════════════════════════════════════════════════
+   BRAND INTELLIGENCE ENGINE v9 — Shared Components
    Reusable patterns across all surfaces
-   âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+   ═══════════════════════════════════════════════════════════ */
 
-/* ââ Glass Box: Source Attribution ââ */
+/* ── Glass Box: Source Attribution ── */
 .glass-box {
   display: inline-flex;
   align-items: center;
@@ -17,7 +17,7 @@
 .glass-box:hover { color: var(--text-tertiary); }
 .glass-box-icon { opacity: 0.4; }
 
-/* ââ Confidence Indicator ââ */
+/* ── Confidence Indicator ── */
 .confidence {
   display: inline-flex;
   gap: 2px;
@@ -32,7 +32,7 @@
 .confidence.medium .confidence-bar.filled { background: var(--signal-cultural); }
 .confidence.low .confidence-bar.filled { background: var(--scenario-contract); }
 
-/* ââ Metric Display ââ */
+/* ── Metric Display ── */
 .metric-hero {
   font-family: var(--font-display);
   font-weight: 300;
@@ -55,7 +55,7 @@
 .metric-delta.positive { color: var(--signal-behavioral); }
 .metric-delta.negative { color: var(--scenario-contract); }
 
-/* ââ Section Divider ââ */
+/* ── Section Divider ── */
 .divider {
   width: 100%;
   height: 1px;
@@ -63,7 +63,7 @@
   margin: var(--space-3xl) 0;
 }
 
-/* ââ Micro Labels ââ */
+/* ── Micro Labels ── */
 .micro-label {
   font-family: var(--font-mono);
   font-size: var(--text-nano);
@@ -72,7 +72,7 @@
   color: var(--text-muted);
 }
 
-/* ââ Scroll Reveal Animation ââ */
+/* ── Scroll Reveal Animation ── */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -94,12 +94,12 @@
   transform: translateY(0);
 }
 
-/* ââ Number Count-Up ââ */
+/* ── Number Count-Up ── */
 .count-up {
   font-variant-numeric: tabular-nums;
 }
 
-/* ââ Signal Layer Badge ââ */
+/* ── Signal Layer Badge ── */
 .signal-badge {
   font-family: var(--font-mono);
   font-size: var(--text-nano);
@@ -120,7 +120,7 @@
   background: currentColor;
 }
 
-/* ââ Scenario Classification Badge ââ */
+/* ── Scenario Classification Badge ── */
 .scenario-badge {
   font-family: var(--font-mono);
   font-size: var(--text-nano);
@@ -134,9 +134,9 @@
 .scenario-badge.shift { color: var(--scenario-shift); background: rgba(232,168,124,0.12); }
 .scenario-badge.expand { color: var(--scenario-expand); background: rgba(111,207,151,0.12); }
 .scenario-badge.contract { color: var(--scenario-contract); background: rgba(235,87,87,0.12); }
-.scenario-badge.mixed { color: var(---scenario-mixed); background: rgba(187,107,217,0.12); }
+.scenario-badge.mixed { color: var(--scenario-mixed); background: rgba(187,107,217,0.12); }
 
-/* ââ Ghost Button ââ */
+/* ── Ghost Button ── */
 .btn-ghost {
   font-family: var(--font-mono);
   font-size: var(--text-small);
@@ -152,7 +152,7 @@
   background: var(--bg-glass);
 }
 
-/* ââ Primary Action Button ââ */
+/* ── Primary Action Button ── */
 .btn-primary {
   font-family: var(--font-mono);
   font-size: var(--text-small);
@@ -167,7 +167,7 @@
   background: rgba(129,140,248,0.25);
 }
 
-/* ââ Tooltip (Glass Box) ââ */
+/* ── Tooltip (Glass Box) ── */
 .tooltip-trigger {
   position: relative;
   cursor: help;
@@ -186,7 +186,7 @@
   white-space: nowrap;
   pointer-events: none;
   opacity: 0;
-  transition: all var(--duration-fast) var(---ease-out);
+  transition: all var(--duration-fast) var(--ease-out);
   z-index: var(--z-tooltip);
 }
 .tooltip-trigger:hover .tooltip-content {
@@ -194,12 +194,12 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* ââ Card Pattern ââ */
+/* ── Card Pattern ── */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   padding: var(--space-lg);
-  transition: all var(--duration-fast) var(---ease-out);
+  transition: all var(--duration-fast) var(--ease-out);
 }
 .card:hover {
   background: var(--bg-card-hover);
@@ -218,7 +218,7 @@
   line-height: 1.5;
 }
 
-/* ââ Alert Card ââ */
+/* ── Alert Card ── */
 .alert-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -229,7 +229,7 @@
 .alert-card.medium { border-left-color: var(--signal-cultural); }
 .alert-card.low { border-left-color: var(--signal-behavioral); }
 
-/* ââ Driver Bar ââ */
+/* ── Driver Bar ── */
 .driver-bar {
   display: flex;
   align-items: center;
@@ -251,7 +251,7 @@
 .driver-bar-fill {
   height: 100%;
   background: var(--text-secondary);
-  transition: width var(--duration-slow) var(---ease-out);
+  transition: width var(--duration-slow) var(--ease-out);
 }
 .driver-bar-value {
   font-family: var(--font-mono);
@@ -266,11 +266,11 @@
   min-width: 32px;
   text-align: right;
 }
-.driver-bar-delta.positive { color: var(---signal-behavioral); }
+.driver-bar-delta.positive { color: var(--signal-behavioral); }
 .driver-bar-delta.negative { color: var(--scenario-contract); }
 
-/* ââ Content Containers ââ */
-.curface-content {
+/* ── Content Containers ── */
+.surface-content {
   max-width: var(--content-max);
   margin: 0 auto;
   padding: var(--space-3xl) var(--space-2xl);
@@ -296,12 +296,12 @@
   line-height: 1.6;
 }
 
-/* ââ Grid Layouts ââ */
+/* ── Grid Layouts ── */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
-.grid-4 *{ display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-lg); }
 
-/* ââ Severity Dot ââ */
+/* ── Severity Dot ── */
 .severity-dot {
   width: 6px;
   height: 6px;
@@ -310,17 +310,17 @@
 }
 .severity-dot.high { background: var(--scenario-contract); }
 .severity-dot.medium { background: var(--signal-cultural); }
-.severity-dot.low { background: var(---signal-behavioral); }
+.severity-dot.low { background: var(--signal-behavioral); }
 
-/* ââ SVG Sparkline ââ */
-.parkline {
+/* ── SVG Sparkline ── */
+.sparkline {
   stroke-width: 1.5;
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-/* ââ Progress Ring ââ */
+/* ── Progress Ring ── */
 .progress-ring {
   transform: rotate(-90deg);
 }
@@ -336,7 +336,7 @@
   transition: stroke-dashoffset var(--duration-slow) var(--ease-out);
 }
 
-/* ââ Scene (Scrollytelling) ââ */
+/* ── Scene (Scrollytelling) ── */
 .scene {
   min-height: 80vh;
   display: flex;
@@ -369,6 +369,6 @@
   line-height: 1.7;
 }
 
-/* ââ Loading State ââ */
+/* ── Loading State ── */
 body:not(.loaded) .reveal { transition: none; }
 body.loaded .app { opacity: 1; }

@@ -1,10 +1,10 @@
-/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-   GLASS BOX â Data Provenance & Transparency System
+/* ═══════════════════════════════════════════════════════════
+   GLASS BOX — Data Provenance & Transparency System
    Inspired by the Arbor Meridian "Show My Work" pattern
-   Every claim attributed Â· Every metric traceable
-   âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+   Every claim attributed · Every metric traceable
+   ═══════════════════════════════════════════════════════════ */
 
-/* ââ Glass Box Container ââ */
+/* ── Glass Box Container ── */
 .glass-box-panel {
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
@@ -20,7 +20,7 @@
   background: transparent;
 }
 
-/* ââ Glass Box Header ââ */
+/* ── Glass Box Header ── */
 .glass-box-header {
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@
   color: var(--text-tertiary);
 }
 
-/* ââ Show My Work Toggle ââ */
+/* ── Show My Work Toggle ── */
 .glass-box-toggle {
   display: inline-flex;
   align-items: center;
@@ -88,7 +88,7 @@
   transform: rotate(180deg);
 }
 
-/* ââ Glass Box Content (collapsible) ââ */
+/* ── Glass Box Content (collapsible) ── */
 .glass-box-content {
   max-height: 0;
   overflow: hidden;
@@ -106,7 +106,7 @@
   gap: var(--space-lg);
 }
 
-/* ââ Pipeline Runs ââ */
+/* ── Pipeline Runs ── */
 .glass-box-pipeline {
   display: flex;
   flex-direction: column;
@@ -172,7 +172,7 @@
   white-space: nowrap;
 }
 
-/* ââ Source Tier Grid ââ */
+/* ── Source Tier Grid ── */
 .glass-box-tiers {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -241,7 +241,7 @@
   opacity: 1;
 }
 
-/* ââ Methodology / Formula ââ */
+/* ── Methodology / Formula ── */
 .glass-box-methodology {
   padding: var(--space-md);
   background: var(--bg-card);
@@ -278,7 +278,7 @@
   line-height: 1.5;
 }
 
-/* ââ Assumptions ââ */
+/* ── Assumptions ── */
 .glass-box-assumptions {
   padding: var(--space-md);
   background: var(--bg-card);
@@ -315,7 +315,7 @@
   flex-shrink: 0;
 }
 
-/* ââ Flash Frozen Timestamp ââ */
+/* ── Flash Frozen Timestamp ── */
 .glass-box-timestamp {
   display: flex;
   align-items: center;
@@ -346,7 +346,7 @@
   margin-left: auto;
 }
 
-/* ââ Confidence Badges ââ */
+/* ── Confidence Badges ── */
 .confidence-badge {
   display: inline-flex;
   align-items: center;
@@ -378,7 +378,7 @@
   box-shadow: 0 0 6px var(--confidence-low);
 }
 
-/* ââ Data Status Badges ââ */
+/* ── Data Status Badges ── */
 .data-status-badge {
   display: inline-flex;
   align-items: center;
@@ -417,7 +417,7 @@
   border: 1px solid var(--gray-100);
 }
 
-/* ââ Confidence Halo on Metric Cards ââ */
+/* ── Confidence Halo on Metric Cards ── */
 .confidence-halo-high {
   box-shadow: 0 0 0 1px var(--confidence-high), 0 0 20px var(--confidence-high);
 }
@@ -430,7 +430,7 @@
   box-shadow: 0 0 0 1px var(--confidence-low), 0 0 12px var(--confidence-low);
 }
 
-/* ââ Responsive: stack tiers on smaller screens ââ */
+/* ── Responsive: stack tiers on smaller screens ── */
 @media (max-width: 1200px) {
   .glass-box-tiers {
     grid-template-columns: repeat(2, 1fr);
