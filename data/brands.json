@@ -1,0 +1,20 @@
+{
+  "activeBrand": "stayworthy",
+  "brands": [
+    {
+      "id": "stayworthy",
+      "name": "Stayworthy",
+      "category": "Travel & Hospitality",
+      "dataFile": "data/stayworthy.json",
+      "isSynthetic": true
+    }
+  ],
+  "sectors": [
+    { "name": "Media & Entertainment", "portfolios": ["Media & Entertainment"] },
+    { "name": "Technology", "portfolios": ["Consumer Tech", "Enterprise Tech"] },
+    { "name": "Consumer Products", "portfolios": ["Lifestyle & Beauty", "Products", "Retail"] },
+    { "name": "Services", "portfolios": ["Home & Construction", "Finance & Business Services", "Travel, Hospitality, Restaurants"] },
+    { "name": "Health & Social Enterprise", "portfolios": ["Meds & Eds", "Health & Pharma", "Government & Foundations"] },
+    { "name": "APAC", "portfolios": ["APAC"] }
+  ]
+}

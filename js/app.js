@@ -11,14 +11,8 @@ const BIE = {
   analystMode: 'guide', // guide or guardian
 
   async init() {
-    // Load brand config
-    try {
-      const resp = await fetch('data/stayworthy.json');
-      this.brand = await resp.json();
-    } catch(e) {
-      console.warn('Brand config not loaded, using defaults');
-      this.brand = { name: 'Stayworthy', composite: 72, delta: -4 };
-    }
+    // Load brand config from registry
+    await this.loadBrand();
 
     this.currentPage = document.body.dataset.page;
     this.initNav();
@@ -30,9 +24,69 @@ const BIE = {
     this.initSignalPulse();
     this.initRadarChart();
     this.initGlassBox();
+    this.hydrateBrandData();
     this.initOnboarding();
 
     document.body.classList.add('loaded');
+  },
+
+  // Load brand registry, then active brand data
+  async loadBrand() {
+    try {
+      // Check URL param first
+      const urlParams = new URLSearchParams(window.location.search);
+      const brandParam = urlParams.get('brand');
+
+      // Load brand registry
+      const registryResp = await fetch('data/brands.json');
+      const registry = await registryResp.json();
+      this.registry = registry;
+
+      // Determine which brand to load
+      const brandId = brandParam || registry.activeBrand || 'stayworthy';
+      const brandEntry = registry.brands.find(b => b.id === brandId) || registry.brands[0];
+
+      // Load brand data file
+      const dataFile = brandEntry.dataFile || `data/${brandId}.json`;
+      const brandResp = await fetch(dataFile);
+      this.brand = await brandResp.json();
+      this.brand.isSynthetic = brandEntry.isSynthetic || false;
+
+    } catch(e) {
+      console.warn('Brand config not loaded, using defaults:', e);
+      this.brand = { name: 'Stayworthy', composite: 72, delta: -4, isSynthetic: true };
+      this.registry = { sectors: [] };
+    }
+  },
+
+  hydrateBrandData() {
+    if (!this.brand) return;
+
+    // Simple field replacement: data-brand="name" → brand.name
+    document.querySelectorAll('[data-brand]').forEach(el => {
+      const field = el.dataset.brand;
+      const value = this.resolveBrandField(field);
+      if (value !== undefined) {
+        el.textContent = value;
+      }
+    });
+  },
+
+  resolveBrandField(field) {
+    // Support dot notation: "competitor.0.name" → brand.competitors[0].name
+    const parts = field.split('.');
+    let obj = this.brand;
+    for (const part of parts) {
+      if (obj === undefined || obj === null) return undefined;
+      // Check if part is a number (array index)
+      const idx = parseInt(part);
+      if (!isNaN(idx) && Array.isArray(obj)) {
+        obj = obj[idx];
+      } else {
+        obj = obj[part];
+      }
+    }
+    return obj;
   },
 
   initRadarChart() {
@@ -40,12 +94,13 @@ const BIE = {
     if (!radarContainer || !this.brand) return;
 
     const drivers = this.brand.drivers;
+    const competitor = this.brand.competitors && this.brand.competitors[0];
     renderRadarChart('bf-radar', drivers, {
       width: 400,
       height: 400,
       showCompetitor: true,
-      competitorScore: 74,
-      competitorLabel: 'Booking.com'
+      competitorScore: competitor ? competitor.composite : 74,
+      competitorLabel: competitor ? competitor.name : 'Booking.com'
     });
   },
 
@@ -454,15 +509,18 @@ const BIE = {
 
   generateAnalystResponse(query) {
     const isGuide = this.analystMode === 'guide';
+    const brandName = this.brand?.name || 'The brand';
+    const competitor = this.brand?.competitors?.[0];
+    const competitorName = competitor?.name || 'Booking.com';
 
     const responses = {
       trust: {
-        guide: "<strong>Question:</strong> You mentioned a 22-point gap between what users say and what they actually do with their bookings. What do you think that gap tells us about the functional vs. emotional dimensions of trust? And which driver might be at the root of that divergence?",
-        guardian: "<strong>Diagnostic:</strong> Stayworthy's trust metrics show a 22-point gap between expressive sentiment (78%) and behavioral signals (56%). This gap has widened 4 points in 6 weeks, a leading indicator of churn.<br><br><strong>Attack:</strong> Deploy transparent pricing pilot in top 3 markets to close User Friendly gap.<br><strong>Defend:</strong> Maintain Salient advantage (74, +2) through consistent booking experience.<br><strong>Bridge:</strong> Partner with verified-review platforms to convert trust into behavioral loyalty.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Human-Expressive + Behavioral signal correlation · N=847 · Confidence: HIGH</span>"
+        guide: `<strong>Question:</strong> You mentioned a 22-point gap between what users say and what they actually do with their bookings. What do you think that gap tells us about the functional vs. emotional dimensions of trust? And which driver might be at the root of that divergence?`,
+        guardian: `<strong>Diagnostic:</strong> ${brandName}'s trust metrics show a 22-point gap between expressive sentiment (78%) and behavioral signals (56%). This gap has widened 4 points in 6 weeks, a leading indicator of churn.<br><br><strong>Attack:</strong> Deploy transparent pricing pilot in top 3 markets to close User Friendly gap.<br><strong>Defend:</strong> Maintain Salient advantage (74, +2) through consistent booking experience.<br><strong>Bridge:</strong> Partner with verified-review platforms to convert trust into behavioral loyalty.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Human-Expressive + Behavioral signal correlation · N=847 · Confidence: HIGH</span>`
       },
       competitor: {
-        guide: "<strong>Question:</strong> Booking.com is leading at 74, but Stayworthy is closing the gap at 72. What do you notice about which drivers they're strong in vs. where your opportunity actually is? Personal and Meaningful are both underdeveloped in the category. Why do you think that is?",
-        guardian: "<strong>Diagnostic:</strong> Booking.com leads at 74 BF composite, driven by Dependable (+8 vs category) and User Friendly (+6). Stayworthy's opportunity lies in Meaningful and Personal, both underserved category-wide.<br><br><strong>Attack:</strong> Invest in Personal (64, -8) through ML-driven recommendation personalization.<br><strong>Defend:</strong> Protect Salient (74) through brand recall campaigns in peak booking season.<br><strong>Bridge:</strong> Meaningful (66, -3) bridges functional satisfaction to emotional loyalty.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Brand Fidelity Report 2026 · Travel Category · N=24,000 · Confidence: HIGH</span>"
+        guide: `<strong>Question:</strong> ${competitorName} is leading at 74, but ${brandName} is closing the gap at 72. What do you notice about which drivers they're strong in vs. where your opportunity actually is? Personal and Meaningful are both underdeveloped in the category. Why do you think that is?`,
+        guardian: `<strong>Diagnostic:</strong> ${competitorName} leads at 74 BF composite, driven by Dependable (+8 vs category) and User Friendly (+6). ${brandName}'s opportunity lies in Meaningful and Personal, both underserved category-wide.<br><br><strong>Attack:</strong> Invest in Personal (64, -8) through ML-driven recommendation personalization.<br><strong>Defend:</strong> Protect Salient (74) through brand recall campaigns in peak booking season.<br><strong>Bridge:</strong> Meaningful (66, -3) bridges functional satisfaction to emotional loyalty.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Brand Fidelity Report 2026 · Travel Category · N=24,000 · Confidence: HIGH</span>`
       },
       'gen z': {
         guide: "<strong>Question:</strong> Gen Z engagement with peer-reviewed content is up 34% despite lower trust in brands. How does that paradox inform the Meaningful driver? What would it take to build a community-first experience that shifts their perception from transactional to belonging?",

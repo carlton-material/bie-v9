@@ -1,0 +1,68 @@
+{
+  "agentCount": 650,
+  "brands": [
+    { "id": "stayworthy", "name": "Stayworthy", "tier": "Prestige", "equity": 0.72, "price": 0.55, "innovation": 0.65, "distribution": 0.70, "bassP": 0.04, "bassQ": 0.35, "initialAwareness": 0.65, "isSelf": true },
+    { "id": "booking", "name": "Booking.com", "tier": "Mass", "equity": 0.74, "price": 0.40, "innovation": 0.55, "distribution": 0.95, "bassP": 0.06, "bassQ": 0.45, "initialAwareness": 0.90 },
+    { "id": "airbnb", "name": "Airbnb", "tier": "Prestige", "equity": 0.69, "price": 0.60, "innovation": 0.80, "distribution": 0.85, "bassP": 0.05, "bassQ": 0.50, "initialAwareness": 0.85 },
+    { "id": "marriott", "name": "Marriott Homes", "tier": "Prestige", "equity": 0.71, "price": 0.65, "innovation": 0.40, "distribution": 0.60, "bassP": 0.03, "bassQ": 0.30, "initialAwareness": 0.55 },
+    { "id": "vrbo", "name": "Vrbo", "tier": "Mass", "equity": 0.68, "price": 0.45, "innovation": 0.45, "distribution": 0.75, "bassP": 0.04, "bassQ": 0.35, "initialAwareness": 0.70 },
+    { "id": "plumguide", "name": "Plum Guide", "tier": "Luxury", "equity": 0.63, "price": 0.85, "innovation": 0.70, "distribution": 0.30, "bassP": 0.02, "bassQ": 0.25, "initialAwareness": 0.20 }
+  ],
+  "segments": [
+    { "name": "Budget Travelers", "share": 0.28, "weights": { "price": 0.50, "equity": 0.20, "innovation": 0.10, "distribution": 0.20 }, "loyaltyRate": 0.50 },
+    { "name": "Family Planners", "share": 0.22, "weights": { "price": 0.30, "equity": 0.35, "innovation": 0.10, "distribution": 0.25 }, "loyaltyRate": 0.70 },
+    { "name": "Experience Seekers", "share": 0.18, "weights": { "price": 0.15, "equity": 0.25, "innovation": 0.40, "distribution": 0.20 }, "loyaltyRate": 0.55 },
+    { "name": "Business Travelers", "share": 0.14, "weights": { "price": 0.20, "equity": 0.30, "innovation": 0.15, "distribution": 0.35 }, "loyaltyRate": 0.65 },
+    { "name": "Luxury Escapists", "share": 0.10, "weights": { "price": -0.10, "equity": 0.45, "innovation": 0.30, "distribution": 0.35 }, "loyaltyRate": 0.75 },
+    { "name": "Digital Nomads", "share": 0.08, "weights": { "price": 0.25, "equity": 0.15, "innovation": 0.40, "distribution": 0.20 }, "loyaltyRate": 0.45 }
+  ],
+  "tiers": [
+    { "name": "Mass", "share": 0.50, "entryRate": 0.04, "exitRate": 0.010, "latentShare": 0.15 },
+    { "name": "Prestige", "share": 0.35, "entryRate": 0.02, "exitRate": 0.015, "latentShare": 0.20 },
+    { "name": "Luxury", "share": 0.15, "entryRate": 0.01, "exitRate": 0.020, "latentShare": 0.25 }
+  ],
+  "presetScenarios": [
+    {
+      "id": "status-quo",
+      "name": "Status Quo",
+      "description": "No strategic changes. Market dynamics play out naturally.",
+      "modifiers": {}
+    },
+    {
+      "id": "premium-push",
+      "name": "Premium Positioning",
+      "description": "Stayworthy invests in brand equity and innovation, raises prices.",
+      "modifiers": {
+        "brandModifiers": {
+          "stayworthy": { "equity": 0.10, "innovation": 0.15, "price": 0.10, "bassP": 0.02 }
+        }
+      }
+    },
+    {
+      "id": "price-war",
+      "name": "Price War",
+      "description": "Booking.com and Vrbo slash prices. Mass tier expands aggressively.",
+      "modifiers": {
+        "brandModifiers": {
+          "booking": { "price": -0.15 },
+          "vrbo": { "price": -0.20 }
+        },
+        "tierModifiers": {
+          "Mass": { "entryRate": 0.08 }
+        }
+      }
+    },
+    {
+      "id": "market-expansion",
+      "name": "Market Expansion",
+      "description": "New travel boom — all tiers see increased entry rates.",
+      "modifiers": {
+        "tierModifiers": {
+          "Mass": { "entryRate": 0.08 },
+          "Prestige": { "entryRate": 0.05 },
+          "Luxury": { "entryRate": 0.03 }
+        }
+      }
+    }
+  ]
+}

@@ -126,6 +126,12 @@
   --feed-height: 48px;
   --analyst-size: 56px;
 
+  /* ── Container Dimension Tokens ── */
+  --container-sm: min(400px, 90vw);
+  --container-md: min(600px, 90vw);
+  --container-lg: min(900px, 90vw);
+  --container-xl: min(1200px, 95vw);
+
   /* ── Z-Index ── */
   --z-feed: 100;
   --z-nav: 200;

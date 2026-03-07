@@ -814,6 +814,42 @@ img { max-width: 100%; display: block; }
    where text spills beyond containers, causing horizontal scroll and UX breaks.
    ═══════════════════════════════════════════════════════════ */
 
+/* ═══════════════════════════════════════════════════════════
+   FLEX CHILD OVERFLOW PREVENTION
+   ═══════════════════════════════════════════════════════════ */
+/* Prevent flex children from expanding past parent bounds */
+[class*="card"] > *,
+[class*="panel"] > *,
+[class*="grid"] > *,
+[class*="flex"] > *,
+.scenario-card > *,
+.ga-card > *,
+.st-signal > * {
+  min-width: 0;
+  min-height: 0;
+}
+
+/* Force text containers to respect bounds */
+p, span, h1, h2, h3, h4, h5, h6, li, td, th, label, a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* SVG containment */
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Absolute-positioned children containment */
+[class*="card"],
+[class*="scene"],
+[class*="panel"],
+[class*="section"] {
+  position: relative;
+  overflow: hidden;
+}
+
 /* Prevent text overflow in all card-like containers */
 .ga-card,
 .st-signal,
@@ -876,6 +912,44 @@ select {
   text-overflow: ellipsis;
 }
 
+/* ═══════════════════════════════════════════════════════════
+   SCENARIO LAB — Viewport Containment
+   ═══════════════════════════════════════════════════════════ */
+.mode-insight,
+.mode-wargame,
+.mode-focus-group,
+.mode-signal-nexus,
+.mode-brand-sim {
+  contain: layout style;
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for scenario panels */
+.mode-insight::-webkit-scrollbar,
+.mode-wargame::-webkit-scrollbar,
+.mode-focus-group::-webkit-scrollbar,
+.mode-signal-nexus::-webkit-scrollbar,
+.mode-brand-sim::-webkit-scrollbar {
+  width: 4px;
+}
+.mode-insight::-webkit-scrollbar-thumb,
+.mode-wargame::-webkit-scrollbar-thumb,
+.mode-focus-group::-webkit-scrollbar-thumb,
+.mode-signal-nexus::-webkit-scrollbar-thumb,
+.mode-brand-sim::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+}
+
+@media (max-width: 1024px) {
+  .mode-insight, .mode-wargame, .mode-focus-group, .mode-signal-nexus, .mode-brand-sim {
+    max-height: calc(100vh - 180px);
+  }
+}
+
 /* ═══════════════════════════════════════════════
    RESPONSIVE BREAKPOINTS — FAB & Analyst Panel
    ═══════════════════════════════════════════════ */
@@ -904,4 +978,34 @@ select {
     width: 20px;
     height: 20px;
   }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SYNTHETIC BRAND NOTICE
+   ═══════════════════════════════════════════════════════════ */
+.synthetic-brand-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: rgba(129, 140, 248, 0.04);
+  border-left: 2px solid var(--signal-human, #818cf8);
+  border-radius: 0 var(--radius-md, 8px) var(--radius-md, 8px) 0;
+  max-width: var(--content-max, 1200px);
+  margin: var(--space-lg) auto;
+  font-size: var(--text-small, 0.875rem);
+  color: var(--text-secondary, rgba(255,255,255,0.5));
+  line-height: 1.6;
+}
+.synthetic-brand-notice .notice-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(129, 140, 248, 0.1);
+  border-radius: 50%;
+  font-size: 11px;
+  color: var(--signal-human, #818cf8);
 }
