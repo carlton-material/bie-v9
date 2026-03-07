@@ -13,6 +13,43 @@
        DAY IN THE LIFE — Cinematic Scrollytelling
        ═══════════════════════════════════════════════════════════ */
 
+    /* ── Ambient Background — Page-Level Cinematics ── */
+    .ditl-ambient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      transition: background 2s cubic-bezier(0.16, 1, 0.3, 1);
+      background: #000000;
+    }
+
+    /* Time-based gradients — subtle, dark theme ambient warmth/coolness */
+    .ditl-ambient-bg.time-dawn {
+      background: linear-gradient(135deg, #0a0a2e 0%, #1a1a3e 50%, #0a0a0a 100%);
+    }
+
+    .ditl-ambient-bg.time-morning {
+      background: linear-gradient(135deg, #0a0a0a 0%, #151208 50%, #0a0a0a 100%);
+    }
+
+    .ditl-ambient-bg.time-midday {
+      background: linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
+    }
+
+    .ditl-ambient-bg.time-afternoon {
+      background: linear-gradient(135deg, #0a0a0a 0%, #120e08 50%, #0a0a0a 100%);
+    }
+
+    .ditl-ambient-bg.time-evening {
+      background: linear-gradient(135deg, #0a0a0a 0%, #0a0812 50%, #0a0a0a 100%);
+    }
+
+    .ditl-ambient-bg.time-night {
+      background: linear-gradient(135deg, #000000 0%, #000000 50%, #000000 100%);
+    }
+
     .ditl-container {
       position: relative;
       padding-left: 120px;
@@ -272,16 +309,26 @@
       transition: all var(--duration-normal);
     }
 
-    .ditl-driver-badge.in-the-moment {
-      background: rgba(100, 200, 255, 0.1);
-      border-color: rgba(100, 200, 255, 0.3);
-      color: rgba(100, 200, 255, 0.8);
+    /* Signal layer colors based on BF drivers */
+    /* Human signals (purple/indigo): Personal (P), Meaningful (M) */
+    .ditl-driver-badge[data-signal="human"] {
+      background: rgba(129, 140, 248, 0.1);
+      border-color: rgba(129, 140, 248, 0.3);
+      color: #818cf8;
     }
 
-    .ditl-driver-badge.over-time {
-      background: rgba(100, 255, 200, 0.1);
-      border-color: rgba(100, 255, 200, 0.3);
-      color: rgba(100, 255, 200, 0.8);
+    /* Behavioral signals (green): User Friendly (UF), Dependable (D) */
+    .ditl-driver-badge[data-signal="behavioral"] {
+      background: rgba(52, 211, 153, 0.1);
+      border-color: rgba(52, 211, 153, 0.3);
+      color: #34d399;
+    }
+
+    /* Cultural signals (amber): Salient (S), Accessible (A) */
+    .ditl-driver-badge[data-signal="cultural"] {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: #f59e0b;
     }
 
     .ditl-driver-badge::before {
@@ -767,9 +814,19 @@
   </style>
 </head>
 <body data-page="day-in-the-life">
+  <div class="ditl-ambient-bg"></div>
   <div class="app">
     <nav class="nav">
-      <div class="nav-logo"><img src="assets/logos/material-plus.png" alt="Material+" style="height: 24px; opacity: 0.9;"></div>
+      <div class="nav-logo">
+        <div class="nav-logo-content">
+          <svg class="nav-logo-mark" viewBox="0 0 56 56" width="22" height="22" aria-hidden="true">
+            <path d="M8 40 L18 16 L28 32 L38 16 L48 40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="42" y1="18" x2="42" y2="30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <line x1="36" y1="24" x2="48" y2="24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="nav-logo-text">BIE</span>
+        </div>
+      </div>
       <div class="nav-confidential">Confidential · Internal Use Only</div>
       <div class="nav-section">
         <div class="nav-section-label">Foundation</div>
@@ -853,13 +910,13 @@
             <div class="ditl-scene-persona">Sarah Chen, Chief Marketing Officer</div>
             <h2 class="ditl-scene-headline">Three Red Flags Before Sunrise</h2>
             <div class="ditl-scene-body">
-              Sarah's phone buzzes at 6:15. Not an alarm — an intelligence brief that won't wait. Overnight, the engine detected a widening chasm: customers rave about Stayworthy (stated satisfaction 78%), but they're not coming back (repeat bookings down to 56%). Words and actions diverged, and the gap is growing.<br><br>
-              She taps Command Center. Three urgent alerts. Brand Fidelity composite at 72 — a four-point drop. The Dependable driver: 58. Below critical threshold for the first time. Before her first coffee, before anyone else in the office is awake, she has the intelligence she needs to move.
+              The phone buzzes at 6:15 AM. Not an alarm — something deeper. An intelligence pulse. Sarah Chen sets down her coffee and reads the overnight brief with the kind of focus that only comes when you know the engine never sleeps. The numbers are stark. Customers rave about Stayworthy — 78% stated satisfaction, glowing reviews, the kind of language that makes marketers smile. But something is fracturing beneath the surface. Repeat bookings have collapsed to 56%. The words are still warm. The actions have gone cold. The gap is widening.<br><br>
+              She navigates to Command Center. Three urgent signals. Brand Fidelity composite has dropped four points to 72. The Dependable driver — the foundation — sits at 58. Below critical threshold. The signal is unambiguous: what customers claim to want is no longer aligned with what they're willing to do. And the system has been watching this fracture form, piece by piece, through the night. Before the office wakes, Sarah understands the shape of the problem. She knows where to look for solutions.
             </div>
 
             <div class="ditl-drivers">
-              <div class="ditl-driver-badge over-time">Dependable</div>
-              <div class="ditl-driver-badge over-time">Salient</div>
+              <div class="ditl-driver-badge" data-signal="behavioral">Dependable</div>
+              <div class="ditl-driver-badge" data-signal="cultural">Salient</div>
             </div>
             <div class="ditl-driver-context">Trust indicators flagged as critical — overnight signal processing from 847 data points</div>
 
@@ -905,13 +962,13 @@
             <div class="ditl-scene-persona">Marcus Rivera, Brand Strategist</div>
             <h2 class="ditl-scene-headline">Where Words Diverge from Action</h2>
             <div class="ditl-scene-body">
-              Marcus reads Sarah's forwarded brief at 9:30 and immediately sees the problem: customers love talking about Stayworthy, but something in the friction is breaking them. He opens Guided Analysis and asks it a single question: why is the trust signal fraying?<br><br>
-              The engine asks back: which time horizon? He chooses 'Over Time' — Dependable is the anchor. Three diagnostic questions branch into a pattern that the system surfaces with surgical precision: support response times degraded from 4.2 hours to 6.8 hours over the past month. Correlation with Dependable decline: r=0.82. This is not a perception problem. This is operational. This is real.
+              Marcus Rivera reads Sarah's brief at 9:30 AM and feels the pull immediately. The data is clean, but the story beneath it is messier. Customers talk about Stayworthy with affection. They describe the experience in warm language. But somewhere in the customer journey — in the moments that matter most — something is breaking. He doesn't guess at the cause. He delegates to the engine.<br><br>
+              He opens Guided Analysis with a focused question: why is the trust signal unraveling? The system responds with its own diagnostic question: which time horizon? Marcus chooses the lens that matters — 'Over Time.' He's looking for patterns that have hardened over weeks, not sentiment that shifted overnight. The engine draws a thread from the data: support response times have degraded from 4.2 hours to 6.8 hours over the past thirty days. It cross-references this with the Dependable decline trajectory. Correlation coefficient: 0.82. Near-perfect alignment. This is not a perception problem. The customers are not misreading their own experience. The operational friction is real. The system has traced the fracture to its source.
             </div>
 
             <div class="ditl-drivers">
-              <div class="ditl-driver-badge in-the-moment">User Friendly</div>
-              <div class="ditl-driver-badge in-the-moment">Personal</div>
+              <div class="ditl-driver-badge" data-signal="behavioral">User Friendly</div>
+              <div class="ditl-driver-badge" data-signal="human">Personal</div>
             </div>
             <div class="ditl-driver-context">Friction surfaces at the moment of transaction — where customer expectations meet reality</div>
 
@@ -949,17 +1006,17 @@
             <div class="ditl-scene-persona">Dr. Anika Patel, Research Lead</div>
             <h2 class="ditl-scene-headline">Signal Unfiltered</h2>
             <div class="ditl-scene-body">
-              Anika doesn't read summaries — she reads signals. At noon, she goes straight to Signal Terminal. 847 raw data points, streaming across three layers: Human-Expressive, Behavioral, Cultural. Every data source, every time horizon, all at once.<br><br>
-              Four signals cluster like a warning light: booking abandonment up 41%, mobile sessions down 12%, support response degraded to 6.8 hours, and something unexpected — the 25-34 cohort is behaving differently. Younger users aren't experiencing the same friction. This is the clue. This is where the intervention lives.
+              Dr. Anika Patel is not interested in narratives. She lives in the raw signal. At noon, she moves past the dashboards and diagnostic overlays. Signal Terminal shows her the unfiltered flow: 847 data points streaming live across three signal layers — the things customers say (Human-Expressive), the things customers do (Behavioral), and the patterns emerging in the broader culture (Cultural). Every source. Every horizon. No filters. No summaries. Just signal.<br><br>
+              Four patterns cluster together like points on a constellation. Booking abandonment has spiked 41% in the past two weeks. Mobile sessions are down 12%. Support response times have stretched to 6.8 hours. And then something shifts in the pattern — something that changes everything. The 25-34 cohort is behaving differently. They're not experiencing the same friction. The younger users are booking. The older users are hesitating. This is not a brand problem. This is a segmentation clue. This is where the intervention lives.
             </div>
 
             <div class="ditl-drivers">
-              <div class="ditl-driver-badge in-the-moment">User Friendly</div>
-              <div class="ditl-driver-badge in-the-moment">Personal</div>
-              <div class="ditl-driver-badge in-the-moment">Accessible</div>
-              <div class="ditl-driver-badge over-time">Dependable</div>
-              <div class="ditl-driver-badge over-time">Meaningful</div>
-              <div class="ditl-driver-badge over-time">Salient</div>
+              <div class="ditl-driver-badge" data-signal="behavioral">User Friendly</div>
+              <div class="ditl-driver-badge" data-signal="human">Personal</div>
+              <div class="ditl-driver-badge" data-signal="cultural">Accessible</div>
+              <div class="ditl-driver-badge" data-signal="behavioral">Dependable</div>
+              <div class="ditl-driver-badge" data-signal="human">Meaningful</div>
+              <div class="ditl-driver-badge" data-signal="cultural">Salient</div>
             </div>
             <div class="ditl-driver-context">Full composite review — all six drivers cross-referenced for holistic brand health assessment</div>
 
@@ -1006,13 +1063,13 @@
             <div class="ditl-scene-persona">Jordan Walsh, VP Strategy + The Strategy Team</div>
             <h2 class="ditl-scene-headline">Strategic Levers in Motion</h2>
             <div class="ditl-scene-body">
-              The CEO needs a decision by 5 PM. Jordan and the team load Scenario Lab. They're testing three futures: transparent pricing (attack the User Friendly gap), AI-driven concierge (defend against Booking.com's moat), EU regulatory tightening (insurance scenario). <br><br>
-              650 agents simulate 100 iterations of each future. The composites move: Transparent Pricing drives a 3.2-point lift over 8 weeks (78% confidence). AI Concierge expands category reach but risks brand loyalty erosion. The team sketches the arc: Attack on pricing, Defend the Salient advantage, Bridge through Meaningful storytelling. Intelligence becomes strategy. Strategy becomes action.
+              The conference room fills at 2 PM. The CEO will need a decision by 5. Jordan Walsh and the strategy team load Scenario Lab — the engine's simulation engine. They're not guessing about the future. They're modeling it. Three strategic futures are loaded: transparent pricing (a direct attack on the User Friendly friction), AI-driven concierge service (a defense maneuver against Booking.com's entrenched advantage), and EU regulatory tightening (the insurance scenario, the one nobody wants but everyone must consider).<br><br>
+              The system deploys 650 synthetic agents, running 100 iterations through each scenario. The Brand Fidelity composite shifts and reshapes with each simulation. Transparent Pricing emerges as the strongest lever — a 3.2-point lift in the composite over eight weeks, with 78% confidence. AI Concierge shows promise for market expansion, but it risks eroding the loyalty that Stayworthy has built. The team watches the data landscape unfold. They sketch a three-part strategy: Attack through pricing transparency, Defend the Salient advantage, Bridge with Meaningful storytelling about authentic connection. What begins as intelligence becomes strategy. Strategy becomes the action plan the CEO will execute at 5 PM.
             </div>
 
             <div class="ditl-drivers">
-              <div class="ditl-driver-badge over-time">Meaningful</div>
-              <div class="ditl-driver-badge over-time">Dependable</div>
+              <div class="ditl-driver-badge" data-signal="human">Meaningful</div>
+              <div class="ditl-driver-badge" data-signal="behavioral">Dependable</div>
             </div>
             <div class="ditl-driver-context">Strategic levers identified through simulation — which drivers move the composite and when</div>
 
@@ -1055,13 +1112,13 @@
             <div class="ditl-scene-persona">Sarah Chen, CMO (returning)</div>
             <h2 class="ditl-scene-headline">From Intelligence to Execution</h2>
             <div class="ditl-scene-body">
-              By 9:00 PM, Sarah's screen shows a single-page Instant Brief. Not a report. Not a dashboard. A decision engine output. Diagnostic: the trust-behavior gap is operational, not perceptual — support friction is the root. Attack: transparent pricing pilot in top 3 markets (projects 3.2-point lift). Defend: maintain Salient advantage through frictionless booking. Bridge: partner with verified-review platforms to convert trust into advocacy.<br><br>
-              Three actions. One strategic question for the board. Every number traces back to a data source. Glass box throughout. She sends it to the CEO with a note: 'This is what happens when intelligence runs 24/7.'
+              By 9:00 PM, Sarah's screen glows with a single-page brief — the Instant Brief, the engine's distilled output. Not a report. Not a dashboard littered with metrics that obscure more than they illuminate. This is a decision engine output. Clean. Traceable. Actionable. The diagnostic is clear: the trust-behavior gap is operational, not a failure of perception or brand messaging. Support friction is the root cause. The attack is equally clear: run a transparent pricing pilot in the top three markets, projected to lift Brand Fidelity by 3.2 points. Defend by maintaining Salient advantage through a frictionless booking experience. Bridge by partnering with verified-review platforms, converting the trust that exists into genuine advocacy.<br><br>
+              Three strategic levers. One foundational strategic question for the board. Every projection, every insight, every number traces directly back to the data source that supports it. Glass box methodology throughout. Anika's signals. Marcus's diagnostic. Jordan's simulations. All of it visible. All of it defensible. Sarah drafts a note to the CEO: 'This is what happens when intelligence runs 24/7 and turns data into truth.'
             </div>
 
             <div class="ditl-drivers">
-              <div class="ditl-driver-badge over-time">Salient</div>
-              <div class="ditl-driver-badge in-the-moment">Accessible</div>
+              <div class="ditl-driver-badge" data-signal="cultural">Salient</div>
+              <div class="ditl-driver-badge" data-signal="cultural">Accessible</div>
             </div>
             <div class="ditl-driver-context">Repositioning check — market signals and competitive positioning against category leaders</div>
 
@@ -1105,13 +1162,13 @@
             <div class="ditl-scene-persona">Signal Nexus (Autonomous Intelligence)</div>
             <h2 class="ditl-scene-headline">The Intelligence That Never Sleeps</h2>
             <div class="ditl-scene-body">
-              The office is dark. The lights are off. The conference rooms are empty. The intelligence engine is awake. At 11:45 PM, Cultural signals detect a tremor: TikTok travel content mentioning 'authentic stays' has spiked 340% in 48 hours. Reddit discussions about trust in hospitality pivot toward 'genuine connection.' Google Trends show 'real vs. fake reviews' search volume up 167%.<br><br>
-              The system doesn't log and forget. It cross-references these signals with Human-Expressive data from the day, recalibrates weighting, factors the pattern into the Brand Fidelity composite. By 6:15 AM, a new Morning Brief will be waiting for Sarah. The trust-behavior gap may have narrowed — or widened further. But she'll know. The system will have been thinking about it all night.
+              The office is dark. The lights are off. The conference rooms stand empty. The parking lot is quiet. But in the data streams, something is still moving. The intelligence engine is awake. It is always awake. At 11:45 PM, the Cultural signal layer detects a tremor in the ambient information landscape. TikTok travel content mentioning 'authentic stays' has spiked 340% in 48 hours. Reddit discussions about trust in hospitality have pivoted sharply toward 'genuine connection' and 'real experiences.' Google Trends show 'real vs. fake reviews' search volume up 167%. The broader culture is shifting, and the system is listening.<br><br>
+              The engine doesn't store these signals and forget them. It doesn't wait for tomorrow's analyst to make sense of the pattern. It cross-references the Cultural signals with the Human-Expressive data from the day — the things customers said, the sentiment they expressed. It recalibrates the weighting of each driver. It factors this emerging pattern into the Brand Fidelity composite. By 6:15 AM, a new Morning Brief will be waiting for Sarah. The trust-behavior gap may have narrowed. Or it may have widened further. The intervention the team designed may have shifted the trajectory — or the culture may have moved in an unexpected direction. But she will know. The system will have been thinking about it all night. Every pattern. Every signal. Every possibility factored into the understanding that awaits her at sunrise.
             </div>
 
             <div class="ditl-drivers">
-              <div class="ditl-driver-badge in-the-moment">Accessible</div>
-              <div class="ditl-driver-badge over-time">Salient</div>
+              <div class="ditl-driver-badge" data-signal="cultural">Accessible</div>
+              <div class="ditl-driver-badge" data-signal="cultural">Salient</div>
             </div>
             <div class="ditl-driver-context">All drivers monitored continuously — 847 signals flowing, patterns emerging, intelligence building for tomorrow</div>
 
@@ -1179,14 +1236,26 @@
     </div>
 
     <button class="analyst-trigger">
+      <svg class="analyst-trigger-icon" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <!-- M shape with proper proportions -->
+          <path d="M 8 38 L 14 16 L 20 28 L 26 16 L 32 38"/>
+          <!-- Plus sign -->
+          <line x1="38" y1="26" x2="38" y2="38"/>
+          <line x1="32" y1="32" x2="44" y2="32"/>
+        </g>
+      </svg>
       <div class="analyst-dot"></div>
-      <div class="analyst-trigger-icon">◆</div>
     </button>
   </div>
 
   <div class="analyst-panel">
     <div class="analyst-panel-header">
       <div class="analyst-panel-title">MATERIAL ANALYST</div>
+      <div class="analyst-mode-toggle">
+        <button class="mode-btn active" data-mode="guide">Guide</button>
+        <button class="mode-btn" data-mode="guardian">Guardian</button>
+      </div>
       <button class="analyst-panel-close">✕</button>
     </div>
     <div class="analyst-panel-messages">
@@ -1208,10 +1277,13 @@
       currentScene: null,
       sceneObserver: null,
       revealObserver: null,
+      ambientBg: null,
 
       init() {
+        this.ambientBg = document.querySelector('.ditl-ambient-bg');
         this.initTimelineSpine();
         this.initScrollReveals();
+        this.initAmbientBackground();
       },
 
       initTimelineSpine() {
@@ -1267,6 +1339,41 @@
           dots[index].classList.add('active');
         }
         this.currentScene = index;
+      },
+
+      initAmbientBackground() {
+        // Map time zones to gradient class names
+        const timeZones = {
+          'dawn': 'time-dawn',
+          'morning': 'time-morning',
+          'midday': 'time-midday',
+          'afternoon': 'time-afternoon',
+          'evening': 'time-evening',
+          'night': 'time-night'
+        };
+
+        // Observe all scenes for ambient background changes
+        const scenes = document.querySelectorAll('.ditl-scene');
+        const ambientObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const timeValue = entry.target.getAttribute('data-time');
+              if (timeValue && timeZones[timeValue] && this.ambientBg) {
+                // Remove all time classes
+                Object.values(timeZones).forEach(className => {
+                  this.ambientBg.classList.remove(className);
+                });
+                // Add the current time class
+                this.ambientBg.classList.add(timeZones[timeValue]);
+              }
+            }
+          });
+        }, {
+          threshold: 0.3,
+          rootMargin: '0px 0px -30% 0px'
+        });
+
+        scenes.forEach(scene => ambientObserver.observe(scene));
       }
     };
 

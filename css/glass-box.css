@@ -74,7 +74,7 @@
 .glass-box-toggle:hover {
   background: rgba(245, 158, 11, 0.15);
   border-color: rgba(245, 158, 11, 0.35);
-  color: #fbbf24;
+  color: var(--amber-300);
 }
 
 .glass-box-toggle .chevron {

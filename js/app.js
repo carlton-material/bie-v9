@@ -24,6 +24,7 @@ const BIE = {
     this.initNav();
     this.initScrollReveal();
     this.initCountUp();
+    this.initSparklines();
     this.initAnalyst();
     this.initFeed();
     this.initSignalPulse();
@@ -84,7 +85,8 @@ const BIE = {
       entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.dataset.counted) {
           entry.target.dataset.counted = 'true';
-          const target = parseFloat(entry.target.dataset.value);
+          // Support both data-value (for .count-up class) and data-count (for other elements)
+          const target = parseFloat(entry.target.dataset.value || entry.target.dataset.count);
           const decimals = (entry.target.dataset.decimals || 0) | 0;
           const prefix = entry.target.dataset.prefix || '';
           const suffix = entry.target.dataset.suffix || '';
@@ -104,11 +106,96 @@ const BIE = {
       });
     }, { threshold: 0.5 });
 
-    document.querySelectorAll('.count-up').forEach(el => observer.observe(el));
+    // Observe both .count-up elements and elements with data-count attribute
+    document.querySelectorAll('.count-up, [data-count]').forEach(el => observer.observe(el));
+  },
+
+  /* ── Sparkline SVG Generation ── */
+  initSparklines() {
+    // 7-day trend data for sparklines
+    const sparklineData = {
+      'sparkline-volume': [780, 795, 810, 803, 825, 838, 847],
+      'sparkline-trust': [82, 80, 78, 76, 74, 73, 72],
+      'sparkline-competitive': [69, 70, 71, 71, 72, 72, 72]
+    };
+
+    document.querySelectorAll('.cc-sparkline-svg').forEach(svg => {
+      const id = svg.id;
+      const data = sparklineData[id];
+      if (!data) return;
+
+      // Get stroke color from data attribute or use default
+      const strokeColor = svg.dataset.color || 'var(--signal-human)';
+
+      // Calculate sparkline dimensions
+      const width = 100;
+      const height = 40;
+      const padding = 4;
+      const plotWidth = width - (padding * 2);
+      const plotHeight = height - (padding * 2);
+
+      // Find min and max for scaling
+      const min = Math.min(...data);
+      const max = Math.max(...data);
+      const range = max - min || 1;
+
+      // Generate points
+      const points = data.map((value, index) => {
+        const x = padding + (index / (data.length - 1)) * plotWidth;
+        const y = height - padding - ((value - min) / range) * plotHeight;
+        return `${x},${y}`;
+      }).join(' ');
+
+      // Create SVG content with polyline and gradient
+      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      svg.setAttribute('preserveAspectRatio', 'none');
+
+      // Add gradient definition
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+      gradient.setAttribute('id', `gradient-${id}`);
+      gradient.setAttribute('x1', '0%');
+      gradient.setAttribute('y1', '0%');
+      gradient.setAttribute('x2', '0%');
+      gradient.setAttribute('y2', '100%');
+
+      const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop1.setAttribute('offset', '0%');
+      stop1.setAttribute('stop-color', 'var(--signal-human)');
+      stop1.setAttribute('stop-opacity', '0.2');
+
+      const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+      stop2.setAttribute('offset', '100%');
+      stop2.setAttribute('stop-color', 'var(--signal-human)');
+      stop2.setAttribute('stop-opacity', '0');
+
+      gradient.appendChild(stop1);
+      gradient.appendChild(stop2);
+      defs.appendChild(gradient);
+      svg.appendChild(defs);
+
+      // Add polyline stroke
+      const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+      polyline.setAttribute('points', points);
+      polyline.setAttribute('fill', 'none');
+      polyline.setAttribute('stroke', strokeColor);
+      polyline.setAttribute('stroke-width', '1.5');
+      polyline.setAttribute('stroke-linejoin', 'round');
+      polyline.setAttribute('stroke-linecap', 'round');
+      svg.appendChild(polyline);
+
+      // Add fill area under the line
+      const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      const fillPoints = points + ` ${width - padding},${height - padding} ${padding},${height - padding}`;
+      polygon.setAttribute('points', fillPoints);
+      polygon.setAttribute('fill', `url(#gradient-${id})`);
+      svg.appendChild(polygon);
+    });
   },
 
   /* ── Material Analyst ── */
   initAnalyst() {
+    const self = this; // Maintain context for nested functions
     const trigger = document.querySelector('.analyst-trigger');
     const panel = document.querySelector('.analyst-panel');
     if (!trigger || !panel) return;
@@ -138,10 +225,10 @@ const BIE = {
         btn.addEventListener('click', () => {
           modeButtons.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          this.analystMode = btn.dataset.mode;
+          self.analystMode = btn.dataset.mode;
 
           // Show mode description
-          const description = this.getAnalystModeDescription(this.analystMode);
+          const description = self.getAnalystModeDescription(self.analystMode);
           if (description) {
             const descMsg = document.createElement('div');
             descMsg.className = 'analyst-msg system mode-description';
@@ -151,6 +238,12 @@ const BIE = {
           }
         });
       });
+
+      // Set initial mode button state
+      const initialBtn = modeToggle.querySelector(`[data-mode="${self.analystMode}"]`);
+      if (initialBtn) {
+        initialBtn.classList.add('active');
+      }
     }
 
     const contextMessages = {
@@ -177,14 +270,14 @@ const BIE = {
       btn.addEventListener('click', () => {
         if (!isOpen) toggle();
         const query = btn.dataset.analystPreset;
-        setTimeout(() => this.sendAnalystMessage(query, messages, input), 300);
+        setTimeout(() => self.sendAnalystMessage(query, messages, input), 300);
       });
     });
 
     // Send message
     const send = () => {
       if (!input || !input.value.trim()) return;
-      this.sendAnalystMessage(input.value, messages, input);
+      self.sendAnalystMessage(input.value, messages, input);
       input.value = '';
     };
 
@@ -323,28 +416,28 @@ const BIE = {
 
     const steps = [
       {
-        title: 'Welcome to the Brand Intelligence Engine',
-        description: 'McKinsey-grade brand intelligence, always on. Seven surfaces that transform how you understand, monitor, and act on brand health.',
-        visual: 'logo'
+        title: 'Welcome to BIE',
+        description: 'The Brand Intelligence Engine transforms how you understand brand health. Not just what people say — what they do, feel, and share. Real-time intelligence, zero guesswork.',
+        visual: 'pulse'
       },
       {
-        title: 'Brand Fidelity Framework',
-        description: 'Six drivers across two dimensions — In the Moment (User Friendly, Personal, Accessible) and Over Time (Dependable, Meaningful, Salient). The connective tissue of everything you see here.',
-        visual: 'hexagon'
+        title: 'Brand Fidelity: Six Drivers of Brand Truth',
+        description: 'Every insight maps to six measurable drivers — three "In the Moment" (User Friendly, Personal, Accessible) and three "Over Time" (Dependable, Meaningful, Salient). Together, they reveal the full picture.',
+        visual: 'drivers'
       },
       {
-        title: 'A Day in the Life',
-        description: 'Follow a CMO from dawn briefing to midnight signal processing. Each surface maps to a moment in the intelligence workflow.',
+        title: 'Intelligence That Moves With Your Day',
+        description: 'From your morning briefing to midnight autonomous scans, BIE surfaces the right insight at the right moment. Every surface connects through the Brand Fidelity thread.',
         visual: 'timeline'
       },
       {
-        title: 'Your Material+ Analyst',
-        description: 'Two modes: Guide asks probing questions to help you discover insights. Guardian delivers direct analysis with full attribution. Toggle anytime.',
+        title: 'Meet Your M+ Intelligence Partner',
+        description: 'Two modes, one goal: clarity. Socratic Guide asks the questions that sharpen your thinking. Guardian of Data delivers precise, attributed answers. Toggle between them anytime.',
         visual: 'analyst'
       },
       {
-        title: 'Start Exploring',
-        description: 'Navigate freely between surfaces. Every claim is attributed. Every metric is traceable. Welcome to the Glass Box.',
+        title: 'Begin Your Intelligence Journey',
+        description: 'Navigate the sidebar to explore each surface. Start with the Strategic Brief for the big picture, or dive into Day in the Life to see the platform in action.',
         visual: 'arrow'
       }
     ];
@@ -394,10 +487,16 @@ const BIE = {
 
     const updateStep = () => {
       const step = steps[currentStep];
+
+      // Add transition animation
+      card.classList.remove('transition');
+      void card.offsetWidth; // Trigger reflow
+      card.classList.add('transition');
+
       title.textContent = step.title;
       description.textContent = step.description;
 
-      // Update indicators
+      // Update indicators with smooth transition
       const dots = card.querySelectorAll('.onboarding-dot');
       dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === currentStep);
@@ -406,9 +505,10 @@ const BIE = {
       // Update visual
       visual.innerHTML = this.generateOnboardingVisual(step.visual);
 
-      // Update button labels
+      // Update button labels and visibility
       const prevBtn = actions.querySelector('.onboarding-btn-prev');
       const nextBtn = actions.querySelector('.onboarding-btn-next');
+      const skipBtn = actions.querySelector('.onboarding-btn-skip');
 
       if (currentStep === steps.length - 1) {
         nextBtn.textContent = 'Get Started';
@@ -416,7 +516,9 @@ const BIE = {
         nextBtn.textContent = 'Next';
       }
 
-      prevBtn.style.display = currentStep === 0 ? 'none' : 'block';
+      // Hide Previous button on step 0, hide Skip button on last step
+      prevBtn.style.display = currentStep === 0 ? 'none' : 'inline-flex';
+      skipBtn.style.display = currentStep === steps.length - 1 ? 'none' : 'inline-flex';
     };
 
     const skipOnboarding = () => {
@@ -467,71 +569,124 @@ const BIE = {
     const svgNS = 'http://www.w3.org/2000/svg';
 
     switch(type) {
-      case 'logo':
-        // Material+ Logo placeholder
+      case 'pulse':
+        // Animated subtle pulse ring (signal ring concept)
         return `
-          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-            <rect x="20" y="20" width="80" height="80" rx="8" stroke="#745AFF" stroke-width="2"/>
-            <circle cx="40" cy="40" r="8" fill="#745AFF"/>
-            <circle cx="80" cy="40" r="8" fill="#745AFF"/>
-            <circle cx="40" cy="80" r="8" fill="#745AFF"/>
-            <circle cx="80" cy="80" r="8" fill="#745AFF"/>
+          <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
+            <defs>
+              <style>
+                @keyframes onboardPulse {
+                  0% { r: 40; opacity: 0.8; }
+                  100% { r: 55; opacity: 0; }
+                }
+                .pulse-ring { animation: onboardPulse 2s ease-out infinite; }
+              </style>
+            </defs>
+            <circle cx="80" cy="80" r="30" fill="#745AFF" opacity="0.2"/>
+            <circle cx="80" cy="80" r="28" fill="none" stroke="#745AFF" stroke-width="2"/>
+            <circle cx="80" cy="80" r="40" class="pulse-ring" fill="none" stroke="#745AFF" stroke-width="1"/>
+            <circle cx="80" cy="80" r="50" class="pulse-ring" fill="none" stroke="#745AFF" stroke-width="1" style="animation-delay: 0.3s"/>
           </svg>
         `;
 
-      case 'hexagon':
-        // 6-point star (Brand Fidelity drivers)
+      case 'drivers':
+        // 6-driver mini visual: 2 rows of 3 pills, color-coded
         return `
-          <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
-            <circle cx="70" cy="70" r="60" stroke="#745AFF" stroke-width="1.5" opacity="0.2"/>
-            <circle cx="70" cy="70" r="40" stroke="#745AFF" stroke-width="1.5" opacity="0.3"/>
-            <circle cx="70" cy="70" r="20" stroke="#745AFF" stroke-width="1.5" opacity="0.4"/>
-            <circle cx="70" cy="20" r="6" fill="#745AFF"/>
-            <circle cx="105" cy="35" r="6" fill="#8b6fff"/>
-            <circle cx="105" cy="105" r="6" fill="#745AFF"/>
-            <circle cx="70" cy="120" r="6" fill="#8b6fff"/>
-            <circle cx="35" cy="105" r="6" fill="#745AFF"/>
-            <circle cx="35" cy="35" r="6" fill="#8b6fff"/>
+          <svg width="200" height="140" viewBox="0 0 200 140" fill="none">
+            <!-- In the Moment group -->
+            <g>
+              <!-- User Friendly -->
+              <rect x="10" y="20" width="55" height="30" rx="8" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
+              <text x="37.5" y="41" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">User Friendly</text>
+
+              <!-- Personal -->
+              <rect x="72" y="20" width="55" height="30" rx="8" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+              <text x="99.5" y="41" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Personal</text>
+
+              <!-- Accessible -->
+              <rect x="134" y="20" width="55" height="30" rx="8" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)" stroke-width="1"/>
+              <text x="161.5" y="41" font-size="11" font-family="Inter" fill="#f59e0b" text-anchor="middle" font-weight="500">Accessible</text>
+            </g>
+
+            <!-- Over Time group -->
+            <g>
+              <!-- Dependable -->
+              <rect x="10" y="70" width="55" height="30" rx="8" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
+              <text x="37.5" y="91" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">Dependable</text>
+
+              <!-- Meaningful -->
+              <rect x="72" y="70" width="55" height="30" rx="8" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+              <text x="99.5" y="91" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Meaningful</text>
+
+              <!-- Salient -->
+              <rect x="134" y="70" width="55" height="30" rx="8" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)" stroke-width="1"/>
+              <text x="161.5" y="91" font-size="11" font-family="Inter" fill="#f59e0b" text-anchor="middle" font-weight="500">Salient</text>
+            </g>
+
+            <!-- Labels -->
+            <text x="10" y="125" font-size="9" font-family="JetBrains Mono" fill="rgba(255,255,255,0.5)" opacity="0.6">IN THE MOMENT</text>
+            <text x="10" y="140" font-size="9" font-family="JetBrains Mono" fill="rgba(255,255,255,0.5)" opacity="0.6">OVER TIME</text>
           </svg>
         `;
 
       case 'timeline':
-        // Timeline dots
+        // Timeline dots (6AM → 9AM → 12PM → 3PM → 9PM → 11:45PM)
         return `
-          <svg width="140" height="120" viewBox="0 0 140 120" fill="none">
-            <line x1="20" y1="60" x2="120" y2="60" stroke="#745AFF" stroke-width="1.5" opacity="0.3"/>
+          <svg width="200" height="120" viewBox="0 0 200 120" fill="none">
+            <line x1="20" y1="60" x2="180" y2="60" stroke="#745AFF" stroke-width="1.5" opacity="0.3"/>
             <circle cx="20" cy="60" r="5" fill="#745AFF" opacity="0.5"/>
-            <circle cx="50" cy="60" r="5" fill="#745AFF" opacity="0.6"/>
-            <circle cx="80" cy="60" r="5" fill="#745AFF" opacity="0.7"/>
-            <circle cx="110" cy="60" r="6" fill="#745AFF"/>
+            <circle cx="60" cy="60" r="5" fill="#745AFF" opacity="0.6"/>
+            <circle cx="100" cy="60" r="5" fill="#745AFF" opacity="0.7"/>
+            <circle cx="140" cy="60" r="5" fill="#745AFF" opacity="0.75"/>
+            <circle cx="160" cy="60" r="5" fill="#745AFF" opacity="0.85"/>
+            <circle cx="180" cy="60" r="6" fill="#745AFF"/>
             <text x="20" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">6 AM</text>
-            <text x="50" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">12 PM</text>
-            <text x="80" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">5 PM</text>
-            <text x="110" y="85" font-size="10" fill="#745AFF" text-anchor="middle">11 PM</text>
+            <text x="60" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">9 AM</text>
+            <text x="100" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">12 PM</text>
+            <text x="140" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">3 PM</text>
+            <text x="160" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.8">9 PM</text>
+            <text x="180" y="85" font-size="9" fill="#745AFF" text-anchor="middle">11:45 PM</text>
           </svg>
         `;
 
       case 'analyst':
-        // Split icon (guide / guardian)
+        // M+ symbol with mode labels
         return `
-          <svg width="140" height="120" viewBox="0 0 140 120" fill="none">
-            <circle cx="45" cy="60" r="25" stroke="#745AFF" stroke-width="2" fill="none"/>
-            <text x="45" y="68" font-size="30" fill="#745AFF" text-anchor="middle" opacity="0.8">?</text>
-            <circle cx="95" cy="60" r="25" stroke="#745AFF" stroke-width="2" fill="none" opacity="0.5"/>
-            <text x="95" y="68" font-size="30" fill="#745AFF" text-anchor="middle" opacity="0.5">!</text>
-            <path d="M 65 50 L 75 60 L 65 70" stroke="#745AFF" stroke-width="1.5" fill="none"/>
+          <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
+            <!-- M symbol -->
+            <g transform="translate(45, 20)">
+              <path d="M 10 0 L 10 40 M 10 0 L 25 30 L 40 0 M 40 0 L 40 40" stroke="#745AFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+
+            <!-- Plus symbol -->
+            <g transform="translate(100, 25)">
+              <line x1="0" y1="15" x2="30" y2="15" stroke="#745AFF" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="15" y1="0" x2="15" y2="30" stroke="#745AFF" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+
+            <!-- Mode labels -->
+            <g transform="translate(20, 75)">
+              <rect x="0" y="0" width="70" height="30" rx="6" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
+              <text x="35" y="22" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">Socratic Guide</text>
+            </g>
+
+            <g transform="translate(90, 75)">
+              <rect x="0" y="0" width="70" height="30" rx="6" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+              <text x="35" y="22" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Guardian Data</text>
+            </g>
           </svg>
         `;
 
       case 'arrow':
-        // Arrow pointing right
+        // Arrow pointing left (toward nav)
         return `
-          <svg width="140" height="120" viewBox="0 0 140 120" fill="none">
-            <line x1="30" y1="60" x2="110" y2="60" stroke="#745AFF" stroke-width="2"/>
-            <path d="M 110 60 L 95 50 M 110 60 L 95 70" stroke="#745AFF" stroke-width="2" fill="none"/>
-            <circle cx="30" cy="60" r="4" fill="#745AFF" opacity="0.4"/>
-            <circle cx="60" cy="60" r="4" fill="#745AFF" opacity="0.6"/>
-            <circle cx="90" cy="60" r="4" fill="#745AFF"/>
+          <svg width="180" height="120" viewBox="0 0 180 120" fill="none">
+            <line x1="30" y1="60" x2="150" y2="60" stroke="#745AFF" stroke-width="2" opacity="0.3"/>
+            <path d="M 30 60 L 50 45 M 30 60 L 50 75" stroke="#745AFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="50" cy="60" r="4" fill="#745AFF" opacity="0.6"/>
+            <circle cx="90" cy="60" r="4" fill="#745AFF" opacity="0.7"/>
+            <circle cx="130" cy="60" r="4" fill="#745AFF" opacity="0.8"/>
+            <text x="20" y="95" font-size="10" fill="#745AFF" opacity="0.6" font-family="Inter">Explore the sidebar</text>
           </svg>
         `;
 
@@ -746,17 +901,23 @@ const BIE = {
     // Only add help button if not already present
     if (document.querySelector('.help-trigger')) return;
 
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
+
+    // Wrap nav content in a flex container if needed
     const helpBtn = document.createElement('button');
     helpBtn.className = 'help-trigger';
     helpBtn.textContent = '?';
-    helpBtn.title = 'Replay onboarding';
+    helpBtn.title = 'Replay onboarding wizard';
+    helpBtn.setAttribute('aria-label', 'Help: replay onboarding');
 
     helpBtn.addEventListener('click', () => {
       localStorage.removeItem('bie-onboarded');
       location.reload();
     });
 
-    document.body.appendChild(helpBtn);
+    // Add to nav footer
+    nav.appendChild(helpBtn);
   }
 };
 

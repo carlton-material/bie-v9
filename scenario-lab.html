@@ -818,12 +818,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       background: var(--accent-human);
       border-radius: 50%;
       font-weight: 700;
-      color: var(--bg-primary);
+      font-size: 18px;
+      color: white;
       margin-bottom: 12px;
     }
 
@@ -885,7 +886,7 @@
 
     .sentiment-positive {
       background: rgba(52, 211, 153, 0.2);
-      color: var(--accent-behavioral);
+      color: #34d399;
     }
 
     .sentiment-negative {
@@ -893,9 +894,14 @@
       color: #ef4444;
     }
 
+    .sentiment-neutral {
+      background: rgba(156, 163, 175, 0.2);
+      color: #9ca3af;
+    }
+
     .sentiment-mixed {
       background: rgba(245, 158, 11, 0.2);
-      color: var(--accent-cultural);
+      color: #f59e0b;
     }
 
     .driver-pills {
@@ -907,28 +913,36 @@
     .driver-pill {
       padding: 6px 12px;
       border-radius: 6px;
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 10px;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 150ms ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .driver-pill:hover {
+      transform: translateY(-1px);
     }
 
     .driver-pill-human {
       background: rgba(129, 140, 248, 0.15);
-      color: var(--accent-human);
+      color: #818cf8;
       border-color: rgba(129, 140, 248, 0.3);
     }
 
     .driver-pill-behavioral {
       background: rgba(52, 211, 153, 0.15);
-      color: var(--accent-behavioral);
+      color: #34d399;
       border-color: rgba(52, 211, 153, 0.3);
     }
 
     .driver-pill-cultural {
       background: rgba(245, 158, 11, 0.15);
-      color: var(--accent-cultural);
+      color: #f59e0b;
       border-color: rgba(245, 158, 11, 0.3);
     }
 
@@ -1447,7 +1461,16 @@
 </head>
 <body data-page="scenario-lab" class="app">
   <nav class="nav">
-    <div class="nav-logo"><img src="assets/logos/material-plus.png" alt="Material+" style="height: 24px; opacity: 0.9;"></div>
+    <div class="nav-logo">
+      <div class="nav-logo-content">
+        <svg class="nav-logo-mark" viewBox="0 0 56 56" width="22" height="22" aria-hidden="true">
+          <path d="M8 40 L18 16 L28 32 L38 16 L48 40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="42" y1="18" x2="42" y2="30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <line x1="36" y1="24" x2="48" y2="24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-logo-text">BIE</span>
+      </div>
+    </div>
     <div class="nav-confidential">Confidential · Internal Use Only</div>
     <div class="nav-section">
       <div class="nav-section-label">Foundation</div>
@@ -1990,13 +2013,25 @@
 
   <!-- MATERIAL ANALYST PANEL -->
   <div class="analyst-trigger" title="Material Analyst">
-    <span class="analyst-trigger-icon">◆</span>
+    <svg class="analyst-trigger-icon" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- M shape with proper proportions -->
+        <path d="M 8 38 L 14 16 L 20 28 L 26 16 L 32 38"/>
+        <!-- Plus sign -->
+        <line x1="38" y1="26" x2="38" y2="38"/>
+        <line x1="32" y1="32" x2="44" y2="32"/>
+      </g>
+    </svg>
     <span class="analyst-dot"></span>
   </div>
 
   <div class="analyst-panel">
     <div class="analyst-panel-header">
       <span class="analyst-panel-title">Material Analyst</span>
+      <div class="analyst-mode-toggle">
+        <button class="mode-btn active" data-mode="guide">Guide</button>
+        <button class="mode-btn" data-mode="guardian">Guardian</button>
+      </div>
       <button class="analyst-panel-close">×</button>
     </div>
     <div class="analyst-panel-messages"></div>
@@ -2585,9 +2620,8 @@
       },
 
       getDriverColor(driver) {
-        if (driver.includes('User Friendly')) return 'human';
-        if (driver.includes('Dependable')) return 'behavioral';
-        if (driver.includes('Personal') || driver.includes('Meaningful')) return 'cultural';
+        if (driver.includes('User Friendly') || driver.includes('Dependable')) return 'behavioral';
+        if (driver.includes('Personal') || driver.includes('Meaningful')) return 'human';
         return 'human';
       },
 
@@ -2598,29 +2632,27 @@
         const topic = this.currentSession.topic;
 
         this.currentSession.personas.forEach((persona, idx) => {
-          const response = persona.responses[this.currentSession.segment.replace('-', '-')] ||
-                          persona.responses[Object.keys(persona.responses)[0]];
-
-          // Use current topic if available
-          let currentResponse = null;
-          const topicKey = Object.keys(persona.responses).find(key => {
-            const topicId = this.currentSession.segment + ':' + this.currentSession.topic;
-            return key === this.currentSession.topic;
-          });
-
-          if (currentResponse === null) {
-            // Get response for current topic
-            currentResponse = persona.responses[this.currentSession.topic] ||
-                            persona.responses[Object.keys(persona.responses)[0]];
-          }
+          // Get response for current topic
+          const currentResponse = persona.responses[this.currentSession.topic] ||
+                                 persona.responses[Object.keys(persona.responses)[0]];
 
           const sentiment = currentResponse.sentiment;
           const sentimentClass = sentiment.replace(' ', '-').toLowerCase();
 
           const card = document.createElement('div');
           card.className = 'persona-card reveal';
+
+          // Determine avatar color based on sentiment
+          const sentimentColors = {
+            positive: '#34d399',
+            neutral: '#9ca3af',
+            negative: '#ef4444',
+            mixed: '#f59e0b'
+          };
+          const avatarBg = sentimentColors[sentiment] || sentimentColors.neutral;
+
           card.innerHTML = `
-            <div class="persona-avatar">${persona.name.charAt(0)}</div>
+            <div class="persona-avatar" style="background-color: ${avatarBg};">${persona.name.charAt(0)}</div>
             <div class="persona-name">${persona.name}</div>
             <div class="persona-metadata">
               <span>${persona.age}</span>
@@ -2718,6 +2750,12 @@
           pill.textContent = `${driver} (${count}/${total})`;
           driverPillsContainer.appendChild(pill);
         });
+
+        // Update confidence score
+        const confidenceScore = document.getElementById('confidence-score');
+        if (confidenceScore) {
+          confidenceScore.textContent = 'Directional: 87%';
+        }
 
         this.triggerRevealAnimation();
       },

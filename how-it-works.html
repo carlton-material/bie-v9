@@ -692,7 +692,14 @@
     <!-- LEFT NAVIGATION -->
     <nav class="nav">
       <div class="nav-logo">
-        <img src="assets/logos/material-plus.png" alt="Material+" style="height: 24px; opacity: 0.9;">
+        <div class="nav-logo-content">
+          <svg class="nav-logo-mark" viewBox="0 0 56 56" width="22" height="22" aria-hidden="true">
+            <path d="M8 40 L18 16 L28 32 L38 16 L48 40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="42" y1="18" x2="42" y2="30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <line x1="36" y1="24" x2="48" y2="24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="nav-logo-text">BIE</span>
+        </div>
       </div>
       <div class="nav-confidential">Confidential · Internal Use Only</div>
 
@@ -1319,6 +1326,274 @@
           </div>
         </div>
       </section>
+
+      <!-- SECTION: BRAND FIDELITY FRAMEWORK -->
+      <section class="scene reveal">
+        <div class="scene-label">Signal Mapping</div>
+
+        <h2 class="scene-headline">Brand Fidelity: The Six-Driver Framework</h2>
+
+        <p class="scene-body">Brand Fidelity measures earned loyalty through six behavioral and emotional drivers. The three signal layers map directly to these drivers, creating a unified view of brand health.</p>
+
+        <style>
+          .bf-framework-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin: 60px 0;
+            max-width: 1000px;
+          }
+
+          .bf-signal-column {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+          }
+
+          .bf-signal-group {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+          }
+
+          .bf-signal-group-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 12px;
+            font-weight: 600;
+          }
+
+          .bf-signal-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+
+          .bf-signal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+          }
+
+          .bf-signal-drivers {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+          }
+
+          .bf-driver-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+          }
+
+          .bf-driver-badge-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0 6px;
+            border-radius: 3px;
+          }
+
+          .bf-driver-badge.human .bf-driver-badge-code {
+            background: rgba(129, 140, 248, 0.15);
+            color: #818cf8;
+          }
+
+          .bf-driver-badge.behavioral .bf-driver-badge-code {
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+          }
+
+          .bf-driver-badge.cultural .bf-driver-badge-code {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+          }
+
+          .bf-drivers-column {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+          }
+
+          .bf-driver-group {
+            padding: 24px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+          }
+
+          .bf-driver-group-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 16px;
+            font-weight: 600;
+          }
+
+          .bf-driver-item {
+            margin-bottom: 12px;
+          }
+
+          .bf-driver-item:last-child {
+            margin-bottom: 0;
+          }
+
+          .bf-driver-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 4px;
+          }
+
+          .bf-driver-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+          }
+
+          .bf-section-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 16px;
+            margin-top: 16px;
+          }
+        </style>
+
+        <div class="bf-framework-grid">
+          <!-- Left: Signal Layers -->
+          <div class="bf-signal-column">
+            <div class="bf-signal-group">
+              <div class="bf-signal-group-label">Human-Expressive Signals</div>
+              <div class="bf-signal-title">
+                <div class="bf-signal-dot" style="background: #818cf8;"></div>
+                Emotional Layer
+              </div>
+              <p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 16px; line-height: 1.5;">Sentiment, storytelling, brand perception — how customers feel and what they say.</p>
+              <div class="bf-signal-drivers">
+                <div class="bf-driver-badge human">
+                  <span class="bf-driver-badge-code">P</span>
+                  <span>Personal</span>
+                </div>
+                <div class="bf-driver-badge human">
+                  <span class="bf-driver-badge-code">M</span>
+                  <span>Meaningful</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bf-signal-group">
+              <div class="bf-signal-group-label">Behavioral & Market Signals</div>
+              <div class="bf-signal-title">
+                <div class="bf-signal-dot" style="background: #34d399;"></div>
+                Transactional Layer
+              </div>
+              <p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 16px; line-height: 1.5;">Purchase behavior, session engagement, repeat rates — what customers actually do.</p>
+              <div class="bf-signal-drivers">
+                <div class="bf-driver-badge behavioral">
+                  <span class="bf-driver-badge-code">UF</span>
+                  <span>User Friendly</span>
+                </div>
+                <div class="bf-driver-badge behavioral">
+                  <span class="bf-driver-badge-code">D</span>
+                  <span>Dependable</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bf-signal-group">
+              <div class="bf-signal-group-label">Cultural & Contextual Signals</div>
+              <div class="bf-signal-title">
+                <div class="bf-signal-dot" style="background: #f59e0b;"></div>
+                Environmental Layer
+              </div>
+              <p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 16px; line-height: 1.5;">Macro trends, competitive context, category strength — the operating environment.</p>
+              <div class="bf-signal-drivers">
+                <div class="bf-driver-badge cultural">
+                  <span class="bf-driver-badge-code">S</span>
+                  <span>Salient</span>
+                </div>
+                <div class="bf-driver-badge cultural">
+                  <span class="bf-driver-badge-code">A</span>
+                  <span>Accessible</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: The Six Drivers -->
+          <div class="bf-drivers-column">
+            <div class="bf-driver-group">
+              <div class="bf-driver-group-label">In the Moment (Responsive)</div>
+              <div class="bf-driver-item">
+                <div class="bf-driver-name">User Friendly</div>
+                <div class="bf-driver-desc">Meets my needs easily and reliably. Behavioral signal strength indicator.</div>
+              </div>
+              <div class="bf-section-divider"></div>
+              <div class="bf-driver-item">
+                <div class="bf-driver-name">Personal</div>
+                <div class="bf-driver-desc">Understands my unique needs. Human signal strength indicator.</div>
+              </div>
+              <div class="bf-section-divider"></div>
+              <div class="bf-driver-item">
+                <div class="bf-driver-name">Accessible</div>
+                <div class="bf-driver-desc">Is always there when I need it. Cultural signal strength indicator.</div>
+              </div>
+            </div>
+
+            <div class="bf-driver-group">
+              <div class="bf-driver-group-label">Over Time (Sustained)</div>
+              <div class="bf-driver-item">
+                <div class="bf-driver-name">Dependable</div>
+                <div class="bf-driver-desc">Consistently provides good experience. Behavioral signal stability indicator.</div>
+              </div>
+              <div class="bf-section-divider"></div>
+              <div class="bf-driver-item">
+                <div class="bf-driver-name">Meaningful</div>
+                <div class="bf-driver-desc">Plays a significant role in my life. Human signal depth indicator.</div>
+              </div>
+              <div class="bf-section-divider"></div>
+              <div class="bf-driver-item">
+                <div class="bf-driver-name">Salient</div>
+                <div class="bf-driver-desc">When I have a need, this brand is top-of-mind. Cultural signal impact indicator.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inline Glass Box: BF Principle -->
+        <div class="glass-box-panel inline" style="margin-top: 48px; max-width: 100%;">
+          <div class="glass-box-inner" style="padding: 0;">
+            <div class="glass-box-methodology">
+              <div class="glass-box-methodology-label">Brand Fidelity Principle</div>
+              <div class="glass-box-approach">Brand Fidelity is the composite score derived from all six drivers. It represents the probability that a customer will choose your brand again. Each driver is weighted by signal layer strength and recency, creating a dynamic, responsive metric that captures both immediate brand experience and long-term loyalty potential. Every driver informs every surface in this platform.</div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- INTELLIGENCE FEED -->
@@ -1332,13 +1607,25 @@
 
   <!-- MATERIAL ANALYST PANEL -->
   <div class="analyst-trigger" title="Material Analyst">
-    <span class="analyst-trigger-icon">◆</span>
+    <svg class="analyst-trigger-icon" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- M shape with proper proportions -->
+        <path d="M 8 38 L 14 16 L 20 28 L 26 16 L 32 38"/>
+        <!-- Plus sign -->
+        <line x1="38" y1="26" x2="38" y2="38"/>
+        <line x1="32" y1="32" x2="44" y2="32"/>
+      </g>
+    </svg>
     <span class="analyst-dot"></span>
   </div>
 
   <div class="analyst-panel">
     <div class="analyst-panel-header">
       <span class="analyst-panel-title">Material Analyst</span>
+      <div class="analyst-mode-toggle">
+        <button class="mode-btn active" data-mode="guide">Guide</button>
+        <button class="mode-btn" data-mode="guardian">Guardian</button>
+      </div>
       <button class="analyst-panel-close">×</button>
     </div>
     <div class="analyst-panel-messages"></div>

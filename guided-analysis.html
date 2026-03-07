@@ -167,17 +167,25 @@
     .ga-driver-label {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 4px;
-      padding: 3px 8px;
+      padding: 4px 8px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 2px;
+      border-radius: 3px;
       font-family: var(--font-mono);
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: rgba(255, 255, 255, 0.5);
+      min-width: 28px;
+      height: 22px;
+      transition: all 150ms ease;
+    }
+
+    .ga-driver-label:hover {
+      transform: translateY(-1px);
     }
 
     .ga-driver-label::before {
@@ -563,7 +571,14 @@
     <!-- Navigation -->
   <nav class="nav">
     <div class="nav-logo">
-      <img src="assets/logos/material-plus.png" alt="Material+" style="height: 24px; opacity: 0.9;">
+      <div class="nav-logo-content">
+        <svg class="nav-logo-mark" viewBox="0 0 56 56" width="22" height="22" aria-hidden="true">
+          <path d="M8 40 L18 16 L28 32 L38 16 L48 40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="42" y1="18" x2="42" y2="30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <line x1="36" y1="24" x2="48" y2="24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="nav-logo-text">BIE</span>
+      </div>
     </div>
     <div class="nav-confidential">Confidential · Internal Use Only</div>
     <div class="nav-section">
@@ -624,12 +639,12 @@
           <div class="ga-card-title">Brand Health</div>
           <div class="ga-card-description">How is Stayworthy performing across the 6 Brand Fidelity drivers?</div>
           <div class="ga-card-drivers">
-            <span class="ga-driver-label human">Personal</span>
-            <span class="ga-driver-label human">Meaningful</span>
-            <span class="ga-driver-label behavioral">User Friendly</span>
-            <span class="ga-driver-label behavioral">Dependable</span>
-            <span class="ga-driver-label cultural">Salient</span>
-            <span class="ga-driver-label cultural">Accessible</span>
+            <span class="ga-driver-label human" title="Personal — Understands unique needs">P</span>
+            <span class="ga-driver-label human" title="Meaningful — Significant role in life">M</span>
+            <span class="ga-driver-label behavioral" title="User Friendly — Meets needs easily">UF</span>
+            <span class="ga-driver-label behavioral" title="Dependable — Consistent quality">D</span>
+            <span class="ga-driver-label cultural" title="Salient — Top-of-mind choice">S</span>
+            <span class="ga-driver-label cultural" title="Accessible — Always available">A</span>
           </div>
         </div>
 
@@ -638,8 +653,9 @@
           <div class="ga-card-title">Competitive Dynamics</div>
           <div class="ga-card-description">Where does Stayworthy stand relative to key competitors?</div>
           <div class="ga-card-drivers">
-            <span class="ga-driver-label cultural">Salient</span>
-            <span class="ga-driver-label cultural">Accessible</span>
+            <span class="ga-driver-label cultural" title="Salient — Top-of-mind choice">S</span>
+            <span class="ga-driver-label cultural" title="Accessible — Always available">A</span>
+            <span class="ga-driver-label human" title="Personal — Understands unique needs">P</span>
           </div>
         </div>
 
@@ -648,8 +664,9 @@
           <div class="ga-card-title">Audience Segments</div>
           <div class="ga-card-description">Which traveler segments are growing, churning, or shifting?</div>
           <div class="ga-card-drivers">
-            <span class="ga-driver-label behavioral">User Friendly</span>
-            <span class="ga-driver-label behavioral">Dependable</span>
+            <span class="ga-driver-label behavioral" title="User Friendly — Meets needs easily">UF</span>
+            <span class="ga-driver-label behavioral" title="Dependable — Consistent quality">D</span>
+            <span class="ga-driver-label human" title="Personal — Understands unique needs">P</span>
           </div>
         </div>
 
@@ -658,8 +675,9 @@
           <div class="ga-card-title">Sentiment Patterns</div>
           <div class="ga-card-description">What are the signals saying about brand perception over time?</div>
           <div class="ga-card-drivers">
-            <span class="ga-driver-label human">Personal</span>
-            <span class="ga-driver-label human">Meaningful</span>
+            <span class="ga-driver-label human" title="Personal — Understands unique needs">P</span>
+            <span class="ga-driver-label human" title="Meaningful — Significant role in life">M</span>
+            <span class="ga-driver-label cultural" title="Salient — Top-of-mind choice">S</span>
           </div>
         </div>
       </div>
@@ -756,11 +774,24 @@
 
   <!-- Analyst -->
   <div class="analyst-trigger" title="Material Analyst">
-    <span class="analyst-trigger-icon">◆</span><span class="analyst-dot"></span>
+    <svg class="analyst-trigger-icon" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- M shape with proper proportions -->
+        <path d="M 8 38 L 14 16 L 20 28 L 26 16 L 32 38"/>
+        <!-- Plus sign -->
+        <line x1="38" y1="26" x2="38" y2="38"/>
+        <line x1="32" y1="32" x2="44" y2="32"/>
+      </g>
+    </svg>
+    <span class="analyst-dot"></span>
   </div>
   <div class="analyst-panel">
     <div class="analyst-panel-header">
       <span class="analyst-panel-title">Material Analyst</span>
+      <div class="analyst-mode-toggle">
+        <button class="mode-btn active" data-mode="guide">Guide</button>
+        <button class="mode-btn" data-mode="guardian">Guardian</button>
+      </div>
       <button class="analyst-panel-close">×</button>
     </div>
     <div class="analyst-panel-messages"></div>
