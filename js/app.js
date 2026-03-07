@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   BRAND INTELLIGENCE ENGINE v9 — App Core
+   BRAND INTELLIGENCE ENGINE v9 - App Core
    Shared state, navigation, scroll reveal, number animations,
    intelligence feed, Material Analyst panel
    ═══════════════════════════════════════════════════════════ */
@@ -258,7 +258,7 @@ const BIE = {
 
     const contextMessages = {
       'strategic-brief': "You're reading the strategic brief. I can walk you through the market dynamics driving this transformation, or help you understand any specific section.",
-      'how-it-works': "This is the architecture transparency layer. Ask me about any signal type, data source, or methodology — I'll show my work.",
+      'how-it-works': "This is the architecture transparency layer. Ask me about any signal type, data source, or methodology. I'll show my work.",
       'command-center': "Welcome to your Command Center. I've flagged 3 signals that need your attention this morning. Want me to walk you through them?",
       'signal-terminal': "Signal Terminal active. I'm monitoring 847 signals across all three layers. Shall I surface the anomalies?",
       'guided-analysis': "Ready for guided analysis. Tell me what you're trying to understand and I'll ask the right questions to get us there.",
@@ -324,31 +324,31 @@ const BIE = {
     const responses = {
       trust: {
         guide: "<strong>Question:</strong> You mentioned a 22-point gap between what users say and what they actually do with their bookings. What do you think that gap tells us about the functional vs. emotional dimensions of trust? And which driver might be at the root of that divergence?",
-        guardian: "<strong>Diagnostic:</strong> Stayworthy's trust metrics show a 22-point gap between expressive sentiment (78%) and behavioral signals (56%). This gap has widened 4 points in 6 weeks — a leading indicator of churn.<br><br><strong>Attack:</strong> Deploy transparent pricing pilot in top 3 markets to close User Friendly gap.<br><strong>Defend:</strong> Maintain Salient advantage (74, +2) through consistent booking experience.<br><strong>Bridge:</strong> Partner with verified-review platforms to convert trust into behavioral loyalty.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Human-Expressive + Behavioral signal correlation · N=847 · Confidence: HIGH</span>"
+        guardian: "<strong>Diagnostic:</strong> Stayworthy's trust metrics show a 22-point gap between expressive sentiment (78%) and behavioral signals (56%). This gap has widened 4 points in 6 weeks, a leading indicator of churn.<br><br><strong>Attack:</strong> Deploy transparent pricing pilot in top 3 markets to close User Friendly gap.<br><strong>Defend:</strong> Maintain Salient advantage (74, +2) through consistent booking experience.<br><strong>Bridge:</strong> Partner with verified-review platforms to convert trust into behavioral loyalty.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Human-Expressive + Behavioral signal correlation · N=847 · Confidence: HIGH</span>"
       },
       competitor: {
-        guide: "<strong>Question:</strong> Booking.com is leading at 74, but Stayworthy is closing the gap at 72. What do you notice about which drivers they're strong in vs. where your opportunity actually is? Personal and Meaningful are both underdeveloped in the category—why do you think that is?",
-        guardian: "<strong>Diagnostic:</strong> Booking.com leads at 74 BF composite, driven by Dependable (+8 vs category) and User Friendly (+6). Stayworthy's opportunity lies in Meaningful and Personal — both underserved category-wide.<br><br><strong>Attack:</strong> Invest in Personal (64, -8) through ML-driven recommendation personalization.<br><strong>Defend:</strong> Protect Salient (74) through brand recall campaigns in peak booking season.<br><strong>Bridge:</strong> Meaningful (66, -3) bridges functional satisfaction to emotional loyalty.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Brand Fidelity Report 2026 · Travel Category · N=24,000 · Confidence: HIGH</span>"
+        guide: "<strong>Question:</strong> Booking.com is leading at 74, but Stayworthy is closing the gap at 72. What do you notice about which drivers they're strong in vs. where your opportunity actually is? Personal and Meaningful are both underdeveloped in the category. Why do you think that is?",
+        guardian: "<strong>Diagnostic:</strong> Booking.com leads at 74 BF composite, driven by Dependable (+8 vs category) and User Friendly (+6). Stayworthy's opportunity lies in Meaningful and Personal, both underserved category-wide.<br><br><strong>Attack:</strong> Invest in Personal (64, -8) through ML-driven recommendation personalization.<br><strong>Defend:</strong> Protect Salient (74) through brand recall campaigns in peak booking season.<br><strong>Bridge:</strong> Meaningful (66, -3) bridges functional satisfaction to emotional loyalty.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Brand Fidelity Report 2026 · Travel Category · N=24,000 · Confidence: HIGH</span>"
       },
       'gen z': {
         guide: "<strong>Question:</strong> Gen Z engagement with peer-reviewed content is up 34% despite lower trust in brands. How does that paradox inform the Meaningful driver? What would it take to build a community-first experience that shifts their perception from transactional to belonging?",
-        guardian: "<strong>Diagnostic:</strong> Gen Z trust in travel platforms declined 12% YoY, but engagement with peer-reviewed content is up 34%. They don't trust brands, but they trust communities hosted on brand platforms.<br><br><strong>Attack:</strong> Launch UGC-first booking experience with social proof at every decision point.<br><strong>Bridge:</strong> This is a Meaningful driver opportunity — make the platform a place Gen Z identifies with, not just transacts on.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Cultural + Behavioral signal cross-ref · TikTok, Reddit, Google Trends · Confidence: MEDIUM</span>"
+        guardian: "<strong>Diagnostic:</strong> Gen Z trust in travel platforms declined 12% YoY, but engagement with peer-reviewed content is up 34%. They don't trust brands, but they trust communities hosted on brand platforms.<br><br><strong>Attack:</strong> Launch UGC-first booking experience with social proof at every decision point.<br><strong>Bridge:</strong> This is a Meaningful driver opportunity: make the platform a place Gen Z identifies with, not just transacts on.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Cultural + Behavioral signal cross-ref · TikTok, Reddit, Google Trends · Confidence: MEDIUM</span>"
       },
       scenario: {
-        guide: "<strong>Question:</strong> If you ran a transparent pricing pilot and saw a 3.2-point composite lift, which driver would move first—User Friendly or one of the Over Time drivers? How do you expect that first mover to cascade into others?",
-        guardian: "<strong>Recommendation:</strong> Start with 'Transparent Pricing' scenario — directly targets User Friendly (72, -4). Simulation: 3.2 point composite lift over 8 weeks at 78% confidence.<br><br>Alternative: 'Trust Recovery Campaign' produces 2.1 point lift with higher certainty (89%) but slower trajectory (12 weeks).<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ ABM simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH</span>"
+        guide: "<strong>Question:</strong> If you ran a transparent pricing pilot and saw a 3.2-point composite lift, which driver would move first: User Friendly or one of the Over Time drivers? How do you expect that first mover to cascade into others?",
+        guardian: "<strong>Recommendation:</strong> Start with 'Transparent Pricing' scenario. Directly targets User Friendly (72, -4). Simulation: 3.2 point composite lift over 8 weeks at 78% confidence.<br><br>Alternative: 'Trust Recovery Campaign' produces 2.1 point lift with higher certainty (89%) but slower trajectory (12 weeks).<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ ABM simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH</span>"
       },
       fidelity: {
-        guide: "<strong>Question:</strong> Looking at the 6 drivers, Dependable is the crisis point at 58. It's an Over Time driver—which means it anchors long-term loyalty. What does a 6-point decline over 2 quarters tell you about the user experience? And why would fixing it matter more than improving Personal or Meaningful right now?",
+        guide: "<strong>Question:</strong> Looking at the 6 drivers, Dependable is the crisis point at 58. It's an Over Time driver, which means it anchors long-term loyalty. What does a 6-point decline over 2 quarters tell you about the user experience? And why would fixing it matter more than improving Personal or Meaningful right now?",
         guardian: "<strong>Brand Fidelity's 6 Drivers:</strong><br>In the Moment: User Friendly (72, -4) · Personal (64, -8) · Accessible (71, +1)<br>Over Time: Dependable (58, -6) · Meaningful (66, -3) · Salient (74, +2)<br><br><strong>Key Insight:</strong> Dependable is the crisis driver at 58 (-6). It anchors long-term loyalty and is dragging the composite. Personal (-8) is the biggest single delta but operates at shorter time horizons.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ M+ Brand Fidelity Framework · 2X advocacy, 2.5X profitability, 3X differentiation · Confidence: HIGH</span>"
       },
       meaningful: {
         guide: "<strong>Question:</strong> Meaningful sits at 66 with a -3 decline. It's the bridge between functional satisfaction and emotional loyalty. What would a 'Stories Worth Staying For' content program actually change about user behavior? How do you measure success beyond engagement?",
-        guardian: "<strong>Diagnostic:</strong> Meaningful (66, -3) is the bridge between functional satisfaction and emotional loyalty. Brands with high Meaningful scores see 2.8X higher advocacy rates.<br><br><strong>Attack:</strong> Launch a \"Stories Worth Staying For\" content series — turn property stays into narratives.<br><strong>Defend:</strong> Don't let Meaningful erosion cascade into Dependable. Monitor monthly.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ BF Report 2026 · Cross-category analysis · N=229 brands · Confidence: HIGH</span>"
+        guardian: "<strong>Diagnostic:</strong> Meaningful (66, -3) is the bridge between functional satisfaction and emotional loyalty. Brands with high Meaningful scores see 2.8X higher advocacy rates.<br><br><strong>Attack:</strong> Launch a \"Stories Worth Staying For\" content series. Turn property stays into narratives.<br><strong>Defend:</strong> Don't let Meaningful erosion cascade into Dependable. Monitor monthly.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ BF Report 2026 · Cross-category analysis · N=229 brands · Confidence: HIGH</span>"
       },
       dependable: {
         guide: "<strong>Question:</strong> Dependable is in critical territory at 58 (-6). The behavioral data says 73% of its decline correlates with post-booking experience. If you could fix just the top 3 operational pain points (cancellation friction, response time, billing), which would you tackle first and why? What's your theory on the root cause?",
-        guardian: "<strong>Diagnostic:</strong> Dependable (58, -6) is in critical territory. This is the most influential Over Time driver — it defines whether customers return. A 6-point decline over 2 quarters signals systemic operational issues, not just perception.<br><br><strong>Attack:</strong> Audit and fix the top 5 operational pain points surfaced in behavioral signals (cancellation friction, response time, billing accuracy).<br><strong>Bridge:</strong> Behavioral data shows 73% of Dependable declines correlate with post-booking experience, not pre-booking perception.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Behavioral signal cluster analysis · Booking + post-stay data · N=312 signals · Confidence: HIGH</span>"
+        guardian: "<strong>Diagnostic:</strong> Dependable (58, -6) is in critical territory. This is the most influential Over Time driver. It defines whether customers return. A 6-point decline over 2 quarters signals systemic operational issues, not just perception.<br><br><strong>Attack:</strong> Audit and fix the top 5 operational pain points surfaced in behavioral signals (cancellation friction, response time, billing accuracy).<br><strong>Bridge:</strong> Behavioral data shows 73% of Dependable declines correlate with post-booking experience, not pre-booking perception.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Behavioral signal cluster analysis · Booking + post-stay data · N=312 signals · Confidence: HIGH</span>"
       }
     };
 
@@ -374,20 +374,20 @@ const BIE = {
       { source: 'Adweek', text: 'Gen Z brand loyalty metrics show fundamental shift toward experience-over-product', time: '3h' },
       { source: 'CNBC', text: 'Airbnb reports 23% increase in long-stay bookings, signaling structural shift in travel behavior', time: '4h' },
       { source: 'HBR', text: 'Companies with real-time brand intelligence see 2.5x faster response to competitive threats', time: '5h' },
-      { source: 'Skift', text: 'Barcelona announces plan to phase out all STR licenses by 2028 — regulatory wave accelerates', time: '5h' },
+      { source: 'Skift', text: 'Barcelona announces plan to phase out all STR licenses by 2028. Regulatory wave accelerates', time: '5h' },
       { source: 'Marketing Week', text: 'Brand tracking industry faces disruption as AI synthesis replaces periodic survey models', time: '6h' },
       { source: 'TechCrunch', text: 'New study: multi-signal brand measurement outperforms single-source tracking by 340%', time: '7h' },
       { source: 'Bloomberg', text: 'Travel sector brand valuations diverge sharply as digital-native platforms gain trust edge', time: '8h' },
-      { source: 'Phocuswire', text: 'Google Travel expanding AI trip planning — OTA disintermediation risk intensifies', time: '8h' },
+      { source: 'Phocuswire', text: 'Google Travel expanding AI trip planning. OTA disintermediation risk intensifies', time: '8h' },
       { source: 'Forrester', text: 'Real-time competitive intelligence now cited as top priority by 67% of CMOs surveyed', time: '9h' },
       { source: 'McKinsey', text: 'Predictive brand health models reduce customer churn intervention costs by 45%', time: '10h' },
       { source: 'Reuters', text: 'Hospitality sector sees record M&A activity driven by brand portfolio consolidation', time: '11h' },
-      { source: 'WSJ', text: 'Consumer trust in AI-powered services reaches inflection point — 52% now comfortable with AI recommendations', time: '12h' },
-      { source: 'Financial Times', text: 'Southeast Asian travel market surges 47% YoY — signaling next frontier for brand expansion', time: '13h' },
-      { source: 'ESOMAR', text: 'Synthetic research methodologies gain credibility — 38% of research budgets shifting to AI-augmented approaches', time: '14h' },
+      { source: 'WSJ', text: 'Consumer trust in AI-powered services reaches inflection point: 52% now comfortable with AI recommendations', time: '12h' },
+      { source: 'Financial Times', text: 'Southeast Asian travel market surges 47% YoY, signaling next frontier for brand expansion', time: '13h' },
+      { source: 'ESOMAR', text: 'Synthetic research methodologies gain credibility: 38% of research budgets shifting to AI-augmented approaches', time: '14h' },
       { source: 'Skift', text: 'Booking Holdings invests $500M in AI-driven loyalty personalization platform', time: '15h' },
-      { source: 'Adweek', text: 'TikTok becomes #1 travel inspiration source for under-30 travelers — cultural signal shift', time: '16h' },
-      { source: 'CNBC', text: 'Climate-conscious travel segment grows 63% — sustainability signals now material for brand health', time: '17h' },
+      { source: 'Adweek', text: 'TikTok becomes #1 travel inspiration source for under-30 travelers. Cultural signal shift', time: '16h' },
+      { source: 'CNBC', text: 'Climate-conscious travel segment grows 63%. Sustainability signals now material for brand health', time: '17h' },
       { source: 'HBR', text: 'The trust premium: brands with transparent pricing see 28% higher repeat booking rates', time: '18h' },
       { source: 'Bloomberg', text: 'Private equity exits in hospitality sector accelerate as brand valuations compress', time: '19h' },
     ];
@@ -427,12 +427,12 @@ const BIE = {
     const steps = [
       {
         title: 'Welcome to BIE',
-        description: 'The Brand Intelligence Engine transforms how you understand brand health. Not just what people say — what they do, feel, and share. Real-time intelligence, zero guesswork.',
+        description: 'The Brand Intelligence Engine transforms how you understand brand health. Not just what people say, but what they do, feel, and share. Real-time intelligence, zero guesswork.',
         visual: 'pulse'
       },
       {
         title: 'Brand Fidelity: Six Drivers of Brand Truth',
-        description: 'Every insight maps to six measurable drivers — three "In the Moment" (User Friendly, Personal, Accessible) and three "Over Time" (Dependable, Meaningful, Salient). Together, they reveal the full picture.',
+        description: 'Every insight maps to six measurable drivers: three "In the Moment" (User Friendly, Personal, Accessible) and three "Over Time" (Dependable, Meaningful, Salient). Together, they reveal the full picture.',
         visual: 'drivers'
       },
       {

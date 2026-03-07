@@ -60,7 +60,7 @@
               "intensity": 0.65
             },
             "brand-authenticity": {
-              "quote": "Stayworthy feels authentic—like they actually care about matching people with real places, not just pushing volume.",
+              "quote": "Stayworthy feels authentic, like they actually care about matching people with real places, not just pushing volume.",
               "sentiment": "positive",
               "bf_drivers_impacted": ["Meaningful"],
               "intensity": 0.72
@@ -202,7 +202,7 @@
       ]
     },
     "family-vacationers": {
-      "name": "Family Vacationers",
+      "name": "Family Planners",
       "size": 1800,
       "demographics": {
         "age_range": "35-55",
@@ -462,7 +462,7 @@
               "intensity": 0.68
             },
             "brand-authenticity": {
-              "quote": "Stayworthy aligns with my brand—authentic, curated, not mass-market. Partnerships with them are organic.",
+              "quote": "Stayworthy aligns with my brand: authentic, curated, not mass-market. Partnerships with them are organic.",
               "sentiment": "positive",
               "bf_drivers_impacted": ["Meaningful"],
               "intensity": 0.86
@@ -506,7 +506,7 @@
               "intensity": 0.84
             },
             "loyalty-program": {
-              "quote": "Would love sustainability tier—rewards for choosing eco-properties. Current program feels generic.",
+              "quote": "Would love sustainability tier: rewards for choosing eco-properties. Current program feels generic.",
               "sentiment": "mixed",
               "bf_drivers_impacted": ["Meaningful"],
               "intensity": 0.62
@@ -603,6 +603,138 @@
         }
       ]
     },
+    "luxury-escapists": {
+      "name": "Luxury Escapists",
+      "size": 500,
+      "demographics": {
+        "age_range": "35-60",
+        "income": "$250K+",
+        "travel_freq": "6-10x/year"
+      },
+      "personas": [
+        {
+          "name": "Catherine M.",
+          "age": 52,
+          "location": "New York, NY",
+          "occupation": "Chief Marketing Officer",
+          "travel_frequency": "8x/year",
+          "brand_sentiment": "positive",
+          "key_quote": "I expect flawless service at premium price points. Inconsistency at this level is simply unacceptable.",
+          "drivers_mentioned": ["Meaningful", "Personal", "Dependable"],
+          "psychographic_tags": ["Discerning", "Quality-focused", "Exclusive", "Experience-driven", "Perfectionist"]
+        },
+        {
+          "name": "Henrik S.",
+          "age": 58,
+          "location": "Stockholm, Sweden",
+          "occupation": "Private Equity Executive",
+          "travel_frequency": "10x/year",
+          "brand_sentiment": "mixed",
+          "key_quote": "The curated properties are exceptional, but the inconsistency in service delivery frustrates me. Premium doesn't mean perfect every time.",
+          "drivers_mentioned": ["Meaningful", "Personal", "Salient"],
+          "psychographic_tags": ["Sophisticated", "Value-conscious", "Global", "Expecting", "Impatient"]
+        },
+        {
+          "name": "Amara T.",
+          "age": 45,
+          "location": "Lagos, Nigeria",
+          "occupation": "Investment Banker",
+          "travel_frequency": "8x/year",
+          "brand_sentiment": "positive",
+          "key_quote": "Stayworthy understands what luxury means: curated properties, personal touches, and genuine hospitality. They get it.",
+          "drivers_mentioned": ["Personal", "Meaningful", "Salient"],
+          "psychographic_tags": ["Discerning", "Culturally-aware", "Relationship-oriented", "Luxury-focused", "Adventure-seeking"]
+        },
+        {
+          "name": "Michael B.",
+          "age": 61,
+          "location": "London, UK",
+          "occupation": "Retired Investment Banker",
+          "travel_frequency": "7x/year",
+          "brand_sentiment": "negative",
+          "key_quote": "I've had disappointing experiences at premium properties on Stayworthy. At these prices, there's no excuse for substandard accommodations.",
+          "drivers_mentioned": ["Dependable", "Meaningful"],
+          "psychographic_tags": ["Exacting", "Traditional", "Experienced", "Skeptical", "Authoritative"]
+        },
+        {
+          "name": "Sophie D.",
+          "age": 48,
+          "location": "Paris, France",
+          "occupation": "Luxury Brand Consultant",
+          "travel_frequency": "9x/year",
+          "brand_sentiment": "positive",
+          "key_quote": "The attention to detail in property curation is superb. Every stay feels carefully considered, not randomly selected.",
+          "drivers_mentioned": ["Meaningful", "Personal", "Salient"],
+          "psychographic_tags": ["Sophisticated", "Aesthetic", "Detail-oriented", "Luxury-advocate", "Influential"]
+        }
+      ]
+    },
+    "digital-nomads": {
+      "name": "Digital Nomads",
+      "size": 400,
+      "demographics": {
+        "age_range": "24-38",
+        "income": "$60K-150K",
+        "travel_freq": "Continuous/multiple locations per year"
+      },
+      "personas": [
+        {
+          "name": "Jay P.",
+          "age": 28,
+          "location": "Bangkok, Thailand",
+          "occupation": "Software Engineer",
+          "travel_frequency": "Continuous",
+          "brand_sentiment": "positive",
+          "key_quote": "Reliable wifi is non-negotiable. Stayworthy's property specs are detailed enough that I can actually work from these places.",
+          "drivers_mentioned": ["User Friendly", "Accessible", "Dependable"],
+          "psychographic_tags": ["Tech-savvy", "Independent", "Location-flexible", "Work-life-blend", "Efficiency-focused"]
+        },
+        {
+          "name": "Luna C.",
+          "age": 26,
+          "location": "Lisbon, Portugal",
+          "occupation": "Social Media Manager",
+          "travel_frequency": "Continuous",
+          "brand_sentiment": "positive",
+          "key_quote": "Being able to communicate with hosts about workspace amenities directly from the app is perfect for remote work.",
+          "drivers_mentioned": ["User Friendly", "Personal", "Accessible"],
+          "psychographic_tags": ["Creative", "Connected", "Community-oriented", "Digital-native", "Collaborative"]
+        },
+        {
+          "name": "Ravi K.",
+          "age": 31,
+          "location": "Bali, Indonesia",
+          "occupation": "Consultant/Freelancer",
+          "travel_frequency": "Continuous",
+          "brand_sentiment": "mixed",
+          "key_quote": "Wifi reliability is listed, but sometimes it doesn't match reality. I've had work calls dropped because of connectivity issues.",
+          "drivers_mentioned": ["User Friendly", "Dependable"],
+          "psychographic_tags": ["Pragmatic", "Adaptable", "Quality-conscious", "Skeptical", "Solution-seeking"]
+        },
+        {
+          "name": "Mei L.",
+          "age": 27,
+          "location": "Chiang Mai, Thailand",
+          "occupation": "Digital Marketer",
+          "travel_frequency": "Continuous",
+          "brand_sentiment": "positive",
+          "key_quote": "The co-working space directory integrated into Stayworthy is brilliant. I can book accommodation and find backup workspace in one app.",
+          "drivers_mentioned": ["User Friendly", "Accessible", "Meaningful"],
+          "psychographic_tags": ["Resourceful", "Community-seeker", "Flexible", "Practical", "Network-oriented"]
+        },
+        {
+          "name": "Oliver H.",
+          "age": 34,
+          "location": "Barcelona, Spain",
+          "occupation": "UX Designer",
+          "travel_frequency": "Continuous",
+          "brand_sentiment": "positive",
+          "key_quote": "The app interface is clean and intuitive. As a designer, I appreciate thoughtful UX. Booking is frictionless.",
+          "drivers_mentioned": ["User Friendly", "Accessible", "Personal"],
+          "psychographic_tags": ["Design-conscious", "Mobile-first", "Minimalist", "Intentional", "Experience-focused"]
+        }
+      ]
+    },
     "business-travelers": {
       "name": "Business Travelers",
       "size": 1600,
@@ -669,7 +801,7 @@
               "intensity": 0.62
             },
             "loyalty-program": {
-              "quote": "Elite benefits would be nice—early check-in, late checkout, workspace upgrades.",
+              "quote": "Elite benefits would be nice: early check-in, late checkout, workspace upgrades.",
               "sentiment": "mixed",
               "bf_drivers_impacted": ["User Friendly"],
               "intensity": 0.63
@@ -745,7 +877,7 @@
               "intensity": 0.6
             },
             "loyalty-program": {
-              "quote": "Workspace perks would be valuable—desk, wifi reliability, charging infrastructure.",
+              "quote": "Workspace perks would be valuable: desk, wifi reliability, charging infrastructure.",
               "sentiment": "mixed",
               "bf_drivers_impacted": ["User Friendly"],
               "intensity": 0.68

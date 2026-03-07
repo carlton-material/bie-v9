@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signal Terminal — Brand Intelligence Engine v9</title>
+  <title>Signal Terminal - Brand Intelligence Engine v9</title>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/components.css">
@@ -640,7 +640,7 @@
         <div class="glass-box-header">
           <div class="glass-box-header-left">
             <svg class="glass-box-header-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
-            <span class="glass-box-header-title">Glass Box — Signal Data Provenance</span>
+            <span class="glass-box-header-title">Glass Box. Signal Data Provenance</span>
           </div>
           <button class="glass-box-toggle" data-target="st-glassbox" aria-expanded="false">
             Show My Work <span class="chevron">▾</span>
@@ -678,14 +678,15 @@
         <span class="st-shortcut"><span class="st-key">/</span> to search</span>
         <span class="st-shortcut"><span class="st-key">ESC</span> to clear</span>
         <span class="st-shortcut"><span class="st-key">H</span> Human · <span class="st-key">B</span> Behavioral · <span class="st-key">C</span> Cultural</span>
+        <span class="st-shortcut"><span class="st-key">G</span> Glass Box</span>
       </div>
     </section>
 
     <!-- Signal Layer Guidance -->
     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin-bottom: 32px;">
-      <div class="guidance-hint">Human-Expressive signals capture how people feel, talk, and relate to your brand emotionally.</div>
-      <div class="guidance-hint">Behavioral signals show what customers actually do—purchase patterns, engagement, repeat activity.</div>
-      <div class="guidance-hint">Cultural signals reflect the macro context—trends, competition, environmental shifts shaping demand.</div>
+      <div class="guidance-hint">Human-Expressive signals reveal the gap between what customers say and what they mean. When stated satisfaction is high but behavioral signals diverge, look here first.</div>
+      <div class="guidance-hint">Behavioral signals are the truth layer. Booking patterns, session data, and support interactions show what customers actually do, regardless of what they say.</div>
+      <div class="guidance-hint">Cultural signals are the weather forecast. Regulatory shifts, social trends, and competitive moves shape the environment your brand operates in. These signals rarely create immediate urgency, but ignoring them creates structural risk.</div>
     </div>
 
     <!-- Three-Column Signal Feed -->
@@ -803,7 +804,7 @@
           time: '08:33',
           severity: 'LOW',
           brand: 'Airbnb',
-          text: 'Host satisfaction declining — communication quality complaints up 18%'
+          text: 'Host satisfaction declining . communication quality complaints up 18%'
         },
         {
           time: '09:55',
@@ -815,13 +816,13 @@
           time: '11:08',
           severity: 'MED',
           brand: 'Vrbo',
-          text: 'Family segment loyalty eroding — competing on price, losing on <strong>Personal</strong>'
+          text: 'Family segment loyalty eroding . competing on price, losing on <strong>Personal</strong>'
         },
         {
           time: '12:34',
           severity: 'MED',
           brand: 'Booking.com',
-          text: 'User reviews increasingly cite "unexpected fees" — transparency emerging as hygiene'
+          text: 'User reviews increasingly cite "unexpected fees" . transparency emerging as hygiene'
         },
         {
           time: '13:47',
@@ -859,7 +860,7 @@
           time: '10:15',
           severity: 'HIGH',
           brand: 'Category',
-          text: 'Google Travel AI planning launch — <strong>OTA disintermediation risk elevated</strong>'
+          text: 'Google Travel AI planning launch . <strong>OTA disintermediation risk elevated</strong>'
         },
         {
           time: '11:30',
@@ -1161,6 +1162,12 @@
       }
       if (e.key === 'c' || e.key === 'C') {
         toggleLayerFilter('cultural');
+      }
+      if (e.key === 'g' || e.key === 'G') {
+        const glassBoxToggle = document.querySelector('[data-target="st-glassbox"]');
+        if (glassBoxToggle) {
+          glassBoxToggle.click();
+        }
       }
     });
 
