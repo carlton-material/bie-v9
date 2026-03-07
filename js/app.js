@@ -216,9 +216,49 @@ const BIE = {
     const input = panel.querySelector('.analyst-panel-input input');
     const sendBtn = panel.querySelector('.analyst-panel-input button');
     const messages = panel.querySelector('.analyst-panel-messages');
+    const suggestionsContainer = panel.querySelector('.analyst-panel-suggestions');
     const modeToggle = panel.querySelector('.analyst-mode-toggle');
 
     let isOpen = false;
+
+    // Suggested questions based on page context
+    const suggestedQuestions = {
+      'strategic-brief': [
+        "What's driving the trust gap?",
+        "Compare us to competitors",
+        "Why is Dependable declining?"
+      ],
+      'command-center': [
+        "What should I prioritize today?",
+        "Which signals are anomalous?",
+        "What's the market shift?"
+      ],
+      'signal-terminal': [
+        "What signals are trending?",
+        "Show me high-confidence findings",
+        "Which layers converge?"
+      ],
+      'guided-analysis': [
+        "What story do the drivers tell?",
+        "Where's our real opportunity?",
+        "What should change first?"
+      ],
+      'scenario-lab': [
+        "Which scenario has best ROI?",
+        "What's the confidence on projections?",
+        "How do drivers cascade?"
+      ],
+      'day-in-the-life': [
+        "What insights matter most?",
+        "How does my role use BIE?",
+        "What's the narrative arc?"
+      ],
+      'default': [
+        "What's driving the trust gap?",
+        "Show me the key insights",
+        "Which drivers need attention?"
+      ]
+    };
 
     const toggle = () => {
       isOpen = !isOpen;
@@ -276,6 +316,25 @@ const BIE = {
       messages.appendChild(msg);
     }
 
+    // Render initial suggested questions
+    const renderSuggestions = () => {
+      if (!suggestionsContainer) return;
+      const questions = suggestedQuestions[this.currentPage] || suggestedQuestions['default'];
+      suggestionsContainer.innerHTML = '';
+      questions.forEach(q => {
+        const pill = document.createElement('div');
+        pill.className = 'analyst-suggestion-pill';
+        pill.textContent = q;
+        pill.addEventListener('click', () => {
+          if (!isOpen) toggle();
+          setTimeout(() => self.sendAnalystMessage(q, messages, input), 300);
+        });
+        suggestionsContainer.appendChild(pill);
+      });
+    };
+
+    renderSuggestions();
+
     // Preset questions (used by some surfaces)
     const presetBtns = document.querySelectorAll('[data-analyst-preset]');
     presetBtns.forEach(btn => {
@@ -311,10 +370,13 @@ const BIE = {
     messages.scrollTop = messages.scrollHeight;
 
     // Try LLM first, fallback to hardcoded if fails
-    this.callAnalystLLM(query, messages, thinkingMsg);
+    this.callAnalystLLM(query, messages, thinkingMsg, input);
   },
 
-  async callAnalystLLM(query, messages, thinkingMsg) {
+  async callAnalystLLM(query, messages, thinkingMsg, input) {
+    const suggestionsContainer = document.querySelector('.analyst-panel-suggestions');
+    const self = this;
+
     try {
       const resp = document.createElement('div');
       resp.className = 'analyst-msg system';
@@ -335,12 +397,38 @@ const BIE = {
       messages.scrollTop = messages.scrollHeight;
     } catch(e) {
       console.warn('LLM failed, falling back to hardcoded responses:', e);
-      // Fallback: use original hardcoded response
+      // Fallback: use original hardcoded response - ALWAYS produces a response
       const resp = document.createElement('div');
       resp.className = 'analyst-msg system';
       resp.innerHTML = this.generateAnalystResponse(query.toLowerCase());
-      messages.replaceChild(resp, document.querySelector('.analyst-msg.system.thinking'));
+      messages.replaceChild(resp, thinkingMsg);
       messages.scrollTop = messages.scrollHeight;
+    }
+
+    // Show suggested questions again after response
+    if (suggestionsContainer) {
+      setTimeout(() => {
+        suggestionsContainer.innerHTML = '';
+        const suggestedQuestions = {
+          'strategic-brief': ["What's driving the trust gap?", "Compare us to competitors", "Why is Dependable declining?"],
+          'command-center': ["What should I prioritize today?", "Which signals are anomalous?", "What's the market shift?"],
+          'signal-terminal': ["What signals are trending?", "Show me high-confidence findings", "Which layers converge?"],
+          'guided-analysis': ["What story do the drivers tell?", "Where's our real opportunity?", "What should change first?"],
+          'scenario-lab': ["Which scenario has best ROI?", "What's the confidence on projections?", "How do drivers cascade?"],
+          'day-in-the-life': ["What insights matter most?", "How does my role use BIE?", "What's the narrative arc?"],
+          'default': ["What's driving the trust gap?", "Show me the key insights", "Which drivers need attention?"]
+        };
+        const questions = suggestedQuestions[self.currentPage] || suggestedQuestions['default'];
+        questions.forEach(q => {
+          const pill = document.createElement('div');
+          pill.className = 'analyst-suggestion-pill';
+          pill.textContent = q;
+          pill.addEventListener('click', () => {
+            self.sendAnalystMessage(q, messages, input);
+          });
+          suggestionsContainer.appendChild(pill);
+        });
+      }, 500);
     }
   },
 
@@ -721,14 +809,14 @@ const BIE = {
             </g>
 
             <!-- Mode labels -->
-            <g transform="translate(20, 75)">
-              <rect x="0" y="0" width="70" height="30" rx="6" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
-              <text x="35" y="22" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">Socratic Guide</text>
+            <g transform="translate(5, 75)">
+              <rect x="0" y="0" width="82" height="30" rx="6" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
+              <text x="41" y="22" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">Socratic Guide</text>
             </g>
 
-            <g transform="translate(90, 75)">
-              <rect x="0" y="0" width="70" height="30" rx="6" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
-              <text x="35" y="22" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Guardian Data</text>
+            <g transform="translate(93, 75)">
+              <rect x="0" y="0" width="82" height="30" rx="6" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+              <text x="41" y="22" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Guardian Data</text>
             </g>
           </svg>
         `;
@@ -742,7 +830,7 @@ const BIE = {
             <circle cx="50" cy="60" r="4" fill="#745AFF" opacity="0.6"/>
             <circle cx="90" cy="60" r="4" fill="#745AFF" opacity="0.7"/>
             <circle cx="130" cy="60" r="4" fill="#745AFF" opacity="0.8"/>
-            <text x="20" y="95" font-size="10" fill="#745AFF" opacity="0.6" font-family="Inter">Explore the sidebar</text>
+            <text x="90" y="105" font-size="10" fill="#745AFF" opacity="0.6" font-family="Inter" text-anchor="middle">Explore the sidebar</text>
           </svg>
         `;
 
@@ -1104,7 +1192,7 @@ function renderRadarChart(containerId, data, options = {}) {
   // Draw axis labels with scores and groupings
   drivers.forEach((driver, i) => {
     const angle = (i / axes) * Math.PI * 2 - Math.PI / 2;
-    const labelDistance = radius * 1.18;
+    const labelDistance = radius * 1.12;
     const x = center.x + labelDistance * Math.cos(angle);
     const y = center.y + labelDistance * Math.sin(angle);
 

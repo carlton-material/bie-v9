@@ -507,6 +507,39 @@ img { max-width: 100%; display: block; }
   }
 }
 
+/* ── Suggested Questions Pills ── */
+.analyst-panel-suggestions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: 0 var(--space-lg) var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.analyst-suggestion-pill {
+  display: inline-block;
+  padding: 8px 16px;
+  background: rgba(116, 90, 255, 0.08);
+  border: 1px solid rgba(116, 90, 255, 0.2);
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.analyst-suggestion-pill:hover {
+  background: rgba(116, 90, 255, 0.15);
+  border-color: rgba(116, 90, 255, 0.35);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
 /* ═══════════════════════════════════════════════════════════
    ONBOARDING WIZARD — First-time user experience
    Glass-morphism dark theme, centered modal, smooth transitions
@@ -699,13 +732,13 @@ img { max-width: 100%; display: block; }
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-tertiary);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
   font-family: var(--font-display);
   font-size: 18px;
   font-weight: 600;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -772,6 +805,75 @@ img { max-width: 100%; display: block; }
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 3px;
   font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GLOBAL OVERFLOW GUARDS — Regression Prevention Rules
+   Defensive rules to prevent recurring text overflow, boundary violations,
+   and layout instability. These guards protect against cascade regressions
+   where text spills beyond containers, causing horizontal scroll and UX breaks.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Prevent text overflow in all card-like containers */
+.ga-card,
+.st-signal,
+.scenario-card,
+[class*="card"],
+[class*="pill"],
+[class*="badge"],
+[class*="tag"],
+.btn,
+button {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Ensure all containers respect box-sizing boundaries */
+* {
+  box-sizing: border-box;
+}
+
+/* Prevent unwanted horizontal scroll on major sections */
+.app-content,
+main,
+section,
+.page-content,
+[class*="container"],
+[class*="wrapper"] {
+  overflow-x: hidden;
+}
+
+/* Labels and short text must never wrap unexpectedly */
+.label,
+.stat-label,
+.metric-label,
+.ga-card-title,
+.st-column-title,
+[class*="label"],
+[class*="title"],
+[class*="heading"] {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Protect input fields from overflowing their containers */
+input,
+textarea,
+select {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Guard driver badges and micro-labels from wrapping chaos */
+.ga-driver-label,
+.st-driver-badge,
+.micro-label,
+[class*="badge"] {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ═══════════════════════════════════════════════
