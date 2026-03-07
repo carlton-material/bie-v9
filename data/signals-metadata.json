@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-03-06T14:56:00Z",
+  "pipelineRuns": [
+    {
+      "timestamp": "2026-03-06T14:56:24Z",
+      "status": "success",
+      "validated": 10,
+      "stored": 0,
+      "source": "Brand Fidelity Pipeline v3"
+    },
+    {
+      "timestamp": "2026-03-05T09:12:03Z",
+      "status": "success",
+      "validated": 7,
+      "stored": 0,
+      "source": "Signal Integration Pipeline"
+    },
+    {
+      "timestamp": "2026-03-04T15:29:21Z",
+      "status": "success",
+      "validated": 12,
+      "stored": 2,
+      "source": "Cultural Signal Aggregator"
+    }
+  ],
+  "sourceTiers": {
+    "primary": {
+      "weight": 0.40,
+      "label": "Primary (40%)",
+      "sources": [
+        { "name": "N=24,000 Quantitative Panel", "url": null, "type": "research" },
+        { "name": "N=4,700 AI Moderated Interviews", "url": null, "type": "ai-enriched" }
+      ]
+    },
+    "secondary": {
+      "weight": 0.30,
+      "label": "Secondary (30%)",
+      "sources": [
+        { "name": "Social Listening (Brandwatch)", "url": "https://brandwatch.com", "type": "research" },
+        { "name": "Search Trend Data (Google Trends)", "url": "https://trends.google.com", "type": "research" }
+      ]
+    },
+    "tertiary": {
+      "weight": 0.20,
+      "label": "Tertiary (20%)",
+      "sources": [
+        { "name": "Competitive Intelligence (SimilarWeb)", "url": "https://similarweb.com", "type": "research" },
+        { "name": "Industry Reports (Phocuswright)", "url": "https://phocuswright.com", "type": "research" }
+      ]
+    },
+    "internal": {
+      "weight": 0.10,
+      "label": "Internal (10%)",
+      "sources": [
+        { "name": "Material+ Proprietary Data", "url": null, "type": "internal" },
+        { "name": "Client CRM Analytics", "url": null, "type": "internal" }
+      ]
+    }
+  },
+  "metrics": {
+    "brandFidelity": {
+      "composite": {
+        "value": 72,
+        "delta": -4,
+        "confidence": "high",
+        "formula": "BF Composite = Î£(Driver_i Ã Weight_i) / Î£(Weight_i)",
+        "approach": "Weighted composite of 6 Brand Fidelity drivers measured via mixed-method signal integration. In-the-Moment drivers weighted 45%, Over-Time drivers weighted 55%.",
+        "assumptions": [
+          "Survey respondents representative of Stayworthy's active user base (N=24,000)",
+          "AI interview responses directionally accurate to Â±5% of quantitative benchmarks",
+          "Behavioral signals lag attitudinal shifts by 2â4 weeks",
+          "Cultural signals weighted by recency (30-day trailing window)"
+        ],
+        "dataStatus": "ai-enriched",
+        "lastValidated": "2026-03-06T14:56:24Z"
+      },
+      "drivers": {
+        "userFriendly": { "value": 72, "delta": -4, "confidence": "high", "signal": "behavioral", "dataStatus": "research" },
+        "personal": { "value": 64, "delta": -8, "confidence": "medium", "signal": "human-expressive", "dataStatus": "ai-enriched" },
+        "accessible": { "value": 71, "delta": 1, "confidence": "high", "signal": "cultural", "dataStatus": "research" },
+        "dependable": { "value": 58, "delta": -6, "confidence": "medium", "signal": "behavioral", "dataStatus": "research" },
+        "meaningful": { "value": 66, "delta": -3, "confidence": "medium", "signal": "human-expressive", "dataStatus": "ai-enriched" },
+        "salient": { "value": 74, "delta": 2, "confidence": "high", "signal": "cultural", "dataStatus": "research" }
+      }
+    },
+    "signalCounts": {
+      "total": 847,
+      "humanExpressive": 312,
+      "behavioral": 298,
+      "cultural": 237,
+      "confidence": "high",
+      "dataStatus": "mixed",
+      "approach": "Aggregated from 3 signal pipelines over trailing 30-day window. Deduplication via semantic similarity threshold (0.85)."
+    }
+  }
+}
