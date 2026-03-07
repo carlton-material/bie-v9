@@ -4,7 +4,7 @@
    intelligence feed, Material Analyst panel
    ═══════════════════════════════════════════════════════════ */
 
-const BIE = {
+window.BIE = {
   brand: null,
   currentPage: null,
 
