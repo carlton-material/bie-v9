@@ -1,0 +1,444 @@
+/* âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+   GLASS BOX â Data Provenance & Transparency System
+   Inspired by the Arbor Meridian "Show My Work" pattern
+   Every claim attributed Â· Every metric traceable
+   âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+
+/* ââ Glass Box Container ââ */
+.glass-box-panel {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  margin-top: var(--space-lg);
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.glass-box-panel.inline {
+  margin-top: 0;
+  border: none;
+  background: transparent;
+}
+
+/* ââ Glass Box Header ââ */
+.glass-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+}
+
+.glass-box-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.glass-box-header-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+
+.glass-box-header-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-nano);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* ââ Show My Work Toggle ââ */
+.glass-box-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  font-family: var(--font-mono);
+  font-size: var(--text-nano);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--signal-cultural);
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.glass-box-toggle:hover {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.35);
+  color: #fbbf24;
+}
+
+.glass-box-toggle .chevron {
+  display: inline-block;
+  transition: transform var(--duration-fast) var(--ease-out);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.glass-box-toggle[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+/* ââ Glass Box Content (collapsible) ââ */
+.glass-box-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--duration-slow) var(--ease-out);
+}
+
+.glass-box-content.expanded {
+  max-height: 2000px;
+}
+
+.glass-box-inner {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ââ Pipeline Runs ââ */
+.glass-box-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.glass-box-pipeline-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-nano);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.glass-box-pipeline-run {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: var(--text-nano);
+}
+
+.pipeline-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 9px;
+}
+
+.pipeline-status.success {
+  color: var(--signal-behavioral);
+  background: var(--signal-behavioral-dim);
+}
+
+.pipeline-status.failure {
+  color: var(--red-500);
+  background: var(--red-50);
+}
+
+.pipeline-timestamp {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.pipeline-source {
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.pipeline-counts {
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ââ Source Tier Grid ââ */
+.glass-box-tiers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+.glass-box-tiers-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-nano);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+  grid-column: 1 / -1;
+}
+
+.glass-box-tier {
+  padding: var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+}
+
+.glass-box-tier-header {
+  font-family: var(--font-mono);
+  font-size: var(--text-nano);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.glass-box-tier-weight {
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+.glass-box-tier-sources {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.glass-box-tier-source {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  line-height: 1.3;
+}
+
+.glass-box-tier-source a {
+  color: var(--signal-human);
+  opacity: 0.7;
+  transition: opacity var(--duration-fast);
+}
+
+.glass-box-tier-source a:hover {
+  opacity: 1;
+}
+
+/* ââ Methodology / Formula ââ */
+.glass-box-methodology {
+  padding: var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+}
+
+.glass-box-methodology-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-nano);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.glass-box-formula {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--signal-human);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(129, 140, 248, 0.06);
+  border: 1px solid rgba(129, 140, 248, 0.12);
+  border-radius: 2px;
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0.02em;
+}
+
+.glass-box-approach {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ââ Assumptions ââ */
+.glass-box-assumptions {
+  padding: var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+}
+
+.glass-box-assumptions-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-nano);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.glass-box-assumption {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+  padding: 4px 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+.glass-box-assumption-number {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  min-width: 16px;
+  flex-shrink: 0;
+}
+
+/* ââ Flash Frozen Timestamp ââ */
+.glass-box-timestamp {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(245, 158, 11, 0.04);
+  border: 1px solid rgba(245, 158, 11, 0.1);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: var(--text-nano);
+  color: var(--signal-cultural);
+  letter-spacing: 0.04em;
+}
+
+.glass-box-timestamp-icon {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.glass-box-timestamp-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.glass-box-timestamp-value {
+  color: var(--text-tertiary);
+  margin-left: auto;
+}
+
+/* ââ Confidence Badges ââ */
+.confidence-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.confidence-badge.high {
+  color: var(--signal-behavioral);
+  background: var(--signal-behavioral-dim);
+  box-shadow: 0 0 8px var(--confidence-high);
+}
+
+.confidence-badge.medium {
+  color: var(--signal-cultural);
+  background: var(--signal-cultural-dim);
+  box-shadow: 0 0 6px var(--confidence-medium);
+}
+
+.confidence-badge.low {
+  color: var(--red-500);
+  background: var(--red-50);
+  box-shadow: 0 0 6px var(--confidence-low);
+}
+
+/* ââ Data Status Badges ââ */
+.data-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.data-status-badge.research {
+  color: var(--text-tertiary);
+  background: var(--gray-50);
+  border: 1px solid var(--gray-100);
+}
+
+.data-status-badge.ai-enriched {
+  color: var(--signal-human);
+  background: var(--signal-human-dim);
+  border: 1px solid rgba(129, 140, 248, 0.2);
+  box-shadow: 0 0 6px rgba(129, 140, 248, 0.1);
+}
+
+.data-status-badge.internal {
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+}
+
+.data-status-badge.mixed {
+  color: var(--text-tertiary);
+  background: var(--gray-50);
+  border: 1px solid var(--gray-100);
+}
+
+/* ââ Confidence Halo on Metric Cards ââ */
+.confidence-halo-high {
+  box-shadow: 0 0 0 1px var(--confidence-high), 0 0 20px var(--confidence-high);
+}
+
+.confidence-halo-medium {
+  box-shadow: 0 0 0 1px var(--confidence-medium), 0 0 16px var(--confidence-medium);
+}
+
+.confidence-halo-low {
+  box-shadow: 0 0 0 1px var(--confidence-low), 0 0 12px var(--confidence-low);
+}
+
+/* ââ Responsive: stack tiers on smaller screens ââ */
+@media (max-width: 1200px) {
+  .glass-box-tiers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-box-tiers {
+    grid-template-columns: 1fr;
+  }
+}
