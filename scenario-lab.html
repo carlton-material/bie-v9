@@ -35,6 +35,50 @@
       border-bottom: 1px solid var(--border-subtle);
       position: relative;
       z-index: 10;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 100%);
+    }
+
+    /* ── ANIMATED SIMULATION MESH ── */
+    .scenario-lab-mesh {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 300px;
+      opacity: 0.06;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .mesh-node {
+      animation: meshFloat 6s ease-in-out infinite;
+    }
+
+    .mesh-node:nth-child(1) { animation-delay: 0s; }
+    .mesh-node:nth-child(2) { animation-delay: 0.3s; }
+    .mesh-node:nth-child(3) { animation-delay: 0.6s; }
+    .mesh-node:nth-child(4) { animation-delay: 0.9s; }
+    .mesh-node:nth-child(5) { animation-delay: 1.2s; }
+    .mesh-node:nth-child(6) { animation-delay: 1.5s; }
+    .mesh-node:nth-child(7) { animation-delay: 1.8s; }
+    .mesh-node:nth-child(8) { animation-delay: 2.1s; }
+    .mesh-node:nth-child(9) { animation-delay: 2.4s; }
+    .mesh-node:nth-child(10) { animation-delay: 2.7s; }
+    .mesh-node:nth-child(11) { animation-delay: 3s; }
+    .mesh-node:nth-child(12) { animation-delay: 3.3s; }
+    .mesh-node:nth-child(13) { animation-delay: 3.6s; }
+    .mesh-node:nth-child(14) { animation-delay: 3.9s; }
+    .mesh-node:nth-child(15) { animation-delay: 4.2s; }
+    .mesh-node:nth-child(16) { animation-delay: 4.5s; }
+    .mesh-node:nth-child(17) { animation-delay: 4.8s; }
+    .mesh-node:nth-child(18) { animation-delay: 5.1s; }
+    .mesh-node:nth-child(19) { animation-delay: 5.4s; }
+    .mesh-node:nth-child(20) { animation-delay: 5.7s; }
+
+    @keyframes meshFloat {
+      0%, 100% { r: 3; opacity: 0.3; }
+      50% { r: 5; opacity: 0.6; }
     }
 
     .scenario-header-left {
@@ -57,6 +101,60 @@
       letter-spacing: -0.03em;
       color: var(--text-primary);
       line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    /* ── SIMULATION CONFIDENCE INDICATOR ── */
+    .simulation-confidence {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      max-width: fit-content;
+    }
+
+    .confidence-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .confidence-bar {
+      flex: 1;
+      width: 120px;
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .confidence-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #34d399, #818cf8);
+      border-radius: 2px;
+      transition: width 1.5s ease;
+    }
+
+    .confidence-value {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      color: #34d399;
+      min-width: 35px;
+    }
+
+    .glass-box-inline {
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+      font-family: var(--font-mono);
+      line-height: 1.4;
     }
 
     /* Mode Toggle Buttons */
@@ -98,6 +196,23 @@
       flex: 1;
       overflow-y: auto;
       padding: 0 80px 80px;
+    }
+
+    /* ── MODE TRANSITION ANIMATIONS ── */
+    .scenario-tab-content,
+    .scenario-mode {
+      animation: scenarioFadeIn 0.4s ease;
+    }
+
+    @keyframes scenarioFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .scenario-mode {
@@ -196,7 +311,7 @@
 
     .funnel-stage:nth-child(4) .funnel-bar {
       width: 4%;
-      background: linear-gradient(90deg, var(--brand-purple) 0%, var(--brand-purple-dim) 100%);
+      background: linear-gradient(90deg, var(--signal-human) 0%, var(--signal-human-dim) 100%);
     }
 
     .funnel-bar {
@@ -337,24 +452,37 @@
       transition: all var(--duration-normal) var(--ease-out);
       position: relative;
       overflow: hidden;
+      border-left: 2px solid transparent;
     }
 
+    /* ── ATMOSPHERIC GRADIENT OVERLAYS ── */
     .scenario-card::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
-      background: var(--scenario-shift);
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
     }
 
+    /* High probability (>60%): green tint - Regulatory Wave at 72% */
+    .scenario-card:nth-child(1)::before {
+      background: linear-gradient(180deg, rgba(52, 211, 153, 0.05) 0%, transparent 100%);
+      border-left-color: rgba(52, 211, 153, 0.4);
+    }
+
+    /* Medium probability (30-60%): yellow tint - AI Concierge Era at 65% */
     .scenario-card:nth-child(2)::before {
-      background: var(--scenario-expand);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.05) 0%, transparent 100%);
+      border-left-color: rgba(245, 158, 11, 0.4);
     }
 
+    /* Medium-low probability: red tint - Decentralized Travel at 48% */
     .scenario-card:nth-child(3)::before {
-      background: var(--scenario-mixed);
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.05) 0%, transparent 100%);
+      border-left-color: rgba(239, 68, 68, 0.4);
     }
 
     .scenario-card:hover {
@@ -380,6 +508,8 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .scenario-card:nth-child(1) .scenario-card-badge { color: var(--scenario-shift); }
@@ -392,6 +522,8 @@
       font-weight: 400;
       color: var(--text-primary);
       margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
     }
 
     .scenario-card-premise {
@@ -399,6 +531,8 @@
       color: var(--text-secondary);
       margin-bottom: 20px;
       line-height: 1.6;
+      position: relative;
+      z-index: 1;
     }
 
     .scenario-card-impact {
@@ -409,6 +543,8 @@
       font-size: var(--text-small);
       color: var(--text-secondary);
       line-height: 1.6;
+      position: relative;
+      z-index: 1;
     }
 
     .scenario-card-cta {
@@ -420,6 +556,8 @@
       border: 1px dashed var(--border-subtle);
       border-radius: 3px;
       transition: all var(--duration-fast);
+      position: relative;
+      z-index: 1;
     }
 
     .scenario-card:hover .scenario-card-cta {
@@ -505,7 +643,7 @@
     .output-question {
       padding: 20px;
       background: var(--bg-elevated);
-      border-left: 3px solid var(--brand-purple);
+      border-left: 3px solid var(--signal-behavioral);
       border-radius: 3px;
       font-style: italic;
       color: var(--text-secondary);
@@ -595,8 +733,8 @@
     }
 
     .control-btn.active {
-      background: var(--brand-purple);
-      border-color: var(--brand-purple);
+      background: var(--signal-behavioral);
+      border-color: var(--signal-behavioral);
       color: white;
     }
 
@@ -1421,7 +1559,7 @@
 
     .nexus-ticker-time {
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: 11px;
       color: var(--text-muted);
     }
 
@@ -1463,11 +1601,7 @@
   <nav class="nav">
     <div class="nav-logo">
       <div class="nav-logo-content">
-        <svg class="nav-logo-mark" viewBox="0 0 56 56" width="22" height="22" aria-hidden="true">
-          <path d="M8 40 L18 16 L28 32 L38 16 L48 40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <line x1="42" y1="18" x2="42" y2="30" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <line x1="36" y1="24" x2="48" y2="24" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <img class="nav-logo-mark" src="assets/logos/monogram-white.png" alt="Material+" width="24">
         <span class="nav-logo-text">BIE</span>
       </div>
     </div>
@@ -1499,9 +1633,65 @@
 
   <main class="app-content scenario-lab">
     <div class="scenario-header">
+      <!-- Animated simulation mesh background -->
+      <svg class="scenario-lab-mesh" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="mesh-glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <!-- Connection lines -->
+        <line x1="120" y1="80" x2="280" y2="150" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="280" y1="150" x2="450" y2="100" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="450" y1="100" x2="620" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="620" y1="200" x2="800" y2="120" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="120" y1="80" x2="450" y2="100" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+        <line x1="280" y1="150" x2="800" y2="120" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+        <line x1="150" y1="250" x2="350" y2="220" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="350" y1="220" x2="550" y2="260" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="550" y1="260" x2="750" y2="230" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="150" y1="250" x2="550" y2="260" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+
+        <!-- Network nodes -->
+        <circle cx="120" cy="80" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="280" cy="150" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="450" cy="100" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="620" cy="200" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="800" cy="120" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="150" cy="250" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="350" cy="220" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="550" cy="260" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="750" cy="230" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="900" cy="180" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="200" cy="140" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="380" cy="180" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="680" cy="150" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="850" cy="250" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="500" cy="200" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="320" cy="260" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="650" cy="80" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="400" cy="40" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="750" cy="140" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="100" cy="180" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+      </svg>
+
       <div class="scenario-header-left">
         <div class="scenario-label">Simulation Engine</div>
         <h1 class="scenario-headline">Strategic Scenario Lab</h1>
+
+        <!-- Simulation Confidence Indicator -->
+        <div class="simulation-confidence">
+          <span class="confidence-label">CONFIDENCE</span>
+          <div class="confidence-bar">
+            <div class="confidence-fill" style="width: 87%"></div>
+          </div>
+          <span class="confidence-value">87%</span>
+          <div class="glass-box-inline">847 signals · 24K respondents · 6 behavioral pipelines</div>
+        </div>
       </div>
       <div class="scenario-modes">
         <button class="scenario-mode-btn active" data-mode="insight">Insight / Nearsight</button>
@@ -2042,14 +2232,8 @@
 
   <!-- MATERIAL ANALYST PANEL -->
   <div class="analyst-trigger" title="Material Analyst">
-    <svg class="analyst-trigger-icon" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
-      <g stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <!-- M shape with proper proportions -->
-        <path d="M 8 38 L 14 16 L 20 28 L 26 16 L 32 38"/>
-        <!-- Plus sign -->
-        <line x1="38" y1="26" x2="38" y2="38"/>
-        <line x1="32" y1="32" x2="44" y2="32"/>
-      </g>
+    <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     <span class="analyst-dot"></span>
   </div>

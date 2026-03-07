@@ -77,8 +77,10 @@
   --green-600: #34d399;
   --blue-500: #818cf8;
   --violet-500: #a78bfa;
+  --violet-400: #818cf8;  /* WCAG AA compliant on dark backgrounds */
   --amber-300: #fbbf24;  /* Lighter amber for hover states */
   --amber-500: #f59e0b;
+  --teal-500: #34d399;   /* Signal Behavioral alias for consistency */
   --font-grotesk: var(--font-display);
 
   /* ── Confidence Halos (Glass Box principle) ── */

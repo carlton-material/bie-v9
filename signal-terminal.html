@@ -153,7 +153,7 @@
 
     .st-search:focus {
       outline: none;
-      border-color: var(--violet-400);
+      border-color: var(--signal-human);
       box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
     }
 
@@ -193,7 +193,7 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
       background: var(--bg-elevated);
       border-radius: 3px;
-      color: var(--gray-700);
+      color: var(--text-secondary);
       cursor: pointer;
       transition: all 200ms ease;
     }
@@ -246,8 +246,8 @@
       padding: 2px 6px;
       border-radius: 2px;
       font-weight: 600;
-      font-size: 9px;
-      color: var(--gray-700);
+      font-size: 10px;
+      color: var(--text-secondary);
     }
 
     /* ── Three-Column Signal Feed ── */
@@ -411,7 +411,7 @@
     .st-signal-text {
       font-family: var(--font-body);
       font-size: 12px;
-      color: var(--gray-700);
+      color: var(--text-secondary);
       line-height: 1.45;
     }
 
@@ -464,31 +464,31 @@
     .st-driver-badge.human {
       border-color: rgba(129, 140, 248, 0.3);
       background: rgba(129, 140, 248, 0.12);
-      color: #818cf8;
+      color: var(--signal-human);
     }
 
     .st-driver-badge.human::before {
-      background: #818cf8;
+      background: var(--signal-human);
     }
 
     .st-driver-badge.behavioral {
       border-color: rgba(52, 211, 153, 0.3);
       background: rgba(52, 211, 153, 0.12);
-      color: #34d399;
+      color: var(--signal-behavioral);
     }
 
     .st-driver-badge.behavioral::before {
-      background: #34d399;
+      background: var(--signal-behavioral);
     }
 
     .st-driver-badge.cultural {
       border-color: rgba(245, 158, 11, 0.3);
       background: rgba(245, 158, 11, 0.12);
-      color: #f59e0b;
+      color: var(--signal-cultural);
     }
 
     .st-driver-badge.cultural::before {
-      background: #f59e0b;
+      background: var(--signal-cultural);
     }
 
     /* ── Anomaly Detection Panel ── */
@@ -546,7 +546,7 @@
       font-family: var(--font-body);
       font-size: 12px;
       line-height: 1.5;
-      color: var(--gray-700);
+      color: var(--text-secondary);
     }
 
     .st-anomaly-detail strong {
@@ -589,11 +589,7 @@
     <nav class="nav">
     <div class="nav-logo">
       <div class="nav-logo-content">
-        <svg class="nav-logo-mark" viewBox="0 0 56 56" width="22" height="22" aria-hidden="true">
-          <path d="M8 40 L18 16 L28 32 L38 16 L48 40" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <line x1="42" y1="18" x2="42" y2="30" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          <line x1="36" y1="24" x2="48" y2="24" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <img class="nav-logo-mark" src="assets/logos/monogram-white.png" alt="Material+" width="24">
         <span class="nav-logo-text">BIE</span>
       </div>
     </div>
@@ -731,7 +727,7 @@
           <div class="st-anomaly-title">Positive Demographic Spike (25-34)</div>
           <div class="st-anomaly-detail">
             <strong>Confidence: HIGH</strong><br>
-            Unexplained positive sentiment surge in 25–34 age cohort contradicts overall downward trend. Potential correlation with recent <strong>UGC campaign launch</strong>. Investigating causality.
+            Unexplained positive sentiment surge in 25-34 age cohort contradicts overall downward trend. Potential correlation with recent <strong>UGC campaign launch</strong>. Investigating causality.
           </div>
         </div>
 
@@ -756,14 +752,8 @@
 
   <!-- Analyst -->
   <div class="analyst-trigger" title="Material Analyst">
-    <svg class="analyst-trigger-icon" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
-      <g stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <!-- M shape with proper proportions -->
-        <path d="M 8 38 L 14 16 L 20 28 L 26 16 L 32 38"/>
-        <!-- Plus sign -->
-        <line x1="38" y1="26" x2="38" y2="38"/>
-        <line x1="32" y1="32" x2="44" y2="32"/>
-      </g>
+    <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     <span class="analyst-dot"></span>
   </div>
@@ -948,7 +938,7 @@
       { layer: 'behavioral', time: '16:40', severity: 'MED', brand: 'Booking.com', text: 'Filter precision: Users now apply 5.2 filters avg (was 3.1). Complexity index rising' },
       { layer: 'cultural', time: '16:48', severity: 'MED', brand: 'Category', text: 'Influencer impact: #travel content now 8.4B views/month (was 5.2B)' },
       { layer: 'human', time: '16:55', severity: 'LOW', brand: 'Airbnb', text: 'Host reviews: "Cleanliness" now mentioned 2.3x more than "Communication"' },
-      { layer: 'behavioral', time: '17:03', severity: 'HIGH', brand: 'Stayworthy', text: 'Cart abandonment peak: 11:00–13:00 UTC window. Content clash with rival campaign?' }
+      { layer: 'behavioral', time: '17:03', severity: 'HIGH', brand: 'Stayworthy', text: 'Cart abandonment peak: 11:00-13:00 UTC window. Content clash with rival campaign?' }
     ];
 
     let cascadeQueue = [...extraSignals];
