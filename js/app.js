@@ -709,15 +709,15 @@ const BIE = {
   glassBoxMeta: null,
 
   async initGlassBox() {
+    // Fetch metadata, but toggles work regardless
     try {
       const resp = await fetch('data/signals-metadata.json');
       this.glassBoxMeta = await resp.json();
     } catch(e) {
       console.warn('Glass Box metadata not loaded');
-      return;
     }
 
-    // Wire up all "Show My Work" toggles
+    // Wire up all "Show My Work" toggles — UNCONDITIONAL, always works
     document.querySelectorAll('.glass-box-toggle').forEach(toggle => {
       const targetId = toggle.dataset.target;
       const content = targetId ? document.getElementById(targetId) : toggle.closest('.glass-box-panel')?.querySelector('.glass-box-content');
@@ -731,10 +731,10 @@ const BIE = {
       });
     });
 
-    // Render Glass Box content into containers
+    // Render Glass Box content into containers (graceful fail if metadata missing)
     this.renderGlassBoxPanels();
 
-    // Add confidence halos to metric cards
+    // Add confidence halos to metric cards (graceful fail if metadata missing)
     this.applyConfidenceHalos();
   },
 

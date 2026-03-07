@@ -90,7 +90,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 12px;
     }
 
@@ -98,6 +98,7 @@
       font-family: var(--font-display);
       font-size: 2.5rem;
       font-weight: 300;
+      color: rgba(255,255,255,0.95);
       letter-spacing: -0.03em;
       color: var(--text-primary);
       line-height: 1.2;
@@ -171,7 +172,7 @@
       padding: 10px 20px;
       border: none;
       background: transparent;
-      color: var(--text-tertiary);
+      color: rgba(255,255,255,0.5);
       font-family: var(--font-body);
       font-size: var(--text-small);
       font-weight: 500;
@@ -183,12 +184,12 @@
 
     .scenario-mode-btn.active {
       background: var(--bg-elevated);
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.9);
       border: 1px solid var(--border-default);
     }
 
     .scenario-mode-btn:hover {
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.7);
     }
 
     /* ── CONTENT AREA ── */
@@ -243,7 +244,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 20px;
     }
 
@@ -252,7 +253,7 @@
       font-size: 2rem;
       font-weight: 300;
       letter-spacing: -0.02em;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 60px;
     }
 
@@ -327,7 +328,7 @@
       font-family: var(--font-mono);
       font-size: var(--text-small);
       font-weight: 600;
-      color: rgba(255,255,255,0.9);
+      color: rgba(255,255,255,0.95);
     }
 
     .funnel-stage-label {
@@ -347,7 +348,7 @@
     .funnel-stage-title {
       font-family: var(--font-body);
       font-size: var(--text-small);
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.65);
     }
 
     .funnel-stage-detail {
@@ -358,12 +359,12 @@
       border: 1px solid var(--border-subtle);
       border-radius: 4px;
       font-size: var(--text-small);
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.7);
       line-height: 1.5;
     }
 
     .funnel-stage-detail strong {
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.9);
       display: block;
       margin-bottom: 4px;
     }
@@ -406,12 +407,12 @@
       font-family: var(--font-display);
       font-size: 2rem;
       font-weight: 400;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.95);
     }
 
     .metric-box-detail {
       font-size: var(--text-small);
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.6);
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -422,7 +423,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 20px;
     }
 
@@ -431,7 +432,7 @@
       font-size: 2rem;
       font-weight: 300;
       letter-spacing: -0.02em;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 60px;
     }
 
@@ -498,13 +499,13 @@
 
     .scenario-card-badge {
       display: inline-block;
-      padding: 4px 10px;
-      background: rgba(255,255,255,0.05);
+      padding: 6px 12px;
+      background: rgba(255,255,255,0.08);
       border: 1px solid currentColor;
-      border-radius: 3px;
+      border-radius: 4px;
       font-family: var(--font-mono);
       font-size: var(--text-nano);
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 16px;
@@ -520,7 +521,7 @@
       font-family: var(--font-display);
       font-size: 1.5rem;
       font-weight: 400;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 12px;
       position: relative;
       z-index: 1;
@@ -528,7 +529,7 @@
 
     .scenario-card-premise {
       font-size: var(--text-small);
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.75);
       margin-bottom: 20px;
       line-height: 1.6;
       position: relative;
@@ -541,10 +542,14 @@
       border: 1px solid var(--border-subtle);
       border-radius: 4px;
       font-size: var(--text-small);
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.7);
       line-height: 1.6;
       position: relative;
       z-index: 1;
+    }
+
+    .scenario-card-impact strong {
+      color: rgba(255,255,255,0.85);
     }
 
     .scenario-card-cta {
@@ -552,7 +557,7 @@
       padding: 12px;
       text-align: center;
       font-size: var(--text-small);
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.5);
       border: 1px dashed var(--border-subtle);
       border-radius: 3px;
       transition: all var(--duration-fast);
@@ -561,7 +566,7 @@
     }
 
     .scenario-card:hover .scenario-card-cta {
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.7);
       border-color: var(--border-default);
     }
 
@@ -604,7 +609,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 8px;
       display: block;
     }
@@ -613,11 +618,11 @@
       font-family: var(--font-body);
       font-size: var(--text-body);
       line-height: 1.7;
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.75);
     }
 
     .output-content strong {
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.95);
     }
 
     .output-actions {
@@ -633,11 +638,11 @@
       border-left: 3px solid var(--signal-behavioral);
       border-radius: 2px;
       font-size: var(--text-small);
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.7);
     }
 
     .output-action strong {
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.95);
     }
 
     .output-question {
@@ -646,7 +651,7 @@
       border-left: 3px solid var(--signal-behavioral);
       border-radius: 3px;
       font-style: italic;
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.75);
       margin-top: 12px;
     }
 
@@ -682,7 +687,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 12px;
       display: block;
     }
@@ -719,7 +724,7 @@
       background: var(--bg-elevated);
       border: 1px solid var(--border-default);
       border-radius: 4px;
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.65);
       font-size: var(--text-small);
       font-weight: 500;
       cursor: pointer;
@@ -729,7 +734,7 @@
     .control-btn:hover {
       background: var(--bg-glass-hover);
       border-color: var(--border-strong);
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.9);
     }
 
     .control-btn.active {
@@ -741,7 +746,7 @@
     .control-stat {
       font-family: var(--font-mono);
       font-size: var(--text-small);
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.7);
       padding: 0 12px;
       border-left: 1px solid var(--border-subtle);
     }
@@ -757,7 +762,7 @@
       background: var(--bg-glass);
       border: 1px solid var(--border-subtle);
       border-radius: 3px;
-      color: var(--text-tertiary);
+      color: rgba(255,255,255,0.5);
       font-size: var(--text-small);
       font-weight: 500;
       cursor: pointer;
@@ -775,7 +780,7 @@
       background: var(--bg-elevated);
       border: 1px solid var(--border-default);
       border-radius: 4px;
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.8);
       font-size: var(--text-small);
       font-weight: 500;
       cursor: pointer;
@@ -785,6 +790,7 @@
     .scenario-preset:hover {
       background: var(--bg-glass-hover);
       border-color: var(--border-strong);
+      color: rgba(255,255,255,0.95);
     }
 
     /* Canvas Container */
@@ -879,7 +885,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.4);
     }
 
     .configurator-select {
@@ -887,7 +893,7 @@
       background: var(--bg-secondary);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.9);
       font-family: var(--font-body);
       font-size: 14px;
       cursor: pointer;
@@ -970,14 +976,14 @@
       font-family: var(--font-display);
       font-size: 18px;
       font-weight: 600;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 4px;
     }
 
     .persona-metadata {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.4);
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 12px;
@@ -987,7 +993,7 @@
 
     .persona-profile {
       font-size: 13px;
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.7);
       line-height: 1.5;
       margin-bottom: 16px;
       font-style: italic;
@@ -1000,7 +1006,7 @@
       border-radius: 6px;
       margin-bottom: 12px;
       font-size: 13px;
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.75);
       line-height: 1.6;
       font-style: italic;
     }
@@ -1105,7 +1111,7 @@
       font-family: var(--font-display);
       font-size: 16px;
       font-weight: 600;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.9);
       margin-bottom: 16px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -1129,6 +1135,7 @@
       min-width: 80px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.7);
     }
 
     .sentiment-bar.positive .sentiment-bar-label {
@@ -1169,7 +1176,7 @@
     }
 
     .sentiment-bar-fill span {
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.95);
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
@@ -1188,12 +1195,12 @@
       border-left: 3px solid var(--accent-human);
       border-radius: 6px;
       font-size: 13px;
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.7);
       line-height: 1.6;
     }
 
     .theme-item strong {
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.9);
     }
 
     .driver-pills {
@@ -1211,7 +1218,7 @@
 
     .confidence-badge {
       font-size: 14px;
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.7);
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
@@ -1321,7 +1328,7 @@
       font-family: var(--font-display);
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.9);
       margin-bottom: 4px;
     }
 
@@ -1357,7 +1364,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 8px;
     }
 
@@ -1365,7 +1372,7 @@
       font-family: var(--font-display);
       font-size: 2.5rem;
       font-weight: 300;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.95);
       line-height: 1;
     }
 
@@ -1396,7 +1403,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 16px;
     }
 
@@ -1430,14 +1437,14 @@
       font-size: var(--text-nano);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 12px;
     }
 
     .nexus-detail-text {
       font-family: var(--font-body);
       font-size: var(--text-small);
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.75);
       line-height: 1.6;
     }
 
@@ -1458,13 +1465,13 @@
     }
 
     .nexus-driver-name {
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.7);
     }
 
     .nexus-driver-value {
       font-family: var(--font-mono);
       font-weight: 600;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.95);
     }
 
     .nexus-driver-delta {
@@ -1480,7 +1487,7 @@
       border-radius: 2px;
       font-family: var(--font-body);
       font-size: var(--text-small);
-      color: var(--text-secondary);
+      color: rgba(255,255,255,0.75);
       line-height: 1.6;
       font-style: italic;
     }
@@ -1708,7 +1715,7 @@
       <div class="scenario-mode active mode-insight" data-mode="insight">
         <div class="scenario-mode-label">Insight / Nearsight</div>
         <h2 class="scenario-mode-headline">Where Are We Losing Them?</h2>
-        <p style="font-family: var(--font-body); font-size: var(--text-small); color: var(--text-secondary); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Descend through the conversion funnel layer by layer. Identify where friction emerges and what drives each drop. Single number: one insight.</p>
+        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Descend through the conversion funnel layer by layer. Identify where friction emerges and what drives each drop. Single number: one insight.</p>
 
         <!-- Conversion Funnel -->
         <div class="funnel-container">
@@ -1808,8 +1815,8 @@
         </div>
 
         <div style="padding: 40px; background: var(--bg-elevated); border: 1px solid var(--border-default); border-radius: 6px; margin-bottom: 40px;">
-          <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px;">Key Opportunity</div>
-          <p style="font-family: var(--font-body); font-size: var(--text-body); color: var(--text-primary); line-height: 1.7; margin: 0;">The biggest opportunity is in the Aware to Considered stage. A 5% improvement here adds 4.5M potential customers to consideration. This is where pricing transparency and trust messaging converge. Win this stage, win the funnel.</p>
+          <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px;">Key Opportunity</div>
+          <p style="font-family: var(--font-body); font-size: var(--text-body); color: rgba(255,255,255,0.95); line-height: 1.7; margin: 0;">The biggest opportunity is in the Aware to Considered stage. A 5% improvement here adds 4.5M potential customers to consideration. This is where pricing transparency and trust messaging converge. Win this stage, win the funnel.</p>
         </div>
 
         <div class="glass-box-inline">◆ Funnel analysis via behavioral signals · 312K user sessions tracked · Session funnel data current: Mar 4, 2026 · Confidence: HIGH</div>
@@ -1821,7 +1828,7 @@
       <div class="scenario-mode mode-wargame" data-mode="wargame">
         <div class="scenario-mode-label">War Gaming / Foresight</div>
         <h2 class="scenario-mode-headline">What Futures Should We Prepare For?</h2>
-        <p style="font-family: var(--font-body); font-size: var(--text-small); color: var(--text-secondary); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Explore three divergent futures. Click a scenario to run simulations and uncover strategic vectors: what to attack, what to defend, how to bridge from today to tomorrow.</p>
+        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Explore three divergent futures. Click a scenario to run simulations and uncover strategic vectors: what to attack, what to defend, how to bridge from today to tomorrow.</p>
 
         <!-- Scenario Cards -->
         <div class="scenarios-grid">
@@ -1829,7 +1836,7 @@
             <span class="scenario-card-badge">Share Shift</span>
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
               <h3 class="scenario-card-title" style="margin-bottom: 0;">2027: Regulatory Wave</h3>
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: var(--text-muted);">72% likely</div>
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(255,255,255,0.4);">72% likely</div>
             </div>
             <p class="scenario-card-premise">EU-wide STR regulations mandate transparency. Barcelona model spreads to 15 major markets.</p>
             <div class="scenario-card-impact">
@@ -1838,8 +1845,8 @@
               <strong>Stayworthy Play:</strong> First-mover on regulatory compliance - trust moat - Dependable driver +8
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; font-size: var(--text-small);">
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: var(--text-muted); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #34d399; font-weight: 600;">+8 Dependable</span></div>
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: var(--text-muted); font-family: var(--font-mono);">Status</span><br><span style="color: #f59e0b; font-weight: 600;">NOT STARTED</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #34d399; font-weight: 600;">+8 Dependable</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">Status</span><br><span style="color: #f59e0b; font-weight: 600;">NOT STARTED</span></div>
             </div>
             <div class="scenario-card-cta">Click to explore strategic response</div>
           </div>
@@ -1848,7 +1855,7 @@
             <span class="scenario-card-badge">Category Expansion</span>
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
               <h3 class="scenario-card-title" style="margin-bottom: 0;">2029: AI Concierge Era</h3>
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: var(--text-muted);">65% likely</div>
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(255,255,255,0.4);">65% likely</div>
             </div>
             <p class="scenario-card-premise">AI trip planners become default booking channel. Google, Apple disintermediate OTAs.</p>
             <div class="scenario-card-impact">
@@ -1857,8 +1864,8 @@
               <strong>Stayworthy Play:</strong> Build the AI concierge layer before Google does - Personal driver becomes key differentiator
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; font-size: var(--text-small);">
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: var(--text-muted); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+7 Personal</span></div>
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: var(--text-muted); font-family: var(--font-mono);">Status</span><br><span style="color: #34d399; font-weight: 600;">IN PROGRESS</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+7 Personal</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">Status</span><br><span style="color: #34d399; font-weight: 600;">IN PROGRESS</span></div>
             </div>
             <div class="scenario-card-cta">Click to explore strategic response</div>
           </div>
@@ -1867,7 +1874,7 @@
             <span class="scenario-card-badge">Mixed</span>
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
               <h3 class="scenario-card-title" style="margin-bottom: 0;">2031: Decentralized Travel</h3>
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: var(--text-muted);">48% likely</div>
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(255,255,255,0.4);">48% likely</div>
             </div>
             <p class="scenario-card-premise">Blockchain-verified stays, peer-to-peer booking, community-owned platforms.</p>
             <div class="scenario-card-impact">
@@ -1876,8 +1883,8 @@
               <strong>Stayworthy Play:</strong> Hybrid model - centralized quality + decentralized community - Meaningful driver critical
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; font-size: var(--text-small);">
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: var(--text-muted); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+6 Meaningful</span></div>
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: var(--text-muted); font-family: var(--font-mono);">Status</span><br><span style="color: #818cf8; font-weight: 600;">READY</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+6 Meaningful</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">Status</span><br><span style="color: #818cf8; font-weight: 600;">READY</span></div>
             </div>
             <div class="scenario-card-cta">Click to explore strategic response</div>
           </div>
@@ -2024,7 +2031,7 @@
       <div class="scenario-mode mode-focus-group" data-mode="focus-group">
         <div class="scenario-mode-label">Virtual Focus Group</div>
         <h2 class="scenario-mode-headline">What Do Real Travelers Think?</h2>
-        <p style="font-family: var(--font-body); font-size: var(--text-small); color: var(--text-secondary); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Sit in on a live focus group. Eight personas, one topic. Watch how sentiment and drivers cluster. Hear their unfiltered voice.</p>
+        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Sit in on a live focus group. Eight personas, one topic. Watch how sentiment and drivers cluster. Hear their unfiltered voice.</p>
 
         <!-- Glass Box Attribution -->
         <div class="glass-box-inline focus-group-attribution">
@@ -2112,7 +2119,7 @@
       <div class="scenario-mode mode-signal-nexus" data-mode="signal-nexus">
         <div class="scenario-mode-label">Signal Nexus · Multi-Signal Intelligence</div>
         <h2 class="scenario-mode-headline" style="font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--text-primary); margin-bottom: 16px;">How Signals Converge Into Intelligence</h2>
-        <p style="font-family: var(--font-body); font-size: var(--text-small); color: var(--text-secondary); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Three parallel signal streams - what people say, what they do, and what the world is doing around them - converge into a unified Brand Fidelity score. Real-time. Always live.</p>
+        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Three parallel signal streams - what people say, what they do, and what the world is doing around them - converge into a unified Brand Fidelity score. Real-time. Always live.</p>
 
         <!-- 3-Panel Layout -->
         <div class="nexus-layout">

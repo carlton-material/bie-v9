@@ -1336,424 +1336,401 @@
 
         <style>
           /* ────────────────────────────────────────────────────────────
-             BF Framework: Clean Table Layout with Signal-to-Driver Mapping
+             BF Framework: 2-Row Orbital Layout with Signal-to-Driver Mapping
+             No overlaps, clean spacing, color-coded signals
              ──────────────────────────────────────────────────────────── */
 
           .bf-framework-wrapper {
             margin: 60px 0;
-            max-width: 1200px;
+            max-width: 1400px;
           }
 
           .bf-framework-container {
-            display: grid;
-            grid-template-columns: 280px 1fr 280px;
-            gap: 48px;
-            align-items: start;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            align-items: center;
             margin: 40px 0;
           }
 
-          /* ── Left Column: Signal Layers ── */
-          .bf-signals-column {
+          /* ── Top Section: In the Moment Drivers + Center Composite ── */
+          .bf-drivers-top-section {
             display: flex;
             flex-direction: column;
-            gap: 24px;
-          }
-
-          .bf-signal-block {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 6px;
-            backdrop-filter: blur(10px);
-          }
-
-          .bf-signal-block-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.4);
-            margin-bottom: 10px;
-            font-weight: 600;
-          }
-
-          .bf-signal-block-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 12px;
-            display: flex;
+            gap: 60px;
+            width: 100%;
             align-items: center;
-            gap: 8px;
           }
 
-          .bf-signal-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            flex-shrink: 0;
+          .bf-drivers-row {
+            display: flex;
+            gap: 120px;
+            justify-content: center;
+            align-items: flex-end;
+            width: 100%;
           }
 
-          .bf-signal-description {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.4;
-          }
-
-          /* ── Center Column: Driver-Signal Mapping Table ── */
-          .bf-mapping-table {
+          .bf-driver-card {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-          }
-
-          .bf-mapping-row {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
             gap: 16px;
-            align-items: center;
-            padding: 16px;
+            min-width: 200px;
+            padding: 28px;
             background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 4px;
-            transition: background 200ms ease;
-          }
-
-          .bf-mapping-row:hover {
-            background: rgba(255, 255, 255, 0.02);
-          }
-
-          .bf-mapping-signal {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-          }
-
-          .bf-mapping-signal-code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            padding: 3px 6px;
-            border-radius: 2px;
-            background: rgba(255, 255, 255, 0.05);
-          }
-
-          .bf-mapping-signal.human .bf-mapping-signal-code {
-            background: rgba(129, 140, 248, 0.15);
-            color: #818cf8;
-          }
-
-          .bf-mapping-signal.behavioral .bf-mapping-signal-code {
-            background: rgba(52, 211, 153, 0.15);
-            color: #34d399;
-          }
-
-          .bf-mapping-signal.cultural .bf-mapping-signal-code {
-            background: rgba(245, 158, 11, 0.15);
-            color: #f59e0b;
-          }
-
-          .bf-mapping-arrow {
-            text-align: center;
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.9rem;
-            font-weight: 300;
-          }
-
-          .bf-mapping-driver {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            justify-content: flex-end;
-          }
-
-          .bf-driver-code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            padding: 4px 8px;
-            border-radius: 2px;
-            background: rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.8);
-          }
-
-          .bf-mapping-row.human .bf-driver-code {
-            background: rgba(129, 140, 248, 0.15);
-            color: #818cf8;
-          }
-
-          .bf-mapping-row.behavioral .bf-driver-code {
-            background: rgba(52, 211, 153, 0.15);
-            color: #34d399;
-          }
-
-          .bf-mapping-row.cultural .bf-driver-code {
-            background: rgba(245, 158, 11, 0.15);
-            color: #f59e0b;
-          }
-
-          /* ── Right Column: Drivers ── */
-          .bf-drivers-column {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-          }
-
-          .bf-driver-group {
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 6px;
+            border-radius: 12px;
             backdrop-filter: blur(10px);
+            transition: all 200ms ease;
+            text-align: center;
           }
 
-          .bf-driver-group-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.4);
-            margin-bottom: 14px;
-            font-weight: 600;
+          .bf-driver-card:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.12);
           }
 
-          .bf-driver-list {
+          /* Signal-specific colors */
+          .bf-driver-card.human {
+            border-color: rgba(129, 140, 248, 0.2);
+          }
+
+          .bf-driver-card.behavioral {
+            border-color: rgba(52, 211, 153, 0.2);
+          }
+
+          .bf-driver-card.cultural {
+            border-color: rgba(245, 158, 11, 0.2);
+          }
+
+          .bf-driver-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            position: relative;
+            border: 2px solid;
           }
 
-          .bf-driver-item {
-            padding-bottom: 14px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+          .bf-driver-circle.human {
+            background: rgba(129, 140, 248, 0.08);
+            border-color: #818cf8;
+            color: #818cf8;
           }
 
-          .bf-driver-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+          .bf-driver-circle.behavioral {
+            background: rgba(52, 211, 153, 0.08);
+            border-color: #34d399;
+            color: #34d399;
+          }
+
+          .bf-driver-circle.cultural {
+            background: rgba(245, 158, 11, 0.08);
+            border-color: #f59e0b;
+            color: #f59e0b;
+          }
+
+          .bf-driver-circle-abbr {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 0.05em;
+          }
+
+          .bf-driver-circle-meta {
+            font-size: 0.65rem;
+            margin-top: 4px;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
           }
 
           .bf-driver-name {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 500;
             color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 4px;
+            margin: 0;
           }
 
-          .bf-driver-desc {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.4;
-          }
-
-          /* ── Center Composite Score ── */
-          .bf-composite-score {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            pointer-events: none;
-            z-index: 10;
-          }
-
-          .bf-composite-score-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 4rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1;
-            letter-spacing: -0.02em;
-          }
-
-          .bf-composite-score-label {
+          .bf-driver-signal {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+          }
+
+          /* ── Center Composite Score ── */
+          .bf-composite-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            position: relative;
+            z-index: 20;
+            margin: 20px 0;
+          }
+
+          .bf-composite-score {
+            text-align: center;
+            pointer-events: none;
+          }
+
+          .bf-composite-score-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5.5rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin: 0;
+          }
+
+          .bf-composite-score-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
             color: rgba(255, 255, 255, 0.4);
-            margin-top: 6px;
+            margin-top: 12px;
+          }
+
+          /* ── Signal-to-Driver Legend ── */
+          .bf-signal-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 32px;
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            margin: 0 auto;
+          }
+
+          .bf-legend-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+            text-align: center;
+          }
+
+          .bf-legend-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+          }
+
+          .bf-legend-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: 6px;
+          }
+
+          .bf-legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+          }
+
+          .bf-legend-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.4;
+            margin: 0;
+          }
+
+          .bf-legend-text strong {
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+          }
+
+          /* ── Old columns hidden ── */
+          .bf-signals-column,
+          .bf-mapping-table,
+          .bf-drivers-column {
+            display: none;
           }
 
           /* ── Responsive ── */
-          @media (max-width: 1200px) {
+          @media (max-width: 1000px) {
+            .bf-drivers-row {
+              flex-wrap: wrap;
+              gap: 60px;
+            }
+
+            .bf-driver-card {
+              min-width: 180px;
+              padding: 24px;
+            }
+
+            .bf-driver-circle {
+              width: 80px;
+              height: 80px;
+            }
+
+            .bf-driver-circle-abbr {
+              font-size: 1.8rem;
+            }
+
+            .bf-driver-name {
+              font-size: 0.9rem;
+            }
+          }
+
+          @media (max-width: 700px) {
             .bf-framework-container {
-              grid-template-columns: 1fr;
+              gap: 50px;
+            }
+
+            .bf-drivers-row {
+              flex-direction: column;
               gap: 40px;
             }
 
-            .bf-composite-score {
-              position: static;
-              transform: none;
-              margin: 40px 0;
+            .bf-driver-card {
+              min-width: 160px;
+              padding: 20px;
+            }
+
+            .bf-driver-circle {
+              width: 70px;
+              height: 70px;
+            }
+
+            .bf-driver-circle-abbr {
+              font-size: 1.5rem;
+            }
+
+            .bf-composite-score-number {
+              font-size: 4rem;
+            }
+
+            .bf-signal-legend {
+              max-width: 100%;
+              padding: 24px;
             }
           }
         </style>
 
         <div class="bf-framework-wrapper">
           <div class="bf-framework-container">
-            <!-- Left: Signal Layers -->
-            <div class="bf-signals-column">
-              <div class="bf-signal-block">
-                <div class="bf-signal-block-label">Human-Expressive</div>
-                <div class="bf-signal-block-title">
-                  <div class="bf-signal-dot" style="background: #818cf8;"></div>
-                  Emotional
-                </div>
-                <div class="bf-signal-description">How customers feel and what they say. Sentiment, storytelling, brand perception.</div>
-              </div>
+            <!-- Top Row: In the Moment Drivers + Center Composite -->
+            <div class="bf-drivers-top-section">
+              <!-- In the Moment Row (UF, P, A) -->
+              <div>
+                <p style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); margin: 0 0 30px 0;">In the Moment</p>
+                <div class="bf-drivers-row">
+                  <!-- User Friendly (Behavioral) -->
+                  <div class="bf-driver-card behavioral">
+                    <div class="bf-driver-circle behavioral">
+                      <div class="bf-driver-circle-abbr">UF</div>
+                      <div class="bf-driver-circle-meta">72</div>
+                    </div>
+                    <h3 class="bf-driver-name">User Friendly</h3>
+                    <p class="bf-driver-signal">Behavioral</p>
+                  </div>
 
-              <div class="bf-signal-block">
-                <div class="bf-signal-block-label">Behavioral & Market</div>
-                <div class="bf-signal-block-title">
-                  <div class="bf-signal-dot" style="background: #34d399;"></div>
-                  Transactional
-                </div>
-                <div class="bf-signal-description">What customers actually do. Purchase behavior, engagement, repeat rates.</div>
-              </div>
+                  <!-- Personal (Human) -->
+                  <div class="bf-driver-card human">
+                    <div class="bf-driver-circle human">
+                      <div class="bf-driver-circle-abbr">P</div>
+                      <div class="bf-driver-circle-meta">68</div>
+                    </div>
+                    <h3 class="bf-driver-name">Personal</h3>
+                    <p class="bf-driver-signal">Human</p>
+                  </div>
 
-              <div class="bf-signal-block">
-                <div class="bf-signal-block-label">Cultural & Contextual</div>
-                <div class="bf-signal-block-title">
-                  <div class="bf-signal-dot" style="background: #f59e0b;"></div>
-                  Environmental
-                </div>
-                <div class="bf-signal-description">The operating environment. Trends, competition, category strength.</div>
-              </div>
-            </div>
-
-            <!-- Center: Signal-to-Driver Mapping -->
-            <div class="bf-mapping-table">
-              <div class="bf-mapping-row human">
-                <div class="bf-mapping-signal human">
-                  <span class="bf-mapping-signal-code">HE</span>
-                  <span>Human-Expressive</span>
-                </div>
-                <div class="bf-mapping-arrow">↦</div>
-                <div class="bf-mapping-driver">
-                  <span>Personal</span>
-                  <span class="bf-driver-code">P</span>
+                  <!-- Accessible (Cultural) -->
+                  <div class="bf-driver-card cultural">
+                    <div class="bf-driver-circle cultural">
+                      <div class="bf-driver-circle-abbr">A</div>
+                      <div class="bf-driver-circle-meta">75</div>
+                    </div>
+                    <h3 class="bf-driver-name">Accessible</h3>
+                    <p class="bf-driver-signal">Cultural</p>
+                  </div>
                 </div>
               </div>
 
-              <div class="bf-mapping-row human">
-                <div class="bf-mapping-signal human">
-                  <span class="bf-mapping-signal-code">HE</span>
-                  <span>Human-Expressive</span>
-                </div>
-                <div class="bf-mapping-arrow">↦</div>
-                <div class="bf-mapping-driver">
-                  <span>Meaningful</span>
-                  <span class="bf-driver-code">M</span>
-                </div>
-              </div>
-
-              <div class="bf-mapping-row behavioral">
-                <div class="bf-mapping-signal behavioral">
-                  <span class="bf-mapping-signal-code">B</span>
-                  <span>Behavioral</span>
-                </div>
-                <div class="bf-mapping-arrow">↦</div>
-                <div class="bf-mapping-driver">
-                  <span>User Friendly</span>
-                  <span class="bf-driver-code">UF</span>
-                </div>
-              </div>
-
-              <div class="bf-mapping-row behavioral">
-                <div class="bf-mapping-signal behavioral">
-                  <span class="bf-mapping-signal-code">B</span>
-                  <span>Behavioral</span>
-                </div>
-                <div class="bf-mapping-arrow">↦</div>
-                <div class="bf-mapping-driver">
-                  <span>Dependable</span>
-                  <span class="bf-driver-code">D</span>
-                </div>
-              </div>
-
-              <div class="bf-mapping-row cultural">
-                <div class="bf-mapping-signal cultural">
-                  <span class="bf-mapping-signal-code">C</span>
-                  <span>Cultural</span>
-                </div>
-                <div class="bf-mapping-arrow">↦</div>
-                <div class="bf-mapping-driver">
-                  <span>Salient</span>
-                  <span class="bf-driver-code">S</span>
-                </div>
-              </div>
-
-              <div class="bf-mapping-row cultural">
-                <div class="bf-mapping-signal cultural">
-                  <span class="bf-mapping-signal-code">C</span>
-                  <span>Cultural</span>
-                </div>
-                <div class="bf-mapping-arrow">↦</div>
-                <div class="bf-mapping-driver">
-                  <span>Accessible</span>
-                  <span class="bf-driver-code">A</span>
+              <!-- Center Composite Score -->
+              <div class="bf-composite-section">
+                <div class="bf-composite-score">
+                  <div class="bf-composite-score-number">72</div>
+                  <div class="bf-composite-score-label">Brand Fidelity</div>
                 </div>
               </div>
             </div>
 
-            <!-- Right: The Six Drivers -->
-            <div class="bf-drivers-column">
-              <div class="bf-driver-group">
-                <div class="bf-driver-group-label">In the Moment (Responsive)</div>
-                <div class="bf-driver-list">
-                  <div class="bf-driver-item">
-                    <div class="bf-driver-name">User Friendly</div>
-                    <div class="bf-driver-desc">Meets needs easily. Behavioral signal strength.</div>
+            <!-- Bottom Row: Over Time Drivers -->
+            <div>
+              <p style="text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); margin: 0 0 30px 0;">Over Time</p>
+              <div class="bf-drivers-row">
+                <!-- Dependable (Behavioral) -->
+                <div class="bf-driver-card behavioral">
+                  <div class="bf-driver-circle behavioral">
+                    <div class="bf-driver-circle-abbr">D</div>
+                    <div class="bf-driver-circle-meta">74</div>
                   </div>
-                  <div class="bf-driver-item">
-                    <div class="bf-driver-name">Personal</div>
-                    <div class="bf-driver-desc">Understands unique needs. Human signal strength.</div>
-                  </div>
-                  <div class="bf-driver-item">
-                    <div class="bf-driver-name">Accessible</div>
-                    <div class="bf-driver-desc">Always available. Cultural signal reach.</div>
-                  </div>
+                  <h3 class="bf-driver-name">Dependable</h3>
+                  <p class="bf-driver-signal">Behavioral</p>
                 </div>
-              </div>
 
-              <div class="bf-driver-group">
-                <div class="bf-driver-group-label">Over Time (Sustained)</div>
-                <div class="bf-driver-list">
-                  <div class="bf-driver-item">
-                    <div class="bf-driver-name">Dependable</div>
-                    <div class="bf-driver-desc">Consistent quality. Behavioral stability.</div>
+                <!-- Meaningful (Human) -->
+                <div class="bf-driver-card human">
+                  <div class="bf-driver-circle human">
+                    <div class="bf-driver-circle-abbr">M</div>
+                    <div class="bf-driver-circle-meta">71</div>
                   </div>
-                  <div class="bf-driver-item">
-                    <div class="bf-driver-name">Meaningful</div>
-                    <div class="bf-driver-desc">Significant role in life. Human depth.</div>
+                  <h3 class="bf-driver-name">Meaningful</h3>
+                  <p class="bf-driver-signal">Human</p>
+                </div>
+
+                <!-- Salient (Cultural) -->
+                <div class="bf-driver-card cultural">
+                  <div class="bf-driver-circle cultural">
+                    <div class="bf-driver-circle-abbr">S</div>
+                    <div class="bf-driver-circle-meta">70</div>
                   </div>
-                  <div class="bf-driver-item">
-                    <div class="bf-driver-name">Salient</div>
-                    <div class="bf-driver-desc">Top-of-mind choice. Cultural impact.</div>
-                  </div>
+                  <h3 class="bf-driver-name">Salient</h3>
+                  <p class="bf-driver-signal">Cultural</p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Composite Score in Center -->
-          <div class="bf-composite-score">
-            <div class="bf-composite-score-number">72</div>
-            <div class="bf-composite-score-label">Brand Fidelity</div>
+            <!-- Signal-to-Driver Legend -->
+            <div class="bf-signal-legend">
+              <p class="bf-legend-title">Signal Mapping Legend</p>
+              <div class="bf-legend-rows">
+                <div class="bf-legend-row">
+                  <div class="bf-legend-dot" style="background: #818cf8;"></div>
+                  <p class="bf-legend-text"><strong>Human-Expressive</strong> signals → <strong>Personal, Meaningful</strong> drivers</p>
+                </div>
+                <div class="bf-legend-row">
+                  <div class="bf-legend-dot" style="background: #34d399;"></div>
+                  <p class="bf-legend-text"><strong>Behavioral Signals</strong> → <strong>User Friendly, Dependable</strong> drivers</p>
+                </div>
+                <div class="bf-legend-row">
+                  <div class="bf-legend-dot" style="background: #f59e0b;"></div>
+                  <p class="bf-legend-text"><strong>Cultural Signals</strong> → <strong>Salient, Accessible</strong> drivers</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

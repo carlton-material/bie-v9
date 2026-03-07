@@ -49,6 +49,17 @@
       50% { opacity: 0.7; }
     }
 
+    .guidance-header {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      padding: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+    }
+
     .guided-analysis {
       padding: 48px 64px 120px;
       animation: fade-in-up 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -56,7 +67,7 @@
 
     /* ── Header ── */
     .ga-header {
-      margin-bottom: 48px;
+      margin-bottom: 56px;
     }
 
     .ga-header-micro {
@@ -65,7 +76,7 @@
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--gray-500);
+      color: rgba(255,255,255,0.5);
       margin-bottom: 12px;
     }
 
@@ -74,7 +85,7 @@
       font-size: 48px;
       font-weight: 300;
       line-height: 1.2;
-      color: var(--gray-950);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 16px;
       letter-spacing: -0.02em;
     }
@@ -82,7 +93,7 @@
     .ga-header-subtitle {
       font-family: var(--font-body);
       font-size: 14px;
-      color: var(--gray-600);
+      color: rgba(255,255,255,0.65);
       line-height: 1.6;
       max-width: 640px;
     }
@@ -95,17 +106,17 @@
     .ga-cards-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-top: 40px;
+      gap: 28px;
+      margin-top: 48px;
     }
 
     .ga-card {
       border: 1px solid rgba(255,255,255,0.06);
       background: #0f0f0f;
-      padding: 32px;
+      padding: 24px;
       border-radius: 4px;
       cursor: pointer;
-      transition: all var(--duration-fast) var(--ease-out);
+      transition: all var(--duration-normal) var(--ease-out);
       position: relative;
       overflow: hidden;
     }
@@ -117,16 +128,16 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, rgba(167, 139, 250, 0.05) 0%, rgba(20, 184, 166, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(129, 140, 248, 0.06) 0%, rgba(52, 211, 153, 0.06) 100%);
       opacity: 0;
       transition: opacity var(--duration-fast);
     }
 
     .ga-card:hover {
-      border-color: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.16);
       background: #141414;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      transform: translateY(-2px);
     }
 
     .ga-card:hover::before {
@@ -134,34 +145,36 @@
     }
 
     .ga-card-icon {
-      font-size: 32px;
-      margin-bottom: 16px;
-      opacity: 0.8;
+      font-size: 28px;
+      margin-bottom: 12px;
+      opacity: 0.9;
     }
 
     .ga-card-title {
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
-      color: #f0f0f0;
-      margin-bottom: 12px;
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
     }
 
     .ga-card-description {
       font-family: var(--font-body);
-      font-size: 12px;
-      line-height: 1.5;
-      color: #aaa;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 12px;
     }
 
     /* ── Brand Fidelity Driver Labels ── */
     .ga-card-drivers {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-top: 12px;
+      margin-top: 14px;
       padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .ga-driver-label {
@@ -169,23 +182,24 @@
       align-items: center;
       justify-content: center;
       gap: 4px;
-      padding: 4px 8px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 5px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 3px;
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(255, 255, 255, 0.6);
       min-width: 28px;
-      height: 22px;
-      transition: all 150ms ease;
+      height: 24px;
+      transition: all var(--duration-fast) var(--ease-out);
     }
 
     .ga-driver-label:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     .ga-driver-label::before {
@@ -198,33 +212,51 @@
     }
 
     .ga-driver-label.human {
-      border-color: rgba(129, 140, 248, 0.2);
-      background: rgba(129, 140, 248, 0.08);
-      color: #818cf8;
+      border-color: rgba(129, 140, 248, 0.25);
+      background: rgba(129, 140, 248, 0.1);
+      color: #a78bfa;
     }
 
     .ga-driver-label.human::before {
-      background: #818cf8;
+      background: #a78bfa;
+    }
+
+    .ga-driver-label.human:hover {
+      border-color: rgba(129, 140, 248, 0.4);
+      background: rgba(129, 140, 248, 0.15);
+      color: #818cf8;
     }
 
     .ga-driver-label.behavioral {
-      border-color: rgba(52, 211, 153, 0.2);
-      background: rgba(52, 211, 153, 0.08);
-      color: #34d399;
+      border-color: rgba(52, 211, 153, 0.25);
+      background: rgba(52, 211, 153, 0.1);
+      color: #6ee7b7;
     }
 
     .ga-driver-label.behavioral::before {
-      background: #34d399;
+      background: #6ee7b7;
+    }
+
+    .ga-driver-label.behavioral:hover {
+      border-color: rgba(52, 211, 153, 0.4);
+      background: rgba(52, 211, 153, 0.15);
+      color: #34d399;
     }
 
     .ga-driver-label.cultural {
-      border-color: rgba(245, 158, 11, 0.2);
-      background: rgba(245, 158, 11, 0.08);
-      color: #f59e0b;
+      border-color: rgba(245, 158, 11, 0.25);
+      background: rgba(245, 158, 11, 0.1);
+      color: #fbbf24;
     }
 
     .ga-driver-label.cultural::before {
-      background: #f59e0b;
+      background: #fbbf24;
+    }
+
+    .ga-driver-label.cultural:hover {
+      border-color: rgba(245, 158, 11, 0.4);
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
     }
 
     /* ── TOPIC & CHAT State: Conversation Container ── */
@@ -243,7 +275,7 @@
       font-family: var(--font-grotesk);
       font-size: 28px;
       font-weight: 300;
-      color: var(--gray-950);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 12px;
       letter-spacing: -0.02em;
     }
@@ -251,14 +283,14 @@
     .ga-conversation-subtitle {
       font-family: var(--font-body);
       font-size: 13px;
-      color: var(--gray-600);
+      color: rgba(255,255,255,0.55);
     }
 
     /* ── Thread ── */
     .ga-thread {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 28px;
       margin-top: 32px;
     }
 
@@ -287,15 +319,16 @@
     }
 
     .ga-message.analyst .ga-message-content {
-      background: var(--gray-50);
-      border: 1px solid var(--gray-200);
-      border-left: 3px solid var(--teal-500);
-      color: var(--gray-900);
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-left: 3px solid var(--signal-behavioral);
+      color: rgba(255,255,255,0.85);
     }
 
     .ga-message.user .ga-message-content {
-      background: var(--gray-900);
-      color: #fff;
+      background: rgba(129, 140, 248, 0.15);
+      border: 1px solid rgba(129, 140, 248, 0.2);
+      color: rgba(255,255,255,0.9);
     }
 
     .ga-message-content strong {
@@ -312,10 +345,10 @@
     .ga-message-glass {
       margin-top: 12px;
       padding-top: 12px;
-      border-top: 1px solid var(--gray-300);
+      border-top: 1px solid rgba(255,255,255,0.08);
       font-family: var(--font-mono);
       font-size: 10px;
-      color: var(--gray-600);
+      color: rgba(255,255,255,0.5);
       line-height: 1.5;
     }
 
@@ -336,18 +369,18 @@
       font-family: var(--font-body);
       font-size: 12px;
       padding: 8px 12px;
-      border: 1px solid var(--gray-300);
-      background: #fff;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
       border-radius: 20px;
       cursor: pointer;
       transition: all var(--duration-fast) var(--ease-out);
-      color: var(--gray-700);
+      color: rgba(255,255,255,0.7);
     }
 
     .ga-suggestion-pill:hover {
-      border-color: var(--gray-400);
-      background: var(--gray-50);
-      color: var(--gray-900);
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.9);
     }
 
     /* ── Question Grid ── */
@@ -361,32 +394,33 @@
     .ga-question-btn {
       text-align: left;
       padding: 16px;
-      border: 1px solid var(--gray-300);
-      background: #fff;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #0a0a0a;
       border-radius: 4px;
       font-family: var(--font-body);
       font-size: 13px;
-      color: var(--gray-900);
+      color: rgba(255,255,255,0.8);
       cursor: pointer;
       transition: all var(--duration-fast) var(--ease-out);
     }
 
     .ga-question-btn:hover {
-      border-color: var(--gray-400);
-      background: var(--gray-50);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border-color: rgba(255,255,255,0.16);
+      background: #141414;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      transform: translateY(-2px);
     }
 
     .ga-question-btn-label {
       display: block;
       font-weight: 500;
       margin-bottom: 4px;
-      color: var(--gray-950);
+      color: rgba(255,255,255,0.95);
     }
 
     .ga-question-btn-text {
       font-size: 12px;
-      color: var(--gray-600);
+      color: rgba(255,255,255,0.5);
     }
 
     /* ── OUTPUT State: Instant Brief ── */
@@ -405,7 +439,7 @@
       font-family: var(--font-grotesk);
       font-size: 36px;
       font-weight: 300;
-      color: var(--gray-950);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 12px;
       letter-spacing: -0.02em;
     }
@@ -413,14 +447,14 @@
     .ga-brief-subtitle {
       font-family: var(--font-body);
       font-size: 13px;
-      color: var(--gray-600);
+      color: rgba(255,255,255,0.55);
     }
 
     .ga-brief-section {
       margin-bottom: 40px;
-      padding: 32px;
-      border: 1px solid var(--gray-200);
-      background: #fff;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #0a0a0a;
       border-radius: 4px;
     }
 
@@ -430,7 +464,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--gray-600);
+      color: rgba(255,255,255,0.5);
       margin-bottom: 12px;
     }
 
@@ -438,7 +472,7 @@
       font-family: var(--font-grotesk);
       font-size: 18px;
       font-weight: 500;
-      color: var(--gray-950);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 16px;
       letter-spacing: -0.01em;
     }
@@ -447,16 +481,17 @@
       font-family: var(--font-body);
       font-size: 13px;
       line-height: 1.7;
-      color: var(--gray-800);
+      color: rgba(255,255,255,0.75);
     }
 
     .ga-brief-section-content strong {
       font-weight: 600;
+      color: rgba(255,255,255,0.9);
     }
 
     .ga-brief-section-content em {
       font-style: italic;
-      color: var(--gray-700);
+      color: rgba(255,255,255,0.6);
     }
 
     .ga-brief-actions {
@@ -468,26 +503,27 @@
 
     .ga-brief-action {
       padding: 12px;
-      border-left: 3px solid var(--gray-300);
-      background: var(--gray-50);
+      border-left: 3px solid var(--signal-cultural);
+      background: rgba(245,158,11,0.08);
       border-radius: 0 4px 4px 0;
       font-size: 13px;
-      color: var(--gray-900);
+      color: rgba(255,255,255,0.75);
     }
 
     .ga-brief-action strong {
       display: block;
       font-weight: 600;
       margin-bottom: 4px;
+      color: var(--signal-cultural);
     }
 
     .ga-brief-glass {
       margin-top: 32px;
       padding-top: 32px;
-      border-top: 1px solid var(--gray-200);
+      border-top: 1px solid rgba(255,255,255,0.08);
       font-family: var(--font-mono);
       font-size: 10px;
-      color: var(--gray-600);
+      color: rgba(255,255,255,0.45);
       line-height: 1.6;
     }
 
@@ -495,7 +531,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: var(--gray-700);
+      color: rgba(255,255,255,0.5);
       margin-bottom: 8px;
     }
 
@@ -509,18 +545,18 @@
       font-size: var(--text-small);
       letter-spacing: 0.05em;
       padding: var(--space-sm) var(--space-lg);
-      border: 1px solid var(--border-default);
-      color: var(--text-secondary);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.7);
       cursor: pointer;
       transition: all var(--duration-fast) var(--ease-out);
-      background: #fff;
+      background: #0a0a0a;
       border-radius: 4px;
     }
 
     .ga-brief-footer-btn:hover {
-      color: var(--text-primary);
-      border-color: var(--border-default);
-      background: var(--gray-50);
+      color: rgba(255,255,255,0.95);
+      border-color: rgba(255,255,255,0.16);
+      background: #141414;
     }
 
     /* ── State Management ── */
@@ -635,7 +671,7 @@
           <div class="ga-card-icon">💓</div>
           <div class="ga-card-title">Brand Health</div>
           <div class="ga-card-description">Which drivers are strengthening loyalty and which are eroding it? Start here for board presentations and quarterly reviews.</div>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: quarterly reviews, board presentations, competitive benchmarking</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.5); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: quarterly reviews, board presentations, competitive benchmarking</div>
           <div class="ga-card-drivers">
             <span class="ga-driver-label human" title="Personal. Understands unique needs">P</span>
             <span class="ga-driver-label human" title="Meaningful. Significant role in life">M</span>
@@ -650,7 +686,7 @@
           <div class="ga-card-icon">⊕</div>
           <div class="ga-card-title">Competitive Dynamics</div>
           <div class="ga-card-description">Booking.com leads by 2 points. Where can Stayworthy close the gap, and where should it differentiate instead?</div>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: strategy sessions, pricing decisions, market positioning</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.5); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: strategy sessions, pricing decisions, market positioning</div>
           <div class="ga-card-drivers">
             <span class="ga-driver-label cultural" title="Salient. Top-of-mind choice">S</span>
             <span class="ga-driver-label cultural" title="Accessible. Always available">A</span>
@@ -662,7 +698,7 @@
           <div class="ga-card-icon">👥</div>
           <div class="ga-card-title">Audience Segments</div>
           <div class="ga-card-description">Budget Travelers are your largest segment at 28%, but Experience Seekers show the highest growth potential. Who should you invest in?</div>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: marketing planning, product roadmaps, segment targeting</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.5); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: marketing planning, product roadmaps, segment targeting</div>
           <div class="ga-card-drivers">
             <span class="ga-driver-label behavioral" title="User Friendly. Meets needs easily">UF</span>
             <span class="ga-driver-label behavioral" title="Dependable. Consistent quality">D</span>
@@ -674,7 +710,7 @@
           <div class="ga-card-icon">〰</div>
           <div class="ga-card-title">Sentiment Patterns</div>
           <div class="ga-card-description">Stated satisfaction is 78%, but behavioral repeat rate is 56%. This 22-point gap is your most urgent signal. Track it here.</div>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: crisis monitoring, campaign impact measurement, narrative tracking</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.5); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: crisis monitoring, campaign impact measurement, narrative tracking</div>
           <div class="ga-card-drivers">
             <span class="ga-driver-label human" title="Personal. Understands unique needs">P</span>
             <span class="ga-driver-label human" title="Meaningful. Significant role in life">M</span>

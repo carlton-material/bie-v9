@@ -129,7 +129,8 @@
       margin-bottom: 56px;
       padding: 40px;
       border: 1px solid var(--border-subtle);
-      background: var(--bg-primary);
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 4px;
       animation: morning-flash-slide-left 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s backwards;
     }
     
@@ -148,11 +149,12 @@
     
     .cc-composite-number {
       font-family: var(--font-grotesk);
-      font-size: 96px;
-      font-weight: 400;
+      font-size: 100px;
+      font-weight: 300;
       color: var(--text-primary);
       line-height: 1;
       min-width: 140px;
+      letter-spacing: -0.02em;
     }
     
     .cc-composite-delta {
@@ -177,26 +179,37 @@
     .cc-composite-drivers {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+      gap: 24px;
       border-top: 1px solid var(--border-subtle);
-      padding-top: 32px;
+      padding-top: 40px;
+      margin-top: 8px;
     }
     
     .cc-driver {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 12px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      transition: all 300ms ease;
     }
-    
+
+    .cc-driver:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
     .cc-driver-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: var(--font-body);
-      font-size: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       color: var(--text-secondary);
     }
     
@@ -220,29 +233,30 @@
     }
     
     .cc-driver-bar {
-      height: 6px;
-      background: var(--border-default);
-      border-radius: 3px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
       overflow: hidden;
+      border: 1px solid var(--border-subtle);
     }
-    
+
     .cc-driver-bar-fill {
       height: 100%;
-      background: var(--text-secondary);
-      border-radius: 3px;
+      background: linear-gradient(90deg, rgba(52, 211, 153, 0.7) 0%, rgba(52, 211, 153, 0.4) 100%);
+      border-radius: 4px;
       transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    
+
     .cc-driver-bar.crisis .cc-driver-bar-fill {
-      background: var(--red-500);
+      background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
     }
-    
+
     .cc-driver-bar.critical .cc-driver-bar-fill {
-      background: var(--red-600);
+      background: linear-gradient(90deg, #f97316 0%, #ea580c 100%);
     }
-    
+
     .cc-driver-bar.strength .cc-driver-bar-fill {
-      background: var(--green-500);
+      background: linear-gradient(90deg, #10b981 0%, #059669 100%);
     }
     
     .cc-composite-glass {
@@ -273,15 +287,16 @@
     }
     
     .cc-panel {
-      background: var(--bg-elevated);
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border-subtle);
-      border-radius: 6px;
+      border-radius: 4px;
       padding: 24px;
-      transition: border-color 300ms ease;
+      transition: all 300ms ease;
     }
 
     .cc-panel:hover {
-      border-color: var(--border-default);
+      border-color: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .cc-panel-header {
@@ -303,11 +318,12 @@
     
     .cc-signals-number {
       font-family: var(--font-grotesk);
-      font-size: 72px;
-      font-weight: 400;
+      font-size: 80px;
+      font-weight: 300;
       color: var(--text-primary);
       line-height: 1;
       margin-bottom: 8px;
+      letter-spacing: -0.02em;
     }
     
     .cc-signals-label {
@@ -338,35 +354,36 @@
     .cc-signal-sub-label {
       font-family: var(--font-body);
       font-size: 12px;
-      color: var(--text-secondary);
+      color: var(--text-primary);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      font-weight: 500;
     }
-    
+
     .cc-signal-sub-dot {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 2px;
       flex-shrink: 0;
     }
-    
+
     .cc-signal-sub-dot.human {
-      background: var(--violet-500);
+      background: #818cf8;
     }
-    
+
     .cc-signal-sub-dot.behavioral {
-      background: var(--teal-500);
+      background: #34d399;
     }
-    
+
     .cc-signal-sub-dot.cultural {
-      background: var(--amber-500);
+      background: #f59e0b;
     }
-    
+
     .cc-signal-sub-value {
       font-family: var(--font-grotesk);
-      font-size: 16px;
-      font-weight: 500;
+      font-size: 18px;
+      font-weight: 600;
       color: var(--text-primary);
     }
     
@@ -402,47 +419,62 @@
       flex-direction: column;
       gap: 16px;
     }
-    
+
     .cc-alert-card {
-      border-left: 4px solid var(--red-500);
-      background: var(--bg-card);
+      border-left: 4px solid #ef4444;
+      background: rgba(239, 68, 68, 0.08);
       padding: 20px;
       border-radius: 0 4px 4px 0;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-left: 4px solid #ef4444;
+      transition: all 300ms ease;
     }
-    
+
+    .cc-alert-card:hover {
+      background: rgba(239, 68, 68, 0.12);
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
     .cc-alert-card.medium {
-      border-left-color: var(--amber-500);
-      background: var(--bg-card);
+      border-left-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.2);
     }
-    
+
+    .cc-alert-card.medium:hover {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
     .cc-alert-severity {
       font-family: var(--font-mono);
       font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--red-500);
+      color: #ef4444;
       margin-bottom: 6px;
+      display: inline-block;
     }
-    
+
     .cc-alert-card.medium .cc-alert-severity {
-      color: var(--amber-500);
+      color: #f59e0b;
     }
-    
+
     .cc-alert-title {
       font-family: var(--font-body);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 8px;
     }
-    
+
     .cc-alert-detail {
       font-family: var(--font-body);
       font-size: 12px;
-      line-height: 1.5;
-      color: var(--text-secondary);
-      opacity: 0.9;
+      line-height: 1.6;
+      color: var(--text-primary);
+      margin-bottom: 8px;
     }
     
     /* Competitive Position Panel */
@@ -455,48 +487,50 @@
     .cc-competitive-bar {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
     }
-    
+
     .cc-competitive-label {
-      font-family: var(--font-body);
-      font-size: 12px;
+      font-family: var(--font-mono);
+      font-size: 11px;
       color: var(--text-secondary);
-      min-width: 120px;
+      min-width: 140px;
       font-weight: 500;
+      letter-spacing: 0.02em;
     }
-    
+
     .cc-competitive-label.self {
       font-weight: 600;
       color: var(--text-primary);
     }
-    
+
     .cc-competitive-bar-container {
       flex: 1;
-      height: 20px;
-      background: var(--border-default);
-      border-radius: 2px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
       overflow: hidden;
       position: relative;
+      border: 1px solid var(--border-subtle);
     }
-    
+
     .cc-competitive-bar-fill {
       height: 100%;
-      background: var(--text-secondary);
+      background: linear-gradient(90deg, rgba(117, 90, 255, 0.7) 0%, rgba(117, 90, 255, 0.4) 100%);
       border-radius: 2px;
       transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    
+
     .cc-competitive-bar-fill.self {
-      background: var(--text-primary);
+      background: linear-gradient(90deg, #745AFF 0%, rgba(117, 90, 255, 0.6) 100%);
     }
-    
+
     .cc-competitive-value {
       font-family: var(--font-grotesk);
       font-size: 13px;
       font-weight: 500;
-      color: var(--text-secondary);
-      min-width: 40px;
+      color: var(--text-primary);
+      min-width: 45px;
       text-align: right;
     }
     
@@ -581,28 +615,34 @@
     
     .cc-pattern-card {
       border: 1px solid var(--border-subtle);
-      background: var(--bg-card);
+      background: rgba(255, 255, 255, 0.04);
       padding: 24px;
       display: flex;
       flex-direction: column;
       gap: 16px;
       min-height: 160px;
+      border-radius: 4px;
+      transition: all 300ms ease;
     }
-    
+
+    .cc-pattern-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
     .cc-pattern-title {
       font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 700;
       color: var(--text-primary);
       line-height: 1.4;
     }
-    
+
     .cc-pattern-description {
       font-family: var(--font-body);
       font-size: 12px;
-      line-height: 1.5;
-      color: var(--text-secondary);
-      opacity: 0.9;
+      line-height: 1.6;
+      color: var(--text-primary);
     }
     
     .cc-pattern-signal {
@@ -660,14 +700,15 @@
     
     .cc-sentiment-chart {
       border: 1px solid var(--border-subtle);
-      background: var(--bg-card);
+      background: rgba(255, 255, 255, 0.04);
       padding: 32px;
-      min-height: 280px;
+      min-height: 320px;
+      border-radius: 4px;
     }
-    
+
     .cc-sentiment-svg {
       width: 100%;
-      height: 240px;
+      height: 280px;
     }
     
     .cc-sentiment-legend {
@@ -798,8 +839,8 @@
           <div class="cc-driver-bar">
             <div class="cc-driver-bar-fill" style="width: 72%;"></div>
           </div>
-          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary);">−4</div>
-          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-secondary); margin-top: 8px; line-height: 1.4;">Friction in the booking flow is eroding ease-of-use. UX audit recommended within 2 weeks.</div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); font-weight: 600;">−4</div>
+          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-primary); margin-top: 10px; line-height: 1.5;">Friction in the booking flow is eroding ease-of-use. UX audit recommended within 2 weeks.</div>
         </div>
         
         <div class="cc-driver crisis">
@@ -810,8 +851,8 @@
           <div class="cc-driver-bar crisis">
             <div class="cc-driver-bar-fill" style="width: 64%;"></div>
           </div>
-          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--red-600);">−8 ⚠ Crisis</div>
-          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-secondary); margin-top: 8px; line-height: 1.4;">The steepest decline across all drivers. Personalization is falling behind competitor expectations.</div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: #ef4444; font-weight: 700;">−8 ⚠ CRISIS</div>
+          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-primary); margin-top: 10px; line-height: 1.5;">The steepest decline across all drivers. Personalization is falling behind competitor expectations.</div>
         </div>
         
         <div class="cc-driver">
@@ -822,8 +863,8 @@
           <div class="cc-driver-bar">
             <div class="cc-driver-bar-fill" style="width: 71%;"></div>
           </div>
-          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary);">+1</div>
-          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-secondary); margin-top: 8px; line-height: 1.4;">Stable. Availability and uptime are not the current bottleneck.</div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); font-weight: 600;">+1</div>
+          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-primary); margin-top: 10px; line-height: 1.5;">Stable. Availability and uptime are not the current bottleneck.</div>
         </div>
         
         <div class="cc-driver critical">
@@ -834,8 +875,8 @@
           <div class="cc-driver-bar critical">
             <div class="cc-driver-bar-fill" style="width: 58%;"></div>
           </div>
-          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--red-700);">−6 Critical</div>
-          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-secondary); margin-top: 8px; line-height: 1.4;">Support response times have doubled. This driver anchors long-term loyalty.</div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: #f97316; font-weight: 700;">−6 CRITICAL</div>
+          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-primary); margin-top: 10px; line-height: 1.5;">Support response times have doubled. This driver anchors long-term loyalty.</div>
         </div>
         
         <div class="cc-driver">
@@ -846,8 +887,8 @@
           <div class="cc-driver-bar">
             <div class="cc-driver-bar-fill" style="width: 66%;"></div>
           </div>
-          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary);">−3</div>
-          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-secondary); margin-top: 8px; line-height: 1.4;">Brand significance is slipping. Customers are using Stayworthy but not identifying with it.</div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); font-weight: 600;">−3</div>
+          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-primary); margin-top: 10px; line-height: 1.5;">Brand significance is slipping. Customers are using Stayworthy but not identifying with it.</div>
         </div>
         
         <div class="cc-driver strength">
@@ -858,8 +899,8 @@
           <div class="cc-driver-bar strength">
             <div class="cc-driver-bar-fill" style="width: 74%;"></div>
           </div>
-          <div style="font-family: var(--font-mono); font-size: 10px; color: var(--green-600);">+2 ✓ Strength</div>
-          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-secondary); margin-top: 8px; line-height: 1.4;">Bright spot. Top-of-mind awareness is holding, but it can't sustain growth if other drivers erode.</div>
+          <div style="font-family: var(--font-mono); font-size: 10px; color: #10b981; font-weight: 700;">+2 ✓ STRENGTH</div>
+          <div style="font-family: var(--font-body); font-size: 11px; color: var(--text-primary); margin-top: 10px; line-height: 1.5;">Bright spot. Top-of-mind awareness is holding, but it can't sustain growth if other drivers erode.</div>
         </div>
       </div>
       
@@ -899,18 +940,18 @@
             <circle cx="100" cy="100" r="95" fill="transparent" stroke="rgba(255, 255, 255, 0.05)" stroke-width="2"/>
 
             <!-- Human-Expressive arc (312 signals = 36.8%) -->
-            <path class="ring-arc" d="M 100 20 A 80 80 0 0 1 149.24 28.41" fill="none" stroke="var(--signal-human)" stroke-width="8" stroke-linecap="round"/>
+            <path class="ring-arc" d="M 100 15 A 85 85 0 0 1 158.34 28.15" fill="none" stroke="#818cf8" stroke-width="12" stroke-linecap="round"/>
 
             <!-- Behavioral arc (289 signals = 34.1%) -->
-            <path class="ring-arc" d="M 149.24 28.41 A 80 80 0 0 1 167.43 106.27" fill="none" stroke="var(--signal-behavioral)" stroke-width="8" stroke-linecap="round"/>
+            <path class="ring-arc" d="M 158.34 28.15 A 85 85 0 0 1 171.85 100" fill="none" stroke="#34d399" stroke-width="12" stroke-linecap="round"/>
 
             <!-- Cultural arc (246 signals = 29.1%) -->
-            <path class="ring-arc" d="M 167.43 106.27 A 80 80 0 0 1 100 20" fill="none" stroke="var(--signal-cultural)" stroke-width="8" stroke-linecap="round"/>
+            <path class="ring-arc" d="M 171.85 100 A 85 85 0 0 1 100 15" fill="none" stroke="#f59e0b" stroke-width="12" stroke-linecap="round"/>
 
             <!-- Center circle with number -->
-            <circle cx="100" cy="100" r="50" fill="rgba(129, 140, 248, 0.08)" stroke="rgba(129, 140, 248, 0.15)" stroke-width="1"/>
+            <circle cx="100" cy="100" r="50" fill="rgba(129, 140, 248, 0.12)" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1.5"/>
             <g class="cc-signal-ring-center">
-              <text x="100" y="105" font-family="'Space Grotesk', sans-serif" font-size="36" font-weight="400" fill="rgba(255, 255, 255, 0.95)" text-anchor="middle">847</text>
+              <text x="100" y="110" font-family="'Space Grotesk', sans-serif" font-size="40" font-weight="500" fill="#f0f0f0" text-anchor="middle">847</text>
             </g>
           </svg>
 
@@ -955,21 +996,21 @@
             <div class="cc-alert-severity">HIGH</div>
             <div class="cc-alert-title">Trust-Behavior Gap Widening</div>
             <div class="cc-alert-detail">22-point divergence between stated satisfaction and repeat booking rate. Expressive signals show high trust, but behavioral abandonment is accelerating.</div>
-            <div style="font-family: var(--font-body); font-size: 11px; color: var(--violet-500); margin-top: 8px;">Recommended: Commission behavioral audit to identify where stated satisfaction diverges from action.</div>
+            <div style="font-family: var(--font-body); font-size: 11px; color: #818cf8; margin-top: 10px; font-weight: 500;">Recommended: Commission behavioral audit to identify where stated satisfaction diverges from action.</div>
           </div>
           
           <div class="cc-alert-card">
             <div class="cc-alert-severity">HIGH</div>
             <div class="cc-alert-title">Booking Abandonment Spike</div>
             <div class="cc-alert-detail">Abandonment rate climbed from 34% to 41% in 14 days. Behavioral signals correlate spike with pricing display opacity in search results.</div>
-            <div style="font-family: var(--font-body); font-size: 11px; color: var(--violet-500); margin-top: 8px;">Recommended: A/B test pricing transparency on search results page within 1 week.</div>
+            <div style="font-family: var(--font-body); font-size: 11px; color: #818cf8; margin-top: 10px; font-weight: 500;">Recommended: A/B test pricing transparency on search results page within 1 week.</div>
           </div>
           
           <div class="cc-alert-card medium">
             <div class="cc-alert-severity">MEDIUM</div>
             <div class="cc-alert-title">Barcelona STR Regulation</div>
             <div class="cc-alert-detail">Phase-out timeline accelerated. Approximately 12,000 licenses at risk. Seasonal rental supply impact expected Q3 2026.</div>
-            <div style="font-family: var(--font-body); font-size: 11px; color: var(--violet-500); margin-top: 8px;">Recommended: Brief legal team on compliance timeline. Scenario Lab has a regulatory wave model.</div>
+            <div style="font-family: var(--font-body); font-size: 11px; color: #818cf8; margin-top: 10px; font-weight: 500;">Recommended: Brief legal team on compliance timeline. Scenario Lab has a regulatory wave model.</div>
           </div>
         </div>
       </div>
@@ -985,45 +1026,77 @@
             </div>
             <span class="cc-competitive-value">74.0</span>
           </div>
-          
+
           <div class="cc-competitive-bar">
             <span class="cc-competitive-label self">Stayworthy</span>
             <div class="cc-competitive-bar-container">
-              <div class="cc-competitive-bar-fill self" style="width: 97%;"></div>
+              <div class="cc-competitive-bar-fill self" style="width: 97.3%;"></div>
             </div>
             <span class="cc-competitive-value">72.0</span>
           </div>
-          
+
           <div class="cc-competitive-bar">
             <span class="cc-competitive-label">Marriott Homes</span>
             <div class="cc-competitive-bar-container">
-              <div class="cc-competitive-bar-fill" style="width: 96%;"></div>
+              <div class="cc-competitive-bar-fill" style="width: 95.9%;"></div>
             </div>
             <span class="cc-competitive-value">71.0</span>
           </div>
-          
-          <div class="cc-competitive-bar">
-            <span class="cc-competitive-label">Airbnb</span>
-            <div class="cc-competitive-bar-container">
-              <div class="cc-competitive-bar-fill" style="width: 93%;"></div>
-            </div>
-            <span class="cc-competitive-value">68.9</span>
-          </div>
-          
+
           <div class="cc-competitive-bar">
             <span class="cc-competitive-label">Vrbo</span>
             <div class="cc-competitive-bar-container">
-              <div class="cc-competitive-bar-fill" style="width: 92%;"></div>
+              <div class="cc-competitive-bar-fill" style="width: 91.9%;"></div>
             </div>
             <span class="cc-competitive-value">68.0</span>
           </div>
-          
+
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label">Airbnb</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill" style="width: 93.1%;"></div>
+            </div>
+            <span class="cc-competitive-value">68.9</span>
+          </div>
+
           <div class="cc-competitive-bar">
             <span class="cc-competitive-label">Hilton Home2</span>
             <div class="cc-competitive-bar-container">
-              <div class="cc-competitive-bar-fill" style="width: 88%;"></div>
+              <div class="cc-competitive-bar-fill" style="width: 87.8%;"></div>
             </div>
             <span class="cc-competitive-value">65.0</span>
+          </div>
+
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label">Plum Guide</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill" style="width: 85.1%;"></div>
+            </div>
+            <span class="cc-competitive-value">63.0</span>
+          </div>
+
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label">Hopper Homes</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill" style="width: 82.4%;"></div>
+            </div>
+            <span class="cc-competitive-value">61.0</span>
+          </div>
+
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label">Vacasa</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill" style="width: 79.7%;"></div>
+            </div>
+            <span class="cc-competitive-value">59.0</span>
+          </div>
+
+          <div class="cc-competitive-bar">
+            <span class="cc-competitive-label">Inspirato</span>
+            <div class="cc-competitive-bar-container">
+              <div class="cc-competitive-bar-fill" style="width: 77.0%;"></div>
+            </div>
+            <span class="cc-competitive-value">57.0</span>
           </div>
         </div>
       </div>
@@ -1264,17 +1337,17 @@
           const y = height - padding - ((value - yMin) / yRange) * (height - padding * 2);
           points.push(`${x},${y}`);
         });
-        
+
         const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
         line.setAttribute('points', points.join(' '));
         line.setAttribute('fill', 'none');
         line.setAttribute('stroke', color);
-        line.setAttribute('stroke-width', '2');
+        line.setAttribute('stroke-width', '2.5');
         line.setAttribute('stroke-linecap', 'round');
         line.setAttribute('stroke-linejoin', 'round');
-        
+
         svg.appendChild(line);
-        
+
         return points;
       }
       
@@ -1309,6 +1382,37 @@
       yAxis.setAttribute('stroke', 'var(--gray-400)');
       yAxis.setAttribute('stroke-width', '1');
       svg.appendChild(yAxis);
+
+      // Add axis labels
+      const yAxisLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      yAxisLabel.setAttribute('x', padding - 12);
+      yAxisLabel.setAttribute('y', padding - 8);
+      yAxisLabel.setAttribute('font-family', 'var(--font-mono)');
+      yAxisLabel.setAttribute('font-size', '10');
+      yAxisLabel.setAttribute('fill', 'var(--text-tertiary)');
+      yAxisLabel.setAttribute('text-anchor', 'end');
+      yAxisLabel.textContent = '80';
+      svg.appendChild(yAxisLabel);
+
+      const yAxisLabel2 = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      yAxisLabel2.setAttribute('x', padding - 12);
+      yAxisLabel2.setAttribute('y', height - padding + 4);
+      yAxisLabel2.setAttribute('font-family', 'var(--font-mono)');
+      yAxisLabel2.setAttribute('font-size', '10');
+      yAxisLabel2.setAttribute('fill', 'var(--text-tertiary)');
+      yAxisLabel2.setAttribute('text-anchor', 'end');
+      yAxisLabel2.textContent = '20';
+      svg.appendChild(yAxisLabel2);
+
+      const xAxisLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      xAxisLabel.setAttribute('x', width - padding);
+      xAxisLabel.setAttribute('y', height - padding + 20);
+      xAxisLabel.setAttribute('font-family', 'var(--font-mono)');
+      xAxisLabel.setAttribute('font-size', '10');
+      xAxisLabel.setAttribute('fill', 'var(--text-tertiary)');
+      xAxisLabel.setAttribute('text-anchor', 'end');
+      xAxisLabel.textContent = '30 days';
+      svg.appendChild(xAxisLabel);
     }
     
     // Link active nav item

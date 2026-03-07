@@ -27,7 +27,7 @@
 
     /* Time-based gradients - subtle, dark theme ambient warmth/coolness */
     .ditl-ambient-bg.time-dawn {
-      background: linear-gradient(135deg, #0a0a2e 0%, #1a1a3e 50%, #0a0a0a 100%);
+      background: linear-gradient(135deg, #0a0808 0%, #1a1008 50%, #0a0a0a 100%);
     }
 
     .ditl-ambient-bg.time-morning {
@@ -43,7 +43,7 @@
     }
 
     .ditl-ambient-bg.time-evening {
-      background: linear-gradient(135deg, #0a0a0a 0%, #0a0812 50%, #0a0a0a 100%);
+      background: linear-gradient(135deg, #0a0a0a 0%, #0f0a0f 50%, #0a0a0a 100%);
     }
 
     .ditl-ambient-bg.time-night {
@@ -239,7 +239,7 @@
       left: 10%;
       right: 10%;
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(129,140,248,0.15) 30%, rgba(129,140,248,0.15) 70%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, rgba(245,158,11,0.15) 30%, rgba(245,158,11,0.15) 70%, transparent 100%);
       z-index: 1;
     }
 
@@ -249,7 +249,7 @@
 
     /* Cinematic background gradients per scene - deeper, more immersive */
     .ditl-scene[data-time="dawn"]::before {
-      background: radial-gradient(ellipse at 20% 50%, #1a237e 0%, #0d47a1 40%, #01579b 70%, transparent 100%);
+      background: radial-gradient(ellipse at 20% 50%, #2a1810 0%, #1a0f08 40%, #0f0a05 70%, transparent 100%);
     }
 
     .ditl-scene[data-time="morning"]::before {
@@ -265,11 +265,11 @@
     }
 
     .ditl-scene[data-time="evening"]::before {
-      background: radial-gradient(ellipse at 40% 60%, #1a237e 0%, #311b92 35%, #4a148c 65%, transparent 100%);
+      background: radial-gradient(ellipse at 40% 60%, #2a1a2a 0%, #1f1420 35%, #0f0a0f 65%, transparent 100%);
     }
 
     .ditl-scene[data-time="night"]::before {
-      background: radial-gradient(ellipse at 50% 50%, #0d0d2a 0%, #1a0a2e 40%, #000000 70%, transparent 100%);
+      background: radial-gradient(ellipse at 50% 50%, #0f0d0d 0%, #0a0808 40%, #000000 70%, transparent 100%);
     }
 
     /* Ensure content stays above background layer */
