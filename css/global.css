@@ -286,6 +286,29 @@ img { max-width: 100%; display: block; }
   height: 24px;
   display: flex;
 }
+.analyst-trigger::after {
+  content: 'Ask Material Analyst';
+  position: absolute;
+  bottom: -8px;
+  right: 70px;
+  padding: 8px 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--duration-fast) var(--ease-out);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.analyst-trigger:hover::after {
+  opacity: 1;
+  right: 68px;
+}
 .analyst-trigger .analyst-dot {
   position: absolute;
   top: 8px;
@@ -305,8 +328,8 @@ img { max-width: 100%; display: block; }
   position: fixed;
   bottom: calc(var(--feed-height) + var(--space-lg));
   right: var(--space-lg);
-  width: 380px;
-  max-height: 500px;
+  width: min(380px, 90vw);
+  max-height: min(500px, 80vh);
   background: var(--bg-elevated);
   border: 1px solid var(--border-default);
   z-index: var(--z-analyst);
@@ -354,19 +377,22 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.05em;
   text-transform: uppercase;
   border-radius: 16px;
-  color: var(--text-tertiary);
-  background: transparent;
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
   transition: all var(--duration-fast) var(--ease-out);
   cursor: pointer;
-  border: none;
   white-space: nowrap;
 }
 .mode-btn:hover {
-  color: var(--text-secondary);
+  color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.12);
 }
 .mode-btn.active {
   background: var(--brand-purple);
-  color: white;
+  color: rgba(255,255,255,0.95);
+  border-color: var(--brand-purple);
 }
 .analyst-panel-close {
   font-size: var(--text-body);
@@ -432,13 +458,53 @@ img { max-width: 100%; display: block; }
 .analyst-panel-input button {
   padding: var(--space-sm) var(--space-md);
   font-size: var(--text-small);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-subtle);
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
   transition: all var(--duration-fast);
+  cursor: pointer;
 }
 .analyst-panel-input button:hover {
-  color: var(--text-primary);
-  border-color: var(--border-strong);
+  color: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.16);
+}
+
+/* ── Analyst Thinking Animation ── */
+.analyst-msg.thinking {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 24px;
+}
+
+.thinking-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal-human);
+  opacity: 0.4;
+  animation: thinking-pulse 1.2s ease-in-out infinite;
+}
+
+.thinking-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.thinking-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes thinking-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -706,4 +772,34 @@ img { max-width: 100%; display: block; }
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 3px;
   font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS — FAB & Analyst Panel
+   ═══════════════════════════════════════════════ */
+
+@media (max-width: 1200px) {
+  .analyst-trigger {
+    bottom: calc(var(--feed-height) + var(--space-md));
+    right: var(--space-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .analyst-trigger {
+    width: 48px;
+    height: 48px;
+    bottom: var(--space-md);
+    right: var(--space-md);
+  }
+
+  .analyst-trigger-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .analyst-trigger svg {
+    width: 20px;
+    height: 20px;
+  }
 }

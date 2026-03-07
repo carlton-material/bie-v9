@@ -301,13 +301,57 @@ const BIE = {
     userMsg.textContent = query;
     messages.appendChild(userMsg);
 
-    setTimeout(() => {
+    // Show thinking animation
+    const thinkingMsg = document.createElement('div');
+    thinkingMsg.className = 'analyst-msg system thinking';
+    thinkingMsg.innerHTML = '<span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span>';
+    messages.appendChild(thinkingMsg);
+    messages.scrollTop = messages.scrollHeight;
+
+    // Try LLM first, fallback to hardcoded if fails
+    this.callAnalystLLM(query, messages, thinkingMsg);
+  },
+
+  async callAnalystLLM(query, messages, thinkingMsg) {
+    try {
+      const resp = document.createElement('div');
+      resp.className = 'analyst-msg system';
+      messages.replaceChild(resp, thinkingMsg);
+      messages.scrollTop = messages.scrollHeight;
+
+      // Stream text character by character
+      let fullResponse = '';
+      await AnalystLLM.getAnalystResponse(query, this.analystMode, this.currentPage, this.brand, (chunk) => {
+        fullResponse += chunk;
+        resp.textContent = fullResponse;
+        messages.scrollTop = messages.scrollHeight;
+      });
+
+      // Parse response to HTML (handle formatting)
+      const htmlResponse = this.parseAnalystResponse(fullResponse);
+      resp.innerHTML = htmlResponse;
+      messages.scrollTop = messages.scrollHeight;
+    } catch(e) {
+      console.warn('LLM failed, falling back to hardcoded responses:', e);
+      // Fallback: use original hardcoded response
       const resp = document.createElement('div');
       resp.className = 'analyst-msg system';
       resp.innerHTML = this.generateAnalystResponse(query.toLowerCase());
-      messages.appendChild(resp);
+      messages.replaceChild(resp, document.querySelector('.analyst-msg.system.thinking'));
       messages.scrollTop = messages.scrollHeight;
-    }, 800);
+    }
+  },
+
+  parseAnalystResponse(text) {
+    // Convert markdown-ish formatting to HTML
+    let html = text;
+    // Bold markdown **text** -> <strong>text</strong>
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    // Monospace code blocks ◆ ... -> <span style='font-family:var(--font-mono)'>...</span>
+    html = html.replace(/(◆[^◆]*)/g, '<span style="font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)">$1</span>');
+    // Paragraph breaks
+    html = html.replace(/\n\n/g, '</p><p>').replace(/^(.+)$/, '<p>$1</p>');
+    return html;
   },
 
   getAnalystModeDescription(mode) {

@@ -158,6 +158,91 @@
       line-height: 1.4;
     }
 
+    /* ─────────────────────────────────────────────────
+       WIZARD STEPS — Progressive Disclosure
+       ───────────────────────────────────────────────── */
+
+    .scenario-wizard-steps {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 48px;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+    }
+
+    .wizard-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .wizard-step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--border-subtle);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+
+    .wizard-step.active .wizard-step-number {
+      background: var(--brand-purple);
+      border-color: var(--brand-purple);
+      color: white;
+      box-shadow: 0 0 16px rgba(116, 90, 255, 0.3);
+    }
+
+    .wizard-step.complete .wizard-step-number {
+      background: var(--signal-behavioral);
+      border-color: var(--signal-behavioral);
+      color: white;
+      font-size: 16px;
+    }
+
+    .wizard-step.complete .wizard-step-number::after {
+      content: '✓';
+      position: absolute;
+    }
+
+    .wizard-step-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color var(--duration-fast) var(--ease-out);
+      white-space: nowrap;
+    }
+
+    .wizard-step.active .wizard-step-label {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .wizard-step.complete .wizard-step-label {
+      color: var(--signal-behavioral);
+    }
+
+    .wizard-step-arrow {
+      width: 20px;
+      height: 2px;
+      background: var(--border-subtle);
+      transition: background var(--duration-fast) var(--ease-out);
+    }
+
+    .wizard-step.complete .wizard-step-arrow {
+      background: var(--signal-behavioral);
+    }
+
     /* Mode Toggle Buttons */
     .scenario-modes {
       display: flex;
@@ -1708,6 +1793,29 @@
       </div>
     </div>
 
+    <!-- Wizard Steps Navigation -->
+    <div class="scenario-wizard-steps">
+      <div class="wizard-step active" data-step="1">
+        <div class="wizard-step-number">1</div>
+        <div class="wizard-step-label">Choose Scenario</div>
+      </div>
+      <div class="wizard-step-arrow"></div>
+      <div class="wizard-step" data-step="2">
+        <div class="wizard-step-number">2</div>
+        <div class="wizard-step-label">Configure</div>
+      </div>
+      <div class="wizard-step-arrow"></div>
+      <div class="wizard-step" data-step="3">
+        <div class="wizard-step-number">3</div>
+        <div class="wizard-step-label">Run</div>
+      </div>
+      <div class="wizard-step-arrow"></div>
+      <div class="wizard-step" data-step="4">
+        <div class="wizard-step-number">4</div>
+        <div class="wizard-step-label">Results</div>
+      </div>
+    </div>
+
     <div class="scenario-content">
       <!-- ══════════════════════════════════════════════════════════
            MODE 1: INSIGHT / NEARSIGHT
@@ -2262,6 +2370,7 @@
   </div>
 
   <!-- SCRIPTS -->
+  <script src="js/analyst-llm.js"></script>
   <script src="js/app.js"></script>
   <script>
     /* ═══════════════════════════════════════════════════════════

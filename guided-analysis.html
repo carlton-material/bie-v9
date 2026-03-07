@@ -395,7 +395,7 @@
       text-align: left;
       padding: 16px;
       border: 1px solid rgba(255,255,255,0.1);
-      background: #0a0a0a;
+      background: var(--bg-card);
       border-radius: 4px;
       font-family: var(--font-body);
       font-size: 13px;
@@ -409,6 +409,23 @@
       background: #141414;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
       transform: translateY(-2px);
+    }
+
+    .ga-question-btn.active,
+    .ga-question-btn.selected {
+      border-color: rgba(129,140,248,0.4);
+      background: rgba(129,140,248,0.12);
+      box-shadow: 0 8px 24px rgba(129,140,248,0.15);
+    }
+
+    .ga-question-btn.active .ga-question-btn-label,
+    .ga-question-btn.selected .ga-question-btn-label {
+      color: rgba(255,255,255,0.95);
+    }
+
+    .ga-question-btn.active .ga-question-btn-text,
+    .ga-question-btn.selected .ga-question-btn-text {
+      color: rgba(255,255,255,0.65);
     }
 
     .ga-question-btn-label {
@@ -832,6 +849,7 @@
     </div>
   </div>
 
+  <script src="js/analyst-llm.js"></script>
   <script src="js/app.js"></script>
   <script>
     // State Machine for Guided Analysis

@@ -56,7 +56,107 @@
       0% { stroke-dashoffset: 1000; }
       100% { stroke-dashoffset: 0; }
     }
-    
+
+    /* ─────────────────────────────────────────────────
+       VIEW MODE TOGGLE — Welcome Mode vs. Full View
+       ───────────────────────────────────────────────── */
+
+    .cc-view-toggle {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      padding: 0;
+      animation: morning-flash-slide-left 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.08s backwards;
+    }
+
+    .cc-view-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+
+    .cc-view-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-default);
+      background: var(--bg-card-hover);
+    }
+
+    .cc-view-btn.active {
+      color: var(--text-primary);
+      background: var(--brand-purple);
+      border-color: var(--brand-purple);
+      font-weight: 600;
+    }
+
+    .cc-view-icon {
+      font-size: 16px;
+      display: inline-block;
+    }
+
+    /* ─────────────────────────────────────────────────
+       GUIDED VIEW — Progressive Disclosure
+       ───────────────────────────────────────────────── */
+
+    .cc-section-detail {
+      transition: opacity 0.4s var(--ease-out), max-height 0.4s var(--ease-out);
+    }
+
+    body:not(.cc-full-view) .cc-section-detail {
+      display: none;
+    }
+
+    body.cc-full-view .cc-section-detail {
+      display: block;
+    }
+
+    /* Hide extra alert cards in guided view */
+    body:not(.cc-full-view) .cc-alert-card:nth-child(n+2) {
+      display: none;
+    }
+
+    /* Hide competitive position and active patterns in guided */
+    body:not(.cc-full-view) [data-section="column-3"],
+    body:not(.cc-full-view) [data-section="active-patterns"],
+    body:not(.cc-full-view) [data-section="sentiment-trend"] {
+      display: none;
+    }
+
+    /* Explore More Link */
+    .cc-explore-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 16px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brand-purple);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+
+    .cc-explore-more:hover {
+      gap: 8px;
+      color: var(--brand-purple-hover);
+    }
+
+    .cc-explore-more::after {
+      content: '→';
+      display: inline-block;
+      transition: transform var(--duration-fast) var(--ease-out);
+    }
+
     .command-center {
       padding: 48px 64px 120px;
       animation: morning-flash-reveal 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -805,6 +905,16 @@
       </div>
     </section>
 
+    <!-- View Mode Toggle -->
+    <div class="cc-view-toggle">
+      <button class="cc-view-btn cc-view-btn-guided active" data-mode="guided">
+        <span class="cc-view-icon">✨</span> Guided View
+      </button>
+      <button class="cc-view-btn cc-view-btn-full" data-mode="full">
+        <span class="cc-view-icon">⚙</span> Full View
+      </button>
+    </div>
+
     <!-- Guidance Header -->
     <div class="guidance-header" style="margin: 40px 0 0;">Your daily intelligence brief, distilled from 847 live signals across three signal layers. Here's what demands your attention today.</div>
 
@@ -1016,7 +1126,7 @@
       </div>
 
       <!-- Column 3: Competitive Position -->
-      <div class="cc-panel">
+      <div class="cc-panel cc-section-detail" data-section="column-3">
         <div class="cc-panel-header">Where You Stand</div>
         <div class="cc-competitive">
           <div class="cc-competitive-bar">
@@ -1103,7 +1213,7 @@
     </section>
 
     <!-- Active Patterns -->
-    <section class="cc-patterns">
+    <section class="cc-patterns cc-section-detail" data-section="active-patterns">
       <div class="cc-patterns-header">Active Patterns</div>
       <div class="cc-patterns-grid">
         <div class="cc-pattern-card">
@@ -1142,7 +1252,7 @@
     </section>
 
     <!-- Sentiment Trend -->
-    <section class="cc-sentiment">
+    <section class="cc-sentiment cc-section-detail" data-section="sentiment-trend">
       <div class="cc-sentiment-header">Sentiment Divergence: 30-Day Trend</div>
       <div class="cc-sentiment-chart">
         <svg class="cc-sentiment-svg" id="sentiment-chart"></svg>
@@ -1189,6 +1299,7 @@
     </div>
   </div>
 
+  <script src="js/analyst-llm.js"></script>
   <script src="js/app.js"></script>
   <script>
     // Count-up animation utility
@@ -1415,6 +1526,45 @@
       svg.appendChild(xAxisLabel);
     }
     
+    // View mode toggle for Command Center
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize view mode from sessionStorage
+      const savedMode = sessionStorage.getItem('cc-view-mode') || 'guided';
+      const body = document.body;
+
+      // Set initial state
+      if (savedMode === 'full') {
+        body.classList.add('cc-full-view');
+      } else {
+        body.classList.remove('cc-full-view');
+      }
+
+      // Update button states
+      document.querySelectorAll('.cc-view-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mode === savedMode);
+      });
+
+      // Add click handlers
+      document.querySelectorAll('.cc-view-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mode = btn.dataset.mode;
+          sessionStorage.setItem('cc-view-mode', mode);
+
+          // Update UI state
+          if (mode === 'full') {
+            body.classList.add('cc-full-view');
+          } else {
+            body.classList.remove('cc-full-view');
+          }
+
+          // Update button states
+          document.querySelectorAll('.cc-view-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.mode === mode);
+          });
+        });
+      });
+    });
+
     // Link active nav item
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.nav-item').forEach(item => {

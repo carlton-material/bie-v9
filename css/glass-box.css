@@ -60,12 +60,12 @@
   padding: 5px 14px;
   font-family: var(--font-mono);
   font-size: var(--text-nano);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--signal-cultural);
-  background: rgba(245, 158, 11, 0.08);
-  border: 1px solid rgba(245, 158, 11, 0.2);
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.25);
   border-radius: 3px;
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-out);
