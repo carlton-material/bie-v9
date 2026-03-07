@@ -2757,7 +2757,12 @@
     /* ═══════════════════════════════════════════════════════════
        GLOBAL BIE ALIAS - For stepper & scenario interactions
        ═══════════════════════════════════════════════════════════ */
-    const BIE = ScenarioLab;
+    // Extend the global BIE object with ScenarioLab methods (BIE already declared in app.js)
+    if (typeof BIE !== 'undefined') {
+      Object.assign(BIE, ScenarioLab);
+    } else {
+      window.BIE = ScenarioLab;
+    }
 
     /* ═══════════════════════════════════════════════════════════
        AGENT-BASED MARKET MODEL
