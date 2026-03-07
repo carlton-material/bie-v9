@@ -2573,6 +2573,21 @@
           el.classList.toggle('active', el.dataset.mode === mode);
         });
 
+        // Hide wizard stepper + scenario selector when Brand Sim is active
+        // (Brand Sim has its own controls, doesn't use the shared wizard flow)
+        const wizard = document.querySelector('.scenario-wizard-steps');
+        const selector = document.getElementById('scenario-selector');
+        const confidence = document.querySelector('.confidence-bar');
+        if (mode === 'brand-sim') {
+          if (wizard) wizard.style.display = 'none';
+          if (selector) selector.style.display = 'none';
+          if (confidence) confidence.style.display = 'none';
+        } else {
+          if (wizard) wizard.style.display = '';
+          if (selector) selector.style.display = '';
+          if (confidence) confidence.style.display = '';
+        }
+
         // Reset scenario if switching to wargame
         if (mode === 'wargame') {
           this.currentScenario = null;
