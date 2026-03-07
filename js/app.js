@@ -61,6 +61,7 @@ const BIE = {
 
   /* ── Scroll Reveal (Intersection Observer) ── */
   initScrollReveal() {
+    const scrollRoot = document.querySelector('.app-content') || null;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -74,13 +75,14 @@ const BIE = {
           }
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px', root: scrollRoot });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   },
 
   /* ── Count-Up Animation ── */
   initCountUp() {
+    const scrollRoot = document.querySelector('.app-content') || null;
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.dataset.counted) {
@@ -104,7 +106,7 @@ const BIE = {
           requestAnimationFrame(animate);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.5, root: scrollRoot });
 
     // Observe both .count-up elements and elements with data-count attribute
     document.querySelectorAll('.count-up, [data-count]').forEach(el => observer.observe(el));
