@@ -1,0 +1,70 @@
+{
+  "name": "Stayworthy",
+  "tagline": "Where Every Stay Tells a Story",
+  "category": "Travel & Hospitality",
+  "users": "150M",
+  "composite": 72,
+  "compositeDelta": -4,
+  "compositeLabel": "Brand Fidelity Composite",
+  "drivers": {
+    "inTheMoment": [
+      { "name": "User Friendly", "score": 72, "delta": -4, "definition": "Meets my needs easily and reliably" },
+      { "name": "Personal", "score": 64, "delta": -8, "definition": "Understands my unique needs" },
+      { "name": "Accessible", "score": 71, "delta": 1, "definition": "Is always there when I need it" }
+    ],
+    "overTime": [
+      { "name": "Dependable", "score": 58, "delta": -6, "definition": "Consistently provides a good experience" },
+      { "name": "Meaningful", "score": 66, "delta": -3, "definition": "Plays a significant role in my life" },
+      { "name": "Salient", "score": 74, "delta": 2, "definition": "When I have a need, this is the brand I turn to" }
+    ]
+  },
+  "competitors": [
+    { "name": "Booking.com", "composite": 74, "position": 1 },
+    { "name": "Marriott Homes", "composite": 71, "position": 2 },
+    { "name": "Vrbo", "composite": 68, "position": 3 },
+    { "name": "Stayworthy", "composite": 72, "position": 4, "isSelf": true },
+    { "name": "Airbnb", "composite": 68.9, "position": 5 },
+    { "name": "Hilton Home2", "composite": 65, "position": 6 },
+    { "name": "Plum Guide", "composite": 63, "position": 7 },
+    { "name": "Hopper Homes", "composite": 61, "position": 8 },
+    { "name": "Vacasa", "composite": 59, "position": 9 },
+    { "name": "Inspirato", "composite": 57, "position": 10 }
+  ],
+  "keyInsight": "22-point gap between expressive sentiment and behavioral signals. Leading indicator: 6-8 week window for intervention.",
+  "signalVolume": {
+    "humanExpressive": 312,
+    "behavioral": 289,
+    "cultural": 246,
+    "total": 847
+  },
+  "segments": [
+    { "name": "Budget Travelers", "size": 0.28 },
+    { "name": "Family Planners", "size": 0.22 },
+    { "name": "Experience Seekers", "size": 0.18 },
+    { "name": "Business Travelers", "size": 0.14 },
+    { "name": "Luxury Escapists", "size": 0.10 },
+    { "name": "Digital Nomads", "size": 0.08 }
+  ],
+  "macroShifts": ["Restorative", "Intentional", "Grounded", "Unique", "Communal"],
+  "categoryStrengths": ["Restorative", "Intentional"],
+  "categoryGaps": ["Grounded", "Unique", "Communal"],
+  "signals": {
+    "database": [
+      { "id": 1, "time": "06:12", "layer": "human", "severity": "high", "brand": "Stayworthy", "text": "Trust sentiment divergence detected: stated satisfaction 78%, behavioral repeat rate 56%. 22-point gap widening.", "source": "AI Interview Analysis" },
+      { "id": 2, "time": "06:15", "layer": "behavioral", "severity": "high", "brand": "Stayworthy", "text": "Booking abandonment rate spike: 34% â 41% in 14 days. Correlates with new pricing display format.", "source": "Behavioral Signal Pipeline" },
+      { "id": 3, "time": "06:18", "layer": "cultural", "severity": "medium", "brand": "Category", "text": "Barcelona STR regulation: Phase-out timeline accelerated. 12,000 licenses affected. Occupancy shift expected Q3.", "source": "EU Policy Monitor" },
+      { "id": 4, "time": "07:22", "layer": "human", "severity": "medium", "brand": "Stayworthy", "text": "Gen Z sentiment shift: 'authentic stays' keyword frequency up 340% in brand narratives. Moving from price to meaning.", "source": "TikTok + Reddit NLP" },
+      { "id": 5, "time": "07:45", "layer": "behavioral", "severity": "low", "brand": "Booking.com", "text": "Booking.com loyalty tier adoption: Premium members up 23% QoQ. Dependable driver strengthening.", "source": "Competitive Intelligence" },
+      { "id": 6, "time": "08:10", "layer": "cultural", "severity": "high", "brand": "Category", "text": "Climate-conscious travel segment: 63% YoY growth. Sustainability now material for brand health scores.", "source": "Google Trends + UNWTO" },
+      { "id": 7, "time": "08:33", "layer": "human", "severity": "low", "brand": "Airbnb", "text": "Airbnb host satisfaction declining: Communication quality complaints up 18%. Personal driver at risk.", "source": "AI Interview Synthesis" },
+      { "id": 8, "time": "09:05", "layer": "behavioral", "severity": "medium", "brand": "Stayworthy", "text": "Mobile app session duration down 12% â UX friction in search-to-book flow. User Friendly driver impact.", "source": "App Analytics Pipeline" },
+      { "id": 9, "time": "09:28", "layer": "cultural", "severity": "medium", "brand": "Category", "text": "Southeast Asian travel market surges 47% YoY â digital nomad infrastructure expanding. New competitive frontier.", "source": "Reuters + PATA Data" },
+      { "id": 10, "time": "09:55", "layer": "human", "severity": "high", "brand": "Stayworthy", "text": "ANOMALY: Positive sentiment spike in 25-34 cohort. Contradicts overall trend. Investigating driver.", "source": "Sentiment Anomaly Detection" },
+      { "id": 11, "time": "10:15", "layer": "behavioral", "severity": "high", "brand": "Category", "text": "Google Travel AI trip planning launch: OTA disintermediation risk. Direct booking channel threat level elevated.", "source": "Competitive Signal Monitor" },
+      { "id": 12, "time": "10:42", "layer": "cultural", "severity": "low", "brand": "Category", "text": "Restorative travel macro-shift: Wellness-adjacent stays now 28% of premium bookings. Category strength confirmed.", "source": "Skift Research + Booking Data" },
+      { "id": 13, "time": "11:08", "layer": "human", "severity": "medium", "brand": "Vrbo", "text": "Vrbo family segment loyalty eroding: Competing on price, losing on Personal driver. Stayworthy opportunity window.", "source": "Competitive NLP Analysis" },
+      { "id": 14, "time": "11:30", "layer": "behavioral", "severity": "medium", "brand": "Stayworthy", "text": "Customer support response time degraded: Avg 4.2h â 6.8h over 30 days. Dependable driver correlation: r=0.82.", "source": "Operational Signal Pipeline" },
+      { "id": 15, "time": "11:55", "layer": "cultural", "severity": "high", "brand": "Category", "text": "TikTok #1 travel inspiration source for under-30. Cultural signal shift: visual-first discovery disrupting traditional funnel.", "source": "Social Signal Aggregator" }
+    ]
+  }
+}
