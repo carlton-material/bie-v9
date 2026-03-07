@@ -2546,7 +2546,7 @@
       currentScenario: null,
       simulation: null,
 
-      init() {
+      initScenarioLab() {
         this.initModeTabs();
         this.initScenarioCards();
         this.initSimulation();
@@ -3095,7 +3095,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       // Load Virtual Focus Group data
       VirtualFocusGroup.init();
-      ScenarioLab.init();
+      ScenarioLab.initScenarioLab();
     });
 
     /* ═══════════════════════════════════════════════════════════
