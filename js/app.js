@@ -108,6 +108,16 @@ const BIE = {
 
     // Observe both .count-up elements and elements with data-count attribute
     document.querySelectorAll('.count-up, [data-count]').forEach(el => observer.observe(el));
+
+    // Re-animate on tab focus
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        // Reset counted flag to allow re-animation
+        document.querySelectorAll('.count-up, [data-count]').forEach(el => {
+          el.dataset.counted = 'false';
+        });
+      }
+    });
   },
 
   /* ── Sparkline SVG Generation ── */

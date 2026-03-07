@@ -344,31 +344,31 @@
     }
 
     .fidelity-group-label {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: var(--font-mono);
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.4);
+      color: var(--text-muted);
       font-weight: 600;
     }
 
     .fidelity-bar {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
 
     .fidelity-bar-name {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-body);
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--text-secondary);
       min-width: 120px;
     }
 
     .fidelity-bar-track {
       flex: 1;
       height: 24px;
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--gray-50);
       border-radius: 4px;
       overflow: hidden;
       position: relative;
@@ -376,32 +376,33 @@
 
     .fidelity-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, #818cf8, #34d399);
+      background: linear-gradient(90deg, var(--signal-human), var(--signal-behavioral));
       border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 8px;
-      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .fidelity-bar-score {
+      font-family: var(--font-mono);
       font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--text-primary);
       font-weight: 600;
+      min-width: 30px;
+      text-align: right;
     }
 
     .fidelity-delta {
-      font-family: 'Inter', sans-serif;
+      font-family: var(--font-body);
       font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.5);
+      color: var(--text-muted);
       min-width: 50px;
       text-align: right;
     }
 
     .fidelity-delta.positive {
-      color: #34d399;
+      color: var(--signal-behavioral);
     }
 
     .fidelity-delta.negative {
-      color: #f59e0b;
+      color: var(--red-500);
     }
 
     .fidelity-radar {
@@ -411,11 +412,11 @@
     }
 
     .fidelity-radar-title {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font-display);
       font-size: 1.2rem;
       font-weight: 500;
       letter-spacing: -0.03em;
-      color: rgba(255, 255, 255, 0.95);
+      color: var(--text-primary);
     }
 
     .radar-visual {
@@ -425,7 +426,197 @@
       background-size: 60px 60px;
       border-radius: 8px;
       position: relative;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radar-legend {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      color: var(--text-tertiary);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .radar-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .radar-legend-color {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+    }
+
+    /* ── Brand Fidelity Section (replaces inline styles) ── */
+    .bf-composite-card {
+      margin: 60px 0;
+      padding: 40px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .bf-composite-header {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .bf-score-group {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+    }
+
+    .bf-score-main {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .bf-score-delta {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: rgba(239, 68, 68, 0.8);
+    }
+
+    .bf-score-label {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    .bf-score-label p {
+      margin: 0;
+    }
+
+    .bf-score-label p:first-child {
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .bf-score-label p:last-child {
+      color: var(--text-muted);
+    }
+
+    .bf-drivers-section {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 32px;
+    }
+
+    .bf-group {
+      margin-bottom: 28px;
+    }
+
+    .bf-group-label {
+      margin-bottom: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .bf-group-description {
+      margin: 0 0 20px 0;
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 500px;
+    }
+
+    .bf-drivers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .bf-driver-card {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .bf-driver-name {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .bf-driver-bar-container {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .bf-driver-bar {
+      flex: 1;
+      height: 6px;
+      background: var(--gray-50);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .bf-driver-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    .bf-driver-score {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      min-width: 30px;
+      text-align: right;
+    }
+
+    .bf-driver-footer {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .bf-driver-footer .bf-delta-negative {
+      color: var(--red-500);
+    }
+
+    .bf-driver-footer .bf-delta-positive {
+      color: var(--signal-behavioral);
+    }
+
+    .bf-composite-card {
+      margin: 60px 0;
+      padding: 40px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .bf-group-divider {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 28px;
     }
 
     /* Delivery Model */
@@ -904,22 +1095,22 @@
 
         <p class="scene-body">The single metric that tells us if Stayworthy is earning long-term brand loyalty across all six drivers.</p>
 
-        <div style="margin: 60px 0; padding: 40px; border: 1px solid rgba(255, 255, 255, 0.06); background: rgba(255, 255, 255, 0.02); border-radius: 8px; backdrop-filter: blur(10px);">
-          <div style="display: flex; align-items: baseline; gap: 24px; margin-bottom: 40px;">
-            <div style="display: flex; align-items: baseline; gap: 16px;">
-              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 5rem; font-weight: 400; color: rgba(255, 255, 255, 0.95); line-height: 1;">72</div>
-              <div style="font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 500; color: rgba(239, 68, 68, 0.8);">-4</div>
+        <div class="bf-composite-card">
+          <div class="bf-composite-header">
+            <div class="bf-score-group">
+              <div class="bf-score-main">72</div>
+              <div class="bf-score-delta">-4</div>
             </div>
-            <div style="font-family: 'Inter', sans-serif; font-size: 0.95rem; color: rgba(255, 255, 255, 0.6);">
-              <p style="margin: 0 0 8px 0;"><strong>Composite Score</strong></p>
-              <p style="margin: 0; color: rgba(255, 255, 255, 0.5);">Down 4 points from last quarter</p>
+            <div class="bf-score-label">
+              <p>Composite Score</p>
+              <p>Down 4 points from last quarter</p>
             </div>
           </div>
 
-          <div style="border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 32px;">
-            <div style="margin-bottom: 28px;">
-              <div style="margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255, 255, 255, 0.4); font-weight: 600;">In the Moment</div>
-              <p style="margin: 0 0 20px 0; font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); max-width: 500px;">How Stayworthy performs in active user interactions—emotional responsiveness, personalization, and availability.</p>
+          <div class="bf-drivers-section">
+            <div class="bf-group">
+              <div class="bf-group-label">In the Moment</div>
+              <p class="bf-group-description">How Stayworthy performs in active user interactions—emotional responsiveness, personalization, and availability.</p>
 
               <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
                 <div>
@@ -1065,24 +1256,27 @@
               <div class="fidelity-bar">
                 <div class="fidelity-bar-name">User Friendly</div>
                 <div class="fidelity-bar-track">
-                  <div class="fidelity-bar-fill" style="width: 72%;">72%</div>
+                  <div class="fidelity-bar-fill" style="width: 72%;"></div>
                 </div>
+                <div class="fidelity-bar-score">72</div>
                 <div class="fidelity-delta negative">-4</div>
               </div>
               
               <div class="fidelity-bar">
                 <div class="fidelity-bar-name">Personal</div>
                 <div class="fidelity-bar-track">
-                  <div class="fidelity-bar-fill" style="width: 64%;">64%</div>
+                  <div class="fidelity-bar-fill" style="width: 64%;"></div>
                 </div>
+                <div class="fidelity-bar-score">64</div>
                 <div class="fidelity-delta negative">-8</div>
               </div>
               
               <div class="fidelity-bar">
                 <div class="fidelity-bar-name">Accessible</div>
                 <div class="fidelity-bar-track">
-                  <div class="fidelity-bar-fill" style="width: 71%;">71%</div>
+                  <div class="fidelity-bar-fill" style="width: 71%;"></div>
                 </div>
+                <div class="fidelity-bar-score">71</div>
                 <div class="fidelity-delta positive">+1</div>
               </div>
             </div>
@@ -1093,24 +1287,27 @@
               <div class="fidelity-bar">
                 <div class="fidelity-bar-name">Dependable</div>
                 <div class="fidelity-bar-track">
-                  <div class="fidelity-bar-fill" style="width: 58%;">58%</div>
+                  <div class="fidelity-bar-fill" style="width: 58%;"></div>
                 </div>
+                <div class="fidelity-bar-score">58</div>
                 <div class="fidelity-delta negative">-6</div>
               </div>
               
               <div class="fidelity-bar">
                 <div class="fidelity-bar-name">Meaningful</div>
                 <div class="fidelity-bar-track">
-                  <div class="fidelity-bar-fill" style="width: 66%;">66%</div>
+                  <div class="fidelity-bar-fill" style="width: 66%;"></div>
                 </div>
+                <div class="fidelity-bar-score">66</div>
                 <div class="fidelity-delta negative">-3</div>
               </div>
               
               <div class="fidelity-bar">
                 <div class="fidelity-bar-name">Salient</div>
                 <div class="fidelity-bar-track">
-                  <div class="fidelity-bar-fill" style="width: 74%;">74%</div>
+                  <div class="fidelity-bar-fill" style="width: 74%;"></div>
                 </div>
+                <div class="fidelity-bar-score">74</div>
                 <div class="fidelity-delta positive">+2</div>
               </div>
             </div>
@@ -1126,10 +1323,22 @@
                   <circle cx="150" cy="150" r="120"></circle>
                   <line x1="150" y1="30" x2="150" y2="270"></line>
                   <line x1="30" y1="150" x2="270" y2="150"></line>
+                  <text x="150" y="25" text-anchor="middle" font-family="var(--font-mono)" font-size="10px" fill="rgba(255,255,255,0.3)">User Friendly</text>
+                  <text x="275" y="155" font-family="var(--font-mono)" font-size="10px" fill="rgba(255,255,255,0.3)">Accessible</text>
                 </g>
                 <polyline points="150,70 200,95 190,150 170,185 130,180" fill="rgba(129, 140, 248, 0.3)" stroke="#818cf8" stroke-width="2"></polyline>
                 <polyline points="150,70 210,85 200,140 160,190 120,175" fill="rgba(52, 211, 153, 0.2)" stroke="#34d399" stroke-width="2" opacity="0.7"></polyline>
               </svg>
+              <div class="radar-legend">
+                <div class="radar-legend-item">
+                  <div class="radar-legend-color" style="background: #818cf8;"></div>
+                  <span>Stayworthy</span>
+                </div>
+                <div class="radar-legend-item">
+                  <div class="radar-legend-color" style="background: #34d399;"></div>
+                  <span>Competitor</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

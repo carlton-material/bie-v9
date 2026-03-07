@@ -1336,110 +1336,186 @@
         <p class="scene-body">Brand Fidelity measures earned loyalty through six behavioral and emotional drivers. The three signal layers map directly to these drivers, creating a unified view of brand health.</p>
 
         <style>
-          .bf-framework-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
+          /* ────────────────────────────────────────────────────────────
+             BF Framework: Clean Table Layout with Signal-to-Driver Mapping
+             ──────────────────────────────────────────────────────────── */
+
+          .bf-framework-wrapper {
             margin: 60px 0;
-            max-width: 1000px;
+            max-width: 1200px;
           }
 
-          .bf-signal-column {
+          .bf-framework-container {
+            display: grid;
+            grid-template-columns: 280px 1fr 280px;
+            gap: 48px;
+            align-items: start;
+            margin: 40px 0;
+          }
+
+          /* ── Left Column: Signal Layers ── */
+          .bf-signals-column {
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: 24px;
           }
 
-          .bf-signal-group {
-            padding: 24px;
+          .bf-signal-block {
+            padding: 20px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
+            border-radius: 6px;
             backdrop-filter: blur(10px);
           }
 
-          .bf-signal-group-label {
+          .bf-signal-block-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.4);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             font-weight: 600;
           }
 
-          .bf-signal-title {
+          .bf-signal-block-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 500;
             color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
           }
 
           .bf-signal-dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
+            flex-shrink: 0;
           }
 
-          .bf-signal-drivers {
+          .bf-signal-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.4;
+          }
+
+          /* ── Center Column: Driver-Signal Mapping Table ── */
+          .bf-mapping-table {
             display: flex;
             flex-direction: column;
             gap: 12px;
           }
 
-          .bf-driver-badge {
+          .bf-mapping-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+            transition: background 200ms ease;
+          }
+
+          .bf-mapping-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+          }
+
+          .bf-mapping-signal {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.7);
           }
 
-          .bf-driver-badge-code {
+          .bf-mapping-signal-code {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.8);
-            padding: 0 6px;
-            border-radius: 3px;
+            letter-spacing: 0.08em;
+            padding: 3px 6px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.05);
           }
 
-          .bf-driver-badge.human .bf-driver-badge-code {
+          .bf-mapping-signal.human .bf-mapping-signal-code {
             background: rgba(129, 140, 248, 0.15);
             color: #818cf8;
           }
 
-          .bf-driver-badge.behavioral .bf-driver-badge-code {
+          .bf-mapping-signal.behavioral .bf-mapping-signal-code {
             background: rgba(52, 211, 153, 0.15);
             color: #34d399;
           }
 
-          .bf-driver-badge.cultural .bf-driver-badge-code {
+          .bf-mapping-signal.cultural .bf-mapping-signal-code {
             background: rgba(245, 158, 11, 0.15);
             color: #f59e0b;
           }
 
+          .bf-mapping-arrow {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.9rem;
+            font-weight: 300;
+          }
+
+          .bf-mapping-driver {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: flex-end;
+          }
+
+          .bf-driver-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 4px 8px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.8);
+          }
+
+          .bf-mapping-row.human .bf-driver-code {
+            background: rgba(129, 140, 248, 0.15);
+            color: #818cf8;
+          }
+
+          .bf-mapping-row.behavioral .bf-driver-code {
+            background: rgba(52, 211, 153, 0.15);
+            color: #34d399;
+          }
+
+          .bf-mapping-row.cultural .bf-driver-code {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+          }
+
+          /* ── Right Column: Drivers ── */
           .bf-drivers-column {
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 24px;
           }
 
           .bf-driver-group {
-            padding: 24px;
+            padding: 20px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
+            border-radius: 6px;
             backdrop-filter: blur(10px);
           }
 
@@ -1449,138 +1525,236 @@
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.4);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             font-weight: 600;
           }
 
+          .bf-driver-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+          }
+
           .bf-driver-item {
-            margin-bottom: 12px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
           }
 
           .bf-driver-item:last-child {
-            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
           }
 
           .bf-driver-name {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 4px;
           }
 
           .bf-driver-desc {
             font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: rgba(255, 255, 255, 0.5);
             line-height: 1.4;
           }
 
-          .bf-section-divider {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 16px;
-            margin-top: 16px;
+          /* ── Center Composite Score ── */
+          .bf-composite-score {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            pointer-events: none;
+            z-index: 10;
+          }
+
+          .bf-composite-score-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1;
+            letter-spacing: -0.02em;
+          }
+
+          .bf-composite-score-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 6px;
+          }
+
+          /* ── Responsive ── */
+          @media (max-width: 1200px) {
+            .bf-framework-container {
+              grid-template-columns: 1fr;
+              gap: 40px;
+            }
+
+            .bf-composite-score {
+              position: static;
+              transform: none;
+              margin: 40px 0;
+            }
           }
         </style>
 
-        <div class="bf-framework-grid">
-          <!-- Left: Signal Layers -->
-          <div class="bf-signal-column">
-            <div class="bf-signal-group">
-              <div class="bf-signal-group-label">Human-Expressive Signals</div>
-              <div class="bf-signal-title">
-                <div class="bf-signal-dot" style="background: #818cf8;"></div>
-                Emotional Layer
+        <div class="bf-framework-wrapper">
+          <div class="bf-framework-container">
+            <!-- Left: Signal Layers -->
+            <div class="bf-signals-column">
+              <div class="bf-signal-block">
+                <div class="bf-signal-block-label">Human-Expressive</div>
+                <div class="bf-signal-block-title">
+                  <div class="bf-signal-dot" style="background: #818cf8;"></div>
+                  Emotional
+                </div>
+                <div class="bf-signal-description">How customers feel and what they say. Sentiment, storytelling, brand perception.</div>
               </div>
-              <p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 16px; line-height: 1.5;">Sentiment, storytelling, brand perception — how customers feel and what they say.</p>
-              <div class="bf-signal-drivers">
-                <div class="bf-driver-badge human">
-                  <span class="bf-driver-badge-code">P</span>
+
+              <div class="bf-signal-block">
+                <div class="bf-signal-block-label">Behavioral & Market</div>
+                <div class="bf-signal-block-title">
+                  <div class="bf-signal-dot" style="background: #34d399;"></div>
+                  Transactional
+                </div>
+                <div class="bf-signal-description">What customers actually do. Purchase behavior, engagement, repeat rates.</div>
+              </div>
+
+              <div class="bf-signal-block">
+                <div class="bf-signal-block-label">Cultural & Contextual</div>
+                <div class="bf-signal-block-title">
+                  <div class="bf-signal-dot" style="background: #f59e0b;"></div>
+                  Environmental
+                </div>
+                <div class="bf-signal-description">The operating environment. Trends, competition, category strength.</div>
+              </div>
+            </div>
+
+            <!-- Center: Signal-to-Driver Mapping -->
+            <div class="bf-mapping-table">
+              <div class="bf-mapping-row human">
+                <div class="bf-mapping-signal human">
+                  <span class="bf-mapping-signal-code">HE</span>
+                  <span>Human-Expressive</span>
+                </div>
+                <div class="bf-mapping-arrow">↦</div>
+                <div class="bf-mapping-driver">
                   <span>Personal</span>
+                  <span class="bf-driver-code">P</span>
                 </div>
-                <div class="bf-driver-badge human">
-                  <span class="bf-driver-badge-code">M</span>
+              </div>
+
+              <div class="bf-mapping-row human">
+                <div class="bf-mapping-signal human">
+                  <span class="bf-mapping-signal-code">HE</span>
+                  <span>Human-Expressive</span>
+                </div>
+                <div class="bf-mapping-arrow">↦</div>
+                <div class="bf-mapping-driver">
                   <span>Meaningful</span>
+                  <span class="bf-driver-code">M</span>
                 </div>
               </div>
-            </div>
 
-            <div class="bf-signal-group">
-              <div class="bf-signal-group-label">Behavioral & Market Signals</div>
-              <div class="bf-signal-title">
-                <div class="bf-signal-dot" style="background: #34d399;"></div>
-                Transactional Layer
-              </div>
-              <p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 16px; line-height: 1.5;">Purchase behavior, session engagement, repeat rates — what customers actually do.</p>
-              <div class="bf-signal-drivers">
-                <div class="bf-driver-badge behavioral">
-                  <span class="bf-driver-badge-code">UF</span>
+              <div class="bf-mapping-row behavioral">
+                <div class="bf-mapping-signal behavioral">
+                  <span class="bf-mapping-signal-code">B</span>
+                  <span>Behavioral</span>
+                </div>
+                <div class="bf-mapping-arrow">↦</div>
+                <div class="bf-mapping-driver">
                   <span>User Friendly</span>
+                  <span class="bf-driver-code">UF</span>
                 </div>
-                <div class="bf-driver-badge behavioral">
-                  <span class="bf-driver-badge-code">D</span>
+              </div>
+
+              <div class="bf-mapping-row behavioral">
+                <div class="bf-mapping-signal behavioral">
+                  <span class="bf-mapping-signal-code">B</span>
+                  <span>Behavioral</span>
+                </div>
+                <div class="bf-mapping-arrow">↦</div>
+                <div class="bf-mapping-driver">
                   <span>Dependable</span>
+                  <span class="bf-driver-code">D</span>
+                </div>
+              </div>
+
+              <div class="bf-mapping-row cultural">
+                <div class="bf-mapping-signal cultural">
+                  <span class="bf-mapping-signal-code">C</span>
+                  <span>Cultural</span>
+                </div>
+                <div class="bf-mapping-arrow">↦</div>
+                <div class="bf-mapping-driver">
+                  <span>Salient</span>
+                  <span class="bf-driver-code">S</span>
+                </div>
+              </div>
+
+              <div class="bf-mapping-row cultural">
+                <div class="bf-mapping-signal cultural">
+                  <span class="bf-mapping-signal-code">C</span>
+                  <span>Cultural</span>
+                </div>
+                <div class="bf-mapping-arrow">↦</div>
+                <div class="bf-mapping-driver">
+                  <span>Accessible</span>
+                  <span class="bf-driver-code">A</span>
                 </div>
               </div>
             </div>
 
-            <div class="bf-signal-group">
-              <div class="bf-signal-group-label">Cultural & Contextual Signals</div>
-              <div class="bf-signal-title">
-                <div class="bf-signal-dot" style="background: #f59e0b;"></div>
-                Environmental Layer
-              </div>
-              <p style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.5); margin-bottom: 16px; line-height: 1.5;">Macro trends, competitive context, category strength — the operating environment.</p>
-              <div class="bf-signal-drivers">
-                <div class="bf-driver-badge cultural">
-                  <span class="bf-driver-badge-code">S</span>
-                  <span>Salient</span>
+            <!-- Right: The Six Drivers -->
+            <div class="bf-drivers-column">
+              <div class="bf-driver-group">
+                <div class="bf-driver-group-label">In the Moment (Responsive)</div>
+                <div class="bf-driver-list">
+                  <div class="bf-driver-item">
+                    <div class="bf-driver-name">User Friendly</div>
+                    <div class="bf-driver-desc">Meets needs easily. Behavioral signal strength.</div>
+                  </div>
+                  <div class="bf-driver-item">
+                    <div class="bf-driver-name">Personal</div>
+                    <div class="bf-driver-desc">Understands unique needs. Human signal strength.</div>
+                  </div>
+                  <div class="bf-driver-item">
+                    <div class="bf-driver-name">Accessible</div>
+                    <div class="bf-driver-desc">Always available. Cultural signal reach.</div>
+                  </div>
                 </div>
-                <div class="bf-driver-badge cultural">
-                  <span class="bf-driver-badge-code">A</span>
-                  <span>Accessible</span>
+              </div>
+
+              <div class="bf-driver-group">
+                <div class="bf-driver-group-label">Over Time (Sustained)</div>
+                <div class="bf-driver-list">
+                  <div class="bf-driver-item">
+                    <div class="bf-driver-name">Dependable</div>
+                    <div class="bf-driver-desc">Consistent quality. Behavioral stability.</div>
+                  </div>
+                  <div class="bf-driver-item">
+                    <div class="bf-driver-name">Meaningful</div>
+                    <div class="bf-driver-desc">Significant role in life. Human depth.</div>
+                  </div>
+                  <div class="bf-driver-item">
+                    <div class="bf-driver-name">Salient</div>
+                    <div class="bf-driver-desc">Top-of-mind choice. Cultural impact.</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Right: The Six Drivers -->
-          <div class="bf-drivers-column">
-            <div class="bf-driver-group">
-              <div class="bf-driver-group-label">In the Moment (Responsive)</div>
-              <div class="bf-driver-item">
-                <div class="bf-driver-name">User Friendly</div>
-                <div class="bf-driver-desc">Meets my needs easily and reliably. Behavioral signal strength indicator.</div>
-              </div>
-              <div class="bf-section-divider"></div>
-              <div class="bf-driver-item">
-                <div class="bf-driver-name">Personal</div>
-                <div class="bf-driver-desc">Understands my unique needs. Human signal strength indicator.</div>
-              </div>
-              <div class="bf-section-divider"></div>
-              <div class="bf-driver-item">
-                <div class="bf-driver-name">Accessible</div>
-                <div class="bf-driver-desc">Is always there when I need it. Cultural signal strength indicator.</div>
-              </div>
-            </div>
-
-            <div class="bf-driver-group">
-              <div class="bf-driver-group-label">Over Time (Sustained)</div>
-              <div class="bf-driver-item">
-                <div class="bf-driver-name">Dependable</div>
-                <div class="bf-driver-desc">Consistently provides good experience. Behavioral signal stability indicator.</div>
-              </div>
-              <div class="bf-section-divider"></div>
-              <div class="bf-driver-item">
-                <div class="bf-driver-name">Meaningful</div>
-                <div class="bf-driver-desc">Plays a significant role in my life. Human signal depth indicator.</div>
-              </div>
-              <div class="bf-section-divider"></div>
-              <div class="bf-driver-item">
-                <div class="bf-driver-name">Salient</div>
-                <div class="bf-driver-desc">When I have a need, this brand is top-of-mind. Cultural signal impact indicator.</div>
-              </div>
-            </div>
+          <!-- Composite Score in Center -->
+          <div class="bf-composite-score">
+            <div class="bf-composite-score-number">72</div>
+            <div class="bf-composite-score-label">Brand Fidelity</div>
           </div>
         </div>
 

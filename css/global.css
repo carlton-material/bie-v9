@@ -655,3 +655,51 @@ img { max-width: 100%; display: block; }
 .help-trigger:active {
   transform: translateX(-50%) scale(0.98);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   EXPERT GUIDANCE STYLES — 10,000 Hour Feel
+   Teaching, context, and expert insight baked into every page
+   ═══════════════════════════════════════════════════════════ */
+
+.guidance-header {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text-secondary);
+  max-width: 700px;
+  line-height: 1.6;
+  margin-bottom: var(--space-xl);
+  font-weight: 400;
+}
+
+.guidance-hint {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--text-tertiary);
+  line-height: 1.5;
+  margin-bottom: var(--space-md);
+  max-width: 600px;
+  font-weight: 400;
+}
+
+.guidance-keys {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.guidance-keys .key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  font-weight: 500;
+}

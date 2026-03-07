@@ -9,7 +9,8 @@
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: 2px;
-  margin-top: var(--space-lg);
+  margin-top: var(--space-3xl);
+  margin-bottom: var(--space-2xl);
   overflow: hidden;
   transition: all var(--duration-normal) var(--ease-out);
 }
