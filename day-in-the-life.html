@@ -914,6 +914,355 @@
         width: 100%;
       }
     }
+    /* ═══════════════════════════════════════════════════════════
+       VISUAL BREAKUP COMPONENTS (Guest Deep Dive inspired)
+       ═══════════════════════════════════════════════════════════ */
+
+    /* ── Stat Callout Cards (like 64% / 91% / $806 in PDF) ── */
+    .ditl-stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+
+    .ditl-stat-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: var(--space-lg) var(--space-md);
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+
+    .ditl-stat-card:hover {
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .ditl-stat-card[data-signal="human"] { border-top: 2px solid var(--signal-human); }
+    .ditl-stat-card[data-signal="behavioral"] { border-top: 2px solid var(--signal-behavioral); }
+    .ditl-stat-card[data-signal="cultural"] { border-top: 2px solid var(--signal-cultural); }
+    .ditl-stat-card[data-signal="alert"] { border-top: 2px solid #ef4444; }
+
+    .ditl-stat-value {
+      font-family: var(--font-display, 'Space Grotesk', sans-serif);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.1;
+    }
+
+    .ditl-stat-value.alert { color: #ef4444; }
+    .ditl-stat-value.positive { color: var(--signal-behavioral); }
+    .ditl-stat-value.accent { color: var(--signal-human); }
+
+    .ditl-stat-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: var(--space-xs);
+    }
+
+    .ditl-stat-context {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      margin-top: var(--space-xs);
+    }
+
+    /* ── Horizontal Bar Chart (like country bars in PDF) ── */
+    .ditl-bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: var(--space-lg) 0;
+      padding: var(--space-md);
+      background: rgba(255,255,255,0.02);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .ditl-bar-chart-title {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: var(--space-xs);
+    }
+
+    .ditl-bar-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 50px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ditl-bar-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      text-align: right;
+    }
+
+    .ditl-bar-track {
+      height: 24px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ditl-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--signal-human);
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .ditl-bar-fill.behavioral { background: var(--signal-behavioral); }
+    .ditl-bar-fill.cultural { background: var(--signal-cultural); }
+    .ditl-bar-fill.alert { background: #ef4444; }
+
+    .ditl-bar-value {
+      font-family: var(--font-display, 'Space Grotesk', sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ── Journey / Flow Diagram (like Search → Home → P2P → Checked in) ── */
+    .ditl-journey {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin: var(--space-xl) 0;
+      padding: var(--space-lg) var(--space-md);
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.04);
+      flex-wrap: wrap;
+    }
+
+    .ditl-journey-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: var(--space-sm) var(--space-md);
+      min-width: 90px;
+    }
+
+    .ditl-journey-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      background: rgba(129,140,248,0.1);
+      border: 1px solid rgba(129,140,248,0.2);
+    }
+
+    .ditl-journey-icon.behavioral { background: rgba(52,211,153,0.1); border-color: rgba(52,211,153,0.2); }
+    .ditl-journey-icon.cultural { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.2); }
+    .ditl-journey-icon.alert { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.2); }
+
+    .ditl-journey-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+    }
+
+    .ditl-journey-meta {
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+    }
+
+    .ditl-journey-arrow {
+      color: rgba(255,255,255,0.2);
+      font-size: 20px;
+      padding: 0 4px;
+    }
+
+    /* ── Comparison Card (like Experienced vs First-Time in PDF) ── */
+    .ditl-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+
+    @media (max-width: 768px) {
+      .ditl-compare { grid-template-columns: 1fr; }
+    }
+
+    .ditl-compare-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: var(--space-lg);
+    }
+
+    .ditl-compare-title {
+      font-family: var(--font-display, 'Space Grotesk', sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .ditl-compare-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .ditl-compare-metric {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .ditl-compare-value {
+      font-family: var(--font-display, 'Space Grotesk', sans-serif);
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .ditl-compare-value.alert { color: #ef4444; }
+    .ditl-compare-value.positive { color: var(--signal-behavioral); }
+
+    /* ── Narrative Intro (shorter, 2-3 sentences max) ── */
+    .ditl-narrative {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      max-width: 680px;
+      margin-bottom: var(--space-lg);
+    }
+
+    /* ── Insight Callout (pull-quote style) ── */
+    .ditl-insight {
+      border-left: 2px solid var(--signal-human);
+      padding: var(--space-sm) var(--space-md);
+      margin: var(--space-md) 0;
+      background: rgba(129,140,248,0.04);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .ditl-insight.behavioral { border-left-color: var(--signal-behavioral); background: rgba(52,211,153,0.04); }
+    .ditl-insight.cultural { border-left-color: var(--signal-cultural); background: rgba(245,158,11,0.04); }
+
+    .ditl-insight-text {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
+    }
+
+    /* ── Scenario Cards Grid (for Scene 4 war room) ── */
+    .ditl-scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-md);
+      margin: var(--space-lg) 0;
+    }
+
+    .ditl-scenario-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: var(--space-md);
+    }
+
+    .ditl-scenario-card-title {
+      font-family: var(--font-display, 'Space Grotesk', sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: var(--space-sm);
+    }
+
+    .ditl-scenario-card-stat {
+      font-family: var(--font-display, 'Space Grotesk', sans-serif);
+      font-size: 24px;
+      font-weight: 700;
+      margin: var(--space-sm) 0;
+    }
+
+    .ditl-scenario-card-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    .ditl-scenario-card-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: var(--space-sm);
+      background: rgba(129,140,248,0.12);
+      color: var(--signal-human);
+    }
+
+    .ditl-scenario-card-tag.defend { background: rgba(52,211,153,0.12); color: var(--signal-behavioral); }
+    .ditl-scenario-card-tag.bridge { background: rgba(245,158,11,0.12); color: var(--signal-cultural); }
+
+    /* ── Signal Pulse Row (for Scene 6 overnight) ── */
+    .ditl-pulse-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-sm) 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .ditl-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--signal-cultural);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; box-shadow: 0 0 0 0 rgba(245,158,11,0.2); }
+      50% { opacity: 1; box-shadow: 0 0 8px 2px rgba(245,158,11,0.3); }
+    }
+
+    .ditl-pulse-source {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.4);
+      min-width: 80px;
+    }
+
+    .ditl-pulse-signal {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      flex: 1;
+    }
+
+    .ditl-pulse-change {
+      font-family: var(--font-display, 'Space Grotesk', sans-serif);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .ditl-pulse-change.up { color: var(--signal-behavioral); }
+    .ditl-pulse-change.down { color: #ef4444; }
+    .ditl-pulse-change.spike { color: var(--signal-cultural); }
+
   </style>
 </head>
 <body data-page="day-in-the-life">
@@ -1017,9 +1366,49 @@
               </div>
             </div>
             <h2 class="ditl-scene-headline">Three Red Flags Before Sunrise</h2>
-            <div class="ditl-scene-body">
-              The phone buzzes at 6:15 AM. Not an alarm - something deeper. An intelligence pulse. Sarah Chen sets down her coffee and reads the overnight brief with the kind of focus that only comes when you know the engine never sleeps. The numbers are stark. Customers rave about Stayworthy - 78% stated satisfaction, glowing reviews, the kind of language that makes marketers smile. But something is fracturing beneath the surface. Repeat bookings have collapsed to 56%. The words are still warm. The actions have gone cold. The gap is widening.<br><br>
-              She navigates to Command Center. Three urgent signals. Brand Fidelity composite has dropped four points to 72. The Dependable driver - the foundation - sits at 58. Below critical threshold. The signal is unambiguous: what customers claim to want is no longer aligned with what they're willing to do. And the system has been watching this fracture form, piece by piece, through the night. Before the office wakes, Sarah understands the shape of the problem. She knows where to look for solutions.
+            <div class="ditl-narrative">
+              The phone buzzes at 6:15 AM — an intelligence pulse, not an alarm. Sarah sets down her coffee and reads the overnight brief. The numbers are stark: customers rave about Stayworthy, but something is fracturing beneath the surface.
+            </div>
+
+            <div class="ditl-stats-row">
+              <div class="ditl-stat-card" data-signal="human">
+                <div class="ditl-stat-value">78%</div>
+                <div class="ditl-stat-label">Stated Satisfaction</div>
+                <div class="ditl-stat-context">Glowing reviews, warm language</div>
+              </div>
+              <div class="ditl-stat-card" data-signal="alert">
+                <div class="ditl-stat-value alert">56%</div>
+                <div class="ditl-stat-label">Repeat Bookings</div>
+                <div class="ditl-stat-context">Collapsed from 71%</div>
+              </div>
+              <div class="ditl-stat-card" data-signal="behavioral">
+                <div class="ditl-stat-value alert">72</div>
+                <div class="ditl-stat-label">Brand Fidelity</div>
+                <div class="ditl-stat-context">↓ 4 points overnight</div>
+              </div>
+            </div>
+
+            <div class="ditl-insight">
+              <div class="ditl-insight-text">The words are still warm. The actions have gone cold. What customers claim to want is no longer aligned with what they're willing to do.</div>
+            </div>
+
+            <div class="ditl-bar-chart">
+              <div class="ditl-bar-chart-title">Command Center — Driver Health</div>
+              <div class="ditl-bar-row">
+                <div class="ditl-bar-label">Dependable</div>
+                <div class="ditl-bar-track"><div class="ditl-bar-fill alert" style="width: 58%;"></div></div>
+                <div class="ditl-bar-value">58</div>
+              </div>
+              <div class="ditl-bar-row">
+                <div class="ditl-bar-label">Salient</div>
+                <div class="ditl-bar-track"><div class="ditl-bar-fill" style="width: 74%;"></div></div>
+                <div class="ditl-bar-value">74</div>
+              </div>
+              <div class="ditl-bar-row">
+                <div class="ditl-bar-label">Meaningful</div>
+                <div class="ditl-bar-track"><div class="ditl-bar-fill" style="width: 82%;"></div></div>
+                <div class="ditl-bar-value">82</div>
+              </div>
             </div>
 
             <div class="ditl-drivers">
@@ -1078,9 +1467,71 @@
               </div>
             </div>
             <h2 class="ditl-scene-headline">Where Words Diverge from Action</h2>
-            <div class="ditl-scene-body">
-              Marcus Rivera reads Sarah's brief at 9:30 AM and feels the pull immediately. The data is clean, but the story beneath it is messier. Customers talk about Stayworthy with affection. They describe the experience in warm language. But somewhere in the customer journey - in the moments that matter most - something is breaking. He doesn't guess at the cause. He delegates to the engine.<br><br>
-              He opens Guided Analysis with a focused question: why is the trust signal unraveling? The system responds with its own diagnostic question: which time horizon? Marcus chooses the lens that matters - 'Over Time.' He's looking for patterns that have hardened over weeks, not sentiment that shifted overnight. The engine draws a thread from the data: support response times have degraded from 4.2 hours to 6.8 hours over the past thirty days. It cross-references this with the Dependable decline trajectory. Correlation coefficient: 0.82. Near-perfect alignment. This is not a perception problem. The customers are not misreading their own experience. The operational friction is real. The system has traced the fracture to its source.
+            <div class="ditl-narrative">
+              Marcus reads Sarah's brief and feels the pull immediately. Customers talk about Stayworthy with affection — but somewhere in the journey, something is breaking. He doesn't guess. He delegates to the engine.
+            </div>
+
+            <div class="ditl-journey">
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon">🔍</div>
+                <div class="ditl-journey-name">Question</div>
+                <div class="ditl-journey-meta">Why is trust unraveling?</div>
+              </div>
+              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon behavioral">⏱</div>
+                <div class="ditl-journey-name">Time Horizon</div>
+                <div class="ditl-journey-meta">Over Time (30 days)</div>
+              </div>
+              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon alert">📉</div>
+                <div class="ditl-journey-name">Root Cause</div>
+                <div class="ditl-journey-meta">Support response ↑</div>
+              </div>
+              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon behavioral">✓</div>
+                <div class="ditl-journey-name">Correlation</div>
+                <div class="ditl-journey-meta">r = 0.82</div>
+              </div>
+            </div>
+
+            <div class="ditl-compare">
+              <div class="ditl-compare-card">
+                <div class="ditl-compare-title">30 Days Ago</div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Support Response</span>
+                  <span class="ditl-compare-value positive">4.2 hours</span>
+                </div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Dependable Score</span>
+                  <span class="ditl-compare-value positive">66</span>
+                </div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Trust Perception</span>
+                  <span class="ditl-compare-value positive">Aligned</span>
+                </div>
+              </div>
+              <div class="ditl-compare-card">
+                <div class="ditl-compare-title">Today</div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Support Response</span>
+                  <span class="ditl-compare-value alert">6.8 hours</span>
+                </div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Dependable Score</span>
+                  <span class="ditl-compare-value alert">58</span>
+                </div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Trust Perception</span>
+                  <span class="ditl-compare-value alert">Fracturing</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ditl-insight behavioral">
+              <div class="ditl-insight-text">This is not a perception problem. The operational friction is real. The system has traced the fracture to its source.</div>
             </div>
 
             <div class="ditl-drivers">
@@ -1131,9 +1582,54 @@
               </div>
             </div>
             <h2 class="ditl-scene-headline">Signal Unfiltered</h2>
-            <div class="ditl-scene-body">
-              Dr. Anika Patel is not interested in narratives. She lives in the raw signal. At noon, she moves past the dashboards and diagnostic overlays. Signal Terminal shows her the unfiltered flow: 847 data points streaming live across three signal layers - the things customers say (Human-Expressive), the things customers do (Behavioral), and the patterns emerging in the broader culture (Cultural). Every source. Every horizon. No filters. No summaries. Just signal.<br><br>
-              Four patterns cluster together like points on a constellation. Booking abandonment has spiked 41% in the past two weeks. Mobile sessions are down 12%. Support response times have stretched to 6.8 hours. And then something shifts in the pattern - something that changes everything. The 25-34 cohort is behaving differently. They're not experiencing the same friction. The younger users are booking. The older users are hesitating. This is not a brand problem. This is a segmentation clue. This is where the intervention lives.
+            <div class="ditl-narrative">
+              Priya lives in the raw signal. At noon, she moves past dashboards and overlays. Signal Terminal shows the unfiltered flow: 847 data points across three signal layers. No filters. No summaries. Just signal.
+            </div>
+
+            <div class="ditl-stats-row">
+              <div class="ditl-stat-card" data-signal="alert">
+                <div class="ditl-stat-value alert">↑ 41%</div>
+                <div class="ditl-stat-label">Booking Abandonment</div>
+                <div class="ditl-stat-context">Past 2 weeks</div>
+              </div>
+              <div class="ditl-stat-card" data-signal="alert">
+                <div class="ditl-stat-value alert">↓ 12%</div>
+                <div class="ditl-stat-label">Mobile Sessions</div>
+                <div class="ditl-stat-context">Declining steadily</div>
+              </div>
+              <div class="ditl-stat-card" data-signal="alert">
+                <div class="ditl-stat-value alert">6.8h</div>
+                <div class="ditl-stat-label">Support Response</div>
+                <div class="ditl-stat-context">Up from 4.2h</div>
+              </div>
+              <div class="ditl-stat-card" data-signal="behavioral">
+                <div class="ditl-stat-value positive">25–34</div>
+                <div class="ditl-stat-label">Anomaly Cohort</div>
+                <div class="ditl-stat-context">Booking normally</div>
+              </div>
+            </div>
+
+            <div class="ditl-bar-chart">
+              <div class="ditl-bar-chart-title">Signal Layers — Live Feed Volume</div>
+              <div class="ditl-bar-row">
+                <div class="ditl-bar-label">Human</div>
+                <div class="ditl-bar-track"><div class="ditl-bar-fill" style="width: 62%;"></div></div>
+                <div class="ditl-bar-value">347</div>
+              </div>
+              <div class="ditl-bar-row">
+                <div class="ditl-bar-label">Behavioral</div>
+                <div class="ditl-bar-track"><div class="ditl-bar-fill behavioral" style="width: 45%;"></div></div>
+                <div class="ditl-bar-value">289</div>
+              </div>
+              <div class="ditl-bar-row">
+                <div class="ditl-bar-label">Cultural</div>
+                <div class="ditl-bar-track"><div class="ditl-bar-fill cultural" style="width: 33%;"></div></div>
+                <div class="ditl-bar-value">211</div>
+              </div>
+            </div>
+
+            <div class="ditl-insight behavioral">
+              <div class="ditl-insight-text">The 25–34 cohort is behaving differently. Younger users are booking. Older users are hesitating. This is not a brand problem — it's a segmentation clue.</div>
             </div>
 
             <div class="ditl-drivers">
@@ -1197,9 +1693,58 @@
               </div>
             </div>
             <h2 class="ditl-scene-headline">Strategic Levers in Motion</h2>
-            <div class="ditl-scene-body">
-              The conference room fills at 2 PM. The CEO will need a decision by 5. Jordan Walsh and the strategy team load Scenario Lab - the engine's simulation engine. They're not guessing about the future. They're modeling it. Three strategic futures are loaded: transparent pricing (a direct attack on the User Friendly friction), AI-driven concierge service (a defense maneuver against Booking.com's entrenched advantage), and EU regulatory tightening (the insurance scenario, the one nobody wants but everyone must consider).<br><br>
-              The system deploys 650 synthetic agents, running 100 iterations through each scenario. The Brand Fidelity composite shifts and reshapes with each simulation. Transparent Pricing emerges as the strongest lever - a 3.2-point lift in the composite over eight weeks, with 78% confidence. AI Concierge shows promise for market expansion, but it risks eroding the loyalty that Stayworthy has built. The team watches the data landscape unfold. They sketch a three-part strategy: Attack through pricing transparency, Defend the Salient advantage, Bridge with Meaningful storytelling about authentic connection. What begins as intelligence becomes strategy. Strategy becomes the action plan the CEO will execute at 5 PM.
+            <div class="ditl-narrative">
+              The conference room fills at 2 PM. The CEO needs a decision by 5. The strategy team loads Scenario Lab — they're not guessing about the future. They're modeling it. 650 synthetic agents. 100 iterations per scenario.
+            </div>
+
+            <div class="ditl-scenario-grid">
+              <div class="ditl-scenario-card">
+                <div class="ditl-scenario-card-title">Transparent Pricing</div>
+                <div class="ditl-scenario-card-stat" style="color: var(--signal-behavioral);">+3.2 pts</div>
+                <div class="ditl-scenario-card-desc">Brand Fidelity lift over 8 weeks. Direct attack on User Friendly friction.</div>
+                <div class="ditl-scenario-card-tag">Attack</div>
+                <div style="margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.4);">78% confidence</div>
+              </div>
+              <div class="ditl-scenario-card">
+                <div class="ditl-scenario-card-title">AI Concierge</div>
+                <div class="ditl-scenario-card-stat" style="color: var(--signal-cultural);">+1.8 pts</div>
+                <div class="ditl-scenario-card-desc">Market expansion promise, but risks eroding loyalty Stayworthy has built.</div>
+                <div class="ditl-scenario-card-tag defend">Defend</div>
+                <div style="margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.4);">62% confidence</div>
+              </div>
+              <div class="ditl-scenario-card">
+                <div class="ditl-scenario-card-title">EU Regulatory</div>
+                <div class="ditl-scenario-card-stat" style="color: #ef4444;">−1.1 pts</div>
+                <div class="ditl-scenario-card-desc">Insurance scenario. Nobody wants it, but everyone must consider it.</div>
+                <div class="ditl-scenario-card-tag bridge">Bridge</div>
+                <div style="margin-top: 8px; font-size: 12px; color: rgba(255,255,255,0.4);">91% probability</div>
+              </div>
+            </div>
+
+            <div class="ditl-journey">
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon">⚔️</div>
+                <div class="ditl-journey-name">Attack</div>
+                <div class="ditl-journey-meta">Pricing transparency</div>
+              </div>
+              <div class="ditl-journey-arrow">+</div>
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon behavioral">🛡</div>
+                <div class="ditl-journey-name">Defend</div>
+                <div class="ditl-journey-meta">Salient advantage</div>
+              </div>
+              <div class="ditl-journey-arrow">+</div>
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon cultural">🌉</div>
+                <div class="ditl-journey-name">Bridge</div>
+                <div class="ditl-journey-meta">Authentic storytelling</div>
+              </div>
+              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon">📋</div>
+                <div class="ditl-journey-name">CEO Brief</div>
+                <div class="ditl-journey-meta">Action plan by 5 PM</div>
+              </div>
             </div>
 
             <div class="ditl-drivers">
@@ -1255,9 +1800,60 @@
               </div>
             </div>
             <h2 class="ditl-scene-headline">From Intelligence to Execution</h2>
-            <div class="ditl-scene-body">
-              By 9:00 PM, Sarah's screen glows with a single-page brief - the Instant Brief, the engine's distilled output. Not a report. Not a dashboard littered with metrics that obscure more than they illuminate. This is a decision engine output. Clean. Traceable. Actionable. The diagnostic is clear: the trust-behavior gap is operational, not a failure of perception or brand messaging. Support friction is the root cause. The attack is equally clear: run a transparent pricing pilot in the top three markets, projected to lift Brand Fidelity by 3.2 points. Defend by maintaining Salient advantage through a frictionless booking experience. Bridge by partnering with verified-review platforms, converting the trust that exists into genuine advocacy.<br><br>
-              Three strategic levers. One foundational strategic question for the board. Every projection, every insight, every number traces directly back to the data source that supports it. Glass box methodology throughout. Anika's signals. Marcus's diagnostic. Jordan's simulations. All of it visible. All of it defensible. Sarah drafts a note to the CEO: 'This is what happens when intelligence runs 24/7 and turns data into truth.'
+            <div class="ditl-narrative">
+              By 9 PM, Sarah's screen glows with a single-page brief — the engine's distilled output. Not a report. Not a dashboard. A decision engine output. Clean. Traceable. Actionable.
+            </div>
+
+            <div class="ditl-compare">
+              <div class="ditl-compare-card">
+                <div class="ditl-compare-title">Diagnostic</div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Root Cause</span>
+                  <span class="ditl-compare-value">Operational friction</span>
+                </div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Not</span>
+                  <span class="ditl-compare-value" style="color: rgba(255,255,255,0.4);">Perception / messaging</span>
+                </div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Driver</span>
+                  <span class="ditl-compare-value alert">Support response time</span>
+                </div>
+              </div>
+              <div class="ditl-compare-card">
+                <div class="ditl-compare-title">Action Plan</div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Attack</span>
+                  <span class="ditl-compare-value">Pricing pilot (3 markets)</span>
+                </div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Defend</span>
+                  <span class="ditl-compare-value">Frictionless booking UX</span>
+                </div>
+                <div class="ditl-compare-row">
+                  <span class="ditl-compare-metric">Bridge</span>
+                  <span class="ditl-compare-value">Verified-review partners</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ditl-stats-row">
+              <div class="ditl-stat-card" data-signal="behavioral">
+                <div class="ditl-stat-value positive">+3.2</div>
+                <div class="ditl-stat-label">Projected Fidelity Lift</div>
+              </div>
+              <div class="ditl-stat-card" data-signal="human">
+                <div class="ditl-stat-value accent">3</div>
+                <div class="ditl-stat-label">Strategic Levers</div>
+              </div>
+              <div class="ditl-stat-card" data-signal="cultural">
+                <div class="ditl-stat-value">100%</div>
+                <div class="ditl-stat-label">Glass Box Traceable</div>
+              </div>
+            </div>
+
+            <div class="ditl-insight">
+              <div class="ditl-insight-text">Every projection, every insight, every number traces directly back to its data source. Priya's signals. Marcus's diagnostic. James's simulations. All visible. All defensible.</div>
             </div>
 
             <div class="ditl-drivers">
@@ -1314,9 +1910,60 @@
               </div>
             </div>
             <h2 class="ditl-scene-headline">The Intelligence That Never Sleeps</h2>
-            <div class="ditl-scene-body">
-              The office is dark. The lights are off. The conference rooms stand empty. The parking lot is quiet. But in the data streams, something is still moving. The intelligence engine is awake. It is always awake. At 11:45 PM, the Cultural signal layer detects a tremor in the ambient information landscape. TikTok travel content mentioning 'authentic stays' has spiked 340% in 48 hours. Reddit discussions about trust in hospitality have pivoted sharply toward 'genuine connection' and 'real experiences.' Google Trends show 'real vs. fake reviews' search volume up 167%. The broader culture is shifting, and the system is listening.<br><br>
-              The engine doesn't store these signals and forget them. It doesn't wait for tomorrow's analyst to make sense of the pattern. It cross-references the Cultural signals with the Human-Expressive data from the day - the things customers said, the sentiment they expressed. It recalibrates the weighting of each driver. It factors this emerging pattern into the Brand Fidelity composite. By 6:15 AM, a new Morning Brief will be waiting for Sarah. The trust-behavior gap may have narrowed. Or it may have widened further. The intervention the team designed may have shifted the trajectory - or the culture may have moved in an unexpected direction. But she will know. The system will have been thinking about it all night. Every pattern. Every signal. Every possibility factored into the understanding that awaits her at sunrise.
+            <div class="ditl-narrative">
+              The office is dark. The conference rooms stand empty. But in the data streams, something is still moving. The intelligence engine is awake — it is always awake. The Cultural signal layer detects a tremor.
+            </div>
+
+            <div class="ditl-bar-chart" style="border-color: rgba(245,158,11,0.15);">
+              <div class="ditl-bar-chart-title">Overnight Cultural Signal Spikes</div>
+              <div class="ditl-pulse-row">
+                <div class="ditl-pulse-dot"></div>
+                <div class="ditl-pulse-source">TikTok</div>
+                <div class="ditl-pulse-signal">"Authentic stays" travel content</div>
+                <div class="ditl-pulse-change spike">+340%</div>
+              </div>
+              <div class="ditl-pulse-row">
+                <div class="ditl-pulse-dot"></div>
+                <div class="ditl-pulse-source">Google</div>
+                <div class="ditl-pulse-signal">"Real vs. fake reviews" search volume</div>
+                <div class="ditl-pulse-change spike">+167%</div>
+              </div>
+              <div class="ditl-pulse-row">
+                <div class="ditl-pulse-dot"></div>
+                <div class="ditl-pulse-source">Reddit</div>
+                <div class="ditl-pulse-signal">Trust in hospitality → "genuine connection"</div>
+                <div class="ditl-pulse-change spike">pivot</div>
+              </div>
+            </div>
+
+            <div class="ditl-journey">
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon cultural">📡</div>
+                <div class="ditl-journey-name">Detect</div>
+                <div class="ditl-journey-meta">Cultural tremor</div>
+              </div>
+              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon">🔗</div>
+                <div class="ditl-journey-name">Cross-Ref</div>
+                <div class="ditl-journey-meta">Human + Behavioral</div>
+              </div>
+              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon behavioral">⚖️</div>
+                <div class="ditl-journey-name">Recalibrate</div>
+                <div class="ditl-journey-meta">Driver weights</div>
+              </div>
+              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-step">
+                <div class="ditl-journey-icon">☀️</div>
+                <div class="ditl-journey-name">Brief Ready</div>
+                <div class="ditl-journey-meta">6:15 AM</div>
+              </div>
+            </div>
+
+            <div class="ditl-insight cultural">
+              <div class="ditl-insight-text">By 6:15 AM, a new Morning Brief will be waiting. The system will have been thinking about it all night. Every pattern. Every signal. Every possibility.</div>
             </div>
 
             <div class="ditl-drivers">
