@@ -171,6 +171,8 @@ body:not(:has(.app-feed)) .analyst-panel {
   position: relative;
   overflow: hidden;
   border-radius: 1px;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
+  animation: pulseGlow 3s ease-in-out infinite;
 }
 .nav-pulse-bar::after {
   content: '';
@@ -185,6 +187,10 @@ body:not(:has(.app-feed)) .analyst-panel {
 @keyframes pulseSlide {
   0% { left: -30%; }
   100% { left: 100%; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 8px rgba(34, 197, 94, 0.3); }
+  50% { box-shadow: 0 0 12px rgba(34, 197, 94, 0.5); }
 }
 .nav-pulse-label {
   font-family: var(--font-mono);
@@ -1288,6 +1294,7 @@ select {
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
+  min-height: 44px;
   background: transparent;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 4px;

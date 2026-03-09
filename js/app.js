@@ -1142,6 +1142,16 @@ window.BIE = {
         const expanded = toggle.getAttribute('aria-expanded') === 'true';
         toggle.setAttribute('aria-expanded', String(!expanded));
         content.classList.toggle('expanded', !expanded);
+
+        // Update button text and chevron
+        const chevron = toggle.querySelector('.chevron');
+        if (!expanded) {
+          // Expanding: show "Hide My Work ▴"
+          toggle.innerHTML = 'Hide My Work <span class="chevron">▴</span>';
+        } else {
+          // Collapsing: show "Show My Work ▾"
+          toggle.innerHTML = 'Show My Work <span class="chevron">▾</span>';
+        }
       });
     });
 
