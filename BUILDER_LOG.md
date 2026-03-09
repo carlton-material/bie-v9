@@ -90,13 +90,80 @@
 - Pushed 3 commits: `b1bddaf`, `977d8b8`, `2ee0f79`
 - All 8 surfaces returning HTTP 200 on GitHub Pages
 
-## Remaining
-- Screenshots + README update (Phase 6) — deferred, can be done in next session
+---
+
+# Sprint 15.2 — Polish Pass (Session 2)
+
+## Phase A ✅ — The Shift Redesign
+**Commit:** `7bc2392`
+- Replaced 2-column `.comparison-grid` with row-based `.shift-table`
+- 4 rows: What changed? / Why? / Who experienced it? / What if we do X vs Y?
+- Traditional column has strikethrough, AI-Native column in purple highlight
+- Dark glass-morphism styling matching design system
+
+## Phase B ✅ — Day in the Life Subtle Colors
+**Commit:** `e65a77f` (with Phase C)
+- Reduced signal accent opacity: background 0.1→0.06, border 0.3→0.15
+- Glass box toggle verified already working (app.js lines 914-927)
+
+## Phase C ✅ — Brand Fidelity Official Image
+**Commit:** `e65a77f` (with Phase B)
+- Copied `Fidelity-01 1 copy.png` → `assets/images/fidelity-wheel.png`
+- Replaced inline SVG wheel with `<img>` tag, max-width 500px, responsive
+
+## Phase D ✅ — Command Center + Guided Analysis Scroll Fix
+**Commit:** `043000d`
+- Root cause: `padding-bottom: 120px` on `:last-child` of both containers
+- Reduced to 32px — content now fills naturally from top
+
+## Phase E ✅ — How It Works Architecture Expansion
+**Commit:** `a884483`
+- Added ~240 lines of new architecture content
+- 01b.1 Signal Ingestion Pipeline (source classification, validation gates)
+- 01b.2 Processing & Enrichment (NLP/behavioral/cultural pipelines)
+- 01b.3 Consensus Engine Deep Dive (worked example, confidence formula)
+- 01b.4 Surface Delivery (8-surface routing)
+- 01b.5 Caching & Performance (signal cache, progressive loading)
+
+## Phase F ✅ — Scenario Lab Rework
+**Commit:** `a9f66a9`
+- Replaced 5-card selector grid with `<select>` dropdown + "Begin Analysis →" CTA
+- Renamed all "Signal Nexus" → "Fidelity LIVE" with pulsing red dot animation
+- Reordered competitive brands: Airbnb, Vrbo first
+- Added shimmer/sweep CSS animations, `BIE.startSelectedScenario()` handler
+
+## Onboarding Popup Fixes ✅
+**Commit:** `3e15942`
+- **Title truncation root cause:** Wildcard `[class*="title"]` at line ~893 in global.css was forcing `white-space: nowrap` on `.onboarding-title`. Fixed with inline `setProperty('white-space', 'normal', 'important')` in JS
+- Replaced pulse SVG with Phosphor `ph-chart-line-up` icon + CSS pulse rings
+- Replaced drivers SVG with official `fidelity-wheel.png` image
+- Widened timeline SVG from 280→420px for even label spacing (9 PM / 11:45 PM overlap fixed)
+
+## Phase G ✅ — README Screenshots
+**Commit:** `caa142b`
+- Deleted 31 old screenshots (above-fold, full, scroll variants)
+- Playwright captured fresh 1280×800 screenshots for all 8 surfaces
+- Added Brand Fidelity + Scenario Lab to README screenshots section
+- Updated surface count 7→8, renamed Signal Nexus→Fidelity LIVE
+
+## All Commits (Sprint 15.2)
+| Hash | Description |
+|------|-------------|
+| `7bc2392` | fix: redesign The Shift as from→to comparison table |
+| `e65a77f` | fix: DITL subtle colors + Brand Fidelity official image |
+| `043000d` | fix: root-cause scroll midline in Command Center + Guided Analysis |
+| `a884483` | feat: expand architecture to full technical depth |
+| `a9f66a9` | feat: scenario lab dropdown, Fidelity LIVE, premium positioning |
+| `3e15942` | fix: onboarding popup — title wrap, icon, fidelity image, timeline |
+| `caa142b` | docs: fresh screenshots for all 8 surfaces |
 
 ---
 
 ## Key Lessons
-1. **NEVER use VM-side mirror for edits** — always `/tmp/bie-v9-push/`
+1. **NEVER use VM-side mirror for edits** — always `/tmp/bie-v9-push/` via Desktop Commander
 2. **Agent bulk edits are unreliable** — verify every change, prefer script-based (Python/sed)
 3. **Desktop Commander `read_file` can return empty** — use `start_process` with `cat -n` or `sed -n` as fallback
 4. **Check for existing content before conditional inserts** — how-it-works.html teaser link caused script to skip nav insertion
+5. **VM ≠ Mac filesystem** — Playwright runs in VM, Desktop Commander edits Mac side. Must sync or test from correct location
+6. **Wildcard CSS attribute selectors are sneaky** — `[class*="title"]` matched `.onboarding-title` and caused truncation. Always check for wildcard overrides
+7. **Inline `style.property = value` loses to `!important` in stylesheets** — use `setProperty(prop, val, 'important')` for guaranteed override
