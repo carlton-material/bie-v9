@@ -1962,7 +1962,7 @@
     </div>
     <div class="nav-pulse">
       <div class="nav-pulse-bar"></div>
-      <div class="nav-pulse-label"><span>Signal Activity</span><span><span class="signal-count">847</span> live</span></div>
+      <div class="nav-pulse-label"><span>Signal Activity</span><span><span class="signal-count">862</span> live</span></div>
     </div>
   </nav>
 
@@ -2028,7 +2028,7 @@
         <div class="simulation-confidence" title="Model confidence derived from signal volume, recency, and cross-validation across 6 independent pipelines">
           <span class="confidence-value">87% confidence</span>
           <span class="confidence-separator">·</span>
-          847 signals · 24K respondents · 6 pipelines
+          862 signals · 24K respondents · 6 pipelines
           <span style="cursor: help; opacity: 0.4; font-size: 0.7rem;" title="How is confidence calculated? Signal volume × recency × cross-pipeline agreement. Higher values mean more reliable simulation outputs.">ⓘ</span>
         </div>
 
@@ -2565,7 +2565,7 @@
           <div style="width: 8px; height: 8px; background: #00d084; border-radius: 50%; animation: pulse 2s infinite;"></div>
           <span style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; color: #00d084; font-weight: 600;">LIVE</span>
           <span style="color: rgba(255,255,255,0.6); font-size: var(--text-small); margin-left: 8px;">
-            <span id="signal-count-live">847</span> signals flowing
+            <span id="signal-count-live">862</span> signals flowing
           </span>
         </div>
 
@@ -2801,7 +2801,7 @@
   <!-- SCRIPTS -->
   <script src="js/analyst-llm.js"></script>
   <script src="js/api-client.js?v=3"></script>
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=2"></script>
   <script src="js/brand-sim.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script>
@@ -4544,7 +4544,7 @@
     
     function initSignalNexus() {
       // Live signal counter animation
-      let signalCount = 847;
+      let signalCount = 862;
       setInterval(() => {
         signalCount += Math.floor(Math.random() * 5) + 1;
         const counter = document.getElementById('signal-count-live');

@@ -845,22 +845,23 @@ window.BIE = {
     const countEl = document.querySelector('.signal-count');
     if (!countEl) return;
 
-    // Try to get real signal count from API
-    let count = 847;
-    if (typeof BIEApi !== 'undefined') {
-      try {
-        const stats = await BIEApi.getStats();
-        if (stats.total && stats.source === 'live') {
-          count = stats.total;
+    // Get authoritative signal count from signals-metadata.json
+    let count = countEl.textContent || '862'; // fallback to HTML hardcoded value
+
+    try {
+      const resp = await fetch('data/signals-metadata.json');
+      if (resp.ok) {
+        const metadata = await resp.json();
+        if (metadata.metrics?.signalCounts?.total) {
+          count = metadata.metrics.signalCounts.total;
         }
-      } catch { /* use default */ }
+      }
+    } catch (e) {
+      // Silently fail and use fallback value
+      console.debug('[BIE] Could not fetch signals-metadata.json, using fallback');
     }
 
     countEl.textContent = count;
-    setInterval(() => {
-      count += Math.random() > 0.5 ? 1 : 0;
-      countEl.textContent = count;
-    }, 5000);
   },
 
   /* ── Onboarding Wizard ── */

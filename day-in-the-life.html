@@ -46,9 +46,9 @@
     /* ── Timeline Spine (Fixed Left) ── */
     .ditl-timeline {
       position: fixed;
-      left: var(--nav-width);
+      left: calc(var(--nav-width) + 20px);
       top: 0;
-      width: 80px;
+      width: 120px;
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -120,16 +120,17 @@
 
     .ditl-dot-label {
       position: absolute;
-      left: 28px;
+      left: 32px;
       top: 50%;
       transform: translateY(-50%);
       font-family: var(--font-mono);
-      font-size: var(--text-nano);
+      font-size: 13px;
       color: var(--text-muted);
       white-space: nowrap;
       opacity: 0;
       transition: opacity var(--duration-normal);
       pointer-events: none;
+      overflow: visible;
     }
 
     .ditl-dot:hover .ditl-dot-label,
@@ -839,17 +840,17 @@
     /* ── Responsive Adjustments ── */
     @media (max-width: 1200px) {
       .ditl-timeline {
-        width: 60px;
+        width: 110px;
         padding-top: var(--space-lg);
       }
 
       .ditl-container {
-        padding-left: 100px;
+        padding-left: 150px;
       }
 
       .ditl-dot-label {
-        font-size: var(--text-micro);
-        left: 26px;
+        font-size: 12px;
+        left: 30px;
       }
     }
 
@@ -1236,7 +1237,7 @@
       </div>
       <div class="nav-pulse">
         <div class="nav-pulse-bar"></div>
-        <div class="nav-pulse-label"><span>Signal Activity</span><span><span class="signal-count">847</span> live</span></div>
+        <div class="nav-pulse-label"><span>Signal Activity</span><span><span class="signal-count">862</span> live</span></div>
       </div>
     </nav>
 
@@ -1989,7 +1990,7 @@
 
   <script src="js/analyst-llm.js"></script>
   <script src="js/api-client.js?v=3"></script>
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=2"></script>
   <script>
     /* ═══════════════════════════════════════════════════════════
        DAY IN THE LIFE - Timeline & Scene Management
