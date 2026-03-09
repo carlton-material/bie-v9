@@ -3717,6 +3717,106 @@
       init() {
         this.renderTrajectory();
         this.renderRadar();
+        this.startTimeSimulation();
+      },
+
+      /* ── Time-Based Signal Dancing ── */
+      startTimeSimulation() {
+        this.simHour = 6; // Start at 6 AM
+        this.liveScores = {
+          human: this.signalData.human.count,
+          behavioral: this.signalData.behavioral.count,
+          cultural: this.signalData.cultural.count
+        };
+        this.baseScores = { ...this.liveScores };
+
+        // Time-of-day multipliers: activity peaks at 9am, 1pm, 6pm
+        const hourMultiplier = (h) => {
+          if (h >= 6 && h < 9) return 0.6 + (h - 6) * 0.13;   // Morning ramp
+          if (h >= 9 && h < 12) return 1.0;                      // Peak morning
+          if (h >= 12 && h < 13) return 0.85;                    // Lunch dip
+          if (h >= 13 && h < 17) return 0.95;                    // Afternoon
+          if (h >= 17 && h < 20) return 1.05;                    // Evening peak
+          if (h >= 20 && h < 23) return 0.7;                     // Wind down
+          return 0.4;                                              // Overnight
+        };
+
+        // Update every 4 seconds, advance 0.5 hours
+        this.simInterval = setInterval(() => {
+          this.simHour = (this.simHour + 0.5) % 24;
+          const mult = hourMultiplier(this.simHour);
+
+          // Update each signal with random walk + time-of-day influence
+          ['human', 'behavioral', 'cultural'].forEach(sig => {
+            const base = this.baseScores[sig];
+            const jitter = (Math.random() - 0.5) * 4; // ±2
+            const timeEffect = (mult - 0.7) * 15;     // Time-of-day shift
+            this.liveScores[sig] = Math.round(base + timeEffect + jitter);
+          });
+
+          // Composite = weighted average
+          const composite = Math.round(
+            (this.liveScores.human * 0.35 +
+             this.liveScores.behavioral * 0.40 +
+             this.liveScores.cultural * 0.25) / 100 * 12 + 60
+          );
+
+          // Update DOM — signal score elements
+          document.querySelectorAll('.nexus-signal-card').forEach(card => {
+            const sig = card.dataset.signal;
+            if (sig && this.liveScores[sig] !== undefined) {
+              const scoreEl = card.querySelector('.nexus-signal-score');
+              const deltaEl = card.querySelector('.nexus-signal-delta');
+              if (scoreEl) scoreEl.textContent = this.liveScores[sig];
+              if (deltaEl) {
+                const diff = this.liveScores[sig] - this.baseScores[sig];
+                const arrow = diff >= 0 ? '▲' : '▼';
+                const pct = Math.abs(diff / this.baseScores[sig] * 100).toFixed(1);
+                deltaEl.className = 'nexus-signal-delta ' + (diff >= 0 ? 'positive' : 'negative');
+                deltaEl.textContent = `${arrow} ${pct}% vs baseline`;
+              }
+            }
+          });
+
+          // Update composite
+          const compEl = document.querySelector('.nexus-composite-value');
+          const compDelta = document.querySelector('.nexus-composite-delta');
+          if (compEl) compEl.textContent = composite;
+          if (compDelta) {
+            const diff = composite - 72;
+            const arrow = diff >= 0 ? '▲' : '▼';
+            compDelta.textContent = `${arrow} ${Math.abs(diff)} vs baseline`;
+          }
+
+          // Update time display
+          const h = Math.floor(this.simHour);
+          const m = (this.simHour % 1) * 60;
+          const ampm = h >= 12 ? 'PM' : 'AM';
+          const h12 = h === 0 ? 12 : h > 12 ? h - 12 : h;
+          const timeStr = `${h12}:${m === 0 ? '00' : '30'} ${ampm}`;
+          const liveEl = document.getElementById('signal-count-live');
+          if (liveEl) {
+            const totalSignals = this.liveScores.human + this.liveScores.behavioral + this.liveScores.cultural;
+            liveEl.textContent = totalSignals;
+          }
+
+          // Add a simulated time badge if it doesn't exist
+          let timeBadge = document.getElementById('sim-time-badge');
+          if (!timeBadge) {
+            const liveIndicator = document.querySelector('[data-mode="signal-nexus"] .nexus-layout');
+            if (liveIndicator) {
+              timeBadge = document.createElement('div');
+              timeBadge.id = 'sim-time-badge';
+              timeBadge.style.cssText = 'position: absolute; top: -28px; right: 0; font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.05em;';
+              liveIndicator.style.position = 'relative';
+              liveIndicator.prepend(timeBadge);
+            }
+          }
+          if (timeBadge) {
+            timeBadge.textContent = `Simulated: ${timeStr}`;
+          }
+
+        }, 4000);
       },
 
       selectSignal(signal) {
