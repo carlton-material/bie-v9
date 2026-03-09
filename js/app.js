@@ -664,6 +664,10 @@ window.BIE = {
     // Title
     const title = document.createElement('h2');
     title.className = 'onboarding-title';
+    title.style.setProperty('white-space', 'normal', 'important');
+    title.style.setProperty('overflow', 'visible', 'important');
+    title.style.setProperty('text-overflow', 'unset', 'important');
+    title.style.setProperty('word-wrap', 'break-word', 'important');
     card.appendChild(title);
 
     // Description
@@ -772,87 +776,48 @@ window.BIE = {
 
     switch(type) {
       case 'pulse':
-        // Animated pulse ring with dashboard icon inside
+        // Phosphor icon with animated pulse ring
         return `
-          <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
-            <defs>
-              <style>
-                @keyframes onboardPulse {
-                  0% { r: 40; opacity: 0.8; }
-                  100% { r: 55; opacity: 0; }
-                }
-                .pulse-ring { animation: onboardPulse 2s ease-out infinite; }
-              </style>
-            </defs>
-            <!-- Pulse rings -->
-            <circle cx="80" cy="80" r="40" class="pulse-ring" fill="none" stroke="#745AFF" stroke-width="1"/>
-            <circle cx="80" cy="80" r="50" class="pulse-ring" fill="none" stroke="#745AFF" stroke-width="1" style="animation-delay: 0.3s"/>
-            
-            <!-- Center circle background -->
-            <circle cx="80" cy="80" r="30" fill="#745AFF" opacity="0.2"/>
-            <circle cx="80" cy="80" r="28" fill="none" stroke="#745AFF" stroke-width="2"/>
-            
-            <!-- Dashboard icon: 4 small rectangles in a grid -->
-            <rect x="65" y="65" width="8" height="8" rx="1" fill="#745AFF" opacity="0.8"/>
-            <rect x="77" y="65" width="8" height="8" rx="1" fill="#745AFF" opacity="0.8"/>
-            <rect x="65" y="77" width="8" height="8" rx="1" fill="#745AFF" opacity="0.8"/>
-            <rect x="77" y="77" width="8" height="8" rx="1" fill="#745AFF" opacity="0.8"/>
-          </svg>
+          <div style="position: relative; display: flex; align-items: center; justify-content: center; width: 140px; height: 140px; margin: 0 auto;">
+            <div style="position: absolute; width: 100px; height: 100px; border-radius: 50%; border: 1.5px solid rgba(116,90,255,0.4); animation: onboardPulse 2s ease-out infinite;"></div>
+            <div style="position: absolute; width: 120px; height: 120px; border-radius: 50%; border: 1px solid rgba(116,90,255,0.2); animation: onboardPulse 2s ease-out infinite 0.4s;"></div>
+            <div style="width: 72px; height: 72px; border-radius: 50%; background: rgba(116,90,255,0.15); border: 1.5px solid rgba(116,90,255,0.5); display: flex; align-items: center; justify-content: center;">
+              <i class="ph ph-chart-line-up" style="font-size: 32px; color: #745AFF;"></i>
+            </div>
+          </div>
+          <style>
+            @keyframes onboardPulse {
+              0% { transform: scale(0.8); opacity: 0.8; }
+              100% { transform: scale(1.2); opacity: 0; }
+            }
+          </style>
         `;
 
       case 'drivers':
-        // Brand Fidelity wheel: 6 petals with drivers around center circle
+        // Official Brand Fidelity wheel image
         return `
-          <svg width="220" height="220" viewBox="0 0 220 220" fill="none">
-            <!-- Center circle -->
-            <circle cx="110" cy="110" r="25" fill="#745AFF" opacity="0.2"/>
-            <circle cx="110" cy="110" r="23" fill="none" stroke="#745AFF" stroke-width="1.5"/>
-            <text x="110" y="115" font-size="9" font-family="Inter" fill="#745AFF" text-anchor="middle" font-weight="600">Brand</text>
-            
-            <!-- Top petal: User Friendly (Indigo, 12 o'clock) -->
-            <path d="M 110 30 Q 85 50 95 80 Q 110 75 110 75 Q 110 75 125 80 Q 135 50 110 30" fill="rgba(129,140,248,0.3)" stroke="#818cf8" stroke-width="1.5"/>
-            <text x="110" y="50" font-size="10" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">User</text>
-            <text x="110" y="62" font-size="10" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">Friendly</text>
-            
-            <!-- Top-right petal: Personal (Green, 2 o'clock) -->
-            <path d="M 160 55 Q 175 70 165 100 Q 155 95 145 90 Q 150 70 160 55" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5"/>
-            <text x="165" y="75" font-size="10" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Personal</text>
-            
-            <!-- Bottom-right petal: Accessible (Amber, 4 o'clock) -->
-            <path d="M 160 165 Q 175 150 165 120 Q 155 125 145 130 Q 150 150 160 165" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="1.5"/>
-            <text x="165" y="145" font-size="10" font-family="Inter" fill="#f59e0b" text-anchor="middle" font-weight="500">Accessible</text>
-            
-            <!-- Bottom petal: Dependable (Indigo, 6 o'clock) -->
-            <path d="M 110 190 Q 85 170 95 140 Q 110 145 110 145 Q 110 145 125 140 Q 135 170 110 190" fill="rgba(129,140,248,0.3)" stroke="#818cf8" stroke-width="1.5"/>
-            <text x="110" y="170" font-size="10" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">Dependable</text>
-            
-            <!-- Bottom-left petal: Meaningful (Green, 8 o'clock) -->
-            <path d="M 60 165 Q 45 150 55 120 Q 65 125 75 130 Q 70 150 60 165" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5"/>
-            <text x="55" y="145" font-size="10" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Meaningful</text>
-            
-            <!-- Top-left petal: Salient (Amber, 10 o'clock) -->
-            <path d="M 60 55 Q 45 70 55 100 Q 65 95 75 90 Q 70 70 60 55" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="1.5"/>
-            <text x="55" y="75" font-size="10" font-family="Inter" fill="#f59e0b" text-anchor="middle" font-weight="500">Salient</text>
-          </svg>
+          <div style="display: flex; align-items: center; justify-content: center;">
+            <img src="assets/images/fidelity-wheel.png" alt="Brand Fidelity Framework — Six Drivers" style="max-width: 200px; width: 100%; height: auto; border-radius: 8px;">
+          </div>
         `;
 
       case 'timeline':
-        // Timeline dots (6AM → 9AM → 12PM → 3PM → 9PM → 11:45PM) with even spacing
+        // Timeline dots (6AM → 9AM → 12PM → 3PM → 9PM → 11:45PM) evenly spaced
         return `
-          <svg width="280" height="120" viewBox="0 0 280 120" fill="none">
-            <line x1="20" y1="60" x2="260" y2="60" stroke="#745AFF" stroke-width="1.5" opacity="0.3"/>
-            <circle cx="20" cy="60" r="5" fill="#745AFF" opacity="0.5"/>
-            <circle cx="72" cy="60" r="5" fill="#745AFF" opacity="0.6"/>
-            <circle cx="124" cy="60" r="5" fill="#745AFF" opacity="0.7"/>
-            <circle cx="176" cy="60" r="5" fill="#745AFF" opacity="0.75"/>
-            <circle cx="228" cy="60" r="5" fill="#745AFF" opacity="0.85"/>
-            <circle cx="260" cy="60" r="6" fill="#745AFF"/>
-            <text x="20" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">6 AM</text>
-            <text x="72" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">9 AM</text>
-            <text x="124" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">12 PM</text>
-            <text x="176" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">3 PM</text>
-            <text x="228" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.8">9 PM</text>
-            <text x="260" y="85" font-size="9" fill="#745AFF" text-anchor="middle">11:45 PM</text>
+          <svg width="420" height="100" viewBox="0 0 420 100" fill="none">
+            <line x1="30" y1="45" x2="390" y2="45" stroke="#745AFF" stroke-width="1.5" opacity="0.3"/>
+            <circle cx="30" cy="45" r="5" fill="#745AFF" opacity="0.5"/>
+            <circle cx="102" cy="45" r="5" fill="#745AFF" opacity="0.6"/>
+            <circle cx="174" cy="45" r="5" fill="#745AFF" opacity="0.7"/>
+            <circle cx="246" cy="45" r="5" fill="#745AFF" opacity="0.75"/>
+            <circle cx="318" cy="45" r="5" fill="#745AFF" opacity="0.85"/>
+            <circle cx="390" cy="45" r="6" fill="#745AFF"/>
+            <text x="30" y="72" font-size="11" font-family="Inter" fill="#745AFF" text-anchor="middle" opacity="0.6">6 AM</text>
+            <text x="102" y="72" font-size="11" font-family="Inter" fill="#745AFF" text-anchor="middle" opacity="0.6">9 AM</text>
+            <text x="174" y="72" font-size="11" font-family="Inter" fill="#745AFF" text-anchor="middle" opacity="0.7">12 PM</text>
+            <text x="246" y="72" font-size="11" font-family="Inter" fill="#745AFF" text-anchor="middle" opacity="0.7">3 PM</text>
+            <text x="318" y="72" font-size="11" font-family="Inter" fill="#745AFF" text-anchor="middle" opacity="0.8">9 PM</text>
+            <text x="390" y="72" font-size="11" font-family="Inter" fill="#745AFF" text-anchor="middle" opacity="0.9">11:45 PM</text>
           </svg>
         `;
 
