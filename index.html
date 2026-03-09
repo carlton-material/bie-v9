@@ -307,10 +307,12 @@
 
     .signal-card-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 500;
       letter-spacing: -0.03em;
       color: rgba(255, 255, 255, 0.95);
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .signal-card-desc {
@@ -640,7 +642,18 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 32px;
       margin: 60px 0;
-      max-width: 1200px;
+      max-width: 1400px;
+    }
+
+    .tier-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 12px 0;
+      display: flex;
+      gap: 24px;
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
 
     .tier-card {
@@ -786,6 +799,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 24px;
       margin-top: 32px;
+      max-width: 1000px;
     }
 
     .team-member {
@@ -1053,15 +1067,18 @@
         <div class="stats-grid" style="margin-top: 60px;">
           <div class="stat-block">
             <div class="stat-value count-up" data-value="3.2" data-prefix="$" data-suffix="B" data-decimals="1">$0</div>
-            <div class="stat-label">Industry Market</div>
+            <div class="stat-label">Global Brand Tracking Market</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.45); line-height: 1.5; margin-top: 4px;">TAM for brand health measurement, growing 8% CAGR. M+ captures &lt;2% today.</div>
           </div>
           <div class="stat-block">
             <div class="stat-value count-up" data-value="60" data-suffix="%">0</div>
-            <div class="stat-label">Budget → Sample</div>
+            <div class="stat-label">Client Budget Spent on Sample</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.45); line-height: 1.5; margin-top: 4px;">Majority of tracking spend goes to recruiting respondents — not generating insight.</div>
           </div>
           <div class="stat-block">
             <div class="stat-value count-up" data-value="1985">0</div>
-            <div class="stat-label">Core Architecture</div>
+            <div class="stat-label">Year the Core Model Was Designed</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(255, 255, 255, 0.45); line-height: 1.5; margin-top: 4px;">Survey-to-slide architecture hasn't fundamentally changed in 40 years.</div>
           </div>
         </div>
       </section>
@@ -1508,9 +1525,9 @@
           <div class="tier-card">
             <div class="tier-number">1</div>
             <div class="tier-title">Fully Synthetic</div>
-            <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); margin: 12px 0; display: flex; justify-content: space-between;">
+            <div class="tier-meta">
               <span>Turnaround: 3-5 Days</span>
-              <span>Price: $30K - $50K</span>
+              <span>Price: $30K – $50K</span>
             </div>
             <div class="tier-desc">Directionally accurate but not ground-truthed to your specific audience.</div>
             <div class="tier-desc" style="margin-top: 12px; font-size: 0.95rem; color: rgba(255, 255, 255, 0.7);">LLM-generated audience simulations calibrated to category norms. Behavioral and cultural layers are entirely real-data.</div>
@@ -1519,9 +1536,9 @@
           <div class="tier-card">
             <div class="tier-number">2</div>
             <div class="tier-title">Historical + Augmented</div>
-            <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); margin: 12px 0; display: flex; justify-content: space-between;">
+            <div class="tier-meta">
               <span>Turnaround: 2-3 Weeks</span>
-              <span>Price: $75K - $150K</span>
+              <span>Price: $75K – $150K</span>
             </div>
             <div class="tier-desc">You already paid for this data once—let us make it work continuously.</div>
             <div class="tier-desc" style="margin-top: 12px; font-size: 0.95rem; color: rgba(255, 255, 255, 0.7);">Uses historical data to calibrate the human-expressive model.</div>
@@ -1530,9 +1547,9 @@
           <div class="tier-card">
             <div class="tier-number">3</div>
             <div class="tier-title">Survey-Anchored</div>
-            <div style="font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(255, 255, 255, 0.65); margin: 12px 0; display: flex; justify-content: space-between;">
+            <div class="tier-meta">
               <span>Turnaround: Continuous</span>
-              <span>Price: $200K - $400K / yr</span>
+              <span>Price: $200K – $400K/yr</span>
             </div>
             <div class="tier-desc">The anchor survey shrinks over time as the model gets confident.</div>
             <div class="tier-desc" style="margin-top: 12px; font-size: 0.95rem; color: rgba(255, 255, 255, 0.7);">Lightweight AI-moderated conversations with 200-300 people per pulse.</div>
