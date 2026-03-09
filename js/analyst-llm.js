@@ -1,10 +1,12 @@
 /* ═══════════════════════════════════════════════════════════
    Material Analyst LLM Integration
    Calls Claude Haiku via Anthropic API with streaming
+   v2: Buffer flush, AbortController timeout, updated API version
    ═══════════════════════════════════════════════════════════ */
 
 const AnalystLLM = {
   config: null,
+  activeController: null,
 
   async loadConfig() {
     if (this.config) return this.config;
@@ -81,11 +83,27 @@ RESPONSE GUIDELINES:
 Remember: You are analyzing brand health signals, not making business decisions. Your role is to illuminate patterns and surface opportunities.`;
   },
 
+  /** Cancel any in-flight request */
+  abort() {
+    if (this.activeController) {
+      this.activeController.abort();
+      this.activeController = null;
+    }
+  },
+
   async callAPI(systemPrompt, userQuery, onChunk) {
     const config = await this.loadConfig();
     if (!config?.anthropic_api_key || config.anthropic_api_key === 'PASTE_YOUR_KEY_HERE') {
       throw new Error('API key not configured. Please set your Anthropic API key in data/config.json');
     }
+
+    // Cancel any previous in-flight request
+    this.abort();
+
+    // Create AbortController with 30s timeout
+    const controller = new AbortController();
+    this.activeController = controller;
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
 
     const payload = {
       model: config.model || 'claude-haiku-4-5-20251001',
@@ -100,18 +118,31 @@ Remember: You are analyzing brand health signals, not making business decisions.
       stream: true
     };
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': config.anthropic_api_key,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify(payload)
-    });
+    let response;
+    try {
+      response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': config.anthropic_api_key,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify(payload),
+        signal: controller.signal
+      });
+    } catch(e) {
+      clearTimeout(timeoutId);
+      this.activeController = null;
+      if (e.name === 'AbortError') {
+        throw new Error('Request timed out after 30 seconds');
+      }
+      throw e;
+    }
 
     if (!response.ok) {
+      clearTimeout(timeoutId);
+      this.activeController = null;
       const errorText = await response.text();
       throw new Error(`API Error (${response.status}): ${errorText}`);
     }
@@ -120,29 +151,44 @@ Remember: You are analyzing brand health signals, not making business decisions.
     const decoder = new TextDecoder();
     let buffer = '';
 
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
+    const processLine = (line) => {
+      if (line.startsWith('data: ')) {
+        const data = line.slice(6);
+        if (data === '[DONE]') return;
 
-      buffer += decoder.decode(value, { stream: true });
-      const lines = buffer.split('\n');
-      buffer = lines.pop() || '';
-
-      for (const line of lines) {
-        if (line.startsWith('data: ')) {
-          const data = line.slice(6);
-          if (data === '[DONE]') continue;
-
-          try {
-            const event = JSON.parse(data);
-            if (event.type === 'content_block_delta' && event.delta?.type === 'text_delta') {
-              onChunk(event.delta.text);
-            }
-          } catch(e) {
-            // Skip parsing errors for non-JSON lines
+        try {
+          const event = JSON.parse(data);
+          if (event.type === 'content_block_delta' && event.delta?.type === 'text_delta') {
+            onChunk(event.delta.text);
           }
+        } catch(e) {
+          // Skip parsing errors for non-JSON lines
         }
       }
+    };
+
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) {
+          // Flush remaining buffer — fixes data loss on stream end
+          if (buffer.trim()) {
+            processLine(buffer);
+          }
+          break;
+        }
+
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        buffer = lines.pop() || '';
+
+        for (const line of lines) {
+          processLine(line);
+        }
+      }
+    } finally {
+      clearTimeout(timeoutId);
+      this.activeController = null;
     }
   },
 

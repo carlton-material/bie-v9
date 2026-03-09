@@ -431,11 +431,14 @@ window.BIE = {
   async callAnalystLLM(query, messages, thinkingMsg, input) {
     const suggestionsContainer = document.querySelector('.analyst-panel-suggestions');
     const self = this;
+    let streamStarted = false;
+    let resp;
 
     try {
-      const resp = document.createElement('div');
+      resp = document.createElement('div');
       resp.className = 'analyst-msg system';
       messages.replaceChild(resp, thinkingMsg);
+      streamStarted = true;
       messages.scrollTop = messages.scrollHeight;
 
       // Stream text character by character
@@ -446,17 +449,26 @@ window.BIE = {
         messages.scrollTop = messages.scrollHeight;
       });
 
-      // Parse response to HTML (handle formatting)
+      // Parse response to HTML (handle formatting, XSS-safe)
       const htmlResponse = this.parseAnalystResponse(fullResponse);
       resp.innerHTML = htmlResponse;
       messages.scrollTop = messages.scrollHeight;
     } catch(e) {
       console.warn('LLM failed, falling back to hardcoded responses:', e);
       // Fallback: use original hardcoded response - ALWAYS produces a response
-      const resp = document.createElement('div');
-      resp.className = 'analyst-msg system';
-      resp.innerHTML = this.generateAnalystResponse(query.toLowerCase());
-      messages.replaceChild(resp, thinkingMsg);
+      const fallback = document.createElement('div');
+      fallback.className = 'analyst-msg system';
+      fallback.innerHTML = this.generateAnalystResponse(query.toLowerCase());
+      if (streamStarted && resp && resp.parentNode) {
+        // Stream started but errored mid-way — replace the partial response
+        messages.replaceChild(fallback, resp);
+      } else if (thinkingMsg.parentNode) {
+        // Stream never started — replace thinking dots
+        messages.replaceChild(fallback, thinkingMsg);
+      } else {
+        // Neither exists (edge case) — just append
+        messages.appendChild(fallback);
+      }
       messages.scrollTop = messages.scrollHeight;
     }
 
@@ -488,8 +500,9 @@ window.BIE = {
   },
 
   parseAnalystResponse(text) {
-    // Convert markdown-ish formatting to HTML
-    let html = text;
+    // Sanitize: strip any HTML tags from LLM output before formatting
+    const sanitized = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    let html = sanitized;
     // Bold markdown **text** -> <strong>text</strong>
     html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     // Monospace code blocks ◆ ... -> <span style='font-family:var(--font-mono)'>...</span>
