@@ -1325,42 +1325,73 @@
         <h2 class="scene-headline">System Overview & Consensus Engine</h2>
         <p class="scene-body">BIE is a multi-model consensus system. Rather than relying on a single analytical pipeline, it orchestrates three independent signal processors — each with distinct data sources, methodologies, and confidence models — and synthesizes their outputs into a unified intelligence layer. When signals converge, confidence rises. When they diverge, the system flags the conflict for human review.</p>
 
-        <!-- High-Level Architecture Diagram -->
-        <div style="margin: 32px 0; padding: 24px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow-x: auto;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 12px;">HIGH-LEVEL ARCHITECTURE</div>
-          <pre style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.75); margin: 0; white-space: pre; overflow-x: auto;">
-┌─────────────────────────────────────────────────────────────────┐
-│                     DATA INGESTION LAYER                        │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
-│  │ AI Interviews │  │ Booking APIs │  │ News + Social│          │
-│  │ Surveys       │  │ Search Logs  │  │ Regulatory   │          │
-│  │ Reviews       │  │ Market Data  │  │ Trend Feeds  │          │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘          │
-│         │                  │                  │                  │
-│         ▼                  ▼                  ▼                  │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
-│  │   HUMAN      │  │  BEHAVIORAL  │  │  CULTURAL    │          │
-│  │  PROCESSOR   │  │  PROCESSOR   │  │  PROCESSOR   │          │
-│  │  NLP + Sent. │  │  Stats + ML  │  │  NER + Topic │          │
-│  │  Score: 0–1  │  │  Score: 0–1  │  │  Score: 0–1  │          │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘          │
-│         │                  │                  │                  │
-│         └──────────────────┼──────────────────┘                  │
-│                            ▼                                     │
-│              ┌─────────────────────────┐                         │
-│              │   CONSENSUS ENGINE      │                         │
-│              │   Convergence Detection │                         │
-│              │   Conflict Flagging     │                         │
-│              │   Confidence Scoring    │                         │
-│              │   Temporal Weighting    │                         │
-│              └────────────┬────────────┘                         │
-│                           ▼                                      │
-│         ┌─────────────────────────────────────┐                  │
-│         │         INTELLIGENCE LAYER           │                  │
-│         │  8 Surfaces · Brand Fidelity Index   │                  │
-│         │  Priority Alerts · Recommendations   │                  │
-│         └─────────────────────────────────────┘                  │
-└─────────────────────────────────────────────────────────────────┘</pre>
+        <!-- High-Level Architecture Diagram (Visual) -->
+        <div style="margin: 32px 0; padding: 32px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 24px;">HIGH-LEVEL ARCHITECTURE</div>
+
+          <!-- Tier 1: Data Ingestion -->
+          <div style="text-align: center; margin-bottom: 8px;">
+            <div style="display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.5); margin-bottom: 12px;">DATA INGESTION LAYER</div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 8px;">
+            <div style="padding: 20px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 8px; text-align: center; backdrop-filter: blur(8px);">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #818cf8; font-size: 0.9rem; margin-bottom: 6px;">Interviews + Surveys</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.5;">AI Interviews · Open Surveys · Reviews</div>
+            </div>
+            <div style="padding: 20px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 8px; text-align: center; backdrop-filter: blur(8px);">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #34d399; font-size: 0.9rem; margin-bottom: 6px;">Booking + Market APIs</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Search Logs · Market Data · Pricing</div>
+            </div>
+            <div style="padding: 20px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; text-align: center; backdrop-filter: blur(8px);">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #f59e0b; font-size: 0.9rem; margin-bottom: 6px;">News + Social + Reg</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Social Feeds · Regulatory · Trend Data</div>
+            </div>
+          </div>
+
+          <!-- Arrow down -->
+          <div style="text-align: center; padding: 8px 0; color: rgba(255,255,255,0.2); font-size: 1.2rem;">▼ &nbsp; ▼ &nbsp; ▼</div>
+
+          <!-- Tier 2: Processors -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 8px;">
+            <div style="padding: 20px; background: rgba(129,140,248,0.04); border: 1px solid rgba(129,140,248,0.15); border-radius: 8px; text-align: center;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(129,140,248,0.6); margin-bottom: 8px;">HUMAN PROCESSOR</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">NLP + Sentiment Analysis</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.5); margin-top: 6px;">Score: 0–1</div>
+            </div>
+            <div style="padding: 20px; background: rgba(52,211,153,0.04); border: 1px solid rgba(52,211,153,0.15); border-radius: 8px; text-align: center;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(52,211,153,0.6); margin-bottom: 8px;">BEHAVIORAL PROCESSOR</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Stats + ML Pipeline</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(52,211,153,0.5); margin-top: 6px;">Score: 0–1</div>
+            </div>
+            <div style="padding: 20px; background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.15); border-radius: 8px; text-align: center;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(245,158,11,0.6); margin-bottom: 8px;">CULTURAL PROCESSOR</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">NER + Topic Modeling</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.5); margin-top: 6px;">Score: 0–1</div>
+            </div>
+          </div>
+
+          <!-- Converging arrows -->
+          <div style="text-align: center; padding: 8px 0; color: rgba(255,255,255,0.2); font-size: 1.2rem;">↘ &nbsp;&nbsp; ▼ &nbsp;&nbsp; ↙</div>
+
+          <!-- Tier 3: Consensus Engine -->
+          <div style="max-width: 480px; margin: 0 auto 8px; padding: 24px; background: linear-gradient(135deg, rgba(129,140,248,0.12), rgba(52,211,153,0.08)); border: 1px solid rgba(129,140,248,0.25); border-radius: 12px; text-align: center; backdrop-filter: blur(12px);">
+            <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.95); font-size: 1.1rem; margin-bottom: 10px;">Consensus Engine</div>
+            <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+              <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5); padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">Convergence</span>
+              <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5); padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">Conflict Flagging</span>
+              <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5); padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">Confidence</span>
+              <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5); padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">Temporal Weighting</span>
+            </div>
+          </div>
+
+          <!-- Arrow down -->
+          <div style="text-align: center; padding: 8px 0; color: rgba(255,255,255,0.2); font-size: 1.2rem;">▼</div>
+
+          <!-- Tier 4: Intelligence Layer -->
+          <div style="padding: 20px 24px; background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.2); border-radius: 10px; text-align: center;">
+            <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.9); font-size: 1rem; margin-bottom: 6px;">Intelligence Layer</div>
+            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">8 Surfaces · Brand Fidelity Index · Priority Alerts · Recommendations</div>
+          </div>
         </div>
 
         <!-- Consensus Algorithm -->
@@ -1382,69 +1413,112 @@
           </div>
         </div>
 
-        <!-- Data Flow -->
-        <div style="margin: 32px 0; padding: 24px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 12px;">DATA FLOW — SIGNAL TO SURFACE</div>
-          <pre style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.75); margin: 0; white-space: pre; overflow-x: auto;">
-  Raw Data (847+ daily streams)
-       │
-       ▼
-  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-  │ NLP Pipeline │     │ Stats Engine│     │ Topic Model │
-  │ Sentiment    │     │ Time Series │     │ NER + Class │
-  │ Emotion      │     │ Anomaly Det │     │ Trend Ext   │
-  └──────┬──────┘     └──────┬──────┘     └──────┬──────┘
-         │                    │                    │
-         ▼                    ▼                    ▼
-  ┌─────────────────────────────────────────────────────┐
-  │              NORMALIZATION LAYER                     │
-  │  Propensity scores (0–1) · Confidence intervals     │
-  │  Source attribution · Recency timestamps             │
-  └───────────────────────┬─────────────────────────────┘
-                          │
-                          ▼
-  ┌─────────────────────────────────────────────────────┐
-  │              CONSENSUS ENGINE                        │
-  │  Cross-layer correlation · Convergence scoring       │
-  │  Split-signal detection · Temporal decay weighting   │
-  └───────────────────────┬─────────────────────────────┘
-                          │
-              ┌───────────┼───────────┐
-              ▼           ▼           ▼
-        ┌──────────┐ ┌──────────┐ ┌──────────┐
-        │ Brand    │ │ Priority │ │ 8 Surface│
-        │ Fidelity │ │ Alerts   │ │ Outputs  │
-        │ Index    │ │          │ │          │
-        └──────────┘ └──────────┘ └──────────┘</pre>
+        <!-- Data Flow (Visual) -->
+        <div style="margin: 32px 0; padding: 32px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 24px;">DATA FLOW — SIGNAL TO SURFACE</div>
+
+          <!-- Raw Data -->
+          <div style="text-align: center; margin-bottom: 8px;">
+            <div style="display: inline-block; padding: 12px 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;">
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.85);">Raw Data</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(129,140,248,0.6); margin-left: 8px;">847+ daily streams</span>
+            </div>
+          </div>
+          <div style="text-align: center; padding: 6px 0; color: rgba(255,255,255,0.15); font-size: 1.1rem;">▼</div>
+
+          <!-- Processing Pipelines -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 8px;">
+            <div style="padding: 16px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 8px; text-align: center;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">NLP PIPELINE</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Sentiment · Emotion</div>
+            </div>
+            <div style="padding: 16px; background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.15); border-radius: 8px; text-align: center;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(52,211,153,0.6); margin-bottom: 6px;">STATS ENGINE</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Time Series · Anomaly</div>
+            </div>
+            <div style="padding: 16px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15); border-radius: 8px; text-align: center;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(245,158,11,0.6); margin-bottom: 6px;">TOPIC MODEL</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">NER · Classification</div>
+            </div>
+          </div>
+          <div style="text-align: center; padding: 6px 0; color: rgba(255,255,255,0.15); font-size: 1.1rem;">▼ &nbsp; ▼ &nbsp; ▼</div>
+
+          <!-- Normalization -->
+          <div style="padding: 16px 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; text-align: center; margin-bottom: 8px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.45); margin-bottom: 6px;">NORMALIZATION LAYER</div>
+            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.55);">Propensity scores (0–1) · Confidence intervals · Source attribution · Recency timestamps</div>
+          </div>
+          <div style="text-align: center; padding: 6px 0; color: rgba(255,255,255,0.15); font-size: 1.1rem;">▼</div>
+
+          <!-- Consensus -->
+          <div style="max-width: 520px; margin: 0 auto 8px; padding: 16px 24px; background: linear-gradient(135deg, rgba(129,140,248,0.1), rgba(52,211,153,0.06)); border: 1px solid rgba(129,140,248,0.2); border-radius: 10px; text-align: center;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(129,140,248,0.6); margin-bottom: 6px;">CONSENSUS ENGINE</div>
+            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.55);">Cross-layer correlation · Convergence scoring · Split-signal detection</div>
+          </div>
+          <div style="text-align: center; padding: 6px 0; color: rgba(255,255,255,0.15); font-size: 1.1rem;">↙ &nbsp; ▼ &nbsp; ↘</div>
+
+          <!-- Outputs -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+            <div style="padding: 16px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 8px; text-align: center;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #34d399; font-size: 0.9rem;">Brand Fidelity</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">Composite Index</div>
+            </div>
+            <div style="padding: 16px; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; text-align: center;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #ef4444; font-size: 0.9rem;">Priority Alerts</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">Divergence Flags</div>
+            </div>
+            <div style="padding: 16px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 8px; text-align: center;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #818cf8; font-size: 0.9rem;">8 Surfaces</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">Interactive Outputs</div>
+            </div>
+          </div>
         </div>
 
-        <!-- Technology Stack -->
+        <!-- Technology Stack (Enhanced Cards) -->
         <div style="margin: 32px 0;">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">TECHNOLOGY STACK</div>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
-            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">NLP + SENTIMENT</div>
-              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Anthropic Claude · Custom fine-tuned classifiers · Multi-language support</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+            <div style="padding: 20px; background: rgba(129,140,248,0.04); border: 1px solid rgba(129,140,248,0.12); border-radius: 10px; border-left: 3px solid rgba(129,140,248,0.4);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                <i class="ph ph-brain" style="font-size: 1.1rem; color: #818cf8;"></i>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.7);">NLP + SENTIMENT</span>
+              </div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Anthropic Claude · Custom fine-tuned classifiers · Multi-language support</div>
             </div>
-            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">BEHAVIORAL ANALYTICS</div>
-              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Time-series analysis · Anomaly detection · Bayesian inference models</div>
+            <div style="padding: 20px; background: rgba(52,211,153,0.04); border: 1px solid rgba(52,211,153,0.12); border-radius: 10px; border-left: 3px solid rgba(52,211,153,0.4);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                <i class="ph ph-chart-line-up" style="font-size: 1.1rem; color: #34d399;"></i>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(52,211,153,0.7);">BEHAVIORAL ANALYTICS</span>
+              </div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Time-series analysis · Anomaly detection · Bayesian inference models</div>
             </div>
-            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">CULTURAL SIGNALS</div>
-              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Named entity recognition · Topic modeling · Regulatory feed parsers</div>
+            <div style="padding: 20px; background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.12); border-radius: 10px; border-left: 3px solid rgba(245,158,11,0.4);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                <i class="ph ph-globe" style="font-size: 1.1rem; color: #f59e0b;"></i>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.7);">CULTURAL SIGNALS</span>
+              </div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Named entity recognition · Topic modeling · Regulatory feed parsers</div>
             </div>
-            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">SIMULATION</div>
-              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Agent-based modeling · Monte Carlo · 650 heterogeneous agents · 500 iterations</div>
+            <div style="padding: 20px; background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.12); border-radius: 10px; border-left: 3px solid rgba(239,68,68,0.4);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                <i class="ph ph-atom" style="font-size: 1.1rem; color: #ef4444;"></i>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(239,68,68,0.7);">SIMULATION</span>
+              </div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Agent-based modeling · Monte Carlo · 650 heterogeneous agents · 500 iterations</div>
             </div>
-            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">INFRASTRUCTURE</div>
-              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Real-time signal ingestion · 847+ daily streams · Sub-second consensus scoring</div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; border-left: 3px solid rgba(255,255,255,0.2);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                <i class="ph ph-database" style="font-size: 1.1rem; color: rgba(255,255,255,0.6);"></i>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(255,255,255,0.5);">INFRASTRUCTURE</span>
+              </div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Real-time signal ingestion · 847+ daily streams · Sub-second consensus scoring</div>
             </div>
-            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">OUTPUTS</div>
-              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">8 interactive surfaces · Brand Fidelity composite · Glass Box traceability</div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; border-left: 3px solid rgba(255,255,255,0.2);">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                <i class="ph ph-monitor" style="font-size: 1.1rem; color: rgba(255,255,255,0.6);"></i>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(255,255,255,0.5);">OUTPUTS</span>
+              </div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">8 interactive surfaces · Brand Fidelity composite · Glass Box traceability</div>
             </div>
           </div>
         </div>
@@ -1474,6 +1548,28 @@
           <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">How 847+ Daily Data Streams Are Ingested</h3>
           <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">The ingestion layer acts as the funnel for all raw signal data. It classifies sources, validates against schema rules, deduplicates, applies freshness gates, and enforces rate limiting to prevent backpressure on downstream systems. Each stream is tagged with source type, timestamp, and reliability metadata.</p>
           
+          <!-- Signal Ingestion Pipeline Visual -->
+          <div style="margin: 24px 0 32px; padding: 24px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.5); margin-bottom: 16px;">INGESTION PIPELINE OVERVIEW</div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+              <div style="text-align: center; padding: 20px 16px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 10px;">
+                <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #818cf8; font-size: 1.5rem; margin-bottom: 4px;">385</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 8px;">Primary Streams</div>
+                <div style="display: inline-block; padding: 3px 10px; background: rgba(129,140,248,0.15); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.7);">&lt;5 min latency</div>
+              </div>
+              <div style="text-align: center; padding: 20px 16px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 10px;">
+                <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #34d399; font-size: 1.5rem; margin-bottom: 4px;">240</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 8px;">Secondary Streams</div>
+                <div style="display: inline-block; padding: 3px 10px; background: rgba(52,211,153,0.15); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(52,211,153,0.7);">5–30 min latency</div>
+              </div>
+              <div style="text-align: center; padding: 20px 16px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 10px;">
+                <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #f59e0b; font-size: 1.5rem; margin-bottom: 4px;">222</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 8px;">Tertiary Streams</div>
+                <div style="display: inline-block; padding: 3px 10px; background: rgba(245,158,11,0.15); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(245,158,11,0.7);">30 min–6h latency</div>
+              </div>
+            </div>
+          </div>
+
           <div style="margin: 20px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">SOURCE CLASSIFICATION</div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
