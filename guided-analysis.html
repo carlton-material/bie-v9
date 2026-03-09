@@ -679,16 +679,9 @@
         </div>
       </div>
     </div>
-  </main>
 
-  <!-- Feed -->
-  <footer class="feed app-feed">
-    <span class="feed-label">Intelligence Feed</span>
-    <div class="feed-ticker"><div class="feed-ticker-track"></div></div>
-  </footer>
-
-  <!-- Analyst -->
-  <div class="analyst-trigger" title="Material Analyst">
+    <!-- Analyst (must be inside main to avoid creating phantom grid row in .app) -->
+    <div class="analyst-trigger" title="Material Analyst">
     <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -717,6 +710,13 @@
     </div>
     <div style="font-family: var(--font-body); font-size: 0.6rem; color: rgba(255,255,255,0.3); text-align: center; padding: 8px 12px; border-top: 1px solid rgba(255,255,255,0.06);">Powered by Claude</div>
   </div>
+  </main>
+
+  <!-- Feed -->
+  <footer class="feed app-feed">
+    <span class="feed-label">Intelligence Feed</span>
+    <div class="feed-ticker"><div class="feed-ticker-track"></div></div>
+  </footer>
 
   <script src="js/analyst-llm.js"></script>
   <script src="js/app.js"></script>
