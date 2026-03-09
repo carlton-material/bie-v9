@@ -444,7 +444,7 @@
 
     /* ── Surface Preview Cards ── */
     .ditl-preview {
-      width: 280px;
+      width: 360px;
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       padding: var(--space-lg);
@@ -511,15 +511,21 @@
 
     .preview-cc-bar-track {
       flex: 1;
-      height: 4px;
+      height: 10px;
       background: var(--bg-elevated);
-      border-radius: 2px;
+      border-radius: 4px;
       overflow: hidden;
     }
 
     .preview-cc-bar-fill {
       height: 100%;
       background: var(--signal-behavioral);
+      border-radius: 4px;
+      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .preview-cc-bar-fill.alert {
+      background: #ef4444;
     }
 
     /* Guided Analysis Preview */
@@ -971,64 +977,7 @@
       margin-top: var(--space-xs);
     }
 
-    /* ── Horizontal Bar Chart (like country bars in PDF) ── */
-    .ditl-bar-chart {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin: var(--space-lg) 0;
-      padding: var(--space-md);
-      background: rgba(255,255,255,0.02);
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .ditl-bar-chart-title {
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: var(--space-xs);
-    }
-
-    .ditl-bar-row {
-      display: grid;
-      grid-template-columns: 120px 1fr 50px;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .ditl-bar-label {
-      font-size: 13px;
-      color: rgba(255,255,255,0.7);
-      text-align: right;
-    }
-
-    .ditl-bar-track {
-      height: 24px;
-      background: rgba(255,255,255,0.04);
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .ditl-bar-fill {
-      height: 100%;
-      border-radius: 4px;
-      background: var(--signal-human);
-      transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .ditl-bar-fill.behavioral { background: var(--signal-behavioral); }
-    .ditl-bar-fill.cultural { background: var(--signal-cultural); }
-    .ditl-bar-fill.alert { background: #ef4444; }
-
-    .ditl-bar-value {
-      font-family: var(--font-display, 'Space Grotesk', sans-serif);
-      font-size: 14px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.8);
-    }
+    /* ── (Removed duplicate bar chart — harmonized into preview card) ── */
 
     /* ── Journey / Flow Diagram (like Search → Home → P2P → Checked in) ── */
     .ditl-journey {
@@ -1412,24 +1361,7 @@
               <div class="ditl-insight-text">The words are still warm. The actions have gone cold. What customers claim to want is no longer aligned with what they're willing to do.</div>
             </div>
 
-            <div class="ditl-bar-chart">
-              <div class="ditl-bar-chart-title">Command Center — Driver Health</div>
-              <div class="ditl-bar-row">
-                <div class="ditl-bar-label">Dependable</div>
-                <div class="ditl-bar-track"><div class="ditl-bar-fill alert" style="width: 58%;"></div></div>
-                <div class="ditl-bar-value">58</div>
-              </div>
-              <div class="ditl-bar-row">
-                <div class="ditl-bar-label">Salient</div>
-                <div class="ditl-bar-track"><div class="ditl-bar-fill" style="width: 74%;"></div></div>
-                <div class="ditl-bar-value">74</div>
-              </div>
-              <div class="ditl-bar-row">
-                <div class="ditl-bar-label">Meaningful</div>
-                <div class="ditl-bar-track"><div class="ditl-bar-fill" style="width: 82%;"></div></div>
-                <div class="ditl-bar-value">82</div>
-              </div>
-            </div>
+
 
             <div class="ditl-drivers">
               <div class="ditl-driver-badge" data-signal="behavioral">Dependable</div>
@@ -1447,7 +1379,7 @@
                   </div>
                   <div class="preview-cc-bar">
                     <span style="min-width: 80px;">Dependable</span>
-                    <div class="preview-cc-bar-track"><div class="preview-cc-bar-fill" style="width: 58%;"></div></div>
+                    <div class="preview-cc-bar-track"><div class="preview-cc-bar-fill alert" style="width: 58%;"></div></div>
                     <span>58</span>
                   </div>
                   <div class="preview-cc-bar">
