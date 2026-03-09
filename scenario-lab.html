@@ -3292,72 +3292,117 @@
       }
 
       stepSimulation() {
-        // Layer 1: Category participation (entry/exit dynamics)
-        // Simplified: latent → active conversion based on awareness density
+        // ── Layer 1: Category participation (latent → active) ──
         const totalActive = this.getTotalActive();
-        const conversionRate = 0.02; // 2% latent → active per iteration
-
+        const conversionRate = 0.02;
         let latentConverted = Math.floor((this.latentByTier.mass + this.latentByTier.prestige + this.latentByTier.luxury) * conversionRate);
-        if (this.latentByTier.mass > 0) {
-          const conv = Math.min(latentConverted, this.latentByTier.mass);
-          this.activeByTier.mass += conv;
-          this.latentByTier.mass -= conv;
-          latentConverted -= conv;
-        }
-        if (this.latentByTier.prestige > 0 && latentConverted > 0) {
-          const conv = Math.min(latentConverted, this.latentByTier.prestige);
-          this.activeByTier.prestige += conv;
-          this.latentByTier.prestige -= conv;
-          latentConverted -= conv;
-        }
-        if (this.latentByTier.luxury > 0 && latentConverted > 0) {
-          const conv = Math.min(latentConverted, this.latentByTier.luxury);
-          this.activeByTier.luxury += conv;
-          this.latentByTier.luxury -= conv;
-        }
-
-        // Layer 2: Bass Diffusion (awareness growth)
-        // p + q * (aware_fraction)
-        const awarenessGrowth = this.params.advertisingEffect +
-          this.params.womEffect * Math.min(totalActive / this.agents, 1);
-
-        // Layer 3: Brand choice via softmax utility
-        // For each brand, compute utility and apply softmax to get market share
-        const utilities = {};
-        let totalUtility = 0;
-
-        this.brands.forEach(brand => {
-          let utility = this.shares[brand] * 100; // base
-
-          // Apply modifications
-          if (brand === 'Stayworthy' && this.params.stayworkthyBoost > 0) {
-            utility += this.params.stayworkthyBoost * 10;
+        ['mass', 'prestige', 'luxury'].forEach(tier => {
+          if (this.latentByTier[tier] > 0 && latentConverted > 0) {
+            const conv = Math.min(latentConverted, this.latentByTier[tier]);
+            this.activeByTier[tier] += conv;
+            this.latentByTier[tier] -= conv;
+            latentConverted -= conv;
           }
-
-          // Price war reduces all
-          if (this.params.priceSensitivity < 0.7) {
-            utility *= 0.85;
-          }
-
-          utilities[brand] = Math.max(utility, 1);
-          totalUtility += utilities[brand];
         });
 
-        // Softmax → new shares
+        // ── Layer 2: Scenario-specific brand strength modifiers ──
+        // Each scenario creates different competitive dynamics
+        const scenarioStrength = {
+          // Regulatory Wave: compliance = trust advantage, disruptors penalized
+          trust: {
+            'Stayworthy': 1.08, 'Marriott': 1.05, 'Hilton': 1.04,
+            'Booking.com': 0.97, 'Airbnb': 0.93, 'Vrbo': 0.94,
+            'Plum Guide': 1.02, 'Hopper': 0.91, 'Vacasa': 0.96, 'Inspirato': 1.01
+          },
+          // AI Concierge: tech-forward brands surge, traditional lag
+          ai: {
+            'Stayworthy': 1.10, 'Airbnb': 1.06, 'Booking.com': 1.04,
+            'Hopper': 1.12, 'Marriott': 0.94, 'Hilton': 0.93,
+            'Vrbo': 0.97, 'Plum Guide': 1.03, 'Vacasa': 0.95, 'Inspirato': 0.92
+          },
+          // Decentralized: community platforms gain, centralized lose
+          baseline: {
+            'Stayworthy': 1.03, 'Airbnb': 0.96, 'Booking.com': 0.94,
+            'Vrbo': 1.02, 'Marriott': 0.95, 'Hilton': 0.95,
+            'Plum Guide': 1.06, 'Hopper': 0.98, 'Vacasa': 1.04, 'Inspirato': 1.08
+          },
+          // Pricing transparency
+          pricing: {
+            'Stayworthy': 1.07, 'Booking.com': 0.95, 'Airbnb': 1.02,
+            'Vrbo': 1.01, 'Marriott': 1.03, 'Hilton': 1.02,
+            'Plum Guide': 1.04, 'Hopper': 0.94, 'Vacasa': 0.97, 'Inspirato': 0.99
+          },
+          // Gen Z experience
+          genz: {
+            'Stayworthy': 1.09, 'Airbnb': 1.05, 'Hopper': 1.08,
+            'Booking.com': 0.96, 'Marriott': 0.93, 'Hilton': 0.92,
+            'Vrbo': 0.98, 'Plum Guide': 1.03, 'Vacasa': 0.97, 'Inspirato': 0.94
+          },
+          // Price war: race to bottom, large brands survive
+          pricewar: {
+            'Stayworthy': 0.96, 'Airbnb': 1.03, 'Booking.com': 1.05,
+            'Vrbo': 1.02, 'Marriott': 1.04, 'Hilton': 1.03,
+            'Plum Guide': 0.88, 'Hopper': 0.94, 'Vacasa': 0.93, 'Inspirato': 0.85
+          }
+        };
+
+        // Determine active preset
+        const presetEl = document.getElementById('preset-selector');
+        const activePreset = presetEl ? presetEl.value : 'baseline';
+        const modifiers = scenarioStrength[activePreset] || scenarioStrength.baseline;
+
+        // ── Layer 3: Stochastic brand share evolution ──
+        // Gaussian noise generator (Box-Muller)
+        const randn = () => {
+          const u = 1 - Math.random();
+          const v = Math.random();
+          return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+        };
+
+        const t = this.iteration / this.maxIterations; // 0→1 progress
         const newShares = {};
+        let total = 0;
+
         this.brands.forEach(brand => {
-          newShares[brand] = utilities[brand] / totalUtility;
+          const current = this.shares[brand];
+          const modifier = modifiers[brand] || 1.0;
+
+          // Drift: scenario modifier pulls share toward target equilibrium
+          // Stronger effect as simulation progresses (momentum builds)
+          const targetShare = current * modifier;
+          const drift = (targetShare - current) * (0.15 + 0.10 * t);
+
+          // Volatility: random noise proportional to share size
+          // Larger brands fluctuate more in absolute terms, less in relative
+          const volatility = 0.008 + current * 0.04;
+          const noise = randn() * volatility;
+
+          // Mean-reversion: prevent runaway — gentle pull toward initial share
+          const initialShare = this.history[0]?.shares[brand] || current;
+          const meanReversion = (initialShare * modifier - current) * 0.02;
+
+          // Occasional shock events (5% chance per brand per tick)
+          let shock = 0;
+          if (Math.random() < 0.05) {
+            shock = randn() * 0.015; // ±1.5% shock
+          }
+
+          const newShare = Math.max(0.005, current + drift + noise + meanReversion + shock);
+          newShares[brand] = newShare;
+          total += newShare;
         });
 
-        this.shares = newShares;
+        // Normalize to ensure shares sum to 1.0
+        this.brands.forEach(brand => {
+          this.shares[brand] = newShares[brand] / total;
+        });
 
         // Record history
-        const snapshot = {
+        this.history.push({
           iteration: this.iteration,
           shares: { ...this.shares },
           totalActive: this.getTotalActive()
-        };
-        this.history.push(snapshot);
+        });
       }
 
       getTotalActive() {
