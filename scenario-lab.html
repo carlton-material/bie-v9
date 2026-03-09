@@ -2458,9 +2458,11 @@
            ══════════════════════════════════════════════════════════ -->
       <div class="scenario-mode mode-wargame" data-mode="wargame">
         <div class="scenario-mode-label">War Gaming / Foresight</div>
-        <h2 class="scenario-mode-headline">What Futures Should We Prepare For?</h2>
-        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 16px; max-width: 700px; line-height: 1.6;">Explore three divergent futures. Click a scenario to run simulations and uncover strategic vectors: what to attack, what to defend, how to bridge from today to tomorrow.</p>
-        <div style="font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; margin-bottom: 40px;"><i class="ph ph-cursor-click" style="margin-right: 4px;"></i>Click any scenario card below to begin simulation</div>
+        <div id="wg-intro-block">
+          <h2 class="scenario-mode-headline">What Futures Should We Prepare For?</h2>
+          <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 16px; max-width: 700px; line-height: 1.6;">Explore three divergent futures. Click a scenario to run simulations and uncover strategic vectors: what to attack, what to defend, how to bridge from today to tomorrow.</p>
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; margin-bottom: 40px;"><i class="ph ph-cursor-click" style="margin-right: 4px;"></i>Click any scenario card below to begin simulation</div>
+        </div>
 
         <!-- ─── Phase 1: Select Future ─── -->
         <div class="wg-phase active" data-wg-phase="1">
@@ -4608,6 +4610,9 @@
         const target = document.querySelector(`.wg-phase[data-wg-phase="${stepNum}"]`);
         if (target) {
           target.classList.add('active');
+          // Hide intro text on phases 2-4, show only on phase 1
+          const intro = document.getElementById('wg-intro-block');
+          if (intro) intro.style.display = stepNum === 1 ? '' : 'none';
           // Scroll the wargame mode container into view
           const wgMode = document.querySelector('.mode-wargame');
           if (wgMode) wgMode.scrollIntoView({ behavior: 'smooth', block: 'start' });
