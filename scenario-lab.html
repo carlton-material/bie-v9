@@ -157,179 +157,138 @@
       margin-bottom: 12px;
     }
 
-    /* ── SIMULATION CONFIDENCE INDICATOR ── */
+    /* ── SIMULATION CONFIDENCE — Compact Inline ── */
     .simulation-confidence {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-      margin-top: 16px;
-      padding: 12px 16px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 8px;
-      max-width: fit-content;
-    }
-
-    .confidence-label {
+      gap: 8px;
+      margin-top: var(--space-sm);
       font-family: var(--font-mono);
-      font-size: 10px;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      white-space: nowrap;
+      font-size: var(--text-nano);
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
     }
-
-    .confidence-bar {
-      flex: 1;
-      width: 120px;
-      height: 4px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .confidence-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #34d399, #818cf8);
-      border-radius: 2px;
-      transition: width 1.5s ease;
-    }
-
     .confidence-value {
-      font-family: var(--font-display);
-      font-size: 14px;
+      color: var(--text-tertiary);
       font-weight: 600;
-      color: #34d399;
-      min-width: 35px;
     }
-
-    .glass-box-inline {
-      font-size: 10px;
-      color: rgba(255,255,255,0.3);
-      font-family: var(--font-mono);
-      line-height: 1.4;
-    }
+    .confidence-separator { opacity: 0.3; }
 
     /* ─────────────────────────────────────────────────
        WIZARD STEPS — Progressive Disclosure
        ───────────────────────────────────────────────── */
 
+    /* ── WIZARD STEPPER — Compact, Mode-Aware ── */
     .scenario-wizard-steps {
       display: flex;
-      gap: 32px;
+      gap: var(--space-xs);
       align-items: center;
-      margin-bottom: 24px;
-      padding: 16px 24px;
-      background: rgba(255, 255, 255, 0.02);
+      margin-bottom: var(--space-lg);
+      padding: var(--space-sm) var(--space-md);
+      background: rgba(255,255,255,0.02);
       border: 1px solid var(--border-subtle);
-      border-radius: 6px;
+      border-radius: 2px;
     }
-
     .wizard-step {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: var(--space-sm);
+      cursor: pointer;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: 2px;
+      transition: background var(--duration-fast) var(--ease-out);
     }
-
+    .wizard-step:hover { background: rgba(255,255,255,0.03); }
     .wizard-step-number {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: var(--bg-card);
-      border: 2px solid var(--border-subtle);
+      border: 1.5px solid var(--border-default);
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 600;
-      color: var(--text-secondary);
+      color: var(--text-tertiary);
+      position: relative;
       transition: all var(--duration-fast) var(--ease-out);
+      flex-shrink: 0;
     }
-
     .wizard-step.active .wizard-step-number {
-      background: var(--brand-purple);
-      border-color: var(--brand-purple);
+      background: var(--signal-human);
+      border-color: var(--signal-human);
       color: white;
-      box-shadow: 0 0 16px rgba(116, 90, 255, 0.3);
+      box-shadow: 0 0 8px rgba(129,140,248,0.25);
     }
-
+    /* Complete: hide number text, show checkmark centered */
     .wizard-step.complete .wizard-step-number {
-      background: var(--signal-behavioral);
-      border-color: var(--signal-behavioral);
-      color: white;
-      font-size: 16px;
+      background: rgba(52,211,153,0.15);
+      border-color: rgba(52,211,153,0.4);
+      color: transparent;
+      font-size: 0;
     }
-
     .wizard-step.complete .wizard-step-number::after {
       content: '✓';
       position: absolute;
-    }
-
-    .wizard-step-label {
-      font-family: var(--font-body);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
+      font-weight: 700;
+      color: var(--signal-behavioral);
+    }
+    .wizard-step-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
       transition: color var(--duration-fast) var(--ease-out);
       white-space: nowrap;
     }
-
-    .wizard-step.active .wizard-step-label {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    .wizard-step.complete .wizard-step-label {
-      color: var(--signal-behavioral);
-    }
-
+    .wizard-step.active .wizard-step-label { color: var(--text-primary); }
+    .wizard-step.complete .wizard-step-label { color: var(--text-tertiary); }
     .wizard-step-arrow {
-      width: 20px;
-      height: 2px;
+      width: 12px;
+      height: 1px;
       background: var(--border-subtle);
-      transition: background var(--duration-fast) var(--ease-out);
+      flex-shrink: 0;
     }
+    .wizard-step-arrow.complete { background: rgba(52,211,153,0.3); }
 
-    .wizard-step { cursor: pointer; }
     .step-navigation {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 24px 0;
-      margin-top: 16px;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: var(--space-lg) 0;
+      margin-top: var(--space-md);
+      border-top: 1px solid var(--border-subtle);
     }
     .step-nav-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 24px;
-      border-radius: 8px;
-      font-family: var(--font-body);
-      font-size: 0.875rem;
+      gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: 2px;
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s ease;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      color: rgba(255,255,255,0.7);
+      transition: all var(--duration-fast) var(--ease-out);
+      border: 1px solid var(--border-default);
+      background: transparent;
+      color: var(--text-secondary);
     }
     .step-nav-btn:hover {
-      background: rgba(255,255,255,0.06);
-      transform: translateY(-1px);
+      background: rgba(255,255,255,0.04);
     }
     .step-nav-btn.primary {
-      background: var(--brand-purple, #818cf8);
+      background: var(--signal-human);
       color: #000;
       border-color: transparent;
     }
-    .step-nav-btn.primary:hover {
-      filter: brightness(1.1);
-    }
-    .wizard-step.complete .wizard-step-arrow {
-      background: var(--signal-behavioral);
-    }
+    .step-nav-btn.primary:hover { filter: brightness(1.1); }
 
     /* Scenario Selector Cards */
     .scenario-selector {
@@ -2062,14 +2021,11 @@
           <span><strong>Demo Mode</strong> — <span data-brand="name">Stayworthy</span> is a synthetic brand. All scenarios, agents, and simulations demonstrate system capabilities across any category.</span>
         </div>
 
-        <!-- Simulation Confidence Indicator -->
+        <!-- Simulation Confidence — compact inline -->
         <div class="simulation-confidence">
-          <span class="confidence-label">CONFIDENCE</span>
-          <div class="confidence-bar">
-            <div class="confidence-fill" style="width: 87%"></div>
-          </div>
-          <span class="confidence-value">87%</span>
-          <div class="glass-box-inline">847 signals · 24K respondents · 6 behavioral pipelines</div>
+          <span class="confidence-value">87% confidence</span>
+          <span class="confidence-separator">·</span>
+          847 signals · 24K respondents · 6 pipelines
         </div>
       </div>
       <div class="scenario-mode-dropdown" id="mode-dropdown">
@@ -2881,15 +2837,26 @@
           if (confidence) confidence.style.display = 'none';
         } else {
           if (wizard) wizard.style.display = '';
-          if (selector) selector.style.display = '';
           if (confidence) confidence.style.display = '';
+          // Hide scenario selector for modes that have their own selection UI
+          if (selector) selector.style.display = (mode === 'wargame' || mode === 'focus-group') ? 'none' : '';
         }
 
-        // Reset wizard step based on mode
+        // Mode-specific stepper labels + reset
+        const stepLabels = {
+          wargame:       ['Select Future', 'Analyze', 'Simulate', 'Results'],
+          'focus-group': ['Mode Selected', 'Configure Panel', 'Run Session', 'Results']
+        };
+        const labels = stepLabels[mode] || ['Choose Scenario', 'Configure', 'Run', 'Results'];
+        document.querySelectorAll('.wizard-step-label').forEach((el, i) => {
+          el.textContent = labels[i] || '';
+        });
+
         if (mode === 'wargame') {
-          updateWizardStep(1); // Start at Choose Scenario
+          updateWizardStep(1); // Start at Select Future
         } else if (mode === 'focus-group') {
-          updateWizardStep(2); // Start at Configure
+          // Focus Group skips step 1 — auto-complete it, start at Configure
+          updateWizardStep(2);
         }
 
         // Reset scenario if switching to wargame
@@ -2928,10 +2895,21 @@
 
         const scenario = card.dataset.scenario;
         this.currentScenario = scenario;
-        updateWizardStep(2); // Configure step
+
+        // Step 1 → 2 (Analyze): Show strategic output first
+        updateWizardStep(2);
         this.showStrategicOutput(scenario);
-        this.runSimulationForScenario(scenario);
-        updateWizardStep(3); // Running simulation
+
+        // Step 2 → 3 (Simulate): Run simulation after a beat
+        setTimeout(() => {
+          updateWizardStep(3);
+          this.runSimulationForScenario(scenario);
+        }, 1500);
+
+        // Step 3 → 4 (Results): Mark complete when simulation settles
+        setTimeout(() => {
+          updateWizardStep(4);
+        }, 5000);
       },
 
       showStrategicOutput(scenario) {
@@ -4352,10 +4330,15 @@
        ═══════════════════════════════════════════════════════════ */
 
     function updateWizardStep(stepNum) {
-      document.querySelectorAll('.wizard-step').forEach((el, idx) => {
+      const steps = document.querySelectorAll('.wizard-step');
+      const arrows = document.querySelectorAll('.wizard-step-arrow');
+      steps.forEach((el, idx) => {
         el.classList.remove('active', 'complete');
         if (idx < stepNum - 1) el.classList.add('complete');
         if (idx === stepNum - 1) el.classList.add('active');
+      });
+      arrows.forEach((arrow, idx) => {
+        arrow.classList.toggle('complete', idx < stepNum - 1);
       });
     }
 
