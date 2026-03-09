@@ -608,6 +608,122 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* Signal Card Drawer Pattern */
+    .signal-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      background: var(--bg-card);
+      margin-bottom: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .signal-card:hover {
+      border-color: var(--border-default);
+    }
+    .signal-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .signal-card-header:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    .signal-card-source {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      width: 72px;
+    }
+    .signal-card-headline {
+      flex: 1;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .signal-card-severity {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .signal-card-severity.high { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .signal-card-severity.medium { background: rgba(245,158,11,0.15); color: #f59e0b; }
+    .signal-card-severity.low { background: rgba(52,211,153,0.15); color: #34d399; }
+    .signal-card-time {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .signal-card-chevron {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+    .signal-card.open .signal-card-chevron {
+      transform: rotate(180deg);
+    }
+    .signal-card-drawer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .signal-card.open .signal-card-drawer {
+      max-height: 400px;
+    }
+    .signal-card-drawer-inner {
+      padding: 0 16px 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .signal-card-detail-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 12px;
+    }
+    .signal-card-detail-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      min-width: 80px;
+    }
+    .signal-card-detail-value {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .signal-card-tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .signal-card-tag {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      color: var(--text-tertiary);
+    }
   </style>
 </head>
 <body data-page="signal-terminal">
@@ -1089,23 +1205,38 @@
       }
 
       if (detectedDrivers.size > 0) {
-        driverBadges = '<div class="st-signal-drivers">' +
-          Array.from(detectedDrivers).map(driver => {
-            const layer = driverMap[driver] || 'human';
-            const shortcode = driverShortcodes[driver] || 'BF';
-            return `<span class="st-driver-badge ${layer}" title="Brand Fidelity: ${driver}">${shortcode}</span>`;
-          }).join('') +
-          '</div>';
+        driverBadges = Array.from(detectedDrivers).map(driver => {
+          const shortcode = driverShortcodes[driver] || 'BF';
+          return `<span class="signal-card-tag" title="Brand Fidelity: ${driver}">${shortcode}</span>`;
+        }).join('');
       }
 
       el.innerHTML = `
-        <div class="st-signal-header">
-          <span class="st-signal-time">${signal.time}</span>
-          <span class="st-signal-severity ${signal.severity.toLowerCase()}">${signal.severity}</span>
+        <div class="signal-card" onclick="this.classList.toggle('open')">
+          <div class="signal-card-header">
+            <span class="signal-card-source">${signal.brand}</span>
+            <span class="signal-card-headline">${signal.text.substring(0, 50)}</span>
+            <span class="signal-card-severity ${signal.severity.toLowerCase()}">${signal.severity}</span>
+            <span class="signal-card-time">${signal.time}</span>
+            <span class="signal-card-chevron">▼</span>
+          </div>
+          <div class="signal-card-drawer">
+            <div class="signal-card-drawer-inner">
+              <div class="signal-card-detail-row">
+                <span class="signal-card-detail-label">Analysis</span>
+                <span class="signal-card-detail-value">${signal.text}</span>
+              </div>
+              <div class="signal-card-detail-row">
+                <span class="signal-card-detail-label">Impact</span>
+                <span class="signal-card-detail-value">Signal detected in ${signal.layer} layer</span>
+              </div>
+              <div class="signal-card-tags">
+                <span class="signal-card-tag">${signal.layer}</span>
+                ${driverBadges}
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="st-signal-brand">${signal.brand}</div>
-        <div class="st-signal-text">${signal.text}</div>
-        ${driverBadges}
       `;
       return el;
     }

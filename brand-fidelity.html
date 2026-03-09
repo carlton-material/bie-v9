@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What is Brand Fidelity? Brand Intelligence Engine</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/glass-box.css">
+  <style>
+    /* Scene Base Styling */
+    .scene {
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .scene:first-child {
+      min-height: 50vh;
+    }
+
+    .scene-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    .scene-headline {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 30px;
+      color: rgba(255, 255, 255, 0.95);
+      max-width: 900px;
+    }
+
+    .scene-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    /* Hero Section */
+    .scene-hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gradient {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(129, 140, 248, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: breathe 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes breathe {
+      0% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.6;
+      }
+    }
+
+    .scene-hero-confidential {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      margin-bottom: 80px;
+      font-weight: 600;
+    }
+
+    .scene-hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      color: rgba(255, 255, 255, 0.98);
+      margin-bottom: 24px;
+      max-width: 800px;
+    }
+
+    .scene-hero-subtitle {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #818cf8;
+      margin-bottom: 40px;
+    }
+
+    .scene-hero-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Brand Fidelity Wheel SVG */
+    .wheel-container {
+      margin: 60px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
+    .wheel-svg {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 0 30px rgba(129, 140, 248, 0.2));
+    }
+
+    /* Six Drivers Grid */
+    .drivers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin: 60px 0;
+      max-width: 1000px;
+    }
+
+    .driver-card {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .driver-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .driver-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .driver-dimension {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #818cf8;
+      font-weight: 600;
+    }
+
+    .driver-definition {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .driver-predicts {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+      padding: 12px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .driver-predicts strong {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .driver-score {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .driver-score-value {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #818cf8;
+    }
+
+    .driver-score-delta {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .delta-positive {
+      color: #34d399;
+    }
+
+    .delta-negative {
+      color: #ef4444;
+    }
+
+    /* Research Section */
+    .research-section {
+      margin: 60px 0;
+      padding: 40px;
+      background: rgba(129, 140, 248, 0.08);
+      border: 1px solid rgba(129, 140, 248, 0.2);
+      border-radius: 8px;
+      border-left: 4px solid #818cf8;
+    }
+
+    .research-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 16px;
+    }
+
+    .research-description {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 20px;
+    }
+
+    .research-finding {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 20px;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 6px;
+    }
+
+    .stat-callouts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 20px 0;
+    }
+
+    .stat-callout {
+      padding: 24px;
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .stat-callout-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #34d399;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-callout-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .research-source {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Composite Score Section */
+    .composite-section {
+      margin: 60px 0;
+      max-width: 900px;
+    }
+
+    .composite-explanation {
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      margin-bottom: 40px;
+    }
+
+    .composite-explanation p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 16px;
+    }
+
+    .composite-explanation p:last-child {
+      margin-bottom: 0;
+    }
+
+    .formula-box {
+      padding: 16px;
+      background: rgba(129, 140, 248, 0.1);
+      border-left: 3px solid #818cf8;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin: 16px 0;
+    }
+
+    .composite-current {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    .composite-score-box {
+      padding: 32px;
+      background: rgba(129, 140, 248, 0.08);
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      border-radius: 8px;
+    }
+
+    .composite-score-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .composite-score-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      font-weight: 600;
+      color: #818cf8;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .composite-score-delta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #ef4444;
+      font-weight: 500;
+    }
+
+    .competitive-context {
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+    }
+
+    .competitive-context-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 16px;
+    }
+
+    .competitive-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .competitive-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.01);
+      border-radius: 4px;
+      border-left: 3px solid rgba(129, 140, 248, 0.3);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .competitive-item.stayworthy {
+      border-left-color: #818cf8;
+      background: rgba(129, 140, 248, 0.05);
+    }
+
+    .competitive-name {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .competitive-score {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #818cf8;
+    }
+
+    /* How We Use It Section */
+    .application-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin: 60px 0;
+      max-width: 1000px;
+    }
+
+    .application-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .application-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .application-icon {
+      font-size: 1.5rem;
+    }
+
+    .application-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .application-description {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.65);
+      flex-grow: 1;
+    }
+
+    .application-link {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #818cf8;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    .application-link:hover {
+      color: #a78bfa;
+    }
+
+    /* Reveal Animation */
+    .reveal {
+      opacity: 0;
+      animation: revealIn 0.8s ease-out forwards;
+    }
+
+    @keyframes revealIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .scene {
+        padding: 60px 40px;
+      }
+
+      .scene-headline {
+        font-size: 2.5rem;
+      }
+
+      .drivers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .composite-current {
+        grid-template-columns: 1fr;
+      }
+
+      .application-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-callouts {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .scene {
+        padding: 40px 24px;
+      }
+
+      .scene-headline {
+        font-size: 1.8rem;
+      }
+
+      .scene-hero-title {
+        font-size: 2rem;
+      }
+
+      .scene-hero-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .driver-card {
+        padding: 24px;
+      }
+
+      .stat-callout-value {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+</head>
+<body data-page="brand-fidelity">  <div class="app">
+    <!-- LEFT NAVIGATION -->
+    <nav class="nav">
+      <div class="nav-logo">
+        <div class="nav-logo-content">
+          <img class="nav-logo-mark" src="assets/logos/monogram-white.png" alt="Material+" width="24">
+          <span class="nav-logo-text">BIE</span>
+        </div>
+      </div>
+      <div class="nav-confidential">Confidential · Internal Use Only</div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Foundation</div>
+        <a href="index.html" class="nav-item" data-page="strategic-brief">
+          <span class="nav-item-icon">◇</span> Strategic Brief
+        </a>
+        <a href="day-in-the-life.html" class="nav-item" data-page="day-in-the-life">
+          <span class="nav-item-icon">◉</span> Day in the Life
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Methodology</div>
+        <a href="how-it-works.html" class="nav-item" data-page="how-it-works">
+          <span class="nav-item-icon">◈</span> How It Works
+        </a>
+        <a href="brand-fidelity.html" class="nav-item active" data-page="brand-fidelity">
+          <span class="nav-item-icon">✦</span> Brand Fidelity
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Intelligence</div>
+        <a href="command-center.html" class="nav-item" data-page="command-center">
+          <span class="nav-item-icon">▣</span> Command Center
+        </a>
+        <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal">
+          <span class="nav-item-icon">▤</span> Signal Terminal
+        </a>
+        <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis">
+          <span class="nav-item-icon">▥</span> Guided Analysis
+        </a>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Simulation</div>
+        <a href="scenario-lab.html" class="nav-item" data-page="scenario-lab">
+          <span class="nav-item-icon">◬</span> Scenario Lab
+        </a>
+      </div>
+
+      <div class="nav-pulse">
+        <div class="nav-pulse-bar"></div>
+        <div class="nav-pulse-label">
+          <span>Signal Activity</span>
+          <span><span class="signal-count">847</span> live</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-content">
+      <!-- SCENE 1: HERO -->
+      <section class="scene scene-hero reveal">
+        <div class="hero-gradient"></div>
+
+        <div class="scene-hero-confidential">Confidential · Internal Use Only</div>
+
+        <h1 class="scene-hero-title">What is M+ Brand Fidelity?</h1>
+
+        <div class="scene-hero-subtitle">The proprietary framework that predicts business outcomes from brand relationships</div>
+
+        <p class="scene-body" style="margin-top: 40px; max-width: 800px;">
+          6 drivers. 2 dimensions. One score that matters.
+        </p>
+      </section>
+
+      <!-- SCENE 2: THE FRAMEWORK -->
+      <section class="scene reveal">
+        <div class="scene-label">Methodology</div>
+
+        <h2 class="scene-headline">The Framework</h2>
+
+        <p class="scene-body">Brand Fidelity measures how deeply and consistently a brand relationship drives business outcomes. It synthesizes six evidence-based drivers into a single composite score that predicts advocacy, profitability, and competitive differentiation.</p>
+
+        <!-- Wheel Diagram -->
+        <div class="wheel-container">
+          <svg class="wheel-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background circle -->
+            <circle cx="200" cy="200" r="180" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            
+            <!-- Center circle -->
+            <circle cx="200" cy="200" r="40" fill="rgba(129,140,248,0.15)" stroke="#818cf8" stroke-width="2"/>
+            <text x="200" y="210" font-family="'Space Grotesk', sans-serif" font-size="14" font-weight="600" fill="#818cf8" text-anchor="middle">FIDELITY</text>
+
+            <!-- Dividing line between top and bottom -->
+            <line x1="20" y1="200" x2="380" y2="200" stroke="rgba(129,140,248,0.2)" stroke-width="1" stroke-dasharray="5,5"/>
+            
+            <!-- Top hemisphere label -->
+            <text x="200" y="35" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="rgba(129,140,248,0.6)" text-anchor="middle" letter-spacing="2">IN THE MOMENT</text>
+
+            <!-- Bottom hemisphere label -->
+            <text x="200" y="375" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="600" fill="rgba(129,140,248,0.6)" text-anchor="middle" letter-spacing="2">OVER TIME</text>
+
+            <!-- TOP LEFT: User Friendly -->
+            <path d="M 200 200 L 105 105 A 127 127 0 0 0 200 73 Z" fill="rgba(129,140,248,0.2)" stroke="#818cf8" stroke-width="1.5"/>
+            <text x="130" y="105" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.9)">User</text>
+            <text x="130" y="120" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.9)">Friendly</text>
+
+            <!-- TOP CENTER: Personal -->
+            <path d="M 200 200 L 295 105 A 127 127 0 0 0 200 73 Z" fill="rgba(129,140,248,0.25)" stroke="#818cf8" stroke-width="1.5"/>
+            <text x="270" y="105" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.9)">Personal</text>
+
+            <!-- TOP RIGHT: Accessible -->
+            <path d="M 200 200 L 327 127 A 127 127 0 0 0 295 105 Z" fill="rgba(129,140,248,0.15)" stroke="#818cf8" stroke-width="1.5"/>
+            <text x="320" y="130" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.9)">Accessible</text>
+
+            <!-- BOTTOM RIGHT: Salient -->
+            <path d="M 200 200 L 327 273 A 127 127 0 0 0 295 295 Z" fill="rgba(129,140,248,0.2)" stroke="#818cf8" stroke-width="1.5"/>
+            <text x="320" y="280" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.9)">Salient</text>
+
+            <!-- BOTTOM CENTER: Meaningful -->
+            <path d="M 200 200 L 200 327 A 127 127 0 0 0 295 295 Z" fill="rgba(129,140,248,0.25)" stroke="#818cf8" stroke-width="1.5"/>
+            <text x="200" y="310" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.9)" text-anchor="middle">Meaningful</text>
+
+            <!-- BOTTOM LEFT: Dependable -->
+            <path d="M 200 200 L 105 295 A 127 127 0 0 0 200 327 Z" fill="rgba(129,140,248,0.15)" stroke="#818cf8" stroke-width="1.5"/>
+            <text x="110" y="310" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="600" fill="rgba(255,255,255,0.9)">Dependable</text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- SCENE 3: THE SIX DRIVERS -->
+      <section class="scene reveal">
+        <div class="scene-label">Drivers</div>
+
+        <h2 class="scene-headline">The Six Drivers</h2>
+
+        <p class="scene-body">Each driver measures a distinct aspect of the brand relationship. Together they capture both immediate perception and sustained performance.</p>
+
+        <div class="drivers-grid">
+          <!-- Driver 1: User Friendly -->
+          <div class="driver-card">
+            <div class="driver-name">User Friendly</div>
+            <div class="driver-dimension">In the Moment</div>
+            <div class="driver-definition">How intuitive and effortless the brand experience feels.</div>
+            <div class="driver-predicts"><strong>Predicts:</strong> Trial and adoption rates</div>
+            <div class="driver-score">
+              <span class="driver-score-value">72</span>
+              <span class="driver-score-delta delta-negative">−4</span>
+            </div>
+          </div>
+
+          <!-- Driver 2: Personal -->
+          <div class="driver-card">
+            <div class="driver-name">Personal</div>
+            <div class="driver-dimension">In the Moment</div>
+            <div class="driver-definition">How well the brand understands and responds to individual needs.</div>
+            <div class="driver-predicts"><strong>Predicts:</strong> Loyalty and lifetime value</div>
+            <div class="driver-score">
+              <span class="driver-score-value">64</span>
+              <span class="driver-score-delta delta-negative">−8</span>
+            </div>
+          </div>
+
+          <!-- Driver 3: Accessible -->
+          <div class="driver-card">
+            <div class="driver-name">Accessible</div>
+            <div class="driver-dimension">In the Moment</div>
+            <div class="driver-definition">How available and approachable the brand is across touchpoints.</div>
+            <div class="driver-predicts"><strong>Predicts:</strong> Reach and consideration</div>
+            <div class="driver-score">
+              <span class="driver-score-value">71</span>
+              <span class="driver-score-delta delta-positive">+1</span>
+            </div>
+          </div>
+
+          <!-- Driver 4: Dependable -->
+          <div class="driver-card">
+            <div class="driver-name">Dependable</div>
+            <div class="driver-dimension">Over Time</div>
+            <div class="driver-definition">How consistently the brand delivers on its promises over time.</div>
+            <div class="driver-predicts"><strong>Predicts:</strong> Retention and trust</div>
+            <div class="driver-score">
+              <span class="driver-score-value">58</span>
+              <span class="driver-score-delta delta-negative">−6</span>
+            </div>
+          </div>
+
+          <!-- Driver 5: Meaningful -->
+          <div class="driver-card">
+            <div class="driver-name">Meaningful</div>
+            <div class="driver-dimension">Over Time</div>
+            <div class="driver-definition">How deeply the brand connects to what matters in people's lives.</div>
+            <div class="driver-predicts"><strong>Predicts:</strong> Advocacy and word-of-mouth</div>
+            <div class="driver-score">
+              <span class="driver-score-value">66</span>
+              <span class="driver-score-delta delta-negative">−3</span>
+            </div>
+          </div>
+
+          <!-- Driver 6: Salient -->
+          <div class="driver-card">
+            <div class="driver-name">Salient</div>
+            <div class="driver-dimension">Over Time</div>
+            <div class="driver-definition">How easily the brand comes to mind in relevant situations.</div>
+            <div class="driver-predicts"><strong>Predicts:</strong> Market share and competitive position</div>
+            <div class="driver-score">
+              <span class="driver-score-value">74</span>
+              <span class="driver-score-delta delta-positive">+2</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 4: THE RESEARCH -->
+      <section class="scene reveal">
+        <div class="scene-label">Validation</div>
+
+        <h2 class="scene-headline">The Research</h2>
+
+        <div class="research-section">
+          <div class="research-title">Study Design</div>
+          <div class="research-description">
+            Material+ Brand Fidelity is grounded in rigorous research across 24,000 consumers, 229 brands, and 30 categories. The framework was validated using Forrester methodology and tested against transactional outcomes across hospitality, retail, financial services, and technology sectors.
+          </div>
+
+          <div class="research-finding">
+            Brands scoring in the top quartile of Brand Fidelity see 2× advocacy, 2.5× profitability, and 3× differentiation.
+          </div>
+
+          <div class="stat-callouts">
+            <div class="stat-callout">
+              <div class="stat-callout-value">2×</div>
+              <div class="stat-callout-label">Advocacy Lift</div>
+            </div>
+            <div class="stat-callout">
+              <div class="stat-callout-value">2.5×</div>
+              <div class="stat-callout-label">Profitability Increase</div>
+            </div>
+            <div class="stat-callout">
+              <div class="stat-callout-value">3×</div>
+              <div class="stat-callout-label">Differentiation Edge</div>
+            </div>
+          </div>
+
+          <div class="research-source">
+            Source: Material+ Brand Fidelity Report 2026 · Forrester methodology
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 5: COMPOSITE SCORE -->
+      <section class="scene reveal">
+        <div class="scene-label">Scoring</div>
+
+        <h2 class="scene-headline">The Composite Score</h2>
+
+        <div class="composite-section">
+          <div class="composite-explanation">
+            <p>The Brand Fidelity Composite is calculated as an unweighted average of the six drivers. This approach treats each dimension equally because each has independent predictive power across different business outcomes.</p>
+            <div class="formula-box">Composite = (User Friendly + Personal + Accessible + Dependable + Meaningful + Salient) ÷ 6</div>
+            <p>The result is a single, trackable number that reflects overall brand relationship health and predicts customer behavior change 4-8 weeks in advance.</p>
+          </div>
+
+          <div class="composite-current">
+            <div class="composite-score-box">
+              <div class="composite-score-label">Stayworthy Brand Fidelity</div>
+              <div class="composite-score-value">67.5</div>
+              <div class="composite-score-delta">−2.3 this quarter</div>
+            </div>
+
+            <div class="competitive-context">
+              <div class="competitive-context-title">Competitive Context</div>
+              <div class="competitive-list">
+                <div class="competitive-item">
+                  <span class="competitive-name">Booking.com</span>
+                  <span class="competitive-score">74</span>
+                </div>
+                <div class="competitive-item">
+                  <span class="competitive-name">Marriott Homes</span>
+                  <span class="competitive-score">71</span>
+                </div>
+                <div class="competitive-item">
+                  <span class="competitive-name">Vrbo</span>
+                  <span class="competitive-score">68</span>
+                </div>
+                <div class="competitive-item stayworthy">
+                  <span class="competitive-name">Stayworthy</span>
+                  <span class="competitive-score">67.5</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCENE 6: HOW WE USE IT -->
+      <section class="scene reveal">
+        <div class="scene-label">Application</div>
+
+        <h2 class="scene-headline">How We Use It</h2>
+
+        <p class="scene-body">Brand Fidelity serves as the connective tissue across the BIE platform. Every surface references it. Every recommendation traces back to it. Understanding where the framework appears helps you navigate the intelligence landscape.</p>
+
+        <div class="application-grid">
+          <div class="application-card">
+            <div class="application-icon">▣</div>
+            <div class="application-title">Command Center</div>
+            <div class="application-description">
+              Real-time Brand Fidelity dashboard showing composite score, six driver health, and competitive standing. Alerts when drivers shift outside expected ranges.
+            </div>
+            <a href="command-center.html" class="application-link">Explore →</a>
+          </div>
+
+          <div class="application-card">
+            <div class="application-icon">▥</div>
+            <div class="application-title">Guided Analysis</div>
+            <div class="application-description">
+              Investigative interface that drills into each driver. Shows which signal types contributed to each score, with source transparency.
+            </div>
+            <a href="guided-analysis.html" class="application-link">Explore →</a>
+          </div>
+
+          <div class="application-card">
+            <div class="application-icon">◬</div>
+            <div class="application-title">Scenario Lab</div>
+            <div class="application-description">
+              Modeling environment where you test strategic moves against projected Brand Fidelity outcomes. See how interventions move drivers.
+            </div>
+            <a href="scenario-lab.html" class="application-link">Explore →</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // Reveal animation for sections
+    function initRevealAnimations() {
+      const revealElements = document.querySelectorAll('.reveal');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = '0s';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealElements.forEach(el => observer.observe(el));
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      initRevealAnimations();
+    });
+  </script>
+</body>
+</html>

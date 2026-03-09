@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
   <style>
     /* ═══════════════════════════════════════════════════════════
        DAY IN THE LIFE - Cinematic Scrollytelling
@@ -1263,6 +1264,22 @@
     .ditl-pulse-change.down { color: #ef4444; }
     .ditl-pulse-change.spike { color: var(--signal-cultural); }
 
+    /* Staggered reveal within scenes */
+    .ditl-scene-body > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .scene-visible .ditl-scene-body > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+    .scene-visible .ditl-scene-body > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+    .scene-visible .ditl-scene-body > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+    .scene-visible .ditl-scene-body > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.7s; }
+    .scene-visible .ditl-scene-body > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.9s; }
+    .scene-visible .ditl-scene-body > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 1.1s; }
+    .scene-visible .ditl-scene-body > *:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 1.3s; }
+    .scene-visible .ditl-scene-body > *:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 1.5s; }
+    .scene-visible .ditl-scene-body > *:nth-child(n+9) { opacity: 1; transform: translateY(0); transition-delay: 1.7s; }
+
   </style>
 </head>
 <body data-page="day-in-the-life">
@@ -1473,25 +1490,25 @@
 
             <div class="ditl-journey">
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon">🔍</div>
+                <div class="ditl-journey-icon"><i class="ph ph-magnifying-glass"></i></div>
                 <div class="ditl-journey-name">Question</div>
                 <div class="ditl-journey-meta">Why is trust unraveling?</div>
               </div>
-              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-arrow"><i class="ph ph-arrow-right"></i></div>
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon behavioral">⏱</div>
+                <div class="ditl-journey-icon behavioral"><i class="ph ph-clock"></i></div>
                 <div class="ditl-journey-name">Time Horizon</div>
                 <div class="ditl-journey-meta">Over Time (30 days)</div>
               </div>
-              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-arrow"><i class="ph ph-arrow-right"></i></div>
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon alert">📉</div>
+                <div class="ditl-journey-icon alert"><i class="ph ph-trend-down"></i></div>
                 <div class="ditl-journey-name">Root Cause</div>
                 <div class="ditl-journey-meta">Support response ↑</div>
               </div>
-              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-arrow"><i class="ph ph-arrow-right"></i></div>
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon behavioral">✓</div>
+                <div class="ditl-journey-icon behavioral"><i class="ph ph-check-circle"></i></div>
                 <div class="ditl-journey-name">Correlation</div>
                 <div class="ditl-journey-meta">r = 0.82</div>
               </div>
@@ -1546,7 +1563,7 @@
                 <div class="preview-ga">
                   <div class="preview-ga-thread">
                     <div class="preview-ga-msg system">Which time horizon? (Last 30 days, 90 days, 1 year)</div>
-                    <div style="padding: var(--space-xs); color: var(--text-primary);">→ Over Time (past 30 days)</div>
+                    <div style="padding: var(--space-xs); color: var(--text-primary);"><i class="ph ph-arrow-right"></i> Over Time (past 30 days)</div>
                   </div>
                   <div class="preview-ga-thread">
                     <div class="preview-ga-msg system">Key driver identified: Support response time</div>
@@ -1723,25 +1740,25 @@
 
             <div class="ditl-journey">
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon">⚔️</div>
+                <div class="ditl-journey-icon"><i class="ph ph-crosshair"></i></div>
                 <div class="ditl-journey-name">Attack</div>
                 <div class="ditl-journey-meta">Pricing transparency</div>
               </div>
               <div class="ditl-journey-arrow">+</div>
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon behavioral">🛡</div>
+                <div class="ditl-journey-icon behavioral"><i class="ph ph-shield"></i></div>
                 <div class="ditl-journey-name">Defend</div>
                 <div class="ditl-journey-meta">Salient advantage</div>
               </div>
               <div class="ditl-journey-arrow">+</div>
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon cultural">🌉</div>
+                <div class="ditl-journey-icon cultural"><i class="ph ph-bridge"></i></div>
                 <div class="ditl-journey-name">Bridge</div>
                 <div class="ditl-journey-meta">Authentic storytelling</div>
               </div>
-              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-arrow"><i class="ph ph-arrow-right"></i></div>
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon">📋</div>
+                <div class="ditl-journey-icon"><i class="ph ph-clipboard"></i></div>
                 <div class="ditl-journey-name">CEO Brief</div>
                 <div class="ditl-journey-meta">Action plan by 5 PM</div>
               </div>
@@ -1931,32 +1948,32 @@
               <div class="ditl-pulse-row">
                 <div class="ditl-pulse-dot"></div>
                 <div class="ditl-pulse-source">Reddit</div>
-                <div class="ditl-pulse-signal">Trust in hospitality → "genuine connection"</div>
+                <div class="ditl-pulse-signal">Trust in hospitality <i class="ph ph-arrow-right"></i> "genuine connection"</div>
                 <div class="ditl-pulse-change spike">pivot</div>
               </div>
             </div>
 
             <div class="ditl-journey">
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon cultural">📡</div>
+                <div class="ditl-journey-icon cultural"><i class="ph ph-broadcast"></i></div>
                 <div class="ditl-journey-name">Detect</div>
                 <div class="ditl-journey-meta">Cultural tremor</div>
               </div>
-              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-arrow"><i class="ph ph-arrow-right"></i></div>
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon">🔗</div>
+                <div class="ditl-journey-icon"><i class="ph ph-link"></i></div>
                 <div class="ditl-journey-name">Cross-Ref</div>
                 <div class="ditl-journey-meta">Human + Behavioral</div>
               </div>
-              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-arrow"><i class="ph ph-arrow-right"></i></div>
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon behavioral">⚖️</div>
+                <div class="ditl-journey-icon behavioral"><i class="ph ph-scales"></i></div>
                 <div class="ditl-journey-name">Recalibrate</div>
                 <div class="ditl-journey-meta">Driver weights</div>
               </div>
-              <div class="ditl-journey-arrow">→</div>
+              <div class="ditl-journey-arrow"><i class="ph ph-arrow-right"></i></div>
               <div class="ditl-journey-step">
-                <div class="ditl-journey-icon">☀️</div>
+                <div class="ditl-journey-icon"><i class="ph ph-sun"></i></div>
                 <div class="ditl-journey-name">Brief Ready</div>
                 <div class="ditl-journey-meta">6:15 AM</div>
               </div>

@@ -685,7 +685,451 @@
         grid-column: 1;
       }
     }
+
+    /* NEW ARCHITECTURE SECTION STYLES */
+    .architecture-section {
+      padding: 80px;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: var(--bg-primary, #0a0e27);
+    }
+
+    .architecture-section.deep-bg {
+      background: var(--bg-deep, #13172e);
+    }
+
+    /* System Flow Diagram */
+    .system-flow-diagram {
+      margin-top: 60px;
+      padding: 40px;
+      border-radius: 12px;
+      background: rgba(129, 140, 248, 0.05);
+      border: 1px solid rgba(129, 140, 248, 0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .flow-node-container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+    }
+
+    .flow-node-container::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -15px;
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(129, 140, 248, 0.4) 0px,
+        rgba(129, 140, 248, 0.4) 10px,
+        transparent 10px,
+        transparent 20px
+      );
+      animation: dashFlow 20s linear infinite;
+    }
+
+    .flow-node-container:first-child::after {
+      display: none;
+    }
+
+    @keyframes dashFlow {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 20px 0;
+      }
+    }
+
+    .flow-node {
+      min-width: 140px;
+      padding: 20px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .flow-node-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .flow-node-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Signal Layer Cards - Zigzag Layout */
+    .signal-layers-container {
+      margin-top: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .signal-layer-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .signal-layer-card.reverse {
+      direction: rtl;
+    }
+
+    .signal-layer-card.reverse > * {
+      direction: ltr;
+    }
+
+    .signal-layer-content {
+      padding: 40px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .signal-type-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .signal-type-label.human { color: #818cf8; }
+    .signal-type-label.behavioral { color: #34d399; }
+    .signal-type-label.cultural { color: #f59e0b; }
+
+    .signal-layer-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 20px;
+    }
+
+    .signal-layer-description {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 24px;
+    }
+
+    .signal-sources {
+      margin-top: 20px;
+    }
+
+    .sources-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 12px;
+    }
+
+    .source-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .source-item {
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .signal-visualizer {
+      position: relative;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .signal-flow-indicator {
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .signal-flow-indicator::after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 8px;
+      background: radial-gradient(circle, rgba(129, 140, 248, 0.8) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: flowPulse 2s ease-in-out infinite;
+    }
+
+    .signal-flow-indicator.behavioral::after {
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.8) 0%, transparent 70%);
+    }
+
+    .signal-flow-indicator.cultural::after {
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.8) 0%, transparent 70%);
+    }
+
+    @keyframes flowPulse {
+      0%, 100% {
+        left: -10px;
+        opacity: 0.3;
+      }
+      50% {
+        left: calc(100% - 10px);
+        opacity: 1;
+      }
+    }
+
+    /* Pipeline Section */
+    .methodology-pipeline {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+    }
+
+    .pipeline-stage {
+      padding: 30px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .pipeline-stage:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(129, 140, 248, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .pipeline-stage::after {
+      content: '→';
+      position: absolute;
+      right: -32px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.3);
+      font-weight: 300;
+    }
+
+    .pipeline-stage:last-child::after {
+      display: none;
+    }
+
+    .pipeline-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: rgba(129, 140, 248, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .pipeline-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 12px;
+    }
+
+    .pipeline-description {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    @media (max-width: 1200px) {
+      .methodology-pipeline {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .methodology-pipeline {
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline-stage::after {
+        display: none;
+      }
+
+      .signal-layer-card {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    /* Brand Fidelity Wheel SVG */
+    .bf-wheel-container {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    .bf-wheel-svg {
+      width: 250px;
+      height: 250px;
+    }
+
+    .bf-wheel-explanation {
+      max-width: 400px;
+    }
+
+    .bf-teaser-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 20px;
+    }
+
+    .bf-cta-link {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 6px;
+      background: rgba(129, 140, 248, 0.15);
+      border: 1px solid rgba(129, 140, 248, 0.4);
+      color: rgba(129, 140, 248, 0.9);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .bf-cta-link:hover {
+      background: rgba(129, 140, 248, 0.25);
+      border-color: rgba(129, 140, 248, 0.6);
+      transform: translateX(4px);
+    }
+
+    /* Simulation Engine Section */
+    .simulation-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .simulation-content {
+      padding: 40px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .sim-metric {
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .sim-metric:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .sim-metric-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.5);
+      margin-bottom: 8px;
+    }
+
+    .sim-metric-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 4px;
+    }
+
+    .sim-metric-description {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .simulation-diagram {
+      padding: 40px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .scenario-flow-box {
+      padding: 16px;
+      border-radius: 8px;
+      background: rgba(129, 140, 248, 0.08);
+      border: 1px solid rgba(129, 140, 248, 0.2);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scenario-flow-box::before {
+      content: '◆';
+      color: rgba(129, 140, 248, 0.6);
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .simulation-section {
+        grid-template-columns: 1fr;
+      }
+
+      .bf-wheel-container {
+        flex-direction: column;
+        gap: 40px;
+      }
+    }
   </style>
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 </head>
 <body data-page="how-it-works">
   <div class="app">
@@ -747,7 +1191,7 @@
 
     <!-- MAIN CONTENT -->
     <main class="app-content">
-      <!-- SCENE 1: HERO OPENING -->
+      <!-- SECTION 1: HERO OPENING -->
       <section class="scene scene-hero reveal">
         <div class="hero-gradient"></div>
 
@@ -762,81 +1206,67 @@
         </p>
       </section>
 
-      <!-- SCENE 2: THREE-LAYER SIGNAL ARCHITECTURE -->
-      <section class="scene reveal">
-        <div class="scene-label">Architecture</div>
+      <!-- SECTION 2: THE ARCHITECTURE -->
+      <section class="architecture-section reveal">
+        <div class="scene-label">01. Architecture</div>
 
-        <h2 class="scene-headline">Where the Intelligence Comes From</h2>
+        <h2 class="scene-headline">System Flow: Signals to Intelligence</h2>
 
-        <p class="scene-body">The system ingests, processes, and synthesizes three parallel signal types into a unified intelligence output. We process 847 live signals daily across human-expressive, behavioral, and cultural layers. This volume creates statistical confidence that no single outlier can distort the intelligence picture.</p>
+        <p class="scene-body">Three parallel signal layers converge into a unified processing engine. The engine normalizes, correlates, and scores signals — then surfaces intelligence across 7 proprietary outputs. Every insight is traceable to its source data.</p>
 
-        <div class="architecture-diagram">
-          <div class="diagram-container">
-            <div class="diagram-stage">
-              <div class="diagram-stage-box">INGEST</div>
-              <div class="diagram-sublabel">Raw Signals</div>
+        <div class="system-flow-diagram">
+          <div class="flow-node-container">
+            <div class="flow-node">
+              <div class="flow-node-label">Human</div>
+              <div class="flow-node-title">Signals</div>
             </div>
-            <div class="diagram-arrow">→</div>
-            <div class="diagram-stage">
-              <div class="diagram-stage-box">PROCESS</div>
-              <div class="diagram-sublabel">Clean & Analyze</div>
+            <div class="flow-node">
+              <div class="flow-node-label">Behavioral</div>
+              <div class="flow-node-title">Signals</div>
             </div>
-            <div class="diagram-arrow">→</div>
-            <div class="diagram-stage">
-              <div class="diagram-stage-box">SYNTHESIZE</div>
-              <div class="diagram-sublabel">Harmonize Signals</div>
+            <div class="flow-node">
+              <div class="flow-node-label">Cultural</div>
+              <div class="flow-node-title">Signals</div>
             </div>
-            <div class="diagram-arrow">→</div>
-            <div class="diagram-stage">
-              <div class="diagram-stage-box">DELIVER</div>
-              <div class="diagram-sublabel">Intelligence Output</div>
+          </div>
+
+          <div class="flow-node-container">
+            <div class="flow-node" style="background: rgba(129, 140, 248, 0.1); border-color: rgba(129, 140, 248, 0.3);">
+              <div class="flow-node-label">Processing Engine</div>
+              <div class="flow-node-title">Normalize + Correlate + Score</div>
+            </div>
+          </div>
+
+          <div class="flow-node-container">
+            <div class="flow-node">
+              <div class="flow-node-label">Output</div>
+              <div class="flow-node-title">7 Surfaces</div>
             </div>
           </div>
         </div>
 
-        <div class="flow-diagram">
-          <div class="flow-lanes-grid">
-            <!-- INGEST Row -->
-            <div class="flow-row">
-              <div class="flow-row-label">SOURCES</div>
-              <div class="flow-row-cells">
-                <div class="flow-cell human">
-                  <strong>AI-moderated interviews</strong>, open-ended surveys, social narratives
-                </div>
-                <div class="flow-cell behavioral">
-                  <strong>Booking data</strong>, search patterns, app engagement, pricing signals
-                </div>
-                <div class="flow-cell cultural">
-                  <strong>News feeds</strong>, regulatory filings, social trends, analyst commentary
+        <div class="signal-layers-container">
+          <!-- SIGNAL LAYER 1: HUMAN -->
+          <div class="signal-layer-card">
+            <div class="signal-layer-content">
+              <div class="signal-type-label human">● Human Signal</div>
+              <div class="signal-layer-title">What People Believe</div>
+              <div class="signal-layer-description">
+                Direct customer voice through interviews, surveys, and narrative research. Captures emotional drivers, brand perceptions, and values alignment — the conscious layer of brand choice.
+              </div>
+              <div class="signal-sources">
+                <div class="sources-label">Data sources:</div>
+                <div class="source-items">
+                  <span class="source-item">AI-moderated interviews</span>
+                  <span class="source-item">Open-ended surveys</span>
+                  <span class="source-item">Social narratives</span>
+                  <span class="source-item">Review text analysis</span>
                 </div>
               </div>
             </div>
-
-            <!-- PROCESS Row -->
-            <div class="flow-row">
-              <div class="flow-row-label">PROCESSING</div>
-              <div class="flow-row-cells">
-                <div class="flow-cell human">
-                  <strong>NLP sentiment analysis</strong>, vector embedding, theme extraction
-                </div>
-                <div class="flow-cell behavioral">
-                  <strong>Time-series analysis</strong>, anomaly detection, correlation mining
-                </div>
-                <div class="flow-cell cultural">
-                  <strong>Frame analysis</strong>, trend detection, narrative categorization
-                </div>
-              </div>
+            <div class="signal-visualizer">
+              <div class="signal-flow-indicator human"></div>
             </div>
-
-            <!-- OUTPUT Row -->
-            <div class="flow-row">
-              <div class="flow-row-label">OUTPUT</div>
-              <div class="flow-row-cells">
-                <div class="flow-cell human">
-                  <strong>Perceptual brand meaning</strong>, emotional resonance, narrative shifts
-                </div>
-                <div class="flow-cell behavioral">
-                  <strong>Observable outcomes</strong>, transactional health, competitive gaps
                 </div>
                 <div class="flow-cell cultural">
                   <strong>Environmental forces</strong>, category dynamics, regulatory risk
@@ -886,17 +1316,332 @@
         </div>
       </section>
 
-      <!-- SCENE 3: CONFIDENCE SCORING METHODOLOGY -->
-      <section class="scene reveal">
-        <div class="scene-label">Confidence Framework</div>
+      <!-- SECTION 3: SIGNAL LAYER DEEP DIVE -->
+      <section class="architecture-section deep-bg reveal">
+        <div class="scene-label">02. Signal Layers</div>
+        <h2 class="scene-headline">Three Perspectives, One Truth</h2>
 
-        <h2 class="scene-headline">How We Know What We Know</h2>
+        <div class="signal-layers-container">
+          <!-- SIGNAL LAYER 1: HUMAN -->
+          <div class="signal-layer-card">
+            <div class="signal-layer-content">
+              <div class="signal-type-label human">● Human Signal</div>
+              <div class="signal-layer-title">What People Believe</div>
+              <div class="signal-layer-description">
+                Direct customer voice through interviews, surveys, and narrative research. Captures emotional drivers, brand perceptions, and values alignment — the conscious layer of brand choice.
+              </div>
+              <div class="signal-sources">
+                <div class="sources-label">Data sources:</div>
+                <div class="source-items">
+                  <span class="source-item">AI-moderated interviews</span>
+                  <span class="source-item">Open-ended surveys</span>
+                  <span class="source-item">Social narratives</span>
+                  <span class="source-item">Review text analysis</span>
+                </div>
+              </div>
+            </div>
+            <div class="signal-visualizer">
+              <div class="signal-flow-indicator human"></div>
+            </div>
+          </div>
 
-        <p class="scene-body">Every number in this platform carries a confidence score. No exceptions. Confidence reflects three factors: whether multiple signal types agree on the same finding, how many data points support the insight, and how recent the data is.</p>
+          <!-- SIGNAL LAYER 2: BEHAVIORAL -->
+          <div class="signal-layer-card reverse">
+            <div class="signal-layer-content">
+              <div class="signal-type-label behavioral">● Behavioral Signal</div>
+              <div class="signal-layer-title">What People Do</div>
+              <div class="signal-layer-description">
+                Transaction and engagement data. Booking patterns, search behavior, pricing sensitivity, app usage, and repeat rates reveal actual brand preference independent of conscious bias.
+              </div>
+              <div class="signal-sources">
+                <div class="sources-label">Data sources:</div>
+                <div class="source-items">
+                  <span class="source-item">Booking data</span>
+                  <span class="source-item">Search patterns</span>
+                  <span class="source-item">App engagement</span>
+                  <span class="source-item">Pricing signals</span>
+                  <span class="source-item">Repeat metrics</span>
+                </div>
+              </div>
+            </div>
+            <div class="signal-visualizer">
+              <div class="signal-flow-indicator behavioral"></div>
+            </div>
+          </div>
 
-        <div class="confidence-grid">
-          <div class="confidence-card">
-            <div class="confidence-title">HIGH</div>
+          <!-- SIGNAL LAYER 3: CULTURAL -->
+          <div class="signal-layer-card">
+            <div class="signal-layer-content">
+              <div class="signal-type-label cultural">● Cultural Signal</div>
+              <div class="signal-layer-title">What's Being Said</div>
+              <div class="signal-layer-description">
+                Macro-level narrative and trend data. News coverage, regulatory filings, social trends, analyst commentary, and competitive activity shape the cultural context in which brand choices are made.
+              </div>
+              <div class="signal-sources">
+                <div class="sources-label">Data sources:</div>
+                <div class="source-items">
+                  <span class="source-item">News feeds & articles</span>
+                  <span class="source-item">Regulatory filings</span>
+                  <span class="source-item">Social trends</span>
+                  <span class="source-item">Analyst reports</span>
+                  <span class="source-item">Competitive activity</span>
+                </div>
+              </div>
+            </div>
+            <div class="signal-visualizer">
+              <div class="signal-flow-indicator cultural"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: THE METHODOLOGY -->
+      <section class="architecture-section reveal">
+        <div class="scene-label">03. Methodology</div>
+        <h2 class="scene-headline">From Signals to Intelligence</h2>
+        <p class="scene-body">Every signal passes through a standardized pipeline: ingest raw data, normalize to comparable units, correlate across layers, score confidence, and surface insights. Each step is documented. Each assumption is testable. Glass Box principle: every insight traces to its source.</p>
+
+        <div class="methodology-pipeline">
+          <div class="pipeline-stage">
+            <div class="pipeline-number">Step 1</div>
+            <div class="pipeline-name">Ingest</div>
+            <div class="pipeline-description">Collect raw signals from 847+ daily data streams. Volume ensures outliers don't distort.</div>
+          </div>
+          <div class="pipeline-stage">
+            <div class="pipeline-number">Step 2</div>
+            <div class="pipeline-name">Normalize</div>
+            <div class="pipeline-description">Convert diverse signals to comparable units (0–1 propensity scores, indices, vectors).</div>
+          </div>
+          <div class="pipeline-stage">
+            <div class="pipeline-number">Step 3</div>
+            <div class="pipeline-name">Correlate</div>
+            <div class="pipeline-description">Cross-layer analysis: do human, behavioral, and cultural signals align or conflict?</div>
+          </div>
+          <div class="pipeline-stage">
+            <div class="pipeline-number">Step 4</div>
+            <div class="pipeline-name">Score</div>
+            <div class="pipeline-description">Calculate confidence intervals. Document sample size, recency, convergence strength.</div>
+          </div>
+          <div class="pipeline-stage">
+            <div class="pipeline-number">Step 5</div>
+            <div class="pipeline-name">Surface</div>
+            <div class="pipeline-description">Deliver intelligence across 7 outputs. Every metric shows source and confidence level.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: BRAND FIDELITY TEASER -->
+      <section class="architecture-section deep-bg reveal">
+        <div class="scene-label">04. Brand Fidelity Framework</div>
+        <h2 class="scene-headline">The Proprietary Lens</h2>
+
+        <div class="bf-wheel-container">
+          <svg class="bf-wheel-svg" viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+            <!-- Background circle -->
+            <circle cx="125" cy="125" r="120" fill="none" stroke="rgba(129, 140, 248, 0.15)" stroke-width="1"/>
+            
+            <!-- Dividing lines -->
+            <line x1="125" y1="5" x2="125" y2="245" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1"/>
+            <line x1="5" y1="125" x2="245" y2="125" stroke="rgba(129, 140, 248, 0.2)" stroke-width="1"/>
+            
+            <!-- Top-left segment: User Friendly (In the Moment) -->
+            <path d="M 125 125 L 125 20 A 105 105 0 0 0 37 73 Z" fill="rgba(129, 140, 248, 0.15)" stroke="rgba(129, 140, 248, 0.3)" stroke-width="1"/>
+            
+            <!-- Top-right segment: Personal (In the Moment) -->
+            <path d="M 125 125 L 213 73 A 105 105 0 0 0 125 20 Z" fill="rgba(129, 140, 248, 0.12)" stroke="rgba(129, 140, 248, 0.3)" stroke-width="1"/>
+            
+            <!-- Bottom-right segment: Accessible (Over Time) -->
+            <path d="M 125 125 L 213 177 A 105 105 0 0 0 125 230 Z" fill="rgba(129, 140, 248, 0.15)" stroke="rgba(129, 140, 248, 0.3)" stroke-width="1"/>
+            
+            <!-- Bottom-left segment: Dependable (Over Time) -->
+            <path d="M 125 125 L 125 230 A 105 105 0 0 0 37 177 Z" fill="rgba(129, 140, 248, 0.12)" stroke="rgba(129, 140, 248, 0.3)" stroke-width="1"/>
+            
+            <!-- Left segment: Meaningful (In the Moment) -->
+            <path d="M 125 125 L 37 73 A 105 105 0 0 0 37 177 Z" fill="rgba(129, 140, 248, 0.1)" stroke="rgba(129, 140, 248, 0.3)" stroke-width="1"/>
+            
+            <!-- Right segment: Salient (Over Time) -->
+            <path d="M 125 125 L 213 177 A 105 105 0 0 1 213 73 Z" fill="rgba(129, 140, 248, 0.13)" stroke="rgba(129, 140, 248, 0.3)" stroke-width="1"/>
+            
+            <!-- Dimension labels -->
+            <text x="125" y="15" text-anchor="middle" fill="rgba(129, 140, 248, 0.5)" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">IN THE MOMENT</text>
+            <text x="125" y="245" text-anchor="middle" fill="rgba(129, 140, 248, 0.5)" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">OVER TIME</text>
+            
+            <!-- Driver labels -->
+            <text x="95" y="50" text-anchor="middle" fill="rgba(255, 255, 255, 0.8)" font-size="10" font-family="'Inter', sans-serif" font-weight="500">Meaningful</text>
+            <text x="155" y="50" text-anchor="middle" fill="rgba(255, 255, 255, 0.8)" font-size="10" font-family="'Inter', sans-serif" font-weight="500">Accessible</text>
+            <text x="190" y="125" text-anchor="middle" fill="rgba(255, 255, 255, 0.8)" font-size="10" font-family="'Inter', sans-serif" font-weight="500">Salient</text>
+            <text x="155" y="205" text-anchor="middle" fill="rgba(255, 255, 255, 0.8)" font-size="10" font-family="'Inter', sans-serif" font-weight="500">Dependable</text>
+            <text x="95" y="205" text-anchor="middle" fill="rgba(255, 255, 255, 0.8)" font-size="10" font-family="'Inter', sans-serif" font-weight="500">Personal</text>
+            <text x="45" y="125" text-anchor="middle" fill="rgba(255, 255, 255, 0.8)" font-size="10" font-family="'Inter', sans-serif" font-weight="500">User Friendly</text>
+          </svg>
+
+          <div class="bf-wheel-explanation">
+            <p class="bf-teaser-text">
+              <strong>Brand Fidelity</strong> is our proprietary framework — 6 drivers across 2 dimensions that predict business outcomes with 2–3× accuracy. Each driver is weighted by signal convergence and recency, creating a dynamic composite score that captures both immediate brand experience and long-term loyalty potential.
+            </p>
+            <a href="brand-fidelity.html" class="bf-cta-link">Deep dive into Brand Fidelity →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: THE SIMULATION ENGINE -->
+      <section class="architecture-section reveal">
+        <div class="scene-label">05. Simulation Engine</div>
+        <h2 class="scene-headline">Scenario Planning via Agent-Based Modeling</h2>
+
+        <div class="simulation-section">
+          <div class="simulation-content">
+            <div class="sim-metric">
+              <div class="sim-metric-label">Agent Population</div>
+              <div class="sim-metric-value">650</div>
+              <div class="sim-metric-description">Heterogeneous consumer agents with distinct preferences, budgets, and decision rules.</div>
+            </div>
+            <div class="sim-metric">
+              <div class="sim-metric-label">Utility Model</div>
+              <div class="sim-metric-value">Softmax</div>
+              <div class="sim-metric-description">Probabilistic choice model based on Brand Fidelity drivers and competitive pricing.</div>
+            </div>
+            <div class="sim-metric">
+              <div class="sim-metric-label">Diffusion Pattern</div>
+              <div class="sim-metric-value">Bass Diffusion</div>
+              <div class="sim-metric-description">Models how new brand actions propagate through consumer population over time.</div>
+            </div>
+          </div>
+          <div class="simulation-diagram">
+            <div class="scenario-flow-box">
+              Define scenario (e.g., "10% price increase" or "new campaign launch")
+            </div>
+            <div class="scenario-flow-box">
+              Agents interact probabilistically based on Brand Fidelity + scenario inputs
+            </div>
+            <div class="scenario-flow-box">
+              Market share, revenue, and sentiment emerge from agent interactions
+            </div>
+            <div class="scenario-flow-box">
+              Export results to Scenario Lab for detailed exploration
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- REMOVED: Old SCENE 3-7 sections have been replaced with new redesigned sections above -->
+
+    <footer class="feed app-feed">
+      <span class="feed-label">Intelligence Feed</span>
+      <div class="feed-ticker">
+        <div class="feed-ticker-track"></div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- MATERIAL ANALYST PANEL -->
+  <div class="analyst-trigger" title="Material Analyst">
+    <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="analyst-dot"></span>
+  </div>
+
+  <div class="analyst-panel">
+      <span class="analyst-panel-title">Material Analyst</span>
+      <div class="analyst-mode-toggle">
+        <button class="mode-btn active" data-mode="guide">Ask a Question</button>
+        <button class="mode-btn" data-mode="explore">Explore</button>
+      </div>
+    </div>
+
+    <div class="analyst-panel-content">
+      <div class="analyst-guide-mode">
+        <!-- Q&A content would go here -->
+      </div>
+      <div class="analyst-explore-mode">
+        <!-- Explore content would go here -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initialize reveal animations
+    function initRevealAnimations() {
+      const revealElements = document.querySelectorAll('.reveal');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      revealElements.forEach(el => observer.observe(el));
+    }
+
+    // Count-up animation for provenance and validation metrics
+    function animateCountUp() {
+      const elements = document.querySelectorAll('.provenance-value, .validation-metric-value, .sim-metric-value');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+            const text = entry.target.textContent;
+            const isLarge = text.includes('M') || text.includes('K');
+
+            if (isLarge) {
+              const baseValue = parseFloat(text);
+              const element = entry.target;
+              let current = 0;
+              const increment = baseValue / 30;
+              const suffix = text.replace(/[0-9.]/g, '');
+
+              const interval = setInterval(() => {
+                current += increment;
+                if (current >= baseValue) {
+                  element.textContent = baseValue + suffix;
+                  clearInterval(interval);
+                  element.classList.add('counted');
+                } else {
+                  element.textContent = Math.floor(current) + (suffix ? suffix : '');
+                }
+              }, 30);
+            }
+          }
+        });
+      }, { threshold: 0.5 });
+
+      elements.forEach(el => observer.observe(el));
+    }
+
+    // Analyst panel mode toggle
+    document.addEventListener('DOMContentLoaded', () => {
+      initRevealAnimations();
+      animateCountUp();
+
+      // Mode toggle for analyst panel
+      const modeBtns = document.querySelectorAll('.mode-btn');
+      const guideMode = document.querySelector('.analyst-guide-mode');
+      const exploreMode = document.querySelector('.analyst-explore-mode');
+
+      modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          modeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          if (btn.dataset.mode === 'guide') {
+            guideMode.style.display = 'block';
+            exploreMode.style.display = 'none';
+          } else {
+            guideMode.style.display = 'none';
+            exploreMode.style.display = 'block';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
             <div class="confidence-bars">
               <div class="confidence-bar filled high"></div>
               <div class="confidence-bar filled high"></div>

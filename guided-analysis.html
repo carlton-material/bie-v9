@@ -840,7 +840,14 @@
         <button class="mode-btn active" data-mode="guide">Ask a Question</button>
         <button class="mode-btn" data-mode="guardian">Explore Data</button>
       </div>
+      <button onclick="document.getElementById('analyst-settings').style.display = document.getElementById('analyst-settings').style.display === 'none' ? 'block' : 'none'" style="background: none; border: none; color: rgba(255,255,255,0.55); cursor: pointer; font-size: 14px; padding: 4px 8px;" title="API Settings">⚙</button>
       <button class="analyst-panel-close">×</button>
+    </div>
+    <div id="analyst-settings" style="display: none; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); margin: 8px 12px 0 12px; border-radius: 3px;">
+      <label style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); display: block; margin-bottom: 6px;">Anthropic API Key</label>
+      <input type="password" id="analyst-api-key" placeholder="sk-ant-..." style="width: 100%; padding: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.95); font-family: var(--font-mono); font-size: 0.75rem; border-radius: 2px; box-sizing: border-box;" onchange="analystConfig.apiKey = this.value; localStorage.setItem('bie-analyst-key', this.value);">
+      <div style="font-family: var(--font-body); font-size: 0.6875rem; color: rgba(255,255,255,0.45); margin-top: 8px;">Key stored locally. Never sent to our servers.</div>
+      <div style="font-family: var(--font-body); font-size: 0.6875rem; color: rgba(255,255,255,0.35); margin-top: 6px; font-style: italic;">Requires valid Anthropic API key for AI responses. Without it, falls back to predefined responses.</div>
     </div>
     <div class="analyst-panel-messages"></div>
     <div class="analyst-panel-suggestions"></div>
@@ -848,6 +855,7 @@
       <input type="text" placeholder="Ask about signals, drivers, competitors...">
       <button>Send</button>
     </div>
+    <div style="font-family: var(--font-body); font-size: 0.6rem; color: rgba(255,255,255,0.3); text-align: center; padding: 8px 12px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 12px;">Powered by Claude</div>
   </div>
 
   <script src="js/analyst-llm.js"></script>
@@ -864,6 +872,67 @@
     let currentState = STATE.ENTRY;
     let selectedDimension = null;
     let conversationPath = [];
+
+    // AI-powered analyst configuration
+    const analystConfig = {
+      apiKey: localStorage.getItem('bie-analyst-key') || '',
+      model: 'claude-sonnet-4-5-20250929',
+      conversationHistory: []
+    };
+
+    const ANALYST_SYSTEM_PROMPT = `You are the Material Analyst — a senior brand strategist at Material+. You guide users through brand analysis using the Socratic method. You ask targeted questions to help users discover insights rather than just presenting data.
+
+Your analysis framework:
+- Diagnostic: What's happening? (identify the signal)
+- Root Cause: Why is it happening? (trace to drivers)
+- Strategic: What should we do? (Attack / Defend / Bridge)
+
+You have access to Stayworthy brand data:
+- Brand Fidelity Composite: 67.5 (−2.3)
+- Drivers: User Friendly 72 (−4), Personal 64 (−8), Accessible 71 (+1), Dependable 58 (−6), Meaningful 66 (−3), Salient 74 (+2)
+- Key issue: 22-point expressive-behavioral gap
+- Competitive set: Booking.com 74, Marriott Homes 71, Vrbo 68
+
+Always end responses with a follow-up question. Keep responses concise (2-3 paragraphs max). Use specific numbers.`;
+
+    async function queryAnalyst(userMessage) {
+      if (!analystConfig.apiKey) return null; // fall back to hardcoded
+      
+      analystConfig.conversationHistory.push({ role: 'user', content: userMessage });
+      
+      try {
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': analystConfig.apiKey,
+            'anthropic-version': '2023-06-01'
+          },
+          body: JSON.stringify({
+            model: analystConfig.model,
+            max_tokens: 1024,
+            system: ANALYST_SYSTEM_PROMPT,
+            messages: analystConfig.conversationHistory
+          })
+        });
+        
+        if (!response.ok) {
+          console.error('Analyst API error:', response.status, response.statusText);
+          return null;
+        }
+        
+        const data = await response.json();
+        if (data.content && data.content[0]) {
+          const assistantMessage = data.content[0].text;
+          analystConfig.conversationHistory.push({ role: 'assistant', content: assistantMessage });
+          return assistantMessage;
+        }
+        return null;
+      } catch (e) {
+        console.error('Analyst API error:', e);
+        return null; // fall back to hardcoded
+      }
+    }
 
     // Show/Hide state
     function setState(newState) {
@@ -912,9 +981,9 @@
       const thread = document.getElementById('topic-thread');
       thread.innerHTML = '';
 
-      // Add initial analyst message
+      // Add initial Socratic opening message from analyst
       addMessage('topic-thread', 'analyst',
-        `I'll help you understand <strong>${titles[selectedDimension].toLowerCase()}</strong> for Stayworthy. Let's start by refining the focus of this analysis.`,
+        `Good morning. I've been analyzing Stayworthy's signals overnight, and three patterns caught my attention. Before I share my analysis, I'd like to understand your focus today.<br><br><strong>What's the most pressing brand question on your mind right now?</strong>`,
         'Data sourced from live Signal monitoring · M+ Brand Fidelity Model'
       );
 
@@ -1461,16 +1530,24 @@
       }, 1200);
     }
 
-    function addFollow(topic) {
+    async function addFollow(topic) {
       const thread = document.getElementById('chat-thread');
       addMessage('chat-thread', 'user', topic);
 
-      setTimeout(() => {
-        // Generic follow-up response
-        addMessage('chat-thread', 'analyst',
-          `<strong>On ${topic}:</strong> This is an important angle. The data shows this is indeed a critical lever for your strategy. Factoring this into the brief...`
-        );
-      }, 400);
+      // Try AI-powered response first
+      const aiResponse = await queryAnalyst(topic);
+      if (aiResponse) {
+        setTimeout(() => {
+          addMessage('chat-thread', 'analyst', aiResponse);
+        }, 400);
+      } else {
+        // Fall back to hardcoded response
+        setTimeout(() => {
+          addMessage('chat-thread', 'analyst',
+            `<strong>On ${topic}:</strong> This is an important angle. The data shows this is indeed a critical lever for your strategy. Factoring this into the brief...`
+          );
+        }, 400);
+      }
     }
 
     // Generate Brief
@@ -1593,8 +1670,55 @@
       }
     }
 
-    // Link active nav item
+    // Initialize analyst panel
     document.addEventListener('DOMContentLoaded', () => {
+      // Restore API key if previously set
+      const savedKey = localStorage.getItem('bie-analyst-key');
+      if (savedKey) {
+        document.getElementById('analyst-api-key').value = savedKey;
+        analystConfig.apiKey = savedKey;
+      }
+
+      // Wire up analyst panel send button
+      const analystInput = document.querySelector('.analyst-panel-input input');
+      const analystSendBtn = document.querySelector('.analyst-panel-input button');
+      
+      if (analystSendBtn && analystInput) {
+        analystSendBtn.addEventListener('click', async () => {
+          const message = analystInput.value.trim();
+          if (!message) return;
+          
+          const messagesPanel = document.querySelector('.analyst-panel-messages');
+          
+          // Show user message
+          const userMsg = document.createElement('div');
+          userMsg.style.cssText = 'padding: 8px 12px; margin: 6px 0; background: rgba(129, 140, 248, 0.15); border-radius: 3px; font-size: 0.875rem; color: rgba(255,255,255,0.85);';
+          userMsg.textContent = message;
+          messagesPanel.appendChild(userMsg);
+          
+          // Query analyst
+          const response = await queryAnalyst(message);
+          
+          // Show analyst response
+          const assistantMsg = document.createElement('div');
+          assistantMsg.style.cssText = 'padding: 8px 12px; margin: 6px 0; background: rgba(52, 211, 153, 0.1); border-radius: 3px; font-size: 0.875rem; color: rgba(255,255,255,0.85);';
+          assistantMsg.innerHTML = response || '<em>Unable to get AI response. Please check your API key.</em>';
+          messagesPanel.appendChild(assistantMsg);
+          
+          // Clear input and scroll to bottom
+          analystInput.value = '';
+          messagesPanel.scrollTop = messagesPanel.scrollHeight;
+        });
+        
+        // Send on Enter key
+        analystInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            analystSendBtn.click();
+          }
+        });
+      }
+
+      // Link active nav item
       document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
       });
@@ -1602,6 +1726,13 @@
       if (currentPage) {
         currentPage.classList.add('active');
       }
+    });
+
+    // Reset conversation history when dimension changes
+    document.querySelectorAll('.ga-card').forEach(card => {
+      card.addEventListener('click', function() {
+        analystConfig.conversationHistory = [];
+      });
     });
   </script>
   </div>

@@ -772,7 +772,7 @@ window.BIE = {
 
     switch(type) {
       case 'pulse':
-        // Animated subtle pulse ring (signal ring concept)
+        // Animated pulse ring with dashboard icon inside
         return `
           <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
             <defs>
@@ -784,97 +784,98 @@ window.BIE = {
                 .pulse-ring { animation: onboardPulse 2s ease-out infinite; }
               </style>
             </defs>
-            <circle cx="80" cy="80" r="30" fill="#745AFF" opacity="0.2"/>
-            <circle cx="80" cy="80" r="28" fill="none" stroke="#745AFF" stroke-width="2"/>
+            <!-- Pulse rings -->
             <circle cx="80" cy="80" r="40" class="pulse-ring" fill="none" stroke="#745AFF" stroke-width="1"/>
             <circle cx="80" cy="80" r="50" class="pulse-ring" fill="none" stroke="#745AFF" stroke-width="1" style="animation-delay: 0.3s"/>
+            
+            <!-- Center circle background -->
+            <circle cx="80" cy="80" r="30" fill="#745AFF" opacity="0.2"/>
+            <circle cx="80" cy="80" r="28" fill="none" stroke="#745AFF" stroke-width="2"/>
+            
+            <!-- Dashboard icon: 4 small rectangles in a grid -->
+            <rect x="65" y="65" width="8" height="8" rx="1" fill="#745AFF" opacity="0.8"/>
+            <rect x="77" y="65" width="8" height="8" rx="1" fill="#745AFF" opacity="0.8"/>
+            <rect x="65" y="77" width="8" height="8" rx="1" fill="#745AFF" opacity="0.8"/>
+            <rect x="77" y="77" width="8" height="8" rx="1" fill="#745AFF" opacity="0.8"/>
           </svg>
         `;
 
       case 'drivers':
-        // 6-driver mini visual: 2 rows of 3 pills, color-coded
+        // Brand Fidelity wheel: 6 petals with drivers around center circle
         return `
-          <svg width="200" height="140" viewBox="0 0 200 140" fill="none">
-            <!-- In the Moment group -->
-            <g>
-              <!-- User Friendly -->
-              <rect x="10" y="20" width="55" height="30" rx="8" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
-              <text x="37.5" y="41" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">User Friendly</text>
-
-              <!-- Personal -->
-              <rect x="72" y="20" width="55" height="30" rx="8" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
-              <text x="99.5" y="41" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Personal</text>
-
-              <!-- Accessible -->
-              <rect x="134" y="20" width="55" height="30" rx="8" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)" stroke-width="1"/>
-              <text x="161.5" y="41" font-size="11" font-family="Inter" fill="#f59e0b" text-anchor="middle" font-weight="500">Accessible</text>
-            </g>
-
-            <!-- Over Time group -->
-            <g>
-              <!-- Dependable -->
-              <rect x="10" y="70" width="55" height="30" rx="8" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
-              <text x="37.5" y="91" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">Dependable</text>
-
-              <!-- Meaningful -->
-              <rect x="72" y="70" width="55" height="30" rx="8" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
-              <text x="99.5" y="91" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Meaningful</text>
-
-              <!-- Salient -->
-              <rect x="134" y="70" width="55" height="30" rx="8" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)" stroke-width="1"/>
-              <text x="161.5" y="91" font-size="11" font-family="Inter" fill="#f59e0b" text-anchor="middle" font-weight="500">Salient</text>
-            </g>
-
-            <!-- Labels -->
-            <text x="10" y="125" font-size="9" font-family="JetBrains Mono" fill="rgba(255,255,255,0.5)" opacity="0.6">IN THE MOMENT</text>
-            <text x="10" y="140" font-size="9" font-family="JetBrains Mono" fill="rgba(255,255,255,0.5)" opacity="0.6">OVER TIME</text>
+          <svg width="220" height="220" viewBox="0 0 220 220" fill="none">
+            <!-- Center circle -->
+            <circle cx="110" cy="110" r="25" fill="#745AFF" opacity="0.2"/>
+            <circle cx="110" cy="110" r="23" fill="none" stroke="#745AFF" stroke-width="1.5"/>
+            <text x="110" y="115" font-size="9" font-family="Inter" fill="#745AFF" text-anchor="middle" font-weight="600">Brand</text>
+            
+            <!-- Top petal: User Friendly (Indigo, 12 o'clock) -->
+            <path d="M 110 30 Q 85 50 95 80 Q 110 75 110 75 Q 110 75 125 80 Q 135 50 110 30" fill="rgba(129,140,248,0.3)" stroke="#818cf8" stroke-width="1.5"/>
+            <text x="110" y="50" font-size="10" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">User</text>
+            <text x="110" y="62" font-size="10" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">Friendly</text>
+            
+            <!-- Top-right petal: Personal (Green, 2 o'clock) -->
+            <path d="M 160 55 Q 175 70 165 100 Q 155 95 145 90 Q 150 70 160 55" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5"/>
+            <text x="165" y="75" font-size="10" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Personal</text>
+            
+            <!-- Bottom-right petal: Accessible (Amber, 4 o'clock) -->
+            <path d="M 160 165 Q 175 150 165 120 Q 155 125 145 130 Q 150 150 160 165" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="165" y="145" font-size="10" font-family="Inter" fill="#f59e0b" text-anchor="middle" font-weight="500">Accessible</text>
+            
+            <!-- Bottom petal: Dependable (Indigo, 6 o'clock) -->
+            <path d="M 110 190 Q 85 170 95 140 Q 110 145 110 145 Q 110 145 125 140 Q 135 170 110 190" fill="rgba(129,140,248,0.3)" stroke="#818cf8" stroke-width="1.5"/>
+            <text x="110" y="170" font-size="10" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">Dependable</text>
+            
+            <!-- Bottom-left petal: Meaningful (Green, 8 o'clock) -->
+            <path d="M 60 165 Q 45 150 55 120 Q 65 125 75 130 Q 70 150 60 165" fill="rgba(52,211,153,0.3)" stroke="#34d399" stroke-width="1.5"/>
+            <text x="55" y="145" font-size="10" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Meaningful</text>
+            
+            <!-- Top-left petal: Salient (Amber, 10 o'clock) -->
+            <path d="M 60 55 Q 45 70 55 100 Q 65 95 75 90 Q 70 70 60 55" fill="rgba(245,158,11,0.3)" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="55" y="75" font-size="10" font-family="Inter" fill="#f59e0b" text-anchor="middle" font-weight="500">Salient</text>
           </svg>
         `;
 
       case 'timeline':
-        // Timeline dots (6AM → 9AM → 12PM → 3PM → 9PM → 11:45PM)
+        // Timeline dots (6AM → 9AM → 12PM → 3PM → 9PM → 11:45PM) with even spacing
         return `
-          <svg width="200" height="120" viewBox="0 0 200 120" fill="none">
-            <line x1="20" y1="60" x2="180" y2="60" stroke="#745AFF" stroke-width="1.5" opacity="0.3"/>
+          <svg width="280" height="120" viewBox="0 0 280 120" fill="none">
+            <line x1="20" y1="60" x2="260" y2="60" stroke="#745AFF" stroke-width="1.5" opacity="0.3"/>
             <circle cx="20" cy="60" r="5" fill="#745AFF" opacity="0.5"/>
-            <circle cx="60" cy="60" r="5" fill="#745AFF" opacity="0.6"/>
-            <circle cx="100" cy="60" r="5" fill="#745AFF" opacity="0.7"/>
-            <circle cx="140" cy="60" r="5" fill="#745AFF" opacity="0.75"/>
-            <circle cx="160" cy="60" r="5" fill="#745AFF" opacity="0.85"/>
-            <circle cx="180" cy="60" r="6" fill="#745AFF"/>
+            <circle cx="72" cy="60" r="5" fill="#745AFF" opacity="0.6"/>
+            <circle cx="124" cy="60" r="5" fill="#745AFF" opacity="0.7"/>
+            <circle cx="176" cy="60" r="5" fill="#745AFF" opacity="0.75"/>
+            <circle cx="228" cy="60" r="5" fill="#745AFF" opacity="0.85"/>
+            <circle cx="260" cy="60" r="6" fill="#745AFF"/>
             <text x="20" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">6 AM</text>
-            <text x="60" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">9 AM</text>
-            <text x="100" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">12 PM</text>
-            <text x="140" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">3 PM</text>
-            <text x="160" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.8">9 PM</text>
-            <text x="180" y="85" font-size="9" fill="#745AFF" text-anchor="middle">11:45 PM</text>
+            <text x="72" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">9 AM</text>
+            <text x="124" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">12 PM</text>
+            <text x="176" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.6">3 PM</text>
+            <text x="228" y="85" font-size="10" fill="#745AFF" text-anchor="middle" opacity="0.8">9 PM</text>
+            <text x="260" y="85" font-size="9" fill="#745AFF" text-anchor="middle">11:45 PM</text>
           </svg>
         `;
 
       case 'analyst':
-        // M+ symbol with mode labels
+        // Purple circle with Phosphor plus icon and mode labels
         return `
           <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
-            <!-- M symbol -->
-            <g transform="translate(45, 20)">
-              <path d="M 10 0 L 10 40 M 10 0 L 25 30 L 40 0 M 40 0 L 40 40" stroke="#745AFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
-
-            <!-- Plus symbol -->
-            <g transform="translate(100, 25)">
-              <line x1="0" y1="15" x2="30" y2="15" stroke="#745AFF" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="15" y1="0" x2="15" y2="30" stroke="#745AFF" stroke-width="2.5" stroke-linecap="round"/>
-            </g>
+            <!-- Purple circle background -->
+            <circle cx="90" cy="45" r="35" fill="#745AFF"/>
+            
+            <!-- Phosphor plus icon (white) -->
+            <line x1="90" y1="25" x2="90" y2="65" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <line x1="70" y1="45" x2="110" y2="45" stroke="white" stroke-width="3" stroke-linecap="round"/>
 
             <!-- Mode labels -->
             <g transform="translate(5, 75)">
-              <rect x="0" y="0" width="82" height="30" rx="6" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
-              <text x="41" y="22" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500">Socratic Guide</text>
+              <rect x="0" y="0" width="90" height="36" rx="8" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
+              <text x="45" y="18" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500" dominant-baseline="central">Socratic Guide</text>
             </g>
 
-            <g transform="translate(93, 75)">
-              <rect x="0" y="0" width="82" height="30" rx="6" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
-              <text x="41" y="22" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500">Guardian Data</text>
+            <g transform="translate(85, 75)">
+              <rect x="0" y="0" width="90" height="36" rx="8" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+              <text x="45" y="18" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500" dominant-baseline="central">Guardian Data</text>
             </g>
           </svg>
         `;
