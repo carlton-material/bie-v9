@@ -276,43 +276,102 @@ window.BIE = {
 
     let isOpen = false;
 
-    // Suggested questions based on page context
+    // Suggested questions: mode-aware, page-specific
     const suggestedQuestions = {
-      'strategic-brief': [
-        "What's driving the trust gap?",
-        "Compare us to competitors",
-        "Why is Dependable declining?"
-      ],
-      'command-center': [
-        "What should I prioritize today?",
-        "Which signals are anomalous?",
-        "What's the market shift?"
-      ],
-      'signal-terminal': [
-        "What signals are trending?",
-        "Show me high-confidence findings",
-        "Which layers converge?"
-      ],
-      'guided-analysis': [
-        "What story do the drivers tell?",
-        "Where's our real opportunity?",
-        "What should change first?"
-      ],
-      'scenario-lab': [
-        "Which scenario has best ROI?",
-        "What's the confidence on projections?",
-        "How do drivers cascade?"
-      ],
-      'day-in-the-life': [
-        "What insights matter most?",
-        "How does my role use BIE?",
-        "What's the narrative arc?"
-      ],
-      'default': [
-        "What's driving the trust gap?",
-        "Show me the key insights",
-        "Which drivers need attention?"
-      ]
+      guide: {
+        'strategic-brief': [
+          "What patterns do you see in these drivers?",
+          "Why might trust gap differ by segment?",
+          "What story does this brief tell you?"
+        ],
+        'command-center': [
+          "What would you prioritize first?",
+          "What connects these signals?",
+          "Which trend surprises you?"
+        ],
+        'signal-terminal': [
+          "What signal pattern stands out?",
+          "Why might these layers conflict?",
+          "What hypothesis does this suggest?"
+        ],
+        'guided-analysis': [
+          "What story do the drivers tell?",
+          "Where's the hidden opportunity?",
+          "What assumption should we question?"
+        ],
+        'scenario-lab': [
+          "What scenario feels most realistic?",
+          "Which drivers would cascade first?",
+          "What risk are we not seeing?"
+        ],
+        'brand-fidelity': [
+          "Why does Dependable matter most?",
+          "How do In-Moment drivers connect to Over Time?",
+          "What would move this score fastest?"
+        ],
+        'day-in-the-life': [
+          "How would your role use this?",
+          "What's missing from this workflow?",
+          "Which surface matters most to you?"
+        ],
+        'how-it-works': [
+          "Why three signal layers?",
+          "What makes this different from a survey?",
+          "How does convergence work?"
+        ],
+        'default': [
+          "What pattern stands out to you?",
+          "What question should we ask first?",
+          "What's your hypothesis?"
+        ]
+      },
+      guardian: {
+        'strategic-brief': [
+          "Diagnose the trust gap",
+          "Compare us vs. competitors",
+          "Show driver risk analysis"
+        ],
+        'command-center': [
+          "What needs attention today?",
+          "Surface anomalous signals",
+          "Show market shift data"
+        ],
+        'signal-terminal': [
+          "Show trending signals",
+          "High-confidence findings only",
+          "Where do layers converge?"
+        ],
+        'guided-analysis': [
+          "Run full driver diagnostic",
+          "Identify biggest opportunity",
+          "What should change first?"
+        ],
+        'scenario-lab': [
+          "Best ROI scenario?",
+          "Confidence on projections",
+          "Model driver cascade effects"
+        ],
+        'brand-fidelity': [
+          "Diagnose Dependable crisis",
+          "Which driver moves composite most?",
+          "Show competitive driver comparison"
+        ],
+        'day-in-the-life': [
+          "Key insights for my role",
+          "ROI of each BIE surface",
+          "What workflow saves most time?"
+        ],
+        'how-it-works': [
+          "Explain signal processing pipeline",
+          "Show confidence scoring methodology",
+          "Data source coverage audit"
+        ],
+        'default': [
+          "Surface the key insights",
+          "Which drivers need attention?",
+          "Show me the data"
+        ]
+      }
     };
 
     const toggle = () => {
@@ -328,21 +387,37 @@ window.BIE = {
     // Mode toggle setup
     if (modeToggle) {
       const modeButtons = modeToggle.querySelectorAll('.mode-btn');
+
+      // Set initial data-active-mode on panel
+      panel.setAttribute('data-active-mode', self.analystMode);
+
       modeButtons.forEach(btn => {
         btn.addEventListener('click', () => {
           modeButtons.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           self.analystMode = btn.dataset.mode;
+          panel.setAttribute('data-active-mode', btn.dataset.mode);
 
-          // Show mode description
+          // Show mode description with mode-specific styling
           const description = self.getAnalystModeDescription(self.analystMode);
           if (description) {
             const descMsg = document.createElement('div');
-            descMsg.className = 'analyst-msg system mode-description';
-            descMsg.innerHTML = `<em>${description}</em>`;
+            const modeClass = self.analystMode === 'guide' ? 'desc-guide' : 'desc-guardian';
+            descMsg.className = `analyst-msg system mode-description ${modeClass}`;
+            descMsg.innerHTML = description;
             messages.appendChild(descMsg);
             messages.scrollTop = messages.scrollHeight;
           }
+
+          // Update input placeholder for mode
+          if (input) {
+            input.placeholder = self.analystMode === 'guide'
+              ? 'What are you curious about?'
+              : 'What do you need to know?';
+          }
+
+          // Re-render suggestions for current mode
+          renderSuggestions();
         });
       });
 
@@ -354,27 +429,29 @@ window.BIE = {
     }
 
     const contextMessages = {
-      'strategic-brief': "You're reading the strategic brief. I can walk you through the market dynamics driving this transformation, or help you understand any specific section.",
-      'how-it-works': "This is the architecture transparency layer. Ask me about any signal type, data source, or methodology. I'll show my work.",
-      'command-center': "Welcome to your Command Center. I've flagged 3 signals that need your attention this morning. Want me to walk you through them?",
-      'signal-terminal': "Signal Terminal active. I'm monitoring 847 signals across all three layers. Shall I surface the anomalies?",
-      'guided-analysis': "Ready for guided analysis. Tell me what you're trying to understand and I'll ask the right questions to get us there.",
-      'scenario-lab': "Scenario Lab loaded with 650 agents. Want to run a preset war game, or shall we design a custom scenario?",
-      'day-in-the-life': "You're viewing the Day in the Life narrative. I can personalize this for your specific role and workflow."
+      'strategic-brief': "You're reading the strategic brief — the narrative foundation of the brand intelligence picture. I can walk you through market dynamics, driver trajectories, or competitive positioning. What catches your eye?",
+      'how-it-works': "This is the architecture transparency layer — every methodology, data source, and confidence score exposed. Ask me about any signal type, pipeline stage, or analytical approach. I'll show my work.",
+      'command-center': "Welcome to your Command Center — your daily operational intelligence. I've flagged `3 signals` that need attention this morning. The Dependable driver is in critical territory.",
+      'signal-terminal': "Signal Terminal active — monitoring `847 signals` across Human-Expressive, Behavioral, and Cultural layers. I can surface anomalies, convergences, or drill into any signal source.",
+      'guided-analysis': "Ready for guided analysis. Tell me what you're trying to understand — a driver, a competitive question, an audience segment — and I'll help you build a structured brief.",
+      'scenario-lab': "Scenario Lab loaded — `650 agents`, 5 simulation modes. War gaming, brand simulation, focus groups, insight generation, or signal nexus. What strategy question are you testing?",
+      'brand-fidelity': "Brand Fidelity dashboard — 6 drivers across two time horizons. Composite at `72` with a `-4` delta. I can diagnose any driver, compare competitive positions, or explain the framework.",
+      'day-in-the-life': "Day in the Life — see how BIE fits into real workflows. I can personalize this narrative for your specific role: strategist, analyst, or executive."
     };
 
     // Initial context message
     if (messages && this.currentPage && contextMessages[this.currentPage]) {
       const msg = document.createElement('div');
-      msg.className = 'analyst-msg system';
-      msg.textContent = contextMessages[this.currentPage];
+      msg.className = 'analyst-msg system mode-guide';
+      msg.innerHTML = this.parseAnalystResponse(contextMessages[this.currentPage]);
       messages.appendChild(msg);
     }
 
-    // Render initial suggested questions
+    // Render suggested questions based on current mode + page
     const renderSuggestions = () => {
       if (!suggestionsContainer) return;
-      const questions = suggestedQuestions[this.currentPage] || suggestedQuestions['default'];
+      const modeQuestions = suggestedQuestions[self.analystMode] || suggestedQuestions.guide;
+      const questions = modeQuestions[self.currentPage] || modeQuestions['default'];
       suggestionsContainer.innerHTML = '';
       questions.forEach(q => {
         const pill = document.createElement('div');
@@ -417,9 +494,10 @@ window.BIE = {
     userMsg.textContent = query;
     messages.appendChild(userMsg);
 
-    // Show thinking animation
+    // Show thinking animation with mode-specific accent
     const thinkingMsg = document.createElement('div');
-    thinkingMsg.className = 'analyst-msg system thinking';
+    const modeClass = this.analystMode === 'guide' ? 'mode-guide' : 'mode-guardian';
+    thinkingMsg.className = `analyst-msg system thinking ${modeClass}`;
     thinkingMsg.innerHTML = '<span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span>';
     messages.appendChild(thinkingMsg);
     messages.scrollTop = messages.scrollHeight;
@@ -436,7 +514,8 @@ window.BIE = {
 
     try {
       resp = document.createElement('div');
-      resp.className = 'analyst-msg system';
+      const respModeClass = this.analystMode === 'guide' ? 'mode-guide' : 'mode-guardian';
+      resp.className = `analyst-msg system ${respModeClass}`;
       messages.replaceChild(resp, thinkingMsg);
       streamStarted = true;
       messages.scrollTop = messages.scrollHeight;
@@ -472,20 +551,38 @@ window.BIE = {
       messages.scrollTop = messages.scrollHeight;
     }
 
-    // Show suggested questions again after response
+    // Re-render mode-aware suggestions after response
     if (suggestionsContainer) {
       setTimeout(() => {
+        // Re-use the initAnalyst renderSuggestions pattern inline
         suggestionsContainer.innerHTML = '';
-        const suggestedQuestions = {
-          'strategic-brief': ["What's driving the trust gap?", "Compare us to competitors", "Why is Dependable declining?"],
-          'command-center': ["What should I prioritize today?", "Which signals are anomalous?", "What's the market shift?"],
-          'signal-terminal': ["What signals are trending?", "Show me high-confidence findings", "Which layers converge?"],
-          'guided-analysis': ["What story do the drivers tell?", "Where's our real opportunity?", "What should change first?"],
-          'scenario-lab': ["Which scenario has best ROI?", "What's the confidence on projections?", "How do drivers cascade?"],
-          'day-in-the-life': ["What insights matter most?", "How does my role use BIE?", "What's the narrative arc?"],
-          'default': ["What's driving the trust gap?", "Show me the key insights", "Which drivers need attention?"]
+        const modeKey = self.analystMode || 'guide';
+        const followUpQuestions = {
+          guide: {
+            'strategic-brief': ["What else do you notice?", "How might this affect long-term loyalty?", "What would you test first?"],
+            'command-center': ["What connects to yesterday?", "Which signal concerns you most?", "What would you investigate next?"],
+            'signal-terminal': ["What's the counter-argument?", "Which signal do you trust most?", "What's missing from this picture?"],
+            'guided-analysis': ["How confident are you in that?", "What would change your mind?", "What's the next question?"],
+            'scenario-lab': ["What assumption are we making?", "How would competitors respond?", "What's the downside risk?"],
+            'brand-fidelity': ["Which driver surprises you?", "How do these connect?", "What would move the needle?"],
+            'day-in-the-life': ["What resonates with your workflow?", "What's the biggest gap?", "What would you change?"],
+            'how-it-works': ["What makes this defensible?", "Where are the limitations?", "What would you add?"],
+            'default': ["Tell me more", "What's the implication?", "What should we explore next?"]
+          },
+          guardian: {
+            'strategic-brief': ["Deep dive on Dependable", "Show competitive gaps", "Signal source breakdown"],
+            'command-center': ["Drill into anomalies", "Week-over-week delta", "Priority action list"],
+            'signal-terminal': ["Filter high-confidence only", "Cross-layer correlation", "Show source diversity"],
+            'guided-analysis': ["Run sensitivity analysis", "Compare to category benchmark", "Show driver interdependencies"],
+            'scenario-lab': ["Model alternative scenario", "Stress test assumptions", "Show agent behavior distribution"],
+            'brand-fidelity': ["Benchmark vs. category", "Driver correlation matrix", "Trend trajectory 6-month"],
+            'day-in-the-life': ["Time-to-insight metrics", "Surface usage analytics", "Compare role workflows"],
+            'how-it-works': ["Pipeline latency stats", "Signal quality audit", "Coverage gap analysis"],
+            'default': ["Go deeper", "Show the data", "What else should I know?"]
+          }
         };
-        const questions = suggestedQuestions[self.currentPage] || suggestedQuestions['default'];
+        const modeFollowUps = followUpQuestions[modeKey] || followUpQuestions.guide;
+        const questions = modeFollowUps[self.currentPage] || modeFollowUps['default'];
         questions.forEach(q => {
           const pill = document.createElement('div');
           pill.className = 'analyst-suggestion-pill';
@@ -502,20 +599,103 @@ window.BIE = {
   parseAnalystResponse(text) {
     // Sanitize: strip any HTML tags from LLM output before formatting
     const sanitized = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    let html = sanitized;
-    // Bold markdown **text** -> <strong>text</strong>
-    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    // Monospace code blocks ◆ ... -> <span style='font-family:var(--font-mono)'>...</span>
-    html = html.replace(/(◆[^◆]*)/g, '<span style="font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)">$1</span>');
-    // Paragraph breaks
-    html = html.replace(/\n\n/g, '</p><p>').replace(/^(.+)$/, '<p>$1</p>');
+
+    // Split into lines for block-level processing
+    const lines = sanitized.split('\n');
+    let html = '';
+    let inList = false;
+    let listType = 'ul';
+
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+
+      // Horizontal rule
+      if (/^---+$/.test(line.trim())) {
+        if (inList) { html += `</${listType}>`; inList = false; }
+        html += '<hr>';
+        continue;
+      }
+
+      // Headers (### and ####)
+      if (/^#{3,4}\s+/.test(line)) {
+        if (inList) { html += `</${listType}>`; inList = false; }
+        const headerText = line.replace(/^#{3,4}\s+/, '');
+        html += `<h4>${this._inlineMarkdown(headerText)}</h4>`;
+        continue;
+      }
+
+      // Blockquote
+      if (/^>\s+/.test(line)) {
+        if (inList) { html += `</${listType}>`; inList = false; }
+        const quoteText = line.replace(/^>\s+/, '');
+        html += `<blockquote>${this._inlineMarkdown(quoteText)}</blockquote>`;
+        continue;
+      }
+
+      // Unordered list item
+      if (/^[-*]\s+/.test(line.trim())) {
+        if (!inList || listType !== 'ul') {
+          if (inList) html += `</${listType}>`;
+          html += '<ul>';
+          inList = true;
+          listType = 'ul';
+        }
+        const itemText = line.trim().replace(/^[-*]\s+/, '');
+        html += `<li>${this._inlineMarkdown(itemText)}</li>`;
+        continue;
+      }
+
+      // Ordered list item
+      if (/^\d+\.\s+/.test(line.trim())) {
+        if (!inList || listType !== 'ol') {
+          if (inList) html += `</${listType}>`;
+          html += '<ol>';
+          inList = true;
+          listType = 'ol';
+        }
+        const itemText = line.trim().replace(/^\d+\.\s+/, '');
+        html += `<li>${this._inlineMarkdown(itemText)}</li>`;
+        continue;
+      }
+
+      // Signal attribution line (◆ ...)
+      if (/◆/.test(line)) {
+        if (inList) { html += `</${listType}>`; inList = false; }
+        html += `<span class="signal-attribution">${this._inlineMarkdown(line)}</span>`;
+        continue;
+      }
+
+      // Empty line = close list + paragraph break
+      if (line.trim() === '') {
+        if (inList) { html += `</${listType}>`; inList = false; }
+        continue;
+      }
+
+      // Regular paragraph text
+      if (inList) { html += `</${listType}>`; inList = false; }
+      html += `<p>${this._inlineMarkdown(line)}</p>`;
+    }
+
+    if (inList) html += `</${listType}>`;
     return html;
+  },
+
+  /** Inline markdown: bold, italic, code, links */
+  _inlineMarkdown(text) {
+    let out = text;
+    // Bold **text**
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    // Italic *text* (but not inside **)
+    out = out.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>');
+    // Inline code `text`
+    out = out.replace(/`([^`]+)`/g, '<code>$1</code>');
+    return out;
   },
 
   getAnalystModeDescription(mode) {
     const descriptions = {
-      guide: "I'll help you discover insights through guided questions",
-      guardian: "I'll deliver direct analysis with full data attribution"
+      guide: `<strong>Ask mode</strong> — I'll guide your thinking with Socratic questions, helping you discover patterns and form your own strategic hypotheses. I won't hand you answers; I'll help you find them.`,
+      guardian: `<strong>Explore mode</strong> — Direct diagnostics backed by signal data. I'll surface findings with confidence scores, cite sources, and structure responses as Diagnostic → Attack → Defend → Bridge.`
     };
     return descriptions[mode] || '';
   },
@@ -526,47 +706,49 @@ window.BIE = {
     const competitor = this.brand?.competitors?.[0];
     const competitorName = competitor?.name || 'Booking.com';
 
+    // Fallback responses use markdown (parsed by parseAnalystResponse)
     const responses = {
       trust: {
-        guide: `<strong>Question:</strong> You mentioned a 22-point gap between what users say and what they actually do with their bookings. What do you think that gap tells us about the functional vs. emotional dimensions of trust? And which driver might be at the root of that divergence?`,
-        guardian: `<strong>Diagnostic:</strong> ${brandName}'s trust metrics show a 22-point gap between expressive sentiment (78%) and behavioral signals (56%). This gap has widened 4 points in 6 weeks, a leading indicator of churn.<br><br><strong>Attack:</strong> Deploy transparent pricing pilot in top 3 markets to close User Friendly gap.<br><strong>Defend:</strong> Maintain Salient advantage (74, +2) through consistent booking experience.<br><strong>Bridge:</strong> Partner with verified-review platforms to convert trust into behavioral loyalty.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Human-Expressive + Behavioral signal correlation · N=847 · Confidence: HIGH</span>`
+        guide: `### What does the 22-point trust gap tell you?\n\nThere's a 22-point divergence between what users *say* about ${brandName} (expressive sentiment at 78%) and what they *do* (behavioral signals at 56%). That's a wide gap — and it's widening.\n\n- Consider the **functional vs. emotional** dimensions of trust\n- Which driver might be at the root: \`User Friendly\` or \`Dependable\`?\n- How might segment differences explain the gap?\n\n> If trust is high in words but low in actions, what's the friction point in the booking experience?`,
+        guardian: `### Diagnostic\n\n${brandName}'s trust metrics show a **22-point gap** between expressive sentiment (\`78%\`) and behavioral signals (\`56%\`). Gap widened 4 points in 6 weeks — a leading indicator of churn.\n\n### Attack\n\nDeploy transparent pricing pilot in top 3 markets to close User Friendly gap.\n\n### Defend\n\nMaintain Salient advantage (\`74, +2\`) through consistent booking experience.\n\n### Bridge\n\nPartner with verified-review platforms to convert stated trust into behavioral loyalty.\n\n◆ Human-Expressive + Behavioral signal correlation · N=847 · Confidence: HIGH`
       },
       competitor: {
-        guide: `<strong>Question:</strong> ${competitorName} is leading at 74, but ${brandName} is closing the gap at 72. What do you notice about which drivers they're strong in vs. where your opportunity actually is? Personal and Meaningful are both underdeveloped in the category. Why do you think that is?`,
-        guardian: `<strong>Diagnostic:</strong> ${competitorName} leads at 74 BF composite, driven by Dependable (+8 vs category) and User Friendly (+6). ${brandName}'s opportunity lies in Meaningful and Personal, both underserved category-wide.<br><br><strong>Attack:</strong> Invest in Personal (64, -8) through ML-driven recommendation personalization.<br><strong>Defend:</strong> Protect Salient (74) through brand recall campaigns in peak booking season.<br><strong>Bridge:</strong> Meaningful (66, -3) bridges functional satisfaction to emotional loyalty.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Brand Fidelity Report 2026 · Travel Category · N=24,000 · Confidence: HIGH</span>`
+        guide: `### Where's the real competitive opportunity?\n\n${competitorName} leads at \`74\`, but ${brandName} is closing at \`72\`. Look at *which* drivers they're strong in vs. where the whitespace is.\n\n- **Personal** and **Meaningful** are both underdeveloped category-wide\n- ${competitorName} wins on Dependable (+8 vs category) and User Friendly (+6)\n- Neither brand owns the emotional loyalty space\n\n> Why do you think Personal and Meaningful are underserved across the whole category? What structural factor might explain that?`,
+        guardian: `### Diagnostic\n\n${competitorName} leads at \`74\` BF composite, driven by Dependable (+8 vs category) and User Friendly (+6). ${brandName}'s opportunity lies in **Meaningful** and **Personal**, both underserved category-wide.\n\n### Attack\n\nInvest in Personal (\`64, -8\`) through ML-driven recommendation personalization.\n\n### Defend\n\nProtect Salient (\`74\`) through brand recall campaigns in peak booking season.\n\n### Bridge\n\nMeaningful (\`66, -3\`) bridges functional satisfaction to emotional loyalty.\n\n◆ Brand Fidelity Report 2026 · Travel Category · N=24,000 · Confidence: HIGH`
       },
       'gen z': {
-        guide: "<strong>Question:</strong> Gen Z engagement with peer-reviewed content is up 34% despite lower trust in brands. How does that paradox inform the Meaningful driver? What would it take to build a community-first experience that shifts their perception from transactional to belonging?",
-        guardian: "<strong>Diagnostic:</strong> Gen Z trust in travel platforms declined 12% YoY, but engagement with peer-reviewed content is up 34%. They don't trust brands, but they trust communities hosted on brand platforms.<br><br><strong>Attack:</strong> Launch UGC-first booking experience with social proof at every decision point.<br><strong>Bridge:</strong> This is a Meaningful driver opportunity: make the platform a place Gen Z identifies with, not just transacts on.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Cultural + Behavioral signal cross-ref · TikTok, Reddit, Google Trends · Confidence: MEDIUM</span>"
+        guide: `### How do you read the Gen Z paradox?\n\nGen Z engagement with peer-reviewed content is up **34%** despite lower trust in brands overall. They don't trust *you* — but they trust *communities you host*.\n\n- How does this paradox inform the **Meaningful** driver?\n- What would a community-first experience actually look like?\n- Can you shift perception from transactional to belonging?\n\n> If Gen Z trusts communities more than brands, what would it take to make your platform feel like a community rather than a marketplace?`,
+        guardian: `### Diagnostic\n\nGen Z trust in travel platforms declined **12% YoY**, but engagement with peer-reviewed content is up **34%**. They trust communities hosted on brand platforms, not the brands themselves.\n\n### Attack\n\nLaunch UGC-first booking experience with social proof at every decision point.\n\n### Bridge\n\nThis is a **Meaningful** driver opportunity: make the platform a place Gen Z identifies with, not just transacts on.\n\n◆ Cultural + Behavioral signal cross-ref · TikTok, Reddit, Google Trends · Confidence: MEDIUM`
       },
       scenario: {
-        guide: "<strong>Question:</strong> If you ran a transparent pricing pilot and saw a 3.2-point composite lift, which driver would move first: User Friendly or one of the Over Time drivers? How do you expect that first mover to cascade into others?",
-        guardian: "<strong>Recommendation:</strong> Start with 'Transparent Pricing' scenario. Directly targets User Friendly (72, -4). Simulation: 3.2 point composite lift over 8 weeks at 78% confidence.<br><br>Alternative: 'Trust Recovery Campaign' produces 2.1 point lift with higher certainty (89%) but slower trajectory (12 weeks).<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ ABM simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH</span>"
+        guide: `### Which driver moves first in a pricing intervention?\n\nIf you ran a transparent pricing pilot and saw a \`3.2-point\` composite lift, think about the cascade:\n\n- Would **User Friendly** move first (immediate experience)?\n- Or would Over Time drivers like **Dependable** shift?\n- How do you expect the first mover to cascade into others?\n\n> What's your theory on whether functional fixes translate into emotional loyalty gains — and over what timeframe?`,
+        guardian: `### Diagnostic\n\nStart with **Transparent Pricing** scenario. Directly targets User Friendly (\`72, -4\`).\n\n- Simulation: \`3.2 point\` composite lift over 8 weeks at 78% confidence\n- Alternative: Trust Recovery Campaign produces \`2.1 point\` lift with higher certainty (89%) but slower trajectory (12 weeks)\n\n### Attack\n\nPrioritize transparent pricing — higher ceiling, faster payoff.\n\n### Bridge\n\nBoth scenarios improve Dependable indirectly through operational trust signals.\n\n◆ ABM simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH`
       },
       fidelity: {
-        guide: "<strong>Question:</strong> Looking at the 6 drivers, Dependable is the crisis point at 58. It's an Over Time driver, which means it anchors long-term loyalty. What does a 6-point decline over 2 quarters tell you about the user experience? And why would fixing it matter more than improving Personal or Meaningful right now?",
-        guardian: "<strong>Brand Fidelity's 6 Drivers:</strong><br>In the Moment: User Friendly (72, -4) · Personal (64, -8) · Accessible (71, +1)<br>Over Time: Dependable (58, -6) · Meaningful (66, -3) · Salient (74, +2)<br><br><strong>Key Insight:</strong> Dependable is the crisis driver at 58 (-6). It anchors long-term loyalty and is dragging the composite. Personal (-8) is the biggest single delta but operates at shorter time horizons.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ M+ Brand Fidelity Framework · 2X advocacy, 2.5X profitability, 3X differentiation · Confidence: HIGH</span>"
+        guide: `### Why does Dependable matter more than Personal right now?\n\nLooking at the 6 drivers, **Dependable** is the crisis point at \`58\`. It's an Over Time driver — it anchors long-term loyalty.\n\n- A **6-point decline** over 2 quarters signals something systemic\n- Personal (-8) is the biggest single delta, but operates at shorter horizons\n- Dependable defines whether customers *return*\n\n> What does a sustained Dependable decline tell you about the operational experience? And why might fixing it matter more than improving Personal right now?`,
+        guardian: `### Diagnostic\n\n**Brand Fidelity — 6 Drivers:**\n\n- In the Moment: User Friendly (\`72, -4\`) · Personal (\`64, -8\`) · Accessible (\`71, +1\`)\n- Over Time: Dependable (\`58, -6\`) · Meaningful (\`66, -3\`) · Salient (\`74, +2\`)\n\n### Key Insight\n\nDependable is the crisis driver at \`58 (-6)\`. It anchors long-term loyalty and is dragging the composite. Personal (-8) is the biggest single delta but operates at shorter time horizons.\n\n◆ M+ Brand Fidelity Framework · 2X advocacy, 2.5X profitability, 3X differentiation · Confidence: HIGH`
       },
       meaningful: {
-        guide: "<strong>Question:</strong> Meaningful sits at 66 with a -3 decline. It's the bridge between functional satisfaction and emotional loyalty. What would a 'Stories Worth Staying For' content program actually change about user behavior? How do you measure success beyond engagement?",
-        guardian: "<strong>Diagnostic:</strong> Meaningful (66, -3) is the bridge between functional satisfaction and emotional loyalty. Brands with high Meaningful scores see 2.8X higher advocacy rates.<br><br><strong>Attack:</strong> Launch a \"Stories Worth Staying For\" content series. Turn property stays into narratives.<br><strong>Defend:</strong> Don't let Meaningful erosion cascade into Dependable. Monitor monthly.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ BF Report 2026 · Cross-category analysis · N=229 brands · Confidence: HIGH</span>"
+        guide: `### What would make the brand *meaningful* — not just useful?\n\nMeaningful sits at \`66\` with a **-3 decline**. It's the bridge between functional satisfaction and emotional loyalty.\n\n- What would a "Stories Worth Staying For" content program change about behavior?\n- How do you measure success beyond engagement metrics?\n- Can you create belonging, not just transactions?\n\n> Brands with high Meaningful scores see 2.8X higher advocacy rates. What's the fastest path to making your brand mean something beyond its utility?`,
+        guardian: `### Diagnostic\n\nMeaningful (\`66, -3\`) is the bridge between functional satisfaction and emotional loyalty. Brands with high Meaningful scores see **2.8X** higher advocacy rates.\n\n### Attack\n\nLaunch a "Stories Worth Staying For" content series. Turn property stays into narratives.\n\n### Defend\n\nDon't let Meaningful erosion cascade into Dependable. Monitor monthly.\n\n◆ BF Report 2026 · Cross-category analysis · N=229 brands · Confidence: HIGH`
       },
       dependable: {
-        guide: "<strong>Question:</strong> Dependable is in critical territory at 58 (-6). The behavioral data says 73% of its decline correlates with post-booking experience. If you could fix just the top 3 operational pain points (cancellation friction, response time, billing), which would you tackle first and why? What's your theory on the root cause?",
-        guardian: "<strong>Diagnostic:</strong> Dependable (58, -6) is in critical territory. This is the most influential Over Time driver. It defines whether customers return. A 6-point decline over 2 quarters signals systemic operational issues, not just perception.<br><br><strong>Attack:</strong> Audit and fix the top 5 operational pain points surfaced in behavioral signals (cancellation friction, response time, billing accuracy).<br><strong>Bridge:</strong> Behavioral data shows 73% of Dependable declines correlate with post-booking experience, not pre-booking perception.<br><br><span style='font-family:var(--font-mono);font-size:var(--text-nano);color:var(--text-muted)'>◆ Behavioral signal cluster analysis · Booking + post-stay data · N=312 signals · Confidence: HIGH</span>"
+        guide: `### What's breaking the Dependable promise?\n\nDependable is in critical territory at \`58 (-6)\`. The behavioral data says **73%** of its decline correlates with post-booking experience.\n\n- If you could fix just the top 3 operational pain points — cancellation friction, response time, billing — which comes first?\n- What's your theory on the root cause?\n- Is this perception or reality?\n\n> Behavioral signals don't lie. If 73% of the decline is post-booking, is the brand problem actually a product problem?`,
+        guardian: `### Diagnostic\n\nDependable (\`58, -6\`) is in critical territory. This is the most influential Over Time driver. A 6-point decline over 2 quarters signals **systemic operational issues**, not just perception.\n\n### Attack\n\nAudit and fix the top 5 operational pain points surfaced in behavioral signals:\n\n- Cancellation friction\n- Response time\n- Billing accuracy\n\n### Bridge\n\nBehavioral data shows **73%** of Dependable declines correlate with post-booking experience, not pre-booking perception.\n\n◆ Behavioral signal cluster analysis · Booking + post-stay data · N=312 signals · Confidence: HIGH`
       }
     };
 
     for (const [key, responseObj] of Object.entries(responses)) {
       if (key !== 'default' && query.includes(key)) {
-        return isGuide ? responseObj.guide : responseObj.guardian;
+        const raw = isGuide ? responseObj.guide : responseObj.guardian;
+        return this.parseAnalystResponse(raw);
       }
     }
 
-    const defaultGuide = "<strong>Analyzing...</strong> Let me ask you this: what pattern do you notice first when you look at these drivers? The Human-Expressive signals suggest one story, but Behavioral signals tell something different.<br><br><em>Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Fidelity drivers, Meaningful, or Dependable.</em>";
-    const defaultGuardian = "<strong>Analyzing...</strong> Cross-referencing all three signal layers. The Human-Expressive data suggests one pattern, but Behavioral signals tell a different story. Let me surface the specific data points and their confidence scores...<br><br><em>Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Fidelity drivers, Meaningful, or Dependable.</em>";
+    const defaultGuide = "### Let me help you find the thread...\n\nWhat pattern do you notice first when you look at these drivers? The Human-Expressive signals suggest one story, but Behavioral signals tell something different.\n\n> *Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Fidelity drivers, Meaningful, or Dependable.*";
+    const defaultGuardian = "### Cross-referencing signal layers...\n\nThe Human-Expressive data suggests one pattern, but Behavioral signals tell a different story. Let me surface the specific data points and confidence scores.\n\n> *Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Fidelity drivers, Meaningful, or Dependable.*";
 
-    return isGuide ? defaultGuide : defaultGuardian;
+    return this.parseAnalystResponse(isGuide ? defaultGuide : defaultGuardian);
   },
 
   /* ── RSS Intelligence Feed ── */

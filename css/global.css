@@ -447,6 +447,7 @@ img { max-width: 100%; display: block; }
   color: var(--text-primary);
   border-color: rgba(116,90,255,0.25);
 }
+/* Mode-specific active colors override the generic purple above */
 
 /* ── Messages ── */
 .analyst-panel-messages {
@@ -542,6 +543,140 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.03em;
 }
 
+/* ── Markdown Rendering in Messages ── */
+.analyst-msg p { margin: 0 0 8px 0; }
+.analyst-msg p:last-child { margin-bottom: 0; }
+.analyst-msg h4 {
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 12px 0 6px;
+  letter-spacing: -0.01em;
+  white-space: normal;
+}
+.analyst-msg h4:first-child { margin-top: 0; }
+.analyst-msg ul, .analyst-msg ol {
+  margin: 6px 0 8px 0;
+  padding-left: 18px;
+}
+.analyst-msg li {
+  margin-bottom: 4px;
+  color: var(--text-secondary);
+  font-size: var(--text-small);
+  line-height: 1.55;
+}
+.analyst-msg code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background: rgba(116, 90, 255, 0.08);
+  border: 1px solid rgba(116, 90, 255, 0.12);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--signal-human);
+}
+.analyst-msg blockquote {
+  margin: 8px 0;
+  padding: 8px 12px;
+  border-left: 2px solid var(--signal-cultural);
+  background: rgba(245, 158, 11, 0.04);
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+.analyst-msg hr {
+  border: none;
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 10px 0;
+}
+.analyst-msg .signal-attribution {
+  font-family: var(--font-mono);
+  font-size: var(--text-nano);
+  color: var(--text-muted);
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 4px;
+  margin-top: 8px;
+  line-height: 1.5;
+  display: block;
+}
+.analyst-msg strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.analyst-msg em {
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+/* ── Mode-Specific Message Styling ── */
+.analyst-msg.system.mode-guide {
+  border-left-color: var(--signal-human);
+}
+.analyst-msg.system.mode-guardian {
+  border-left-color: var(--signal-behavioral);
+}
+
+/* Guide mode: warmer, question-oriented feel */
+.analyst-msg.system.mode-guide h4 {
+  color: var(--signal-human);
+}
+.analyst-msg.system.mode-guide blockquote {
+  border-left-color: var(--signal-human);
+  background: rgba(129, 140, 248, 0.04);
+}
+
+/* Guardian mode: sharper, diagnostic feel */
+.analyst-msg.system.mode-guardian h4 {
+  color: var(--signal-behavioral);
+}
+.analyst-msg.system.mode-guardian code {
+  background: rgba(52, 211, 153, 0.08);
+  border-color: rgba(52, 211, 153, 0.15);
+  color: var(--signal-behavioral);
+}
+
+/* Mode descriptions */
+.analyst-msg.system.mode-description.desc-guide {
+  background: rgba(129, 140, 248, 0.06);
+  border-left-color: var(--signal-human);
+}
+.analyst-msg.system.mode-description.desc-guardian {
+  background: rgba(52, 211, 153, 0.06);
+  border-left-color: var(--signal-behavioral);
+}
+
+/* Mode toggle active states */
+.mode-btn[data-mode="guide"].active {
+  background: rgba(129, 140, 248, 0.12);
+  color: var(--signal-human);
+  border-color: rgba(129, 140, 248, 0.25);
+}
+.mode-btn[data-mode="guardian"].active {
+  background: rgba(52, 211, 153, 0.12);
+  color: var(--signal-behavioral);
+  border-color: rgba(52, 211, 153, 0.25);
+}
+
+/* Suggestion pills change color per mode */
+.analyst-panel[data-active-mode="guide"] .analyst-suggestion-pill {
+  background: rgba(129, 140, 248, 0.06);
+  border-color: rgba(129, 140, 248, 0.15);
+}
+.analyst-panel[data-active-mode="guide"] .analyst-suggestion-pill:hover {
+  background: rgba(129, 140, 248, 0.12);
+  border-color: rgba(129, 140, 248, 0.3);
+}
+.analyst-panel[data-active-mode="guardian"] .analyst-suggestion-pill {
+  background: rgba(52, 211, 153, 0.06);
+  border-color: rgba(52, 211, 153, 0.15);
+}
+.analyst-panel[data-active-mode="guardian"] .analyst-suggestion-pill:hover {
+  background: rgba(52, 211, 153, 0.12);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
 /* ── Analyst Thinking Animation ── */
 .analyst-msg.thinking {
   display: flex;
@@ -561,6 +696,9 @@ img { max-width: 100%; display: block; }
   background: var(--signal-human);
   opacity: 0.4;
   animation: thinking-pulse 1.2s ease-in-out infinite;
+}
+.analyst-msg.mode-guardian .thinking-dot {
+  background: var(--signal-behavioral);
 }
 
 .thinking-dot:nth-child(2) {
