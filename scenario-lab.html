@@ -13,6 +13,12 @@
        SCENARIO LAB - Dual-Mode Strategic Simulation
        ═══════════════════════════════════════════════════════════ */
 
+    /* Details/summary arrow rotation */
+    details[open] > summary span:first-child {
+      transform: rotate(90deg);
+    }
+    details > summary::-webkit-details-marker { display: none; }
+
     [data-page="scenario-lab"] {
       --bg-void: #000000;
       --bg-deep: #030303;
@@ -2708,48 +2714,52 @@
           <span id="sim-step-counter" style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 12px; color: rgba(255,255,255,0.4);">Q0</span>
         </div>
 
-        <!-- Strategic Scenario Lab -->
-        <div style="margin-top: var(--space-xl);">
-          <div style="margin-bottom: var(--space-lg);">
-            <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; margin-bottom: var(--space-md);">Strategic Scenario Simulations</h3>
+        <!-- Strategic Scenario Lab (collapsible) -->
+        <details style="margin-top: var(--space-xl);">
+          <summary style="cursor: pointer; font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; color: var(--text-primary, #e8e8e8); list-style: none; display: flex; align-items: center; gap: 8px; user-select: none; padding: var(--space-sm) 0;">
+            <span style="display: inline-block; transition: transform 0.2s; font-size: 0.8em;">▸</span>
+            Strategic Scenario Simulations
+          </summary>
+
+          <div style="margin-top: var(--space-lg);">
             <p style="color: rgba(255,255,255,0.6); font-size: var(--text-small); margin-bottom: var(--space-lg);">Brand Fidelity trajectories across 4 strategic scenarios over 5 quarters.</p>
-          </div>
 
-          <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: var(--space-lg);">
-            <canvas id="scenario-chart" style="width: 100%; max-height: 300px;"></canvas>
-          </div>
+            <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: var(--space-lg);">
+              <canvas id="scenario-chart" style="width: 100%; max-height: 300px;"></canvas>
+            </div>
 
-          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); margin-top: var(--space-lg);">
-            <div style="padding: var(--space-md); background: rgba(0, 208, 132, 0.1); border-left: 3px solid #00d084; border-radius: 4px;">
-              <div style="font-weight: 600; margin-bottom: 4px;">Premium Positioning</div>
-              <div style="font-size: var(--text-small); color: rgba(255,255,255,0.7);">Strongest growth: 72 → 81 fidelity</div>
-            </div>
-            <div style="padding: var(--space-md); background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; border-radius: 4px;">
-              <div style="font-weight: 600; margin-bottom: 4px;">Market Expansion</div>
-              <div style="font-size: var(--text-small); color: rgba(255,255,255,0.7);">Volatile but upward: 72 → 76</div>
-            </div>
-            <div style="padding: var(--space-md); background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; border-radius: 4px;">
-              <div style="font-weight: 600; margin-bottom: 4px;">Status Quo</div>
-              <div style="font-size: var(--text-small); color: rgba(255,255,255,0.7);">Gradual decline: 72 → 61</div>
-            </div>
-            <div style="padding: var(--space-md); background: rgba(59, 130, 246, 0.1); border-left: 3px solid #3b82f6; border-radius: 4px;">
-              <div style="font-weight: 600; margin-bottom: 4px;">Price War</div>
-              <div style="font-size: var(--text-small); color: rgba(255,255,255,0.7);">Sharp drop then recovery: 72 → 65</div>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg); margin-top: var(--space-lg);">
+              <div style="padding: var(--space-md); background: rgba(0, 208, 132, 0.1); border-left: 3px solid #00d084; border-radius: 4px;">
+                <div style="font-weight: 600; margin-bottom: 4px;">Premium Positioning</div>
+                <div style="font-size: var(--text-small); color: rgba(255,255,255,0.7);">Strongest growth: 72 → 81 fidelity</div>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; border-radius: 4px;">
+                <div style="font-weight: 600; margin-bottom: 4px;">Market Expansion</div>
+                <div style="font-size: var(--text-small); color: rgba(255,255,255,0.7);">Volatile but upward: 72 → 76</div>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(239, 68, 68, 0.1); border-left: 3px solid #ef4444; border-radius: 4px;">
+                <div style="font-weight: 600; margin-bottom: 4px;">Status Quo</div>
+                <div style="font-size: var(--text-small); color: rgba(255,255,255,0.7);">Gradual decline: 72 → 61</div>
+              </div>
+              <div style="padding: var(--space-md); background: rgba(59, 130, 246, 0.1); border-left: 3px solid #3b82f6; border-radius: 4px;">
+                <div style="font-weight: 600; margin-bottom: 4px;">Price War</div>
+                <div style="font-size: var(--text-small); color: rgba(255,255,255,0.7);">Sharp drop then recovery: 72 → 65</div>
+              </div>
             </div>
           </div>
-        </div>
+        </details>
 
-        <!-- Charts Grid -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); margin-top: var(--space-xl);">
+        <!-- Charts Grid (single column, larger canvases) -->
+        <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-xl); margin-top: var(--space-xl);">
           <!-- Brand Share Chart -->
           <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: var(--space-lg);">
             <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: var(--space-md);">MARKET SHARE OVER TIME</div>
-            <canvas id="sim-share-chart" width="460" height="280" style="width: 100%; height: auto;"></canvas>
+            <canvas id="sim-share-chart" width="960" height="450" style="width: 100%; height: auto;"></canvas>
           </div>
           <!-- Tier Distribution -->
           <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: var(--space-lg);">
             <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: var(--space-md);">TIER DISTRIBUTION</div>
-            <canvas id="sim-tier-chart" width="460" height="280" style="width: 100%; height: auto;"></canvas>
+            <canvas id="sim-tier-chart" width="960" height="350" style="width: 100%; height: auto;"></canvas>
           </div>
         </div>
 
@@ -2872,12 +2882,13 @@
           el.classList.toggle('active', el.dataset.mode === mode);
         });
 
-        // Hide wizard stepper + scenario selector when Brand Sim is active
-        // (Brand Sim has its own controls, doesn't use the shared wizard flow)
+        // Hide wizard stepper + scenario selector for modes with direct content
+        // (Brand Sim, Insight/Nearsight, Fidelity LIVE have their own controls)
         const wizard = document.querySelector('.scenario-wizard-steps');
         const selector = document.getElementById('scenario-selector');
         const confidence = document.querySelector('.simulation-confidence');
-        if (mode === 'brand-sim') {
+        const hideWizardModes = ['brand-sim', 'insight', 'signal-nexus'];
+        if (hideWizardModes.includes(mode)) {
           if (wizard) wizard.style.display = 'none';
           if (selector) selector.style.display = 'none';
           if (confidence) confidence.style.display = 'none';
