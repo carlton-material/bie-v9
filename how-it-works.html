@@ -1467,6 +1467,247 @@
             </div>
           </div>
         </div>
+
+        <!-- 01b.1 — Signal Ingestion Pipeline -->
+        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">01b.1 — SIGNAL INGESTION PIPELINE</div>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">How 847+ Daily Data Streams Are Ingested</h3>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">The ingestion layer acts as the funnel for all raw signal data. It classifies sources, validates against schema rules, deduplicates, applies freshness gates, and enforces rate limiting to prevent backpressure on downstream systems. Each stream is tagged with source type, timestamp, and reliability metadata.</p>
+          
+          <div style="margin: 20px 0;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">SOURCE CLASSIFICATION</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+              <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">PRIMARY SOURCES (Direct API)</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                  • Stayworthy Review APIs (45 daily)<br>
+                  • Guest Interview Transcripts (120 daily)<br>
+                  • Booking Platform APIs (220 daily)<br>
+                  <span style="color: rgba(255,255,255,0.5);">~385 streams · Latency: &lt;5min</span>
+                </div>
+              </div>
+              <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">SECONDARY SOURCES (Aggregated)</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                  • News Feed Aggregators (35 daily)<br>
+                  • Social Media Sentiment Feeds (180 daily)<br>
+                  • Market Analysis Reports (25 daily)<br>
+                  <span style="color: rgba(255,255,255,0.5);">~240 streams · Latency: 5–30min</span>
+                </div>
+              </div>
+              <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">TERTIARY SOURCES (Derived)</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                  • Regulatory Filing Parsers (60 daily)<br>
+                  • Competitor Intelligence (32 daily)<br>
+                  • Trend Correlation Feeds (145 daily)<br>
+                  <span style="color: rgba(255,255,255,0.5);">~222 streams · Latency: 30min–6h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin: 24px 0; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.6); margin-bottom: 12px;">VALIDATION & GATE LOGIC</div>
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.8;">
+              <strong>Schema Validation:</strong> Each incoming signal is validated against source-specific schema. Malformed records are quarantined and logged.<br><br>
+              <strong>Deduplication:</strong> Hash-based dedup window (24h rolling). Identical signals from same source within window are merged with timestamp aggregation.<br><br>
+              <strong>Freshness Gates:</strong> Signals older than 48h are marked stale. Stale signals still ingested but weighted lower in consensus.<br><br>
+              <strong>Rate Limiting & Backpressure:</strong> Per-source rate limits prevent any single source from overwhelming the system. Token bucket algorithm with configurable ceiling (default: 1000 signals/min per source). Excess signals queued with exponential backoff.
+            </div>
+          </div>
+        </div>
+
+        <!-- 01b.2 — Processing & Enrichment -->
+        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">01b.2 — PROCESSING & ENRICHMENT</div>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">NLP, Behavioral Analytics & Cultural Intelligence</h3>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">Raw signals are enriched through three parallel processing pipelines: NLP for human sentiment and emotion, behavioral time-series for market dynamics, and cultural NER for regulatory and social context. Enriched signals are cross-referenced against historical baselines.</p>
+          
+          <div style="margin: 20px 0;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">NLP PIPELINE</div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
+                <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">1. Tokenization</span> → Multilingual text segmentation with language detection. Handles 15+ languages natively.</div>
+                <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">2. Entity Extraction</span> → Named entity recognition for person, organization, location, product names. Custom gazetteer for hospitality domain (hotel chains, destinations, amenities).</div>
+                <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">3. Sentiment Classification</span> → Anthropic Claude fine-tuned on 50k+ hospitality reviews. Output: score 0–1 with subcomponents (service, cleanliness, value, location).</div>
+                <div><span style="color: rgba(129,140,248,0.8); font-weight: 500;">4. Emotion Classification</span> → Secondary pass detecting primary emotion (joy, frustration, trust, surprise). Enables emotional trend tracking orthogonal to sentiment.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin: 20px 0;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">BEHAVIORAL ANALYTICS</div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
+                <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Time-Series Decomposition</span> → STL decomposition on booking volumes: trend, seasonality, remainder. Isolates signal from noise.</div>
+                <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Anomaly Detection</span> → Isolation Forest on 7-day rolling windows. Flags booking dips, search surges, or cancellation spikes >2σ from baseline.</div>
+                <div><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Trend Extraction</span> → Mann-Kendall trend test for monotonic direction. Confidence in trend presence reported separately from direction.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin: 20px 0;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">CULTURAL PROCESSING</div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
+                <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Topic Modeling</span> → Latent Dirichlet Allocation on social & news feeds. Identifies dominant themes (e.g., "sustainability", "pricing", "staff training").</div>
+                <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Regulatory NER</span> → Domain-specific entity extraction on regulatory filings and legal news. Flags compliance issues, legislative changes, certification updates.</div>
+                <div><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Social Trend Clustering</span> → Groups related mentions across platforms. Detects emerging narratives before they spike in volume.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin: 20px 0; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.6); margin-bottom: 12px;">ENRICHMENT & BASELINE CROSS-REFERENCE</div>
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.8;">
+              All enriched signals are compared against historical baselines (rolling 12-month): sentiment trends, booking seasonality, regulatory activity frequency. Deviation from baseline is flagged as anomaly coefficient (0–1). This enables detection of truly novel signals vs. expected cyclicity.
+            </div>
+          </div>
+        </div>
+
+        <!-- 01b.3 — Consensus Engine Deep Dive -->
+        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">01b.3 — CONSENSUS ENGINE DEEP DIVE</div>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">Split-Signal Detection & Confidence Scoring</h3>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">The consensus engine is where disagreement becomes intelligence. Rather than forcing agreement, it surfaces conflicts for human interpretation. Confidence scoring incorporates signal convergence, recency, and data volume.</p>
+          
+          <div style="margin: 24px 0; padding: 20px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 12px;">WORKED EXAMPLE: WHEN SENTIMENT & BEHAVIOR DIVERGE</div>
+            <pre style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 0; white-space: pre-wrap; overflow-x: auto;">Signal Input:
+├─ HUMAN PROCESSOR: Stayworthy reviews say "amazing experience" (+0.82 sentiment)
+├─ BEHAVIORAL PROCESSOR: Booking volume drops 23% YoY, cancellations +15%
+└─ CULTURAL PROCESSOR: Regulatory pressure increases (2 new complaints filed)
+
+Consensus Engine Output:
+├─ Label: SPLIT-SIGNAL ALERT (Confidence Split: +0.68 / -0.71 / +0.45)
+├─ Interpretation: Strong attitudinal positivity masks behavioral deterioration
+├─ Action: Escalate to Command Center for manual investigation
+└─ Hypothesis: External factor (staffing shortage, ops issue) decoupled from guest perception</pre>
+          </div>
+
+          <div style="margin: 24px 0;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">CONFIDENCE SCORING FORMULA</div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: rgba(255,255,255,0.8); margin-bottom: 16px; line-height: 1.8;">
+C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (volume_weight × sample_size)
+              </div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.8;">
+                <div style="margin-bottom: 12px;"><strong>signal_agreement:</strong> Correlation of normalized scores across 3 processors. Range 0–1. (1 = perfect consensus, 0 = complete divergence)</div>
+                <div style="margin-bottom: 12px;"><strong>freshness:</strong> 1 − (hours_since_signal / 48). Linearly decays to 0 after 48h. (Rewards recent data)</div>
+                <div style="margin-bottom: 12px;"><strong>sample_size:</strong> log(n_underlying_datapoints) / log(1000). Capped at 1. (More data = higher confidence)</div>
+                <div style="margin-bottom: 12px;"><strong>Weights (default):</strong> convergence_weight = 0.5, recency_weight = 0.25, volume_weight = 0.25</div>
+                <div><strong>Output Range:</strong> 0–1. Reported to surfaces with ±0.05 confidence interval.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin: 24px 0;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">THRESHOLD DEFINITIONS</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+              <div style="padding: 16px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); border-radius: 8px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(34,197,94,0.8); margin-bottom: 8px;">HIGH CONFIDENCE</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">C &gt; 0.85</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Strong convergence + recent data. Action-ready signals. Typical for sustained trends with 3+ processor agreement.</div>
+              </div>
+              <div style="padding: 16px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.8); margin-bottom: 8px;">MEDIUM CONFIDENCE</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">0.60 – 0.85</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Mixed signals or partial processor agreement. Monitor & gather more evidence. Typical for emerging trends.</div>
+              </div>
+              <div style="padding: 16px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(239,68,68,0.8); margin-bottom: 8px;">LOW CONFIDENCE</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">C &lt; 0.60</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Noise or isolated signals. Archive for pattern analysis. Escalate if multiple low-confidence alerts correlate.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 01b.4 — Surface Delivery -->
+        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">01b.4 — SURFACE DELIVERY</div>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">Routing Intelligence to 8 Surfaces</h3>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">Consensus signals are routed to 8 specialized surfaces based on signal type, confidence, and audience. Command Center receives all high-confidence alerts first; other surfaces receive filtered, relevant subsets tailored to their domain.</p>
+          
+          <div style="margin: 20px 0; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
+              <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">1. Command Center</span> — All HIGH confidence alerts + split-signal conflicts. Real-time dashboard for executive decision-making.</div>
+              <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">2. Guest Voice</span> — HUMAN processor signals (sentiment, emotion, NER). Thematic guest feedback aggregation & reply routing.</div>
+              <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">3. Market Intelligence</span> — BEHAVIORAL processor signals (booking trends, anomalies). Booking forecasting & competitive movement detection.</div>
+              <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">4. Regulatory & Risk</span> — CULTURAL processor signals + regulatory NER. Compliance alerts & legal risk flagging.</div>
+              <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">5. Brand Fidelity</span> — Composite confidence score + component breakdown. Strategic brand health dashboard.</div>
+              <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">6. Operational Alerts</span> — Split-signal detections (attitudinal/behavioral divergence). Escalations to ops teams for investigation.</div>
+              <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">7. Signal Terminal</span> — Raw signal feed + manual annotation. Data scientists & analysts drilling into underlying evidence.</div>
+              <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">8. Virtual Focus Group</span> — Agent-based simulation outputs + synthetic consensus scenarios. What-if analysis & forecasting.</div>
+            </div>
+          </div>
+
+          <div style="margin: 20px 0; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.6); margin-bottom: 12px;">PRIORITY ROUTING LOGIC</div>
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.8;">
+              <strong>Tier 1 (Immediate to Command Center):</strong> Confidence > 0.85 OR split-signal detected<br><br>
+              <strong>Tier 2 (Domain-specific surfaces):</strong> 0.60 < Confidence ≤ 0.85. Routed by signal processor type.<br><br>
+              <strong>Tier 3 (Archive):</strong> Confidence ≤ 0.60. Stored for pattern mining & retroactive analysis.
+            </div>
+          </div>
+        </div>
+
+        <!-- 01b.5 — Caching & Performance -->
+        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">01b.5 — CACHING & PERFORMANCE</div>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">Optimizing for Real-Time & Historical Analysis</h3>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">BIE employs a two-tier caching strategy: fast rolling caches for real-time surfaces, and historical aggregates for trend analysis. Progressive loading ensures responsive UX even with large datasets.</p>
+          
+          <div style="margin: 20px 0;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">SIGNAL CACHE (Real-Time)</div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
+                <div style="margin-bottom: 12px;"><strong>Window:</strong> 15-minute rolling buffer. Latest 847 signals kept in memory for instant query.</div>
+                <div style="margin-bottom: 12px;"><strong>TTL:</strong> 15 minutes. Older signals evicted and persisted to historical database.</div>
+                <div style="margin-bottom: 12px;"><strong>Served to:</strong> Command Center, Guest Voice, Market Intelligence (real-time feeds).</div>
+                <div><strong>Hit Rate:</strong> ~95% for surface queries. Misses trigger fallback to 1-hour aggregates.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin: 20px 0;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">HISTORICAL CACHE (Aggregates)</div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
+                <div style="margin-bottom: 12px;"><strong>Granularity:</strong> Daily aggregates (sentiment avg, booking totals, anomaly flags).</div>
+                <div style="margin-bottom: 12px;"><strong>Depth:</strong> 24 months rolling window. Beyond 24m, quarterly roll-ups.</div>
+                <div style="margin-bottom: 12px;"><strong>Served to:</strong> Brand Fidelity, Trend analysis, Virtual Focus Group (historical queries).</div>
+                <div><strong>Storage:</strong> Compressed columnar format. ~2GB per 12-month period.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin: 20px 0;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">COMPUTATION BUDGET</div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
+                <div style="margin-bottom: 12px;"><strong>Consensus Scoring Target:</strong> &lt;1 second per signal batch. Includes NLP, behavioral analysis, and confidence calculation.</div>
+                <div style="margin-bottom: 12px;"><strong>Surface Rendering Target:</strong> &lt;500ms from cache hit to user visible data.</div>
+                <div style="margin-bottom: 12px;"><strong>Historical Query Target:</strong> &lt;3 seconds for 12-month trend queries.</div>
+                <div><strong>Measured SLA:</strong> p95 latency = 340ms (scoring), p95 = 280ms (surface render), p95 = 2.1s (historical).</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin: 20px 0;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">PROGRESSIVE LOADING</div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
+                <div style="margin-bottom: 12px;"><strong>Phase 1 (0–100ms):</strong> Layout + cached header data. User sees dashboard skeleton.</div>
+                <div style="margin-bottom: 12px;"><strong>Phase 2 (100–500ms):</strong> Real-time signals + confidence scores populate. Primary widgets interactive.</div>
+                <div style="margin-bottom: 12px;"><strong>Phase 3 (500–2000ms):</strong> Historical data + trend charts render. Tooltips + drill-down ready.</div>
+                <div><strong>Result:</strong> Surfaces appear responsive even on slow networks. Data streams in as available.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       <!-- SECTION 3: SIGNAL LAYER DEEP DIVE -->
