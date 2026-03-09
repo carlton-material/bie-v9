@@ -12,6 +12,7 @@ package-lock.json
 *.pem
 secrets/
 credentials/
+data/config.json
 
 # OS files
 .DS_Store

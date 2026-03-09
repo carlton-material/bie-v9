@@ -59,7 +59,7 @@ const BIEApi = {
     const items = this._signals
       .sort((a, b) => b.id - a.id)
       .slice(0, limit)
-      .map(s => ({ source: s.source, text: s.text, time: s.time }));
+      .map(s => ({ source: s.source, text: s.text, time: s.time, url: s.provenance?.sourceUrl || null }));
     return { items, source: items.length > 0 ? 'live' : 'none' };
   },
 
@@ -130,7 +130,7 @@ const BIEApi = {
     for (const r of results) {
       if (r.status === 'fulfilled' && r.value > 0) added += r.value;
     }
-    if (added > 0) console.log(`[BIEApi] Ingested ${added} live signals from ${this._feeds.length} RSS feeds`);
+    // Silent in production
   },
 
   async _fetchFeed(feedConfig) {

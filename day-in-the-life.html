@@ -6,41 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Day in the Life - Brand Intelligence Engine v9</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=5">
+  <link rel="stylesheet" href="css/global.css?v=6">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
-  <!-- MATERIAL ANALYST -->
-  <div class="analyst-trigger" title="Material Analyst">
-    <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span class="analyst-dot"></span>
-  </div>
-
-  <div class="analyst-panel">
-    <div class="analyst-panel-header">
-      <div class="analyst-panel-avatar">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
-      </div>
-      <span class="analyst-panel-title">Material Analyst<small>Context-aware intelligence</small></span>
-      <button class="analyst-panel-close">&times;</button>
-    </div>
-    <div class="analyst-mode-toggle">
-      <button class="mode-btn active" data-mode="guide">Ask</button>
-      <button class="mode-btn" data-mode="guardian">Explore</button>
-    </div>
-    <div class="analyst-panel-messages"></div>
-    <div class="analyst-panel-suggestions"></div>
-    <div class="analyst-panel-input">
-      <input type="text" placeholder="Ask about insights, workflow, narratives...">
-      <button>Send</button>
-    </div>
-    <div class="analyst-panel-footer">
-      <span>M+ Intelligence Engine</span>
-      <span>Day in the Life</span>
-    </div>
-  </div>
-
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
   <style>
     /* ═══════════════════════════════════════════════════════════
@@ -1983,30 +1951,50 @@
       <a href="guided-analysis.html" class="page-nav-cta"><i class="ph ph-chat-centered-text"></i> Start Analysis →</a>
     </div>
 
-    <div class="feed">
-      <div class="feed-label">INTELLIGENCE FEED</div>
+    <footer class="feed app-feed">
+      <span class="feed-label">Intelligence Feed</span>
       <div class="feed-ticker">
-        <div class="feed-ticker-track">
-          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">TikTok</span> Authentic stays sentiment spike +340% · <span class="feed-item-time">now</span></div>
-          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Trustpilot</span> Support response time trending −6.8h · <span class="feed-item-time">4h ago</span></div>
-          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Google Analytics</span> Mobile abandonment rate spike +41% · <span class="feed-item-time">2h ago</span></div>
-          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Stayworthy CRM</span> Booking velocity declined across 4 regions · <span class="feed-item-time">6h ago</span></div>
-          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Reddit</span> Brand Dependable discussions −22pt correlation · <span class="feed-item-time">12h ago</span></div>
-          <!-- Duplicate for seamless scroll -->
-          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">TikTok</span> Authentic stays sentiment spike +340% · <span class="feed-item-time">now</span></div>
-          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Trustpilot</span> Support response time trending −6.8h · <span class="feed-item-time">4h ago</span></div>
-          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Google Analytics</span> Mobile abandonment rate spike +41% · <span class="feed-item-time">2h ago</span></div>
-          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Stayworthy CRM</span> Booking velocity declined across 4 regions · <span class="feed-item-time">6h ago</span></div>
-          <div class="feed-item"><div class="feed-item-dot"></div><span class="feed-item-source">Reddit</span> Brand Dependable discussions −22pt correlation · <span class="feed-item-time">12h ago</span></div>
-        </div>
+        <div class="feed-ticker-track"></div>
       </div>
-    </div>
+    </footer>
 </div>
 
 
 
+  <!-- MATERIAL ANALYST -->
+  <div class="analyst-trigger" title="Material Analyst">
+    <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="analyst-dot"></span>
+  </div>
+
+  <div class="analyst-panel">
+    <div class="analyst-panel-header">
+      <div class="analyst-panel-avatar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
+      </div>
+      <span class="analyst-panel-title">Material Analyst<small>Context-aware intelligence</small></span>
+      <button class="analyst-panel-close">&times;</button>
+    </div>
+    <div class="analyst-mode-toggle">
+      <button class="mode-btn active" data-mode="guide">Ask</button>
+      <button class="mode-btn" data-mode="guardian">Explore</button>
+    </div>
+    <div class="analyst-panel-messages"></div>
+    <div class="analyst-panel-suggestions"></div>
+    <div class="analyst-panel-input">
+      <input type="text" placeholder="Ask about insights, workflow, narratives...">
+      <button>Send</button>
+    </div>
+    <div class="analyst-panel-footer">
+      <span>M+ Intelligence Engine</span>
+      <span>Day in the Life</span>
+    </div>
+  </div>
+
   <script src="js/analyst-llm.js"></script>
-  <script src="js/api-client.js?v=2"></script>
+  <script src="js/api-client.js?v=3"></script>
   <script src="js/app.js"></script>
   <script>
     /* ═══════════════════════════════════════════════════════════

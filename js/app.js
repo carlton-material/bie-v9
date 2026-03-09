@@ -790,7 +790,7 @@ window.BIE = {
             ...item,
             _live: true  // Mark live items for the dot color
           }));
-          console.log(`[Feed] Blending ${liveItems.length} live signals into ticker`);
+          // Live signals blended into ticker
         }
       } catch { /* silent — static ticker works fine alone */ }
     }
@@ -812,20 +812,32 @@ window.BIE = {
       items = blended;
     }
 
-    // Render ticker with seamless loop
+    // Render ticker with seamless loop + hover-pause + link-out
     const renderTicker = (tickerItems) => {
       const allItems = [...tickerItems, ...tickerItems];
-      ticker.innerHTML = allItems.map(item => `
-        <span class="feed-item${item._live ? ' feed-item--live' : ''}">
+      ticker.innerHTML = allItems.map(item => {
+        const cls = `feed-item${item._live ? ' feed-item--live' : ''}`;
+        const inner = `
           <span class="feed-item-dot"></span>
           <span class="feed-item-source">${item.source}</span>
-          <span>${item.text}</span>
+          <span class="feed-item-text">${item.text}</span>
           <span class="feed-item-time">${item.time || ''}</span>
-        </span>
-      `).join('');
+        `;
+        if (item.url && item._live) {
+          return `<a class="${cls} feed-item--link" href="${item.url}" target="_blank" rel="noopener">${inner}</a>`;
+        }
+        return `<span class="${cls}">${inner}</span>`;
+      }).join('');
     };
 
     renderTicker(items);
+
+    // Hover-pause: stop animation when user hovers over ticker
+    const feedEl = ticker.closest('.feed-ticker');
+    if (feedEl) {
+      feedEl.addEventListener('mouseenter', () => { ticker.style.animationPlayState = 'paused'; });
+      feedEl.addEventListener('mouseleave', () => { ticker.style.animationPlayState = 'running'; });
+    }
   },
 
   /* ── Signal Pulse (ambient activity indicator) ── */
