@@ -10,39 +10,16 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
-    /* Guided Analysis Page Styles */
+    /* Guided Analysis Page Styles — signal-terminal pattern */
 
-    @keyframes fade-in-up {
-      0% {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fade-out-down {
-      0% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(16px);
-      }
+    @keyframes terminal-fade-in {
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slide-in-left {
-      0% {
-        opacity: 0;
-        transform: translateX(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      0% { opacity: 0; transform: translateX(-20px); }
+      100% { opacity: 1; transform: translateX(0); }
     }
 
     @keyframes pulse-subtle {
@@ -50,27 +27,15 @@
       50% { opacity: 0.7; }
     }
 
-    .guidance-header {
-      font-family: var(--font-body);
-      font-size: 13px;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.6;
-      padding: 20px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 4px;
-    }
-
     .guided-analysis {
       padding: 48px 64px 120px;
-      display: flex;
-      flex-direction: column;
-      animation: fade-in-up 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+      animation: terminal-fade-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
     /* ── Header ── */
     .ga-header {
-      margin-bottom: 56px;
+      margin-bottom: 48px;
+      animation: terminal-fade-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s backwards;
     }
 
     .ga-header-micro {
@@ -88,7 +53,7 @@
       font-size: 48px;
       font-weight: 300;
       line-height: 1.2;
-      color: rgba(255,255,255,0.95);
+      color: var(--text-primary);
       margin-bottom: 16px;
       letter-spacing: -0.02em;
     }
@@ -103,54 +68,39 @@
 
     /* ── ENTRY State: Dimension Cards ── */
     .ga-entry {
-      animation: fade-in-up 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+      animation: terminal-fade-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s backwards;
     }
 
     .ga-cards-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
-      margin-top: 48px;
+      gap: 24px;
+      margin-top: 40px;
     }
 
     .ga-card {
       border: 1px solid rgba(255,255,255,0.06);
-      background: #0f0f0f;
+      border-left: 3px solid rgba(129, 140, 248, 0.3);
+      background: #0a0a0a;
       padding: 24px;
-      border-radius: 4px;
+      border-radius: 0 4px 4px 0;
       cursor: pointer;
       transition: all var(--duration-normal) var(--ease-out);
       position: relative;
-      overflow: visible;
-    }
-
-    .ga-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(129, 140, 248, 0.06) 0%, rgba(52, 211, 153, 0.06) 100%);
-      opacity: 0;
-      transition: opacity var(--duration-fast);
     }
 
     .ga-card:hover {
-      border-color: rgba(255,255,255,0.16);
-      background: #141414;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      border-color: rgba(255,255,255,0.12);
+      border-left-color: rgba(129, 140, 248, 0.6);
+      background: #0f0f0f;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
       transform: translateY(-2px);
     }
 
-    .ga-card:hover::before {
-      opacity: 1;
-    }
-
     .ga-card-icon {
-      font-size: 28px;
+      font-size: 24px;
       margin-bottom: 12px;
-      opacity: 0.9;
+      opacity: 0.8;
     }
 
     .ga-card-title {
@@ -166,43 +116,44 @@
       font-family: var(--font-body);
       font-size: 13px;
       line-height: 1.6;
-      color: rgba(255,255,255,0.65);
+      color: rgba(255,255,255,0.6);
       margin-bottom: 12px;
     }
 
-    /* ── Brand Fidelity Driver Labels ── */
+    .ga-card-best {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      margin: 12px 0;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ── Driver Labels ── */
     .ga-card-drivers {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
       margin-top: 14px;
       padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .ga-driver-label {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 4px;
-      padding: 5px 10px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 3px;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 2px;
       font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.6);
-      min-width: 28px;
-      height: 24px;
+      color: rgba(255, 255, 255, 0.5);
       transition: all var(--duration-fast) var(--ease-out);
-    }
-
-    .ga-driver-label:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     .ga-driver-label::before {
@@ -214,59 +165,18 @@
       flex-shrink: 0;
     }
 
-    .ga-driver-label.human {
-      border-color: rgba(129, 140, 248, 0.25);
-      background: rgba(129, 140, 248, 0.1);
-      color: #a78bfa;
-    }
+    .ga-driver-label.human { border-color: rgba(129, 140, 248, 0.2); color: #a78bfa; }
+    .ga-driver-label.human::before { background: #a78bfa; }
+    .ga-driver-label.behavioral { border-color: rgba(52, 211, 153, 0.2); color: #6ee7b7; }
+    .ga-driver-label.behavioral::before { background: #6ee7b7; }
+    .ga-driver-label.cultural { border-color: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .ga-driver-label.cultural::before { background: #fbbf24; }
 
-    .ga-driver-label.human::before {
-      background: #a78bfa;
-    }
-
-    .ga-driver-label.human:hover {
-      border-color: rgba(129, 140, 248, 0.4);
-      background: rgba(129, 140, 248, 0.15);
-      color: #818cf8;
-    }
-
-    .ga-driver-label.behavioral {
-      border-color: rgba(52, 211, 153, 0.25);
-      background: rgba(52, 211, 153, 0.1);
-      color: #6ee7b7;
-    }
-
-    .ga-driver-label.behavioral::before {
-      background: #6ee7b7;
-    }
-
-    .ga-driver-label.behavioral:hover {
-      border-color: rgba(52, 211, 153, 0.4);
-      background: rgba(52, 211, 153, 0.15);
-      color: #34d399;
-    }
-
-    .ga-driver-label.cultural {
-      border-color: rgba(245, 158, 11, 0.25);
-      background: rgba(245, 158, 11, 0.1);
-      color: #fbbf24;
-    }
-
-    .ga-driver-label.cultural::before {
-      background: #fbbf24;
-    }
-
-    .ga-driver-label.cultural:hover {
-      border-color: rgba(245, 158, 11, 0.4);
-      background: rgba(245, 158, 11, 0.15);
-      color: #f59e0b;
-    }
-
-    /* ── TOPIC & CHAT State: Conversation Container ── */
+    /* ── TOPIC & CHAT: Conversation Container ── */
     .ga-conversation {
       max-width: 800px;
       margin: 0 auto;
-      animation: fade-in-up 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+      animation: terminal-fade-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s backwards;
     }
 
     .ga-conversation-header {
@@ -286,78 +196,60 @@
     .ga-conversation-subtitle {
       font-family: var(--font-body);
       font-size: 13px;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.5);
     }
 
     /* ── Thread ── */
     .ga-thread {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 24px;
       margin-top: 32px;
     }
 
-    /* Message Styles */
     .ga-message {
       display: flex;
       gap: 12px;
       animation: slide-in-left 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
 
-    .ga-message.analyst {
-      justify-content: flex-start;
-    }
-
-    .ga-message.user {
-      justify-content: flex-end;
-    }
+    .ga-message.analyst { justify-content: flex-start; }
+    .ga-message.user { justify-content: flex-end; }
 
     .ga-message-content {
-      max-width: 500px;
+      max-width: 520px;
       padding: 16px;
       border-radius: 4px;
       font-family: var(--font-body);
       font-size: 13px;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .ga-message.analyst .ga-message-content {
-      background: #0f0f0f;
-      border: 1px solid rgba(255,255,255,0.08);
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.06);
       border-left: 3px solid var(--signal-behavioral);
-      color: rgba(255,255,255,0.85);
+      color: rgba(255,255,255,0.8);
+      border-radius: 0 4px 4px 0;
     }
 
     .ga-message.user .ga-message-content {
-      background: rgba(129, 140, 248, 0.15);
+      background: rgba(129, 140, 248, 0.12);
       border: 1px solid rgba(129, 140, 248, 0.2);
       color: rgba(255,255,255,0.9);
     }
 
-    .ga-message-content strong {
-      font-weight: 600;
-      color: inherit;
-    }
+    .ga-message-content strong { font-weight: 600; color: inherit; }
+    .ga-message-content em { font-style: italic; color: inherit; }
 
-    .ga-message-content em {
-      font-style: italic;
-      color: inherit;
-    }
-
-    /* Glass Box in Message */
     .ga-message-glass {
       margin-top: 12px;
       padding-top: 12px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255,255,255,0.06);
       font-family: var(--font-mono);
       font-size: 10px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.4);
       line-height: 1.5;
-    }
-
-    .ga-message.user .ga-message-glass {
-      border-top-color: rgba(255, 255, 255, 0.2);
-      color: rgba(255, 255, 255, 0.6);
     }
 
     /* ── Suggestion Pills ── */
@@ -371,64 +263,54 @@
     .ga-suggestion-pill {
       font-family: var(--font-body);
       font-size: 12px;
-      padding: 8px 12px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.06);
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
       border-radius: 20px;
       cursor: pointer;
       transition: all var(--duration-fast) var(--ease-out);
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.65);
     }
 
     .ga-suggestion-pill:hover {
-      border-color: rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.1);
+      border-color: rgba(129, 140, 248, 0.3);
+      background: rgba(129, 140, 248, 0.1);
       color: rgba(255,255,255,0.9);
     }
 
-    /* ── Question Grid ── */
+    /* ── Question Buttons ── */
     .ga-questions {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 24px;
+      gap: 10px;
+      margin-top: 20px;
     }
 
     .ga-question-btn {
       text-align: left;
-      padding: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: var(--bg-card);
-      border-radius: 4px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-left: 3px solid rgba(129, 140, 248, 0.2);
+      background: #0a0a0a;
+      border-radius: 0 4px 4px 0;
       font-family: var(--font-body);
       font-size: 13px;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.75);
       cursor: pointer;
       transition: all var(--duration-fast) var(--ease-out);
     }
 
     .ga-question-btn:hover {
-      border-color: rgba(255,255,255,0.16);
-      background: #141414;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-      transform: translateY(-2px);
+      border-left-color: rgba(129, 140, 248, 0.5);
+      background: #0f0f0f;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      transform: translateY(-1px);
     }
 
     .ga-question-btn.active,
     .ga-question-btn.selected {
-      border-color: rgba(129,140,248,0.4);
-      background: rgba(129,140,248,0.12);
-      box-shadow: 0 8px 24px rgba(129,140,248,0.15);
-    }
-
-    .ga-question-btn.active .ga-question-btn-label,
-    .ga-question-btn.selected .ga-question-btn-label {
-      color: rgba(255,255,255,0.95);
-    }
-
-    .ga-question-btn.active .ga-question-btn-text,
-    .ga-question-btn.selected .ga-question-btn-text {
-      color: rgba(255,255,255,0.65);
+      border-left-color: rgba(129, 140, 248, 0.6);
+      background: rgba(129, 140, 248, 0.08);
     }
 
     .ga-question-btn-label {
@@ -440,14 +322,14 @@
 
     .ga-question-btn-text {
       font-size: 12px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.45);
     }
 
-    /* ── OUTPUT State: Instant Brief ── */
+    /* ── OUTPUT: Instant Brief ── */
     .ga-brief {
       max-width: 900px;
       margin: 0 auto;
-      animation: fade-in-up 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+      animation: terminal-fade-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s backwards;
     }
 
     .ga-brief-header {
@@ -467,16 +349,24 @@
     .ga-brief-subtitle {
       font-family: var(--font-body);
       font-size: 13px;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.5);
     }
 
     .ga-brief-section {
-      margin-bottom: 40px;
-      padding: 28px;
-      border: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 32px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.06);
       background: #0a0a0a;
       border-radius: 4px;
+      animation: terminal-fade-in 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
     }
+
+    .ga-brief-section:nth-child(2) { animation-delay: 0.1s; }
+    .ga-brief-section:nth-child(3) { animation-delay: 0.15s; }
+    .ga-brief-section:nth-child(4) { animation-delay: 0.2s; }
+    .ga-brief-section:nth-child(5) { animation-delay: 0.25s; }
+    .ga-brief-section:nth-child(6) { animation-delay: 0.3s; }
+    .ga-brief-section:nth-child(7) { animation-delay: 0.35s; }
 
     .ga-brief-section-label {
       font-family: var(--font-mono);
@@ -484,7 +374,7 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.45);
       margin-bottom: 12px;
     }
 
@@ -501,18 +391,11 @@
       font-family: var(--font-body);
       font-size: 13px;
       line-height: 1.7;
-      color: rgba(255,255,255,0.75);
+      color: rgba(255,255,255,0.7);
     }
 
-    .ga-brief-section-content strong {
-      font-weight: 600;
-      color: rgba(255,255,255,0.9);
-    }
-
-    .ga-brief-section-content em {
-      font-style: italic;
-      color: rgba(255,255,255,0.6);
-    }
+    .ga-brief-section-content strong { font-weight: 600; color: rgba(255,255,255,0.9); }
+    .ga-brief-section-content em { font-style: italic; color: rgba(255,255,255,0.55); }
 
     .ga-brief-actions {
       display: flex;
@@ -522,12 +405,13 @@
     }
 
     .ga-brief-action {
-      padding: 12px;
+      padding: 12px 16px;
       border-left: 3px solid var(--signal-cultural);
-      background: rgba(245,158,11,0.08);
+      background: rgba(245,158,11,0.06);
       border-radius: 0 4px 4px 0;
       font-size: 13px;
-      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+      color: rgba(255,255,255,0.7);
     }
 
     .ga-brief-action strong {
@@ -538,12 +422,12 @@
     }
 
     .ga-brief-glass {
-      margin-top: 32px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
       font-family: var(--font-mono);
       font-size: 10px;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.4);
       line-height: 1.6;
     }
 
@@ -551,7 +435,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.45);
       margin-bottom: 8px;
     }
 
@@ -562,11 +446,11 @@
 
     .ga-brief-footer-btn {
       font-family: var(--font-mono);
-      font-size: var(--text-small);
+      font-size: 11px;
       letter-spacing: 0.05em;
-      padding: var(--space-sm) var(--space-lg);
+      padding: 10px 24px;
       border: 1px solid rgba(255,255,255,0.1);
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.6);
       cursor: pointer;
       transition: all var(--duration-fast) var(--ease-out);
       background: #0a0a0a;
@@ -574,56 +458,39 @@
     }
 
     .ga-brief-footer-btn:hover {
-      color: rgba(255,255,255,0.95);
-      border-color: rgba(255,255,255,0.16);
-      background: #141414;
+      color: rgba(255,255,255,0.9);
+      border-color: rgba(129, 140, 248, 0.3);
+      background: rgba(129, 140, 248, 0.08);
     }
 
     /* ── State Management ── */
-    .ga-state {
-      display: none;
+    .ga-state { display: none; }
+    .ga-state.active { display: block; }
+
+    /* ── Guidance Header (signal-terminal pattern) ── */
+    .guidance-header {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 4px;
     }
 
-    .ga-state.active {
-      display: block;
-    }
-
-    /* Responsive */
+    /* ── Responsive ── */
     @media (max-width: 1200px) {
-      .ga-cards-grid {
-        grid-template-columns: 1fr;
-      }
+      .ga-cards-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px) {
-      .guided-analysis > * {
-        padding-left: 24px;
-        padding-right: 24px;
-      }
-      
-      .guided-analysis > :first-child {
-        padding-top: 32px;
-      }
-
-      .ga-header-title {
-        font-size: 32px;
-      }
-
-      .ga-conversation-title {
-        font-size: 20px;
-      }
-
-      .ga-message-content {
-        max-width: 100%;
-      }
-
-      .ga-suggestions {
-        flex-direction: column;
-      }
-
-      .ga-suggestion-pill {
-        width: 100%;
-      }
+      .guided-analysis { padding: 32px 24px 100px; }
+      .ga-header-title { font-size: 32px; }
+      .ga-conversation-title { font-size: 22px; }
+      .ga-message-content { max-width: 100%; }
+      .ga-suggestions { flex-direction: column; }
+      .ga-suggestion-pill { width: 100%; }
     }
   </style>
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1">
@@ -674,79 +541,64 @@
       <section class="ga-header">
         <div class="ga-header-micro">Guided Analysis</div>
         <h1 class="ga-header-title">What do you want to understand?</h1>
-        <p class="ga-header-subtitle">Select a dimension to begin your analysis. I'll ask the right questions to build a strategic brief.</p>
-        <div class="guidance-header" style="margin-top: 24px;">Your AI-assisted analysis workspace. Start by selecting a dimension; the system will ask clarifying questions to focus the analysis, then deliver data-backed insights with full source attribution.</div>
-        <div class="glass-box-panel" style="margin-top: 32px;">
-          <div class="glass-box-header">
-            <div class="glass-box-header-left">
-              <svg class="glass-box-header-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
-              <span class="glass-box-header-title">Glass Box. Analysis Methodology</span>
+        <p class="ga-header-subtitle">Select a dimension to begin your analysis. The system asks the right questions to build a strategic brief with full source attribution.</p>
+        <div class="guidance-header" style="margin-top: 24px;">AI-assisted analysis workspace. Start by selecting a dimension; the system asks clarifying questions to focus the analysis, then delivers data-backed insights using the Diagnostic → Attack → Defend → Bridge framework.</div>
+      </section>
+
+      <section class="ga-entry">
+        <div class="ga-cards-grid">
+          <div class="ga-card" data-dimension="brand-health">
+            <div class="ga-card-icon"><i class="ph ph-briefcase"></i></div>
+            <div class="ga-card-title">Brand Health</div>
+            <div class="ga-card-description">Which drivers are strengthening loyalty and which are eroding it? Start here for board presentations and quarterly reviews.</div>
+            <div class="ga-card-best">Best for: quarterly reviews, board presentations, competitive benchmarking</div>
+            <div class="ga-card-drivers">
+              <span class="ga-driver-label human" title="Personal">P</span>
+              <span class="ga-driver-label human" title="Meaningful">M</span>
+              <span class="ga-driver-label behavioral" title="User Friendly">UF</span>
+              <span class="ga-driver-label behavioral" title="Dependable">D</span>
+              <span class="ga-driver-label cultural" title="Salient">S</span>
+              <span class="ga-driver-label cultural" title="Accessible">A</span>
             </div>
-            <button class="glass-box-toggle" data-target="ga-glassbox" aria-expanded="false">
-              Show My Work <span class="chevron">▾</span>
-            </button>
           </div>
-          <div class="glass-box-content" id="ga-glassbox">
-            <div class="glass-box-inner">
-              <div class="glass-box-methodology-container" data-metric="brandFidelity"></div>
-              <div class="glass-box-timestamp-container"></div>
+
+          <div class="ga-card" data-dimension="competitive">
+            <div class="ga-card-icon"><i class="ph ph-chart-bar"></i></div>
+            <div class="ga-card-title">Competitive Dynamics</div>
+            <div class="ga-card-description">Booking.com leads by 2 points. Where can Stayworthy close the gap, and where should it differentiate instead?</div>
+            <div class="ga-card-best">Best for: strategy sessions, pricing decisions, market positioning</div>
+            <div class="ga-card-drivers">
+              <span class="ga-driver-label cultural" title="Salient">S</span>
+              <span class="ga-driver-label cultural" title="Accessible">A</span>
+              <span class="ga-driver-label human" title="Personal">P</span>
+            </div>
+          </div>
+
+          <div class="ga-card" data-dimension="segments">
+            <div class="ga-card-icon"><i class="ph ph-users"></i></div>
+            <div class="ga-card-title">Audience Segments</div>
+            <div class="ga-card-description">Budget Travelers are your largest segment at 28%, but Experience Seekers show the highest growth potential. Who should you invest in?</div>
+            <div class="ga-card-best">Best for: marketing planning, product roadmaps, segment targeting</div>
+            <div class="ga-card-drivers">
+              <span class="ga-driver-label behavioral" title="User Friendly">UF</span>
+              <span class="ga-driver-label behavioral" title="Dependable">D</span>
+              <span class="ga-driver-label human" title="Personal">P</span>
+            </div>
+          </div>
+
+          <div class="ga-card" data-dimension="sentiment">
+            <div class="ga-card-icon"><i class="ph ph-trend-up"></i></div>
+            <div class="ga-card-title">Sentiment Patterns</div>
+            <div class="ga-card-description">Stated satisfaction is 78%, but behavioral repeat rate is 56%. This 22-point gap is your most urgent signal. Track it here.</div>
+            <div class="ga-card-best">Best for: crisis monitoring, campaign impact measurement, narrative tracking</div>
+            <div class="ga-card-drivers">
+              <span class="ga-driver-label human" title="Personal">P</span>
+              <span class="ga-driver-label human" title="Meaningful">M</span>
+              <span class="ga-driver-label cultural" title="Salient">S</span>
             </div>
           </div>
         </div>
       </section>
-
-      <div class="ga-cards-grid">
-        <div class="ga-card" data-dimension="brand-health">
-          <div class="ga-card-icon"><i class="ph ph-briefcase"></i></div>
-          <div class="ga-card-title">Brand Health</div>
-          <div class="ga-card-description">Which drivers are strengthening loyalty and which are eroding it? Start here for board presentations and quarterly reviews.</div>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.5); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: quarterly reviews, board presentations, competitive benchmarking</div>
-          <div class="ga-card-drivers">
-            <span class="ga-driver-label human" title="Personal. Understands unique needs">P</span>
-            <span class="ga-driver-label human" title="Meaningful. Significant role in life">M</span>
-            <span class="ga-driver-label behavioral" title="User Friendly. Meets needs easily">UF</span>
-            <span class="ga-driver-label behavioral" title="Dependable. Consistent quality">D</span>
-            <span class="ga-driver-label cultural" title="Salient. Top-of-mind choice">S</span>
-            <span class="ga-driver-label cultural" title="Accessible. Always available">A</span>
-          </div>
-        </div>
-
-        <div class="ga-card" data-dimension="competitive">
-          <div class="ga-card-icon"><i class="ph ph-chart-bar"></i></div>
-          <div class="ga-card-title">Competitive Dynamics</div>
-          <div class="ga-card-description">Booking.com leads by 2 points. Where can Stayworthy close the gap, and where should it differentiate instead?</div>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.5); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: strategy sessions, pricing decisions, market positioning</div>
-          <div class="ga-card-drivers">
-            <span class="ga-driver-label cultural" title="Salient. Top-of-mind choice">S</span>
-            <span class="ga-driver-label cultural" title="Accessible. Always available">A</span>
-            <span class="ga-driver-label human" title="Personal. Understands unique needs">P</span>
-          </div>
-        </div>
-
-        <div class="ga-card" data-dimension="segments">
-          <div class="ga-card-icon"><i class="ph ph-users"></i></div>
-          <div class="ga-card-title">Audience Segments</div>
-          <div class="ga-card-description">Budget Travelers are your largest segment at 28%, but Experience Seekers show the highest growth potential. Who should you invest in?</div>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.5); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: marketing planning, product roadmaps, segment targeting</div>
-          <div class="ga-card-drivers">
-            <span class="ga-driver-label behavioral" title="User Friendly. Meets needs easily">UF</span>
-            <span class="ga-driver-label behavioral" title="Dependable. Consistent quality">D</span>
-            <span class="ga-driver-label human" title="Personal. Understands unique needs">P</span>
-          </div>
-        </div>
-
-        <div class="ga-card" data-dimension="sentiment">
-          <div class="ga-card-icon"><i class="ph ph-trend-up"></i></div>
-          <div class="ga-card-title">Sentiment Patterns</div>
-          <div class="ga-card-description">Stated satisfaction is 78%, but behavioral repeat rate is 56%. This 22-point gap is your most urgent signal. Track it here.</div>
-          <div style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.5); margin: 12px 0; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);">Best for: crisis monitoring, campaign impact measurement, narrative tracking</div>
-          <div class="ga-card-drivers">
-            <span class="ga-driver-label human" title="Personal. Understands unique needs">P</span>
-            <span class="ga-driver-label human" title="Meaningful. Significant role in life">M</span>
-            <span class="ga-driver-label cultural" title="Salient. Top-of-mind choice">S</span>
-          </div>
-        </div>
-      </div>
     </div>
 
     <!-- TOPIC State -->
@@ -756,7 +608,6 @@
           <div class="ga-conversation-title" id="topic-title">Brand Health Analysis</div>
           <div class="ga-conversation-subtitle">Let's refine your focus</div>
         </div>
-
         <div class="ga-thread" id="topic-thread"></div>
       </div>
     </div>
@@ -768,9 +619,7 @@
           <div class="ga-conversation-title" id="chat-title">Your Analysis</div>
           <div class="ga-conversation-subtitle">Building your brief</div>
         </div>
-
         <div class="ga-thread" id="chat-thread"></div>
-
         <div id="chat-suggestions" class="ga-suggestions" style="margin-top: 32px;"></div>
       </div>
     </div>
@@ -859,7 +708,6 @@
       <label style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); display: block; margin-bottom: 6px;">Anthropic API Key</label>
       <input type="password" id="analyst-api-key" placeholder="sk-ant-..." style="width: 100%; padding: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.95); font-family: var(--font-mono); font-size: 0.75rem; border-radius: 2px; box-sizing: border-box;" onchange="analystConfig.apiKey = this.value; localStorage.setItem('bie-analyst-key', this.value);">
       <div style="font-family: var(--font-body); font-size: 0.6875rem; color: rgba(255,255,255,0.45); margin-top: 8px;">Key stored locally. Never sent to our servers.</div>
-      <div style="font-family: var(--font-body); font-size: 0.6875rem; color: rgba(255,255,255,0.35); margin-top: 6px; font-style: italic;">Requires valid Anthropic API key for AI responses. Without it, falls back to predefined responses.</div>
     </div>
     <div class="analyst-panel-messages"></div>
     <div class="analyst-panel-suggestions"></div>
@@ -867,25 +715,19 @@
       <input type="text" placeholder="Ask about signals, drivers, competitors...">
       <button>Send</button>
     </div>
-    <div style="font-family: var(--font-body); font-size: 0.6rem; color: rgba(255,255,255,0.3); text-align: center; padding: 8px 12px; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 12px;">Powered by Claude</div>
+    <div style="font-family: var(--font-body); font-size: 0.6rem; color: rgba(255,255,255,0.3); text-align: center; padding: 8px 12px; border-top: 1px solid rgba(255,255,255,0.06);">Powered by Claude</div>
   </div>
 
   <script src="js/analyst-llm.js"></script>
   <script src="js/app.js"></script>
   <script>
-    // State Machine for Guided Analysis
-    const STATE = {
-      ENTRY: 'entry',
-      TOPIC: 'topic',
-      CHAT: 'chat',
-      OUTPUT: 'output'
-    };
-
+    // ── State Machine ──
+    const STATE = { ENTRY: 'entry', TOPIC: 'topic', CHAT: 'chat', OUTPUT: 'output' };
     let currentState = STATE.ENTRY;
     let selectedDimension = null;
     let conversationPath = [];
 
-    // AI-powered analyst configuration
+    // ── AI Analyst Config ──
     const analystConfig = {
       apiKey: localStorage.getItem('bie-analyst-key') || '',
       model: 'claude-sonnet-4-5-20250929',
@@ -908,10 +750,8 @@ You have access to Stayworthy brand data:
 Always end responses with a follow-up question. Keep responses concise (2-3 paragraphs max). Use specific numbers.`;
 
     async function queryAnalyst(userMessage) {
-      if (!analystConfig.apiKey) return null; // fall back to hardcoded
-      
+      if (!analystConfig.apiKey) return null;
       analystConfig.conversationHistory.push({ role: 'user', content: userMessage });
-      
       try {
         const response = await fetch('https://api.anthropic.com/v1/messages', {
           method: 'POST',
@@ -927,35 +767,24 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             messages: analystConfig.conversationHistory
           })
         });
-        
-        if (!response.ok) {
-          console.error('Analyst API error:', response.status, response.statusText);
-          return null;
-        }
-        
+        if (!response.ok) return null;
         const data = await response.json();
         if (data.content && data.content[0]) {
-          const assistantMessage = data.content[0].text;
-          analystConfig.conversationHistory.push({ role: 'assistant', content: assistantMessage });
-          return assistantMessage;
+          const text = data.content[0].text;
+          analystConfig.conversationHistory.push({ role: 'assistant', content: text });
+          return text;
         }
         return null;
-      } catch (e) {
-        console.error('Analyst API error:', e);
-        return null; // fall back to hardcoded
-      }
+      } catch (e) { return null; }
     }
 
-    // Show/Hide state
+    // ── State Management ──
     function setState(newState) {
-      document.querySelectorAll('.ga-state').forEach(el => {
-        el.classList.remove('active');
-      });
+      document.querySelectorAll('.ga-state').forEach(el => el.classList.remove('active'));
       document.getElementById(`state-${newState}`).classList.add('active');
       currentState = newState;
     }
 
-    // Add message to thread
     function addMessage(threadId, role, content, glass = null) {
       const thread = document.getElementById(threadId);
       const message = document.createElement('div');
@@ -970,16 +799,17 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
       return message;
     }
 
-    // Dimension Card Click Handler
+    // ── Dimension Card Click ──
     document.querySelectorAll('.ga-card').forEach(card => {
       card.addEventListener('click', function() {
         selectedDimension = this.dataset.dimension;
         conversationPath = [];
+        analystConfig.conversationHistory = [];
         loadTopicState();
       });
     });
 
-    // Load TOPIC state based on dimension
+    // ── TOPIC State ──
     function loadTopicState() {
       const titles = {
         'brand-health': 'Brand Health Analysis',
@@ -987,50 +817,41 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
         'segments': 'Audience Segmentation',
         'sentiment': 'Sentiment & Perception'
       };
-
       document.getElementById('topic-title').textContent = titles[selectedDimension];
+      document.getElementById('topic-thread').innerHTML = '';
 
-      const thread = document.getElementById('topic-thread');
-      thread.innerHTML = '';
-
-      // Add initial Socratic opening message from analyst
       addMessage('topic-thread', 'analyst',
         `Good morning. I've been analyzing Stayworthy's signals overnight, and three patterns caught my attention. Before I share my analysis, I'd like to understand your focus today.<br><br><strong>What's the most pressing brand question on your mind right now?</strong>`,
         'Data sourced from live Signal monitoring · M+ Brand Fidelity Model'
       );
 
-      // Load questions based on dimension
-      if (selectedDimension === 'brand-health') {
-        loadBrandHealthTopic();
-      } else if (selectedDimension === 'competitive') {
-        loadCompetitiveTopic();
-      } else if (selectedDimension === 'segments') {
-        loadSegmentsTopic();
-      } else if (selectedDimension === 'sentiment') {
-        loadSentimentTopic();
-      }
-
+      const loaders = {
+        'brand-health': loadBrandHealthTopic,
+        'competitive': loadCompetitiveTopic,
+        'segments': loadSegmentsTopic,
+        'sentiment': loadSentimentTopic
+      };
+      loaders[selectedDimension]();
       setState(STATE.TOPIC);
       window.scrollTo(0, 0);
     }
 
+    // ── Topic Loaders ──
+    function appendQuestion(threadId, label, buttons) {
+      const thread = document.getElementById(threadId);
+      const q = document.createElement('div');
+      q.className = 'ga-message analyst';
+      q.innerHTML = `<div class="ga-message-content"><strong>${label}</strong></div>`;
+      thread.appendChild(q);
+      const wrap = document.createElement('div');
+      wrap.className = 'ga-questions';
+      wrap.innerHTML = buttons;
+      thread.appendChild(wrap);
+    }
+
     function loadBrandHealthTopic() {
-      const thread = document.getElementById('topic-thread');
-
-      // Q1
       setTimeout(() => {
-        const q1 = document.createElement('div');
-        q1.className = 'ga-message analyst';
-        q1.innerHTML = `
-          <div class="ga-message-content">
-            <strong>Question 1:</strong> Which time horizon matters most to you?
-          </div>
-        `;
-        thread.appendChild(q1);
-
-        const q1Questions = document.createElement('div');
-        q1Questions.className = 'ga-questions';
-        q1Questions.innerHTML = `
+        appendQuestion('topic-thread', 'Question 1: Which time horizon matters most to you?', `
           <button class="ga-question-btn" onclick="answerBrandHealth('horizon', 'moment')">
             <span class="ga-question-btn-label">In the Moment</span>
             <span class="ga-question-btn-text">User Friendly, Personal, Accessible drivers</span>
@@ -1039,27 +860,13 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             <span class="ga-question-btn-label">Over Time</span>
             <span class="ga-question-btn-text">Dependable, Meaningful, Salient drivers</span>
           </button>
-        `;
-        thread.appendChild(q1Questions);
+        `);
       }, 400);
     }
 
     function loadCompetitiveTopic() {
-      const thread = document.getElementById('topic-thread');
-
       setTimeout(() => {
-        const q1 = document.createElement('div');
-        q1.className = 'ga-message analyst';
-        q1.innerHTML = `
-          <div class="ga-message-content">
-            <strong>Question 1:</strong> Which competitive set should we analyze?
-          </div>
-        `;
-        thread.appendChild(q1);
-
-        const q1Questions = document.createElement('div');
-        q1Questions.className = 'ga-questions';
-        q1Questions.innerHTML = `
+        appendQuestion('topic-thread', 'Question 1: Which competitive set should we analyze?', `
           <button class="ga-question-btn" onclick="answerCompetitive('set', 'top5')">
             <span class="ga-question-btn-label">Top 5 Competitors</span>
             <span class="ga-question-btn-text">By Brand Fidelity composite score</span>
@@ -1072,27 +879,13 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             <span class="ga-question-btn-label">Category Disruptors</span>
             <span class="ga-question-btn-text">Alternative booking platforms & models</span>
           </button>
-        `;
-        thread.appendChild(q1Questions);
+        `);
       }, 400);
     }
 
     function loadSegmentsTopic() {
-      const thread = document.getElementById('topic-thread');
-
       setTimeout(() => {
-        const q1 = document.createElement('div');
-        q1.className = 'ga-message analyst';
-        q1.innerHTML = `
-          <div class="ga-message-content">
-            <strong>Question 1:</strong> Which segments are most critical to understand?
-          </div>
-        `;
-        thread.appendChild(q1);
-
-        const q1Questions = document.createElement('div');
-        q1Questions.className = 'ga-questions';
-        q1Questions.innerHTML = `
+        appendQuestion('topic-thread', 'Question 1: Which segments are most critical to understand?', `
           <button class="ga-question-btn" onclick="answerSegments('focus', 'growth')">
             <span class="ga-question-btn-label">Growth Opportunity</span>
             <span class="ga-question-btn-text">Which segments are expanding fastest?</span>
@@ -1105,27 +898,13 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             <span class="ga-question-btn-label">Behavioral Shift</span>
             <span class="ga-question-btn-text">Which segments are changing their patterns?</span>
           </button>
-        `;
-        thread.appendChild(q1Questions);
+        `);
       }, 400);
     }
 
     function loadSentimentTopic() {
-      const thread = document.getElementById('topic-thread');
-
       setTimeout(() => {
-        const q1 = document.createElement('div');
-        q1.className = 'ga-message analyst';
-        q1.innerHTML = `
-          <div class="ga-message-content">
-            <strong>Question 1:</strong> What aspect of sentiment concerns you most?
-          </div>
-        `;
-        thread.appendChild(q1);
-
-        const q1Questions = document.createElement('div');
-        q1Questions.className = 'ga-questions';
-        q1Questions.innerHTML = `
+        appendQuestion('topic-thread', 'Question 1: What aspect of sentiment concerns you most?', `
           <button class="ga-question-btn" onclick="answerSentiment('concern', 'divergence')">
             <span class="ga-question-btn-label">Trust Divergence</span>
             <span class="ga-question-btn-text">Gap between what people say and do</span>
@@ -1138,33 +917,17 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             <span class="ga-question-btn-label">Driver-Level Shifts</span>
             <span class="ga-question-btn-text">Which perception pillars are eroding?</span>
           </button>
-        `;
-        thread.appendChild(q1Questions);
+        `);
       }, 400);
     }
 
-    // Answer Handlers
+    // ── Answer Handlers ──
     function answerBrandHealth(question, answer) {
       conversationPath.push({ dimension: 'brand-health', question, answer });
-
       if (question === 'horizon') {
-        addMessage('topic-thread', 'user',
-          answer === 'moment' ? 'In the Moment' : 'Over Time'
-        );
-
+        addMessage('topic-thread', 'user', answer === 'moment' ? 'In the Moment' : 'Over Time');
         setTimeout(() => {
-          const q2 = document.createElement('div');
-          q2.className = 'ga-message analyst';
-          q2.innerHTML = `
-            <div class="ga-message-content">
-              <strong>Question 2:</strong> What's your primary concern?
-            </div>
-          `;
-          document.getElementById('topic-thread').appendChild(q2);
-
-          const q2Questions = document.createElement('div');
-          q2Questions.className = 'ga-questions';
-          q2Questions.innerHTML = `
+          appendQuestion('topic-thread', 'Question 2: What\'s your primary concern?', `
             <button class="ga-question-btn" onclick="answerBrandHealth('concern', 'decline')">
               <span class="ga-question-btn-label">Declining Drivers</span>
               <span class="ga-question-btn-text">Which metrics are slipping?</span>
@@ -1177,27 +940,13 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
               <span class="ga-question-btn-label">Segment-Specific Issues</span>
               <span class="ga-question-btn-text">Performance by traveler type</span>
             </button>
-          `;
-          document.getElementById('topic-thread').appendChild(q2Questions);
+          `);
         }, 300);
       } else if (question === 'concern') {
-        addMessage('topic-thread', 'user',
-          answer === 'decline' ? 'Declining Drivers' : (answer === 'positioning' ? 'Competitive Positioning' : 'Segment-Specific Issues')
-        );
-
+        const labels = { 'decline': 'Declining Drivers', 'positioning': 'Competitive Positioning', 'segment': 'Segment-Specific Issues' };
+        addMessage('topic-thread', 'user', labels[answer]);
         setTimeout(() => {
-          const q3 = document.createElement('div');
-          q3.className = 'ga-message analyst';
-          q3.innerHTML = `
-            <div class="ga-message-content">
-              <strong>Question 3:</strong> Would you like attack and defend recommendations?
-            </div>
-          `;
-          document.getElementById('topic-thread').appendChild(q3);
-
-          const q3Questions = document.createElement('div');
-          q3Questions.className = 'ga-questions';
-          q3Questions.innerHTML = `
+          appendQuestion('topic-thread', 'Question 3: Would you like attack and defend recommendations?', `
             <button class="ga-question-btn" onclick="startChatPhase()">
               <span class="ga-question-btn-label">Yes, Show Strategic Options</span>
               <span class="ga-question-btn-text">Build the brief</span>
@@ -1206,36 +955,18 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
               <span class="ga-question-btn-label">Just the Data, Thanks</span>
               <span class="ga-question-btn-text">Skip recommendations</span>
             </button>
-          `;
-          document.getElementById('topic-thread').appendChild(q3Questions);
+          `);
         }, 300);
       }
     }
 
     function answerCompetitive(question, answer) {
       conversationPath.push({ dimension: 'competitive', question, answer });
-
       if (question === 'set') {
-        const labels = {
-          'top5': 'Top 5 by Brand Fidelity',
-          'direct': 'Direct Competitors',
-          'disruptors': 'Category Disruptors'
-        };
+        const labels = { 'top5': 'Top 5 by Brand Fidelity', 'direct': 'Direct Competitors', 'disruptors': 'Category Disruptors' };
         addMessage('topic-thread', 'user', labels[answer]);
-
         setTimeout(() => {
-          const q2 = document.createElement('div');
-          q2.className = 'ga-message analyst';
-          q2.innerHTML = `
-            <div class="ga-message-content">
-              <strong>Question 2:</strong> Which Brand Fidelity driver should we focus on?
-            </div>
-          `;
-          document.getElementById('topic-thread').appendChild(q2);
-
-          const q2Questions = document.createElement('div');
-          q2Questions.className = 'ga-questions';
-          q2Questions.innerHTML = `
+          appendQuestion('topic-thread', 'Question 2: Which Brand Fidelity driver should we focus on?', `
             <button class="ga-question-btn" onclick="answerCompetitive('driver', 'composite')">
               <span class="ga-question-btn-label">Overall Composite</span>
               <span class="ga-question-btn-text">Total Brand Fidelity score</span>
@@ -1244,27 +975,13 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
               <span class="ga-question-btn-label">Specific Driver</span>
               <span class="ga-question-btn-text">Drill into individual drivers</span>
             </button>
-          `;
-          document.getElementById('topic-thread').appendChild(q2Questions);
+          `);
         }, 300);
       } else if (question === 'driver') {
-        const labels = { 'composite': 'Overall Composite', 'specific': 'Specific Driver' };
-        addMessage('topic-thread', 'user', labels[answer]);
-
+        addMessage('topic-thread', 'user', answer === 'composite' ? 'Overall Composite' : 'Specific Driver');
         if (answer === 'specific') {
           setTimeout(() => {
-            const q2b = document.createElement('div');
-            q2b.className = 'ga-message analyst';
-            q2b.innerHTML = `
-              <div class="ga-message-content">
-                Which driver would you like to compare?
-              </div>
-            `;
-            document.getElementById('topic-thread').appendChild(q2b);
-
-            const q2bQuestions = document.createElement('div');
-            q2bQuestions.className = 'ga-questions';
-            q2bQuestions.innerHTML = `
+            appendQuestion('topic-thread', 'Which driver would you like to compare?', `
               <button class="ga-question-btn" onclick="answerCompetitive('specificDriver', 'personalizable')">
                 <span class="ga-question-btn-label">Personal</span>
                 <span class="ga-question-btn-text">Feel recognized and understood</span>
@@ -1277,23 +994,11 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
                 <span class="ga-question-btn-label">Dependable</span>
                 <span class="ga-question-btn-text">Reliable and trustworthy</span>
               </button>
-            `;
-            document.getElementById('topic-thread').appendChild(q2bQuestions);
+            `);
           }, 300);
         } else {
           setTimeout(() => {
-            const q3 = document.createElement('div');
-            q3.className = 'ga-message analyst';
-            q3.innerHTML = `
-              <div class="ga-message-content">
-                <strong>Question 3:</strong> Include scenario projections?
-              </div>
-            `;
-            document.getElementById('topic-thread').appendChild(q3);
-
-            const q3Questions = document.createElement('div');
-            q3Questions.className = 'ga-questions';
-            q3Questions.innerHTML = `
+            appendQuestion('topic-thread', 'Question 3: Include scenario projections?', `
               <button class="ga-question-btn" onclick="startChatPhase()">
                 <span class="ga-question-btn-label">Yes</span>
                 <span class="ga-question-btn-text">Include 90-day projections</span>
@@ -1302,42 +1007,22 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
                 <span class="ga-question-btn-label">No</span>
                 <span class="ga-question-btn-text">Current state only</span>
               </button>
-            `;
-            document.getElementById('topic-thread').appendChild(q3Questions);
+            `);
           }, 300);
         }
       } else if (question === 'specificDriver') {
         addMessage('topic-thread', 'user', 'Specific Driver Comparison');
-        setTimeout(() => {
-          startChatPhase();
-        }, 300);
+        setTimeout(() => startChatPhase(), 300);
       }
     }
 
     function answerSegments(question, answer) {
       conversationPath.push({ dimension: 'segments', question, answer });
-
       if (question === 'focus') {
-        const labels = {
-          'growth': 'Growth Opportunity',
-          'churn': 'Churn Risk',
-          'shift': 'Behavioral Shift'
-        };
+        const labels = { 'growth': 'Growth Opportunity', 'churn': 'Churn Risk', 'shift': 'Behavioral Shift' };
         addMessage('topic-thread', 'user', labels[answer]);
-
         setTimeout(() => {
-          const q2 = document.createElement('div');
-          q2.className = 'ga-message analyst';
-          q2.innerHTML = `
-            <div class="ga-message-content">
-              <strong>Question 2:</strong> Time horizon for this analysis?
-            </div>
-          `;
-          document.getElementById('topic-thread').appendChild(q2);
-
-          const q2Questions = document.createElement('div');
-          q2Questions.className = 'ga-questions';
-          q2Questions.innerHTML = `
+          appendQuestion('topic-thread', 'Question 2: Time horizon for this analysis?', `
             <button class="ga-question-btn" onclick="answerSegments('timeframe', '30day')">
               <span class="ga-question-btn-label">Last 30 Days</span>
               <span class="ga-question-btn-text">Recent trend</span>
@@ -1350,8 +1035,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
               <span class="ga-question-btn-label">Year-to-Date</span>
               <span class="ga-question-btn-text">Full context</span>
             </button>
-          `;
-          document.getElementById('topic-thread').appendChild(q2Questions);
+          `);
         }, 300);
       } else if (question === 'timeframe') {
         const labels = { '30day': 'Last 30 Days', '90day': 'Last 90 Days', 'ytd': 'Year-to-Date' };
@@ -1362,28 +1046,11 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
 
     function answerSentiment(question, answer) {
       conversationPath.push({ dimension: 'sentiment', question, answer });
-
       if (question === 'concern') {
-        const labels = {
-          'divergence': 'Trust Divergence',
-          'decline': 'Perception Decline',
-          'drivers': 'Driver-Level Shifts'
-        };
+        const labels = { 'divergence': 'Trust Divergence', 'decline': 'Perception Decline', 'drivers': 'Driver-Level Shifts' };
         addMessage('topic-thread', 'user', labels[answer]);
-
         setTimeout(() => {
-          const q2 = document.createElement('div');
-          q2.className = 'ga-message analyst';
-          q2.innerHTML = `
-            <div class="ga-message-content">
-              <strong>Question 2:</strong> Across all segments, or focus on one?
-            </div>
-          `;
-          document.getElementById('topic-thread').appendChild(q2);
-
-          const q2Questions = document.createElement('div');
-          q2Questions.className = 'ga-questions';
-          q2Questions.innerHTML = `
+          appendQuestion('topic-thread', 'Question 2: Across all segments, or focus on one?', `
             <button class="ga-question-btn" onclick="answerSentiment('scope', 'all')">
               <span class="ga-question-btn-label">All Segments</span>
               <span class="ga-question-btn-text">Full audience view</span>
@@ -1396,66 +1063,39 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
               <span class="ga-question-btn-label">Millennial Core</span>
               <span class="ga-question-btn-text">Ages 27-42</span>
             </button>
-          `;
-          document.getElementById('topic-thread').appendChild(q2Questions);
+          `);
         }, 300);
       } else if (question === 'scope') {
-        const labels = {
-          'all': 'All Segments',
-          'genz': 'Gen Z Travelers',
-          'millennial': 'Millennial Core'
-        };
+        const labels = { 'all': 'All Segments', 'genz': 'Gen Z Travelers', 'millennial': 'Millennial Core' };
         addMessage('topic-thread', 'user', labels[answer]);
         setTimeout(() => startChatPhase(), 300);
       }
     }
 
-    // Transition to CHAT state
+    // ── CHAT Phase ──
     function startChatPhase() {
       setState(STATE.CHAT);
-
-      const titles = {
-        'brand-health': 'Brand Health Analysis',
-        'competitive': 'Competitive Analysis',
-        'segments': 'Segment Analysis',
-        'sentiment': 'Sentiment Analysis'
-      };
-
+      const titles = { 'brand-health': 'Brand Health Analysis', 'competitive': 'Competitive Analysis', 'segments': 'Segment Analysis', 'sentiment': 'Sentiment Analysis' };
       document.getElementById('chat-title').textContent = titles[selectedDimension];
       document.getElementById('chat-thread').innerHTML = '';
-
-      // Load appropriate chat based on dimension
-      if (selectedDimension === 'brand-health') {
-        loadBrandHealthChat();
-      } else if (selectedDimension === 'competitive') {
-        loadCompetitiveChat();
-      } else if (selectedDimension === 'segments') {
-        loadSegmentsChat();
-      } else if (selectedDimension === 'sentiment') {
-        loadSentimentChat();
-      }
-
+      const loaders = { 'brand-health': loadBrandHealthChat, 'competitive': loadCompetitiveChat, 'segments': loadSegmentsChat, 'sentiment': loadSentimentChat };
+      loaders[selectedDimension]();
       window.scrollTo(0, 0);
     }
 
-    // CHAT Phase: Brand Health
     function loadBrandHealthChat() {
-      const thread = 'chat-thread';
-
-      addMessage(thread, 'analyst',
+      const t = 'chat-thread';
+      addMessage(t, 'analyst',
         `<strong>Your Focus:</strong> Brand Health across the 6 Fidelity drivers<br><br><strong>Key Finding:</strong> Stayworthy's composite score has declined 4 points YTD to 72. Personal (−8) and Dependable (−6) show <em>crisis-level erosion</em>, while Salient (+2) remains a bright spot. This creates a critical gap: <strong>people still remember us, but don't trust us.</strong>`,
         'Signals tracked: 847 live · Confidence: HIGH · Source: M+ Brand Fidelity Model'
       );
-
       setTimeout(() => {
-        addMessage(thread, 'analyst',
+        addMessage(t, 'analyst',
           `<strong>Diagnostic:</strong> The divergence between Salient (74) and Personal (64) reveals a trust-behavior gap. High awareness doesn't translate to preference when competitors offer better personalization. Behavioral signals confirm this: repeat booking rate fell 3.2% weekly despite maintained stated satisfaction.`
         );
       }, 600);
-
       setTimeout(() => {
-        const suggestions = document.getElementById('chat-suggestions');
-        suggestions.innerHTML = `
+        document.getElementById('chat-suggestions').innerHTML = `
           <button class="ga-suggestion-pill" onclick="addFollow('Personal Deep Dive')">Drill into Personal driver</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Segment Breakdown')">Which segments most affected?</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Competitor Comparison')">How do competitors compare?</button>
@@ -1464,50 +1104,40 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
       }, 1200);
     }
 
-    // CHAT Phase: Competitive
     function loadCompetitiveChat() {
-      const thread = 'chat-thread';
-
-      addMessage(thread, 'analyst',
+      const t = 'chat-thread';
+      addMessage(t, 'analyst',
         `<strong>Your Focus:</strong> Competitive positioning by Brand Fidelity<br><br><strong>The Landscape:</strong> Booking.com leads at 74.0, Stayworthy sits at 72.0 (nearly parity), but the gap is deceptive. Booking commands stronger presence in Accessible and Dependable. Where Stayworthy differentiates: <strong>Salient (+1 vs Booking)</strong> and emerging strength in Meaningful. The true competitive threat: Marriott Homes is closing fast at 71.0.`,
         'Competitive Set: Top 5 by Brand Fidelity · Data Current: Mar 4, 2026'
       );
-
       setTimeout(() => {
-        addMessage(thread, 'analyst',
+        addMessage(t, 'analyst',
           `<strong>Strategic Insight:</strong> The 2-point gap vs Booking is not a defensive position; it's a vulnerability. Booking's Accessible driver (77 vs our 71) means they win on ease of use. Yet Stayworthy's Salient advantage suggests brand awareness is not the issue. The fight is over <em>trusted simplicity.</em> Marriott's rise signals category disruption: established hospitality players are learning digital.`
         );
       }, 600);
-
       setTimeout(() => {
-        const suggestions = document.getElementById('chat-suggestions');
-        suggestions.innerHTML = `
+        document.getElementById('chat-suggestions').innerHTML = `
           <button class="ga-suggestion-pill" onclick="addFollow('Accessible Driver Gap')">Why losing on ease?</button>
-          <button class="ga-suggestion-pill" onclick="addFollow('Mariott Threat')">Analyze Marriott's momentum</button>
+          <button class="ga-suggestion-pill" onclick="addFollow('Marriott Threat')">Analyze Marriott's momentum</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Pricing Strategy')">Pricing impact on perception?</button>
           <button class="ga-suggestion-pill" onclick="generateBrief()">Generate Brief</button>
         `;
       }, 1200);
     }
 
-    // CHAT Phase: Segments
     function loadSegmentsChat() {
-      const thread = 'chat-thread';
-
-      addMessage(thread, 'analyst',
+      const t = 'chat-thread';
+      addMessage(t, 'analyst',
         `<strong>Your Focus:</strong> Audience segment dynamics<br><br><strong>The Data:</strong> Gen Z travelers show the highest growth velocity (+18% YoY) but lowest retention; they convert once and churn at 41%. Millennial core (27-42) is stable but showing fatigue: satisfaction flat, behavioral abandon rising. Gen X leisure (43-60) represents untapped growth and exhibits 12% repeat rate improvement. These segments require opposing strategies.`,
         'Segments tracked: 12 · Sample depth: 24,000 respondents · Confidence: HIGH'
       );
-
       setTimeout(() => {
-        addMessage(thread, 'analyst',
+        addMessage(t, 'analyst',
           `<strong>Critical Insight:</strong> Your growth is <em>unsustainable</em> if it's Gen Z at 41% churn. You're building on sand. The Millennial core, your historical fortress, is deflating; the real danger. Gen X represents optionality: high-value, less price-sensitive, habit-forming once acquired. Shifting investment here (not Gen Z acquisition) maximizes LTV.`
         );
       }, 600);
-
       setTimeout(() => {
-        const suggestions = document.getElementById('chat-suggestions');
-        suggestions.innerHTML = `
+        document.getElementById('chat-suggestions').innerHTML = `
           <button class="ga-suggestion-pill" onclick="addFollow('Gen Z Churn Analysis')">Why 41% churn rate?</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Millennial Retention')">Stabilize core segment?</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Gen X Opportunity')">Gen X expansion play</button>
@@ -1516,24 +1146,19 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
       }, 1200);
     }
 
-    // CHAT Phase: Sentiment
     function loadSentimentChat() {
-      const thread = 'chat-thread';
-
-      addMessage(thread, 'analyst',
+      const t = 'chat-thread';
+      addMessage(t, 'analyst',
         `<strong>Your Focus:</strong> Sentiment patterns over time<br><br><strong>The Pattern:</strong> A 30-day trend shows dramatic divergence: stated satisfaction (expressive signal) declining slowly from 78 to 45, but behavioral signals (booking completion, repeat rate) collapsed from 81 to 20. This <em>trust-behavior gap</em> is accelerating. People say "maybe next time" but book competitors instead. This is the signature of a trust crisis.`,
         'Sentiment data: 30-day rolling window · Expressive vs Behavioral · Last updated: Mar 4, 2026'
       );
-
       setTimeout(() => {
-        addMessage(thread, 'analyst',
+        addMessage(t, 'analyst',
           `<strong>What This Means:</strong> Your marketing messaging is holding up; people still recognize and somewhat favor Stayworthy. But <em>something in the experience</em> is breaking trust. The pricing transparency issue (final costs hidden until checkout) correlates with behavioral signal collapse. Customers are emotionally interested but operationally abandoned.`
         );
       }, 600);
-
       setTimeout(() => {
-        const suggestions = document.getElementById('chat-suggestions');
-        suggestions.innerHTML = `
+        document.getElementById('chat-suggestions').innerHTML = `
           <button class="ga-suggestion-pill" onclick="addFollow('Pricing Impact')">Quantify pricing role</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Trust Drivers')">Which moments erode trust?</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Recovery Curve')">Can we reverse the trend?</button>
@@ -1543,53 +1168,42 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
     }
 
     async function addFollow(topic) {
-      const thread = document.getElementById('chat-thread');
       addMessage('chat-thread', 'user', topic);
-
-      // Try AI-powered response first
       const aiResponse = await queryAnalyst(topic);
-      if (aiResponse) {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (aiResponse) {
           addMessage('chat-thread', 'analyst', aiResponse);
-        }, 400);
-      } else {
-        // Fall back to hardcoded response
-        setTimeout(() => {
+        } else {
           addMessage('chat-thread', 'analyst',
             `<strong>On ${topic}:</strong> This is an important angle. The data shows this is indeed a critical lever for your strategy. Factoring this into the brief...`
           );
-        }, 400);
-      }
+        }
+      }, 400);
     }
 
-    // Generate Brief
+    // ── Brief Generation ──
     function generateBrief() {
-      const briefContent = getBriefContent();
+      const b = getBriefContent();
+      document.getElementById('diagnostic-text').innerHTML = b.diagnostic;
+      document.getElementById('attack-text').innerHTML = b.attack;
+      document.getElementById('defend-text').innerHTML = b.defend;
+      document.getElementById('bridge-text').innerHTML = b.bridge;
 
-      // Populate brief sections
-      document.getElementById('diagnostic-text').innerHTML = briefContent.diagnostic;
-      document.getElementById('attack-text').innerHTML = briefContent.attack;
-      document.getElementById('defend-text').innerHTML = briefContent.defend;
-      document.getElementById('bridge-text').innerHTML = briefContent.bridge;
-
-      // Populate actions
       const actionsList = document.getElementById('actions-list');
       actionsList.innerHTML = '';
-      briefContent.actions.forEach((action, idx) => {
-        const actionEl = document.createElement('div');
-        actionEl.className = 'ga-brief-action';
-        actionEl.innerHTML = `<strong>${idx + 1}. ${action.title}</strong>${action.description}`;
-        actionsList.appendChild(actionEl);
+      b.actions.forEach((a, i) => {
+        const el = document.createElement('div');
+        el.className = 'ga-brief-action';
+        el.innerHTML = `<strong>${i + 1}. ${a.title}</strong>${a.description}`;
+        actionsList.appendChild(el);
       });
 
-      document.getElementById('question-text').innerHTML = briefContent.question;
-
+      document.getElementById('question-text').innerHTML = b.question;
       setState(STATE.OUTPUT);
       window.scrollTo(0, 0);
     }
 
     function getBriefContent() {
-      // Return different content based on dimension
       if (selectedDimension === 'brand-health') {
         return {
           diagnostic: `Stayworthy's Brand Fidelity composite (72, −4 YTD) masks a <strong>two-speed deterioration:</strong> In-the-Moment drivers (User Friendly 72, Personal 64, Accessible 71) are slipping due to friction in the booking experience. Personal shows crisis-level decline (−8), signaling a personalization deficit. Over-Time drivers reveal decay in trust: Dependable (58, −6) and Meaningful (66, −3) are collapsing. Salient (74, +2) remains a competitive bright spot. <em>The core issue:</em> High awareness, low trust. Behavioral signals confirm: repeat booking rate down 3.2% weekly.`,
@@ -1597,40 +1211,22 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
           defend: `<strong>Protect: Salient Advantage & Dependable Foundation</strong><br>Your 74 Salient score is a moat. Defend it with consistent brand presence and earned media focus. Allocate budget to maintain top-of-mind awareness in Gen Z and Millennial core. For Dependable, establish a trust-building initiative: transparent communication on cancellation policies, 24/7 support visibility, customer review authenticity. Quick wins: customer testimonial campaign, "backed by 2M+ traveler reviews" positioning, money-back satisfaction guarantee.`,
           bridge: `<strong>How Attack Unlocks Defense:</strong> Fixing the pricing transparency (attack move) directly feeds Dependable rebuilding (defend move). When customers experience honest pricing and personalized recommendations, your reliability story becomes credible again. This also protects Salient by making your brand not just memorable, but trustworthy. The bridge is operational excellence: deliver on the promise, consistently.`,
           actions: [
-            {
-              title: 'Implement Full-Price Transparency',
-              description: ' Show final cost (inc. taxes, fees, service charges) upfront in search results; not checkout. A/B test shows this alone recovers ~8% abandonment rate. Target: 30 days.'
-            },
-            {
-              title: 'Launch "Remember You" Personalization',
-              description: ' Deploy ML-driven destination and property recommendations for logged-in users based on past stays and saved preferences. Messaging focus on "travel that fits you." Target: 60 days.'
-            },
-            {
-              title: 'Establish "Stayworthy Promise" Trust Program',
-              description: ' Offer flexible cancellation, 24/7 support guarantee, satisfaction-back money guarantee. Market heavily in Gen Z and Millennial channels. Rebuild Dependable from behavioral level up. Target: ongoing.'
-            }
+            { title: 'Implement Full-Price Transparency', description: ' Show final cost (inc. taxes, fees, service charges) upfront in search results; not checkout. A/B test shows this alone recovers ~8% abandonment rate. Target: 30 days.' },
+            { title: 'Launch "Remember You" Personalization', description: ' Deploy ML-driven destination and property recommendations for logged-in users based on past stays and saved preferences. Messaging focus on "travel that fits you." Target: 60 days.' },
+            { title: 'Establish "Stayworthy Promise" Trust Program', description: ' Offer flexible cancellation, 24/7 support guarantee, satisfaction-back money guarantee. Market heavily in Gen Z and Millennial channels. Rebuild Dependable from behavioral level up. Target: ongoing.' }
           ],
           question: `If we rebuild Dependable and Personal by fixing the pricing and personalization experience, how do we measure success? Is repeat booking rate recovery to 38%+ within 90 days sufficient, or do we need Salient momentum to also turn positive?`
         };
       } else if (selectedDimension === 'competitive') {
         return {
-          diagnostic: `Stayworthy's 72 Brand Fidelity places you <strong>nearly parity with Booking.com (74)</strong>, but the gap hides structural weakness. Booking dominates Accessible (77 vs your 71) and Dependable (75 vs 58), capturing the "easy and trustworthy" positioning. Stayworthy edges out on Salient (your 74 vs their 73), meaning higher awareness. Mariott Homes (71) is closing fast, signaling hospitality incumbents are learning digital. The competitive set is compressing; differentiation is eroding unless you move.`,
+          diagnostic: `Stayworthy's 72 Brand Fidelity places you <strong>nearly parity with Booking.com (74)</strong>, but the gap hides structural weakness. Booking dominates Accessible (77 vs your 71) and Dependable (75 vs 58), capturing the "easy and trustworthy" positioning. Stayworthy edges out on Salient (your 74 vs their 73), meaning higher awareness. Marriott Homes (71) is closing fast, signaling hospitality incumbents are learning digital. The competitive set is compressing; differentiation is eroding unless you move.`,
           attack: `<strong>Offensive Play: Own "Easy + Personal" Positioning</strong><br>Booking owns "easy + trustworthy" (high Accessible, Dependable). Attack on the personal dimension where they're weak. Stayworthy's Salient advantage means awareness is there; activate it by showing you <em>understand individual travelers better.</em> Build AI-driven recommendation engine ("Stays tailored to you"), curated collections by traveler type (solo, family, couples), and reviews filtered by traveler profile. This is a differentiation Booking's massive catalog can't match.`,
           defend: `<strong>Protect: Salient Leadership & Close the Accessible Gap</strong><br>Your 74 Salient is a real edge. Maintain aggressive brand marketing (OOH, digital, influencer) to widen the awareness gap vs competitors. For Accessible, the UX must match Booking's frictionless booking. Audit your funnel: are you losing conversion on mobile? Is your property search as responsive? Invest in mobile-first design and search speed. Messaging: "The easiest, smartest way to book your next stay."`,
           bridge: `<strong>How Attack Unlocks Defense:</strong> Personalization (attack) is achieved through better UX (part of Accessible defense). When your platform is as smooth as Booking <em>and</em> more personal, Salient converts to preference and loyalty.`,
           actions: [
-            {
-              title: 'Launch "Built For You" Personalization Engine',
-              description: ' Deploy ML-driven recommendations and curated collections by traveler persona (budget, family-friendly, luxury, etc.). Differentiate vs Booking at the relevance layer. Target: 45 days.'
-            },
-            {
-              title: 'Audacious Speed Campaign: "Book in 30 Seconds"',
-              description: ' Redesign funnel for mobile-first, single-tap saved preferences, one-click pay. Compare load times and conversion vs Booking. Market the speed advantage. Target: 60 days.'
-            },
-            {
-              title: 'Influencer Takeover Series: "How I Travel"',
-              description: ' Partner with micro-influencers (10k–100k followers) across segments (budget, luxury, family). Each week, different influencer curates their Stayworthy collection. Drives Salient. Target: ongoing.'
-            }
+            { title: 'Launch "Built For You" Personalization Engine', description: ' Deploy ML-driven recommendations and curated collections by traveler persona (budget, family-friendly, luxury, etc.). Differentiate vs Booking at the relevance layer. Target: 45 days.' },
+            { title: 'Audacious Speed Campaign: "Book in 30 Seconds"', description: ' Redesign funnel for mobile-first, single-tap saved preferences, one-click pay. Compare load times and conversion vs Booking. Market the speed advantage. Target: 60 days.' },
+            { title: 'Influencer Takeover Series: "How I Travel"', description: ' Partner with micro-influencers (10k–100k followers) across segments (budget, luxury, family). Each week, different influencer curates their Stayworthy collection. Drives Salient. Target: ongoing.' }
           ],
           question: `If we successfully own the "personalization + ease" positioning (vs Booking's generic + easy), can we justify a 2–3 point Brand Fidelity premium within 120 days, or is this a longer play requiring market education?`
         };
@@ -1641,110 +1237,57 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
           defend: `<strong>Protect: Stabilize Millennial Core</strong><br>Stem Millennial churn before it compounds. Win-back campaign targeting lapsed users: offer 20% discount on next booking, personalized destination recommendations based on past stays, and a "loyalty milestone" program (every 5 stays, unlock a perk). Segment outreach: address pain points cited (pricing opacity, limited unique properties, support response time). Messaging: "We built this with you in mind."`,
           bridge: `<strong>How Attack Unlocks Defense:</strong> Proving that Gen X is viable (high-value, low-churn) validates a shift in company strategy from growth-at-all-costs to profitable retention. This mindset shift also benefits Millennial retention; you'll prioritize experience and service, not just bookings. Both moves reinforce each other: Gen X adoption → better margins → resources to improve Millennial experience.`,
           actions: [
-            {
-              title: 'Launch "Stayworthy for Every Stage" Segmented Marketing',
-              description: ' Create Gen X-specific creative, channels (LinkedIn, Facebook), and value prop ("flexibility + curation + quality"). Separate Gen Z and Millennial campaigns with tailored messaging. Allocate 60% budget to Gen X acquisition. Target: 30 days.'
-            },
-            {
-              title: 'Millennial Win-Back Campaign',
-              description: ' Email/SMS outreach to lapsed Millennial users (last booking 6+ months ago) with 20% discount, personalized recommendations, and loyalty-path clarity. Measure recovery rate weekly. Target: 14 days launch, 90-day assess.'
-            },
-            {
-              title: 'Gen X Experience Design: "Curated Stays for Discerning Travelers"',
-              description: ' Develop property collections, packages, and concierge services targeting Gen X motivations. Partner with local experiences (wine, culture, wellness). Premium positioning. Target: 90 days.'
-            }
+            { title: 'Launch "Stayworthy for Every Stage" Segmented Marketing', description: ' Create Gen X-specific creative, channels (LinkedIn, Facebook), and value prop ("flexibility + curation + quality"). Separate Gen Z and Millennial campaigns with tailored messaging. Allocate 60% budget to Gen X acquisition. Target: 30 days.' },
+            { title: 'Millennial Win-Back Campaign', description: ' Email/SMS outreach to lapsed Millennial users (last booking 6+ months ago) with 20% discount, personalized recommendations, and loyalty-path clarity. Measure recovery rate weekly. Target: 14 days launch, 90-day assess.' },
+            { title: 'Gen X Experience Design: "Curated Stays for Discerning Travelers"', description: ' Develop property collections, packages, and concierge services targeting Gen X motivations. Partner with local experiences (wine, culture, wellness). Premium positioning. Target: 90 days.' }
           ],
           question: `Is the org ready to acknowledge that Gen Z growth is a channel, not a strategy? If we pivot to Gen X profitability + Millennial retention, can leadership accept slower headline growth for stronger unit economics?`
         };
       } else {
-        // Sentiment
         return {
           diagnostic: `<strong>Critical Trust Divergence:</strong> Expressive sentiment (what customers say) declined 78 to 45 over 30 days; worrying but slow. Behavioral sentiment (what they do) collapsed 81 to 20; crisis-level. This 25-point gap is the signal: <em>people like Stayworthy in theory but are booking competitors in practice.</em> The timing and magnitude of behavioral drop (steepest between days 8-14) correlates with the pricing transparency issue reported in Feb. Expressive-behavioral gaps of this magnitude typically precede churn.`,
           attack: `<strong>Offensive Play: Radical Price Transparency + Trust Repair</strong><br>The behavioral collapse is anchored to the checkout experience. Attack by removing the pricing surprise: show all-in cost upfront, no hidden fees, no surprise surcharges. Broadcast this change loudly: "We ended surprise fees; see what you'll pay upfront." Pair with a customer apology campaign for past friction: credits for recent bookers affected by opaque pricing. This move targets the behavioral signal directly and is the most credible trust-repair action available.`,
           defend: `<strong>Protect: Maintain Expressive Strength (Salient + Brand Story)</strong><br>Your expressive signal is declining but slowly; maintain brand presence and earned media to stabilize it. Focus on customer stories and authenticity (user reviews, traveler testimonials, real experiences). Defend against reputation damage by actively managing review platforms and customer feedback loops. Messaging: "Real travelers, real experiences, no games." Keep Salient high to protect baseline awareness.`,
           bridge: `<strong>How Attack Unlocks Defense:</strong> When you fix the pricing (attack), behavioral signals will recover, eventually pulling expressive signals up (defense). The recovery arc is: operate with integrity → customers feel it → behavior improves → word-of-mouth strengthens → expressive sentiment recovers. The bridge is operational transparency becoming a brand story.`,
           actions: [
-            {
-              title: 'Implement Full All-In Pricing Display',
-              description: ' Show final price (taxes, fees, service charges) in search results and property cards. Remove cost surprises at checkout. A/B test shows 8–12% abandonment recovery. Launch within 14 days; measure behavioral signal rebound.'
-            },
-            {
-              title: 'Launch "We Fixed It" Campaign',
-              description: ' Apologize to customers burned by opaque pricing in past 90 days. Offer $25 credits, emphasize the change, share before-and-after pricing examples. Rebuild trust through honesty. Target email: all customers in last 90 days.'
-            },
-            {
-              title: 'Customer Stories: Authentic Traveler Testimonial Series',
-              description: ' Showcase real customer journeys, motivations, and experiences. Video interviews with repeat guests from all segments. Boost across social and brand channels. Defend Salient and build expressive credibility. Target: 60-day content calendar.'
-            }
+            { title: 'Implement Full All-In Pricing Display', description: ' Show final price (taxes, fees, service charges) in search results and property cards. Remove cost surprises at checkout. A/B test shows 8–12% abandonment recovery. Launch within 14 days; measure behavioral signal rebound.' },
+            { title: 'Launch "We Fixed It" Campaign', description: ' Apologize to customers burned by opaque pricing in past 90 days. Offer $25 credits, emphasize the change, share before-and-after pricing examples. Rebuild trust through honesty. Target email: all customers in last 90 days.' },
+            { title: 'Customer Stories: Authentic Traveler Testimonial Series', description: ' Showcase real customer journeys, motivations, and experiences. Video interviews with repeat guests from all segments. Boost across social and brand channels. Defend Salient and build expressive credibility. Target: 60-day content calendar.' }
           ],
           question: `If we fix pricing transparency and see behavioral signals recover to 50+ within 60 days, what's the next trust lever to pull? Is this a technology/UX problem, a customer service problem, or deeper brand perception issue?`
         };
       }
     }
 
-    // Initialize analyst panel
+    // ── Init ──
     document.addEventListener('DOMContentLoaded', () => {
-      // Restore API key if previously set
       const savedKey = localStorage.getItem('bie-analyst-key');
       if (savedKey) {
         document.getElementById('analyst-api-key').value = savedKey;
         analystConfig.apiKey = savedKey;
       }
 
-      // Wire up analyst panel send button
       const analystInput = document.querySelector('.analyst-panel-input input');
       const analystSendBtn = document.querySelector('.analyst-panel-input button');
-      
       if (analystSendBtn && analystInput) {
         analystSendBtn.addEventListener('click', async () => {
           const message = analystInput.value.trim();
           if (!message) return;
-          
-          const messagesPanel = document.querySelector('.analyst-panel-messages');
-          
-          // Show user message
+          const panel = document.querySelector('.analyst-panel-messages');
           const userMsg = document.createElement('div');
           userMsg.style.cssText = 'padding: 8px 12px; margin: 6px 0; background: rgba(129, 140, 248, 0.15); border-radius: 3px; font-size: 0.875rem; color: rgba(255,255,255,0.85);';
           userMsg.textContent = message;
-          messagesPanel.appendChild(userMsg);
-          
-          // Query analyst
+          panel.appendChild(userMsg);
           const response = await queryAnalyst(message);
-          
-          // Show analyst response
-          const assistantMsg = document.createElement('div');
-          assistantMsg.style.cssText = 'padding: 8px 12px; margin: 6px 0; background: rgba(52, 211, 153, 0.1); border-radius: 3px; font-size: 0.875rem; color: rgba(255,255,255,0.85);';
-          assistantMsg.innerHTML = response || '<em>Unable to get AI response. Please check your API key.</em>';
-          messagesPanel.appendChild(assistantMsg);
-          
-          // Clear input and scroll to bottom
+          const aMsg = document.createElement('div');
+          aMsg.style.cssText = 'padding: 8px 12px; margin: 6px 0; background: rgba(52, 211, 153, 0.1); border-radius: 3px; font-size: 0.875rem; color: rgba(255,255,255,0.85);';
+          aMsg.innerHTML = response || '<em>Unable to get AI response. Please check your API key.</em>';
+          panel.appendChild(aMsg);
           analystInput.value = '';
-          messagesPanel.scrollTop = messagesPanel.scrollHeight;
+          panel.scrollTop = panel.scrollHeight;
         });
-        
-        // Send on Enter key
-        analystInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            analystSendBtn.click();
-          }
-        });
+        analystInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') analystSendBtn.click(); });
       }
-
-      // Link active nav item
-      document.querySelectorAll('.nav-item').forEach(item => {
-        item.classList.remove('active');
-      });
-      const currentPage = document.querySelector('[data-page="guided-analysis"]');
-      if (currentPage) {
-        currentPage.classList.add('active');
-      }
-    });
-
-    // Reset conversation history when dimension changes
-    document.querySelectorAll('.ga-card').forEach(card => {
-      card.addEventListener('click', function() {
-        analystConfig.conversationHistory = [];
-      });
     });
   </script>
   </div>
