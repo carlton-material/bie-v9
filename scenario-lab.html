@@ -2789,6 +2789,9 @@
         this.initModeTabs();
         this.initScenarioCards();
         this.initSimulation();
+        // Apply initial mode state (hides wizard for insight mode)
+        const activeBtn = document.querySelector('.scenario-mode-btn.active');
+        if (activeBtn) this.switchMode(activeBtn.dataset.mode);
       },
 
       /* ── Mode Toggle ── */
