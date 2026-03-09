@@ -1,27 +1,41 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-03-06T14:56:00Z",
+  "lastUpdated": "2026-03-09T22:00:00Z",
   "pipelineRuns": [
     {
-      "timestamp": "2026-03-06T14:56:24Z",
+      "timestamp": "2026-03-09T21:45:12Z",
       "status": "success",
-      "validated": 10,
-      "stored": 8,
+      "validated": 14,
+      "stored": 12,
       "source": "Brand Fidelity Pipeline v3"
     },
     {
-      "timestamp": "2026-03-05T09:12:03Z",
+      "timestamp": "2026-03-09T18:30:08Z",
       "status": "success",
-      "validated": 7,
-      "stored": 5,
+      "validated": 9,
+      "stored": 7,
+      "source": "Cultural Signal Aggregator"
+    },
+    {
+      "timestamp": "2026-03-09T14:12:33Z",
+      "status": "success",
+      "validated": 11,
+      "stored": 9,
       "source": "Signal Integration Pipeline"
     },
     {
-      "timestamp": "2026-03-04T15:29:21Z",
+      "timestamp": "2026-03-09T09:05:41Z",
+      "status": "success",
+      "validated": 8,
+      "stored": 6,
+      "source": "RSS Live Feed Connector"
+    },
+    {
+      "timestamp": "2026-03-08T22:18:55Z",
       "status": "success",
       "validated": 12,
       "stored": 10,
-      "source": "Cultural Signal Aggregator"
+      "source": "Brand Fidelity Pipeline v3"
     }
   ],
   "sourceTiers": {
@@ -73,7 +87,7 @@
           "Cultural signals weighted by recency (30-day trailing window)"
         ],
         "dataStatus": "ai-enriched",
-        "lastValidated": "2026-03-06T14:56:24Z"
+        "lastValidated": "2026-03-09T21:45:12Z"
       },
       "drivers": {
         "userFriendly": { "value": 72, "delta": -4, "confidence": "high", "signal": "behavioral", "dataStatus": "research" },
@@ -85,13 +99,13 @@
       }
     },
     "signalCounts": {
-      "total": 847,
-      "humanExpressive": 312,
-      "behavioral": 289,
-      "cultural": 246,
+      "total": 862,
+      "humanExpressive": 318,
+      "behavioral": 295,
+      "cultural": 249,
       "confidence": "high",
       "dataStatus": "mixed",
-      "approach": "Aggregated from 3 signal pipelines over trailing 30-day window. Deduplication via semantic similarity threshold (0.85)."
+      "approach": "Aggregated from 4 signal pipelines over trailing 30-day window. Deduplication via semantic similarity threshold (0.85)."
     }
   }
 }

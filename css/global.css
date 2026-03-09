@@ -39,6 +39,10 @@ img { max-width: 100%; display: block; }
   grid-column: 1 / -1;
   grid-row: 2;
 }
+/* Pages without a feed — let content take full height */
+.app:not(:has(.app-feed)) {
+  grid-template-rows: 1fr;
+}
 
 /* ═══════════════════════════════════════════════
    NAVIGATION — The intellectual architecture

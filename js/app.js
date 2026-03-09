@@ -1183,10 +1183,10 @@ window.BIE = {
       }
     });
 
-    // Render flash-frozen timestamps
+    // Render last-updated timestamps
     document.querySelectorAll('.glass-box-timestamp-container').forEach(container => {
       const ts = meta.lastUpdated;
-      container.innerHTML = this.renderFlashFrozen(ts, meta.metrics.signalCounts.total);
+      container.innerHTML = this.renderLastUpdated(ts, meta.metrics.signalCounts.total);
     });
   },
 
@@ -1268,15 +1268,15 @@ window.BIE = {
     `;
   },
 
-  renderFlashFrozen(timestamp, recordCount) {
+  renderLastUpdated(timestamp, recordCount) {
     const d = new Date(timestamp);
-    const timeStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const timeStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ' · ' + d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
     return `
       <div class="glass-box-timestamp">
-        <span class="glass-box-timestamp-icon">📌</span>
-        <span class="glass-box-timestamp-label">Flash Frozen</span>
+        <span class="glass-box-timestamp-icon">⟳</span>
+        <span class="glass-box-timestamp-label">Last Updated</span>
         <span>${timeStr}</span>
-        <span class="glass-box-timestamp-value">${recordCount ? recordCount + ' records' : ''}</span>
+        <span class="glass-box-timestamp-value">${recordCount ? recordCount + ' signals' : ''}</span>
       </div>
     `;
   },
