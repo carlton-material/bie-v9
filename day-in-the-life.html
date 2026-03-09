@@ -27,29 +27,15 @@
       background: #000000;
     }
 
-    /* Time-based gradients - subtle, dark theme ambient warmth/coolness */
-    .ditl-ambient-bg.time-dawn {
-      background: linear-gradient(135deg, #0a0808 0%, #1a1008 50%, #0a0a0a 100%);
-    }
-
-    .ditl-ambient-bg.time-morning {
-      background: linear-gradient(135deg, #0a0a0a 0%, #151208 50%, #0a0a0a 100%);
-    }
-
-    .ditl-ambient-bg.time-midday {
-      background: linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 50%, #0a0a0a 100%);
-    }
-
-    .ditl-ambient-bg.time-afternoon {
-      background: linear-gradient(135deg, #0a0a0a 0%, #120e08 50%, #0a0a0a 100%);
-    }
-
-    .ditl-ambient-bg.time-evening {
-      background: linear-gradient(135deg, #0a0a0a 0%, #0f0a0f 50%, #0a0a0a 100%);
-    }
-
+    /* Time-based backgrounds — unified dark, no warm/cool tinting.
+       Signal colors (indigo, green, amber) provide all the accent needed. */
+    .ditl-ambient-bg.time-dawn,
+    .ditl-ambient-bg.time-morning,
+    .ditl-ambient-bg.time-midday,
+    .ditl-ambient-bg.time-afternoon,
+    .ditl-ambient-bg.time-evening,
     .ditl-ambient-bg.time-night {
-      background: linear-gradient(135deg, #000000 0%, #000000 50%, #000000 100%);
+      background: #0a0a0a;
     }
 
     .ditl-container {
@@ -115,19 +101,20 @@
     .ditl-dot.active {
       background: var(--signal-human);
       border-color: var(--signal-human);
-      transform: scale(1.3);
-      box-shadow: 0 0 24px rgba(129,140,248,0.4);
-      animation: dotPulse 2s ease-in-out infinite;
+      transform: scale(1.15);
+      box-shadow: 0 0 12px rgba(129,140,248,0.25);
+      /* Subtle pulse — reduced glow and scale for calmer timeline */
+      animation: dotPulse 3s ease-in-out infinite;
     }
 
     @keyframes dotPulse {
       0%, 100% {
-        box-shadow: 0 0 24px rgba(129,140,248,0.4);
-        transform: scale(1.3);
+        box-shadow: 0 0 12px rgba(129,140,248,0.25);
+        transform: scale(1.15);
       }
       50% {
-        box-shadow: 0 0 40px rgba(129,140,248,0.6);
-        transform: scale(1.4);
+        box-shadow: 0 0 20px rgba(129,140,248,0.35);
+        transform: scale(1.2);
       }
     }
 
@@ -241,7 +228,7 @@
       left: 10%;
       right: 10%;
       height: 1px;
-      background: linear-gradient(90deg, transparent 0%, rgba(245,158,11,0.06) 30%, rgba(245,158,11,0.06) 70%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 30%, rgba(255,255,255,0.04) 70%, transparent 100%);
       z-index: 1;
     }
 
@@ -249,29 +236,15 @@
       display: none;
     }
 
-    /* Cinematic background gradients per scene - deeper, more immersive */
-    .ditl-scene[data-time="dawn"]::before {
-      background: radial-gradient(ellipse at 20% 50%, #2a1810 0%, #1a0f08 40%, #0f0a05 70%, transparent 100%);
-    }
-
-    .ditl-scene[data-time="morning"]::before {
-      background: radial-gradient(ellipse at 30% 40%, #1a1510 0%, #15100a 35%, #0f0d0d 60%, transparent 100%);
-    }
-
-    .ditl-scene[data-time="midday"]::before {
-      background: radial-gradient(ellipse at 50% 30%, #151210 0%, #0f0d0d 40%, #0a0808 65%, transparent 100%);
-    }
-
-    .ditl-scene[data-time="afternoon"]::before {
-      background: radial-gradient(ellipse at 60% 50%, #1a1410 0%, #0f0a08 35%, #080604 65%, transparent 100%);
-    }
-
-    .ditl-scene[data-time="evening"]::before {
-      background: radial-gradient(ellipse at 40% 60%, #2a1a2a 0%, #1f1420 35%, #0f0a0f 65%, transparent 100%);
-    }
-
+    /* Scene radial overlays — removed. Flat dark background lets signal
+       colors (indigo/green/amber) carry the visual rhythm instead. */
+    .ditl-scene[data-time="dawn"]::before,
+    .ditl-scene[data-time="morning"]::before,
+    .ditl-scene[data-time="midday"]::before,
+    .ditl-scene[data-time="afternoon"]::before,
+    .ditl-scene[data-time="evening"]::before,
     .ditl-scene[data-time="night"]::before {
-      background: radial-gradient(ellipse at 50% 50%, #0f0d0d 0%, #0a0808 40%, #000000 70%, transparent 100%);
+      background: none;
     }
 
     /* Ensure content stays above background layer */
@@ -1182,12 +1155,8 @@
       height: 8px;
       border-radius: 50%;
       background: var(--signal-cultural);
-      animation: pulse-glow 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 0.4; box-shadow: 0 0 0 0 rgba(245,158,11,0.2); }
-      50% { opacity: 1; box-shadow: 0 0 8px 2px rgba(245,158,11,0.3); }
+      /* Static dot — no pulsing glow to reduce visual noise */
+      opacity: 0.6;
     }
 
     .ditl-pulse-source {
@@ -1214,17 +1183,17 @@
     .ditl-pulse-change.down { color: #ef4444; }
     .ditl-pulse-change.spike { color: var(--signal-cultural); }
 
-    /* Staggered reveal within scenes */
+    /* Simple fade-in on scroll — reduced stagger for calmer experience */
     .ditl-scene-body > * {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(12px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    .scene-visible .ditl-scene-body > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
-    .scene-visible .ditl-scene-body > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
-    .scene-visible .ditl-scene-body > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
-    .scene-visible .ditl-scene-body > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.7s; }
-    .scene-visible .ditl-scene-body > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.9s; }
+    .scene-visible .ditl-scene-body > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.05s; }
+    .scene-visible .ditl-scene-body > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+    .scene-visible .ditl-scene-body > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+    .scene-visible .ditl-scene-body > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+    .scene-visible .ditl-scene-body > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.25s; }
     .scene-visible .ditl-scene-body > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 1.1s; }
     .scene-visible .ditl-scene-body > *:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 1.3s; }
     .scene-visible .ditl-scene-body > *:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 1.5s; }
