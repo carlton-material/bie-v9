@@ -4,7 +4,7 @@
 
 > Every claim has a source. Every source has a confidence score. Every score has a methodology. **Glass Box, Not Black Box.**
 
-![Command Center](docs/screenshots/command-center.png)
+![Command Center](docs/screenshots/strategic-brief.png)
 
 ---
 
