@@ -756,82 +756,76 @@ window.BIE = {
     const ticker = document.querySelector('.feed-ticker-track');
     if (!ticker) return;
 
-    // Try live API first, fall back to static items
-    let items = [];
-    let feedSource = 'static';
+    // Static feed items — always the backbone of the ticker
+    const staticItems = [
+      { source: 'Strategy+Business', text: 'AI-native analytics platforms projected to capture 40% of brand tracking spend by 2028', time: '2h' },
+      { source: 'Adweek', text: 'Gen Z brand loyalty metrics show fundamental shift toward experience-over-product', time: '3h' },
+      { source: 'CNBC', text: 'Airbnb reports 23% increase in long-stay bookings, signaling structural shift in travel behavior', time: '4h' },
+      { source: 'HBR', text: 'Companies with real-time brand intelligence see 2.5x faster response to competitive threats', time: '5h' },
+      { source: 'Skift', text: 'Barcelona announces plan to phase out all STR licenses by 2028. Regulatory wave accelerates', time: '5h' },
+      { source: 'Marketing Week', text: 'Brand tracking industry faces disruption as AI synthesis replaces periodic survey models', time: '6h' },
+      { source: 'TechCrunch', text: 'New study: multi-signal brand measurement outperforms single-source tracking by 340%', time: '7h' },
+      { source: 'Bloomberg', text: 'Travel sector brand valuations diverge sharply as digital-native platforms gain trust edge', time: '8h' },
+      { source: 'Phocuswire', text: 'Google Travel expanding AI trip planning. OTA disintermediation risk intensifies', time: '8h' },
+      { source: 'Forrester', text: 'Real-time competitive intelligence now cited as top priority by 67% of CMOs surveyed', time: '9h' },
+      { source: 'McKinsey', text: 'Predictive brand health models reduce customer churn intervention costs by 45%', time: '10h' },
+      { source: 'Reuters', text: 'Hospitality sector sees record M&A activity driven by brand portfolio consolidation', time: '11h' },
+      { source: 'WSJ', text: 'Consumer trust in AI-powered services reaches inflection point: 52% now comfortable with AI recommendations', time: '12h' },
+      { source: 'Financial Times', text: 'Southeast Asian travel market surges 47% YoY, signaling next frontier for brand expansion', time: '13h' },
+      { source: 'ESOMAR', text: 'Synthetic research methodologies gain credibility: 38% of research budgets shifting to AI-augmented approaches', time: '14h' },
+      { source: 'Skift', text: 'Booking Holdings invests $500M in AI-driven loyalty personalization platform', time: '15h' },
+      { source: 'Adweek', text: 'TikTok becomes #1 travel inspiration source for under-30 travelers. Cultural signal shift', time: '16h' },
+      { source: 'CNBC', text: 'Climate-conscious travel segment grows 63%. Sustainability signals now material for brand health', time: '17h' },
+      { source: 'HBR', text: 'The trust premium: brands with transparent pricing see 28% higher repeat booking rates', time: '18h' },
+      { source: 'Bloomberg', text: 'Private equity exits in hospitality sector accelerate as brand valuations compress', time: '19h' },
+    ];
 
+    // Blend: try to sprinkle in a few live signals from the API
+    let liveItems = [];
     if (typeof BIEApi !== 'undefined') {
       try {
-        const result = await BIEApi.getFeed(20);
-        if (result.items && result.items.length > 0) {
-          items = result.items;
-          feedSource = result.source;
+        const result = await BIEApi.getFeed(8);
+        if (result.items && result.items.length > 0 && result.source === 'live') {
+          liveItems = result.items.map(item => ({
+            ...item,
+            _live: true  // Mark live items for the dot color
+          }));
+          console.log(`[Feed] Blending ${liveItems.length} live signals into ticker`);
         }
-      } catch (e) {
-        console.warn('[Feed] API unavailable, using static feed:', e.message);
+      } catch { /* silent — static ticker works fine alone */ }
+    }
+
+    // Interleave: every 3rd-4th item is a live signal (if available)
+    let items = [...staticItems];
+    if (liveItems.length > 0) {
+      const blended = [];
+      let liveIdx = 0;
+      for (let i = 0; i < items.length; i++) {
+        blended.push(items[i]);
+        // Insert a live item every 3 static items
+        if ((i + 1) % 3 === 0 && liveIdx < liveItems.length) {
+          blended.push(liveItems[liveIdx++]);
+        }
       }
+      // Append any remaining live items at the end
+      while (liveIdx < liveItems.length) blended.push(liveItems[liveIdx++]);
+      items = blended;
     }
 
-    // Fallback: hardcoded feed items
-    if (items.length === 0) {
-      items = [
-        { source: 'Strategy+Business', text: 'AI-native analytics platforms projected to capture 40% of brand tracking spend by 2028', time: '2h' },
-        { source: 'Adweek', text: 'Gen Z brand loyalty metrics show fundamental shift toward experience-over-product', time: '3h' },
-        { source: 'CNBC', text: 'Airbnb reports 23% increase in long-stay bookings, signaling structural shift in travel behavior', time: '4h' },
-        { source: 'HBR', text: 'Companies with real-time brand intelligence see 2.5x faster response to competitive threats', time: '5h' },
-        { source: 'Skift', text: 'Barcelona announces plan to phase out all STR licenses by 2028. Regulatory wave accelerates', time: '5h' },
-        { source: 'Marketing Week', text: 'Brand tracking industry faces disruption as AI synthesis replaces periodic survey models', time: '6h' },
-        { source: 'TechCrunch', text: 'New study: multi-signal brand measurement outperforms single-source tracking by 340%', time: '7h' },
-        { source: 'Bloomberg', text: 'Travel sector brand valuations diverge sharply as digital-native platforms gain trust edge', time: '8h' },
-        { source: 'Phocuswire', text: 'Google Travel expanding AI trip planning. OTA disintermediation risk intensifies', time: '8h' },
-        { source: 'Forrester', text: 'Real-time competitive intelligence now cited as top priority by 67% of CMOs surveyed', time: '9h' },
-        { source: 'McKinsey', text: 'Predictive brand health models reduce customer churn intervention costs by 45%', time: '10h' },
-        { source: 'Reuters', text: 'Hospitality sector sees record M&A activity driven by brand portfolio consolidation', time: '11h' },
-        { source: 'WSJ', text: 'Consumer trust in AI-powered services reaches inflection point: 52% now comfortable with AI recommendations', time: '12h' },
-        { source: 'Financial Times', text: 'Southeast Asian travel market surges 47% YoY, signaling next frontier for brand expansion', time: '13h' },
-        { source: 'ESOMAR', text: 'Synthetic research methodologies gain credibility: 38% of research budgets shifting to AI-augmented approaches', time: '14h' },
-        { source: 'Skift', text: 'Booking Holdings invests $500M in AI-driven loyalty personalization platform', time: '15h' },
-        { source: 'Adweek', text: 'TikTok becomes #1 travel inspiration source for under-30 travelers. Cultural signal shift', time: '16h' },
-        { source: 'CNBC', text: 'Climate-conscious travel segment grows 63%. Sustainability signals now material for brand health', time: '17h' },
-        { source: 'HBR', text: 'The trust premium: brands with transparent pricing see 28% higher repeat booking rates', time: '18h' },
-        { source: 'Bloomberg', text: 'Private equity exits in hospitality sector accelerate as brand valuations compress', time: '19h' },
-      ];
-    }
+    // Render ticker with seamless loop
+    const renderTicker = (tickerItems) => {
+      const allItems = [...tickerItems, ...tickerItems];
+      ticker.innerHTML = allItems.map(item => `
+        <span class="feed-item${item._live ? ' feed-item--live' : ''}">
+          <span class="feed-item-dot"></span>
+          <span class="feed-item-source">${item.source}</span>
+          <span>${item.text}</span>
+          <span class="feed-item-time">${item.time || ''}</span>
+        </span>
+      `).join('');
+    };
 
-    if (feedSource === 'api') {
-      console.log(`[Feed] Loaded ${items.length} items from live signal server`);
-    }
-
-    // Duplicate for seamless loop
-    const allItems = [...items, ...items];
-    ticker.innerHTML = allItems.map(item => `
-      <span class="feed-item">
-        <span class="feed-item-dot"></span>
-        <span class="feed-item-source">${item.source}</span>
-        <span>${item.text}</span>
-        <span class="feed-item-time">${item.time || ''}</span>
-      </span>
-    `).join('');
-
-    // Re-poll every 60s if API is available
-    if (feedSource === 'api') {
-      setInterval(async () => {
-        try {
-          const result = await BIEApi.getFeed(20);
-          if (result.items && result.items.length > 0) {
-            const refreshed = [...result.items, ...result.items];
-            ticker.innerHTML = refreshed.map(item => `
-              <span class="feed-item">
-                <span class="feed-item-dot"></span>
-                <span class="feed-item-source">${item.source}</span>
-                <span>${item.text}</span>
-                <span class="feed-item-time">${item.time || ''}</span>
-              </span>
-            `).join('');
-          }
-        } catch { /* silent fail on re-poll */ }
-      }, 60000);
-    }
+    renderTicker(items);
   },
 
   /* ── Signal Pulse (ambient activity indicator) ── */
@@ -844,7 +838,7 @@ window.BIE = {
     if (typeof BIEApi !== 'undefined') {
       try {
         const stats = await BIEApi.getStats();
-        if (stats.total && stats.source === 'api') {
+        if (stats.total && stats.source === 'live') {
           count = stats.total;
         }
       } catch { /* use default */ }

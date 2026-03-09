@@ -1,11 +1,17 @@
 /* ═══════════════════════════════════════════════════════════
    Ingestion Orchestrator — Coordinates all source connectors,
    manages polling schedules, and reports pipeline health
+
+   Zero-config: RSS feeds only, no API keys required.
+   Finnhub stocks are optional if FINNHUB_API_KEY is set.
    ═══════════════════════════════════════════════════════════ */
 
 const cron = require('node-cron');
 const { pollAllFeeds } = require('../sources/rss');
-const { pollStocks } = require('../sources/finnhub');
+
+// Optional: only load finnhub if configured
+let pollStocks = null;
+try { pollStocks = require('../sources/finnhub').pollStocks; } catch { /* optional */ }
 
 class Ingestor {
   constructor(store, config = {}) {
@@ -17,25 +23,27 @@ class Ingestor {
     };
     this.jobs = [];
     this.lastPollResults = {};
+    this._hasStocks = !!(pollStocks && this.config.finnhubKey && this.config.finnhubKey !== 'your_finnhub_key_here');
   }
 
   /** Run initial ingestion then start cron schedules */
   async start() {
     console.log('[Ingestor] Starting signal pipeline...');
+    console.log(`[Ingestor] RSS feeds: enabled (${this.config.rssPollMinutes}m interval)`);
+    console.log(`[Ingestor] Finnhub stocks: ${this._hasStocks ? 'enabled' : 'disabled (no key — optional)'}`);
 
     // Initial fetch on startup
     await this.pollAll();
 
-    // Schedule RSS polling
+    // Schedule RSS polling (the core — free, no keys)
     const rssJob = cron.schedule(`*/${this.config.rssPollMinutes} * * * *`, async () => {
       console.log('[Ingestor] Scheduled RSS poll...');
       this.lastPollResults.rss = await pollAllFeeds(this.store);
     });
     this.jobs.push(rssJob);
 
-    // Schedule stock polling (only during market hours: Mon-Fri 9:30-16:00 ET)
-    // Simplified: every N minutes during weekdays
-    if (this.config.finnhubKey && this.config.finnhubKey !== 'your_finnhub_key_here') {
+    // Optional: schedule stock polling if key is configured
+    if (this._hasStocks) {
       const stockJob = cron.schedule(`*/${this.config.stockPollMinutes} * * * 1-5`, async () => {
         console.log('[Ingestor] Scheduled stock poll...');
         this.lastPollResults.stocks = await pollStocks(this.store, this.config.finnhubKey);
@@ -43,19 +51,31 @@ class Ingestor {
       this.jobs.push(stockJob);
     }
 
-    console.log(`[Ingestor] Pipeline running — RSS every ${this.config.rssPollMinutes}m, Stocks every ${this.config.stockPollMinutes}m`);
+    const stats = this.store.getStats();
+    console.log(`[Ingestor] Pipeline live — ${stats.total} signals ready (${stats.human}H/${stats.behavioral}B/${stats.cultural}C)`);
   }
 
   /** One-time poll of all sources */
   async pollAll() {
     console.log('[Ingestor] Full poll starting...');
-    const [rssResult, stockResult] = await Promise.allSettled([
-      pollAllFeeds(this.store),
-      pollStocks(this.store, this.config.finnhubKey)
-    ]);
 
-    this.lastPollResults.rss = rssResult.status === 'fulfilled' ? rssResult.value : { error: rssResult.reason?.message };
-    this.lastPollResults.stocks = stockResult.status === 'fulfilled' ? stockResult.value : { error: stockResult.reason?.message };
+    // Always poll RSS
+    let rssResult;
+    try {
+      rssResult = await pollAllFeeds(this.store);
+    } catch (e) {
+      rssResult = { error: e.message, totalAccepted: 0 };
+    }
+    this.lastPollResults.rss = rssResult;
+
+    // Optional: poll stocks
+    if (this._hasStocks) {
+      try {
+        this.lastPollResults.stocks = await pollStocks(this.store, this.config.finnhubKey);
+      } catch (e) {
+        this.lastPollResults.stocks = { error: e.message, totalAccepted: 0 };
+      }
+    }
 
     const stats = this.store.getStats();
     console.log(`[Ingestor] Full poll complete — ${stats.total} signals in store (${stats.human}H/${stats.behavioral}B/${stats.cultural}C)`);
@@ -76,7 +96,7 @@ class Ingestor {
       lastPoll: this.lastPollResults,
       schedules: {
         rss: `every ${this.config.rssPollMinutes} minutes`,
-        stocks: this.config.finnhubKey ? `every ${this.config.stockPollMinutes} minutes (weekdays)` : 'disabled (no API key)'
+        stocks: this._hasStocks ? `every ${this.config.stockPollMinutes} minutes (weekdays)` : 'disabled (no API key — optional)'
       }
     };
   }

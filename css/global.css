@@ -242,6 +242,14 @@ img { max-width: 100%; display: block; }
   background: var(--signal-cultural);
   opacity: 0.5;
 }
+/* Live signal items — green dot pulse */
+.feed-item--live .feed-item-dot {
+  background: var(--signal-behavioral);
+  opacity: 1;
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 0 4px var(--signal-behavioral);
+}
 @keyframes tickerScroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }

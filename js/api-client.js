@@ -1,212 +1,253 @@
 /* ═══════════════════════════════════════════════════════════
-   BIE API Client — Frontend bridge to the Signal Server
+   BIE Signal Client — Client-side signal pipeline
+   Runs entirely in the browser on GitHub Pages.
+   Fetches real RSS feeds via free CORS proxy, normalizes
+   them into the BIE signal schema, and caches in memory.
 
-   Graceful fallback: if the server is unreachable (e.g., on
-   GitHub Pages without a backend), falls back to static JSON.
-
-   Glass Box: Every signal includes provenance + consensus
-   metadata. Use getSignalDetail(id) for full linkout data.
+   No backend, no API keys, no configuration needed.
    ═══════════════════════════════════════════════════════════ */
 
 const BIEApi = {
-  baseUrl: 'http://localhost:3847/api',
-  _serverAvailable: null,   // null = unknown, true/false after first check
-  _lastCheck: 0,
-  _checkInterval: 30000,    // Re-check server availability every 30s
+
+  // ── State ──
+  _signals: [],
+  _feedCache: [],
+  _lastFetch: 0,
+  _fetchInterval: 10 * 60 * 1000,  // Refetch every 10 min
+  _fetching: false,
+  _nextId: 1,
+
+  // ── CORS Proxies (free, no keys) — try in order, failover ──
+  _proxies: [
+    url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+  ],
+
+  // ── RSS Feed Sources (free, unlimited) ──
+  _feeds: [
+    { name: 'Skift',       url: 'https://skift.com/feed/',     layer: 'human',    tier: 'primary',   confidence: 0.85 },
+    { name: 'PhocusWire',  url: 'https://www.phocuswire.com/rss', layer: 'human', tier: 'primary',   confidence: 0.80 },
+    { name: 'CNBC Travel', url: 'https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000739', layer: 'cultural', tier: 'primary', confidence: 0.85 },
+    { name: 'TechCrunch',  url: 'https://techcrunch.com/feed/', layer: 'cultural', tier: 'tertiary',  confidence: 0.60 },
+    { name: 'Adweek',      url: 'https://www.adweek.com/feed/', layer: 'cultural', tier: 'secondary', confidence: 0.70 },
+  ],
+
+  // ── Brand detection keywords ──
+  _brands: {
+    'airbnb': 'Airbnb', 'abnb': 'Airbnb',
+    'booking': 'Booking', 'booking.com': 'Booking',
+    'marriott': 'Marriott', 'hilton': 'Hilton',
+    'expedia': 'Expedia', 'hyatt': 'Hyatt',
+    'wyndham': 'Wyndham', 'tripadvisor': 'TripAdvisor',
+    'vrbo': 'VRBO', 'accor': 'Accor', 'ihg': 'IHG'
+  },
+
+  _highKeywords: ['crisis','lawsuit','recall','acquisition','surge','record','breaking','plunge','disruption','layoff','breach'],
+  _medKeywords: ['analysis','trend','report','growth','decline','forecast','strategy','partnership','launch','expansion','earnings','revenue'],
+
+  // ══════════════════════════════════════════════
+  //  PUBLIC API — same interface as before
+  // ══════════════════════════════════════════════
 
   /**
-   * Check if the signal server is reachable.
-   * Caches result for 30s to avoid hammering.
+   * Fetch live RSS signals. Returns feed items for the ticker.
+   * @param {number} limit
+   * @returns {{ items: Array<{source,text,time}>, source: 'live'|'cache' }}
    */
-  async isServerAvailable() {
-    const now = Date.now();
-    if (this._serverAvailable !== null && (now - this._lastCheck) < this._checkInterval) {
-      return this._serverAvailable;
-    }
-
-    try {
-      const resp = await fetch(`${this.baseUrl}/health`, {
-        signal: AbortSignal.timeout(3000)
-      });
-      this._serverAvailable = resp.ok;
-    } catch {
-      this._serverAvailable = false;
-    }
-    this._lastCheck = now;
-    return this._serverAvailable;
+  async getFeed(limit = 8) {
+    await this._ensureFresh();
+    const items = this._signals
+      .sort((a, b) => b.id - a.id)
+      .slice(0, limit)
+      .map(s => ({ source: s.source, text: s.text, time: s.time }));
+    return { items, source: items.length > 0 ? 'live' : 'none' };
   },
 
   /**
-   * Fetch from API with automatic fallback to static JSON.
-   * Returns { data, source: 'api'|'static' }
-   */
-  async _fetch(endpoint, fallbackFn) {
-    const available = await this.isServerAvailable();
-
-    if (available) {
-      try {
-        const resp = await fetch(`${this.baseUrl}${endpoint}`, {
-          signal: AbortSignal.timeout(5000)
-        });
-        if (resp.ok) {
-          const data = await resp.json();
-          return { data, source: 'api' };
-        }
-      } catch (e) {
-        console.warn(`[BIEApi] API call failed, falling back to static: ${e.message}`);
-      }
-    }
-
-    // Fallback to static JSON
-    if (fallbackFn) {
-      const data = await fallbackFn();
-      return { data, source: 'static' };
-    }
-
-    return { data: null, source: 'none' };
-  },
-
-  /**
-   * GET /api/signals — Paginated, filtered signal list
-   * Each signal includes provenance (Glass Box) and consensus metadata.
-   *
-   * @param {Object} params - { layer, severity, brand, limit, offset }
-   * @returns {{ signals: Array, total: number, source: string }}
-   */
-  async getSignals(params = {}) {
-    const query = new URLSearchParams();
-    if (params.layer) query.set('layer', params.layer);
-    if (params.severity) query.set('severity', params.severity);
-    if (params.brand) query.set('brand', params.brand);
-    if (params.limit) query.set('limit', params.limit);
-    if (params.offset) query.set('offset', params.offset);
-
-    const qs = query.toString() ? `?${query}` : '';
-
-    const result = await this._fetch(`/signals${qs}`, async () => {
-      // Fallback: load from stayworthy.json
-      const resp = await fetch('data/stayworthy.json');
-      const data = await resp.json();
-      let signals = data?.signals?.database || [];
-
-      // Apply filters on static data
-      if (params.layer) signals = signals.filter(s => s.layer === params.layer);
-      if (params.severity) signals = signals.filter(s => s.severity === params.severity);
-
-      return { signals, total: signals.length };
-    });
-
-    return { ...result.data, source: result.source };
-  },
-
-  /**
-   * GET /api/signals/feed — Ticker-format feed items
-   * Returns { source, text, time } objects for the feed bar.
-   *
-   * @param {number} limit - Max items (default 20)
-   * @returns {{ items: Array, source: string }}
-   */
-  async getFeed(limit = 20) {
-    const result = await this._fetch(`/signals/feed?limit=${limit}`, async () => {
-      const resp = await fetch('data/stayworthy.json');
-      const data = await resp.json();
-      return { items: data?.feedItems || [], count: (data?.feedItems || []).length };
-    });
-
-    return { items: result.data?.items || [], source: result.source };
-  },
-
-  /**
-   * GET /api/signals/stats — Signal counts by layer
-   * @returns {{ total, human, behavioral, cultural, source }}
+   * Get signal counts by layer.
    */
   async getStats() {
-    const result = await this._fetch('/signals/stats', async () => {
-      // Fallback: return the metadata counts
-      return { total: 847, human: 312, behavioral: 289, cultural: 246, lastUpdated: null };
-    });
-
-    return { ...result.data, source: result.source };
+    await this._ensureFresh();
+    const stats = { total: this._signals.length, human: 0, behavioral: 0, cultural: 0 };
+    for (const s of this._signals) {
+      if (s.layer === 'human') stats.human++;
+      else if (s.layer === 'behavioral') stats.behavioral++;
+      else if (s.layer === 'cultural') stats.cultural++;
+    }
+    return { ...stats, source: this._signals.length > 0 ? 'live' : 'static' };
   },
 
   /**
-   * GET /api/signals/:id — Single signal with full Glass Box detail
-   * Returns provenance (source URL, connector, confidence, tier, dataClass)
-   * and consensus (convergence score, corroborating sources).
-   *
-   * @param {number} id - Signal ID
-   * @returns {Object} Signal with _glassBox metadata
+   * Get all cached signals, optionally filtered.
    */
-  async getSignalDetail(id) {
-    const result = await this._fetch(`/signals/${id}`);
-    return result.data;
+  async getSignals({ layer, severity, limit = 50 } = {}) {
+    await this._ensureFresh();
+    let filtered = [...this._signals];
+    if (layer) filtered = filtered.filter(s => s.layer === layer);
+    if (severity) filtered = filtered.filter(s => s.severity === severity);
+    filtered.sort((a, b) => b.id - a.id);
+    return { signals: filtered.slice(0, limit), total: filtered.length, source: 'live' };
   },
 
   /**
-   * GET /api/consensus — Converging signal clusters
-   * Groups signals by brand where multiple sources/layers agree.
-   *
-   * @returns {{ clusters: Array, source: string }}
-   */
-  async getConsensus() {
-    const result = await this._fetch('/consensus');
-    return { clusters: result.data?.clusters || [], source: result.source };
-  },
-
-  /**
-   * GET /api/health — Pipeline health status
-   * Shows source connectivity, uptime, signal capacity.
-   */
-  async getHealth() {
-    const result = await this._fetch('/health');
-    return result.data;
-  },
-
-  /**
-   * Build a Glass Box explanation string for display in the UI.
-   * Used by signal cards, command center, and analyst responses.
-   *
-   * @param {Object} signal - Signal with provenance + consensus
-   * @returns {string} Human-readable Glass Box explanation
+   * Glass Box explanation for a signal.
    */
   buildGlassBoxExplanation(signal) {
-    if (!signal?.provenance) return 'No provenance data available.';
-
+    if (!signal?.provenance) return '';
     const p = signal.provenance;
-    const c = signal.consensus || {};
+    return `Live signal from ${signal.source} · ${Math.round(p.confidence * 100)}% confidence (${p.tier} tier)`;
+  },
 
-    const parts = [];
+  getSourceLink(signal) {
+    return signal?.provenance?.sourceUrl || null;
+  },
 
-    // Data class label
-    const classLabel = p.dataClass === 'raw' ? '📊 Raw signal' :
-                       p.dataClass === 'enriched' ? '🤖 AI-enriched' :
-                       p.dataClass === 'synthesized' ? '🔗 Synthesized' : '📊 Signal';
-    parts.push(classLabel);
+  // ══════════════════════════════════════════════
+  //  INTERNAL — RSS fetching + parsing
+  // ══════════════════════════════════════════════
 
-    // Source + connector
-    parts.push(`from ${signal.source} via ${p.connector}`);
+  async _ensureFresh() {
+    const now = Date.now();
+    if (this._fetching) return;
+    if (this._signals.length > 0 && (now - this._lastFetch) < this._fetchInterval) return;
 
-    // Confidence
-    parts.push(`${Math.round(p.confidence * 100)}% confidence (${p.tier} tier)`);
+    this._fetching = true;
+    try {
+      await this._fetchAllFeeds();
+      this._lastFetch = now;
+    } catch (e) {
+      console.warn('[BIEApi] RSS fetch failed:', e.message);
+    }
+    this._fetching = false;
+  },
 
-    // Consensus
-    if (c.corroboratingCount > 0) {
-      parts.push(`${c.corroboratingCount} corroborating signal${c.corroboratingCount > 1 ? 's' : ''} (${c.level} convergence)`);
+  async _fetchAllFeeds() {
+    const results = await Promise.allSettled(
+      this._feeds.map(feed => this._fetchFeed(feed))
+    );
+
+    let added = 0;
+    for (const r of results) {
+      if (r.status === 'fulfilled' && r.value > 0) added += r.value;
+    }
+    if (added > 0) console.log(`[BIEApi] Ingested ${added} live signals from ${this._feeds.length} RSS feeds`);
+  },
+
+  async _fetchFeed(feedConfig) {
+    const xml = await this._fetchWithProxy(feedConfig.url);
+    if (!xml) return 0;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xml, 'text/xml');
+
+    // Handle both RSS <item> and Atom <entry>
+    const items = doc.querySelectorAll('item, entry');
+    let added = 0;
+
+    for (let i = 0; i < Math.min(items.length, 6); i++) {
+      const item = items[i];
+      const title = item.querySelector('title')?.textContent?.trim() || '';
+      const link = item.querySelector('link')?.textContent?.trim() ||
+                   item.querySelector('link')?.getAttribute('href') || '';
+      const pubDate = item.querySelector('pubDate, published, updated')?.textContent?.trim();
+      const description = item.querySelector('description, summary, content')?.textContent?.trim() || '';
+
+      if (!title) continue;
+
+      // Dedup: skip if we already have this title
+      const titleLower = title.toLowerCase();
+      if (this._signals.some(s => s.text.toLowerCase() === titleLower)) continue;
+
+      const combined = `${title} ${description}`;
+      const signal = {
+        id: this._nextId++,
+        time: this._formatTime(pubDate),
+        layer: feedConfig.layer,
+        severity: this._detectSeverity(combined),
+        brand: this._detectBrand(combined),
+        text: this._truncate(title, 150),
+        source: feedConfig.name,
+        provenance: {
+          sourceUrl: link,
+          sourceTitle: title,
+          connector: `rss:${feedConfig.name.toLowerCase().replace(/\s+/g, '-')}`,
+          confidence: feedConfig.confidence,
+          tier: feedConfig.tier,
+          dataClass: 'raw',
+          ingestedAt: new Date().toISOString()
+        }
+      };
+
+      this._signals.push(signal);
+      added++;
     }
 
-    // Enrichment note
-    if (p.enrichment) {
-      parts.push(`Enriched: ${p.enrichment.reason} [${p.enrichment.method}]`);
+    // Cap at 200 signals in memory
+    if (this._signals.length > 200) {
+      this._signals = this._signals.slice(-200);
     }
 
-    return parts.join(' · ');
+    return added;
   },
 
   /**
-   * Build a Glass Box linkout URL for a signal.
-   * Returns the source URL if available, null otherwise.
+   * Try each CORS proxy in order until one works.
    */
-  getSourceLink(signal) {
-    return signal?.provenance?.sourceUrl || null;
+  async _fetchWithProxy(url) {
+    for (const proxyFn of this._proxies) {
+      try {
+        const proxyUrl = proxyFn(url);
+        const resp = await fetch(proxyUrl, {
+          signal: AbortSignal.timeout(8000),
+          headers: { 'Accept': 'application/rss+xml, application/xml, text/xml, */*' }
+        });
+        if (resp.ok) {
+          const text = await resp.text();
+          // Basic check that it's actually XML
+          if (text.includes('<') && (text.includes('<rss') || text.includes('<feed') || text.includes('<item'))) {
+            return text;
+          }
+        }
+      } catch {
+        // Try next proxy
+        continue;
+      }
+    }
+    return null;
+  },
+
+  // ── Helpers ──
+
+  _formatTime(dateStr) {
+    if (!dateStr) {
+      const n = new Date();
+      return `${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+    }
+    const d = new Date(dateStr);
+    if (isNaN(d.getTime())) {
+      const n = new Date();
+      return `${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+    }
+    return `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  },
+
+  _detectSeverity(text) {
+    const lower = text.toLowerCase();
+    if (this._highKeywords.some(k => lower.includes(k))) return 'high';
+    if (this._medKeywords.some(k => lower.includes(k))) return 'medium';
+    return 'low';
+  },
+
+  _detectBrand(text) {
+    const lower = text.toLowerCase();
+    for (const [keyword, brand] of Object.entries(this._brands)) {
+      if (lower.includes(keyword)) return brand;
+    }
+    return 'Category';
+  },
+
+  _truncate(text, max = 150) {
+    const clean = text.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+    return clean.length <= max ? clean : clean.slice(0, max - 3) + '...';
   }
 };
