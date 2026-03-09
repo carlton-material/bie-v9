@@ -824,23 +824,23 @@ window.BIE = {
       case 'analyst':
         // Purple circle with Phosphor plus icon and mode labels
         return `
-          <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
+          <svg width="220" height="140" viewBox="0 0 220 140" fill="none">
             <!-- Purple circle background -->
-            <circle cx="90" cy="45" r="35" fill="#745AFF"/>
+            <circle cx="110" cy="45" r="35" fill="#745AFF"/>
             
             <!-- Phosphor plus icon (white) -->
-            <line x1="90" y1="25" x2="90" y2="65" stroke="white" stroke-width="3" stroke-linecap="round"/>
-            <line x1="70" y1="45" x2="110" y2="45" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <line x1="110" y1="25" x2="110" y2="65" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <line x1="90" y1="45" x2="130" y2="45" stroke="white" stroke-width="3" stroke-linecap="round"/>
 
             <!-- Mode labels -->
-            <g transform="translate(5, 75)">
-              <rect x="0" y="0" width="90" height="36" rx="8" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
-              <text x="45" y="18" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500" dominant-baseline="central">Socratic Guide</text>
+            <g transform="translate(5, 80)">
+              <rect x="0" y="0" width="100" height="36" rx="8" fill="rgba(129,140,248,0.15)" stroke="rgba(129,140,248,0.4)" stroke-width="1"/>
+              <text x="50" y="18" font-size="11" font-family="Inter" fill="#818cf8" text-anchor="middle" font-weight="500" dominant-baseline="central">Socratic Guide</text>
             </g>
 
-            <g transform="translate(85, 75)">
-              <rect x="0" y="0" width="90" height="36" rx="8" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
-              <text x="45" y="18" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500" dominant-baseline="central">Guardian Data</text>
+            <g transform="translate(115, 80)">
+              <rect x="0" y="0" width="100" height="36" rx="8" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+              <text x="50" y="18" font-size="11" font-family="Inter" fill="#34d399" text-anchor="middle" font-weight="500" dominant-baseline="central">Guardian Data</text>
             </g>
           </svg>
         `;
