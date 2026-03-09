@@ -1319,6 +1319,156 @@
         </div>
       </section>
 
+      <!-- SECTION 2B: DEEP ARCHITECTURE (AI Model Timeline style) -->
+      <section class="architecture-section reveal">
+        <div class="scene-label">01b. Deep Architecture</div>
+        <h2 class="scene-headline">System Overview & Consensus Engine</h2>
+        <p class="scene-body">BIE is a multi-model consensus system. Rather than relying on a single analytical pipeline, it orchestrates three independent signal processors — each with distinct data sources, methodologies, and confidence models — and synthesizes their outputs into a unified intelligence layer. When signals converge, confidence rises. When they diverge, the system flags the conflict for human review.</p>
+
+        <!-- High-Level Architecture Diagram -->
+        <div style="margin: 32px 0; padding: 24px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; overflow-x: auto;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 12px;">HIGH-LEVEL ARCHITECTURE</div>
+          <pre style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.75); margin: 0; white-space: pre; overflow-x: auto;">
+┌─────────────────────────────────────────────────────────────────┐
+│                     DATA INGESTION LAYER                        │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
+│  │ AI Interviews │  │ Booking APIs │  │ News + Social│          │
+│  │ Surveys       │  │ Search Logs  │  │ Regulatory   │          │
+│  │ Reviews       │  │ Market Data  │  │ Trend Feeds  │          │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘          │
+│         │                  │                  │                  │
+│         ▼                  ▼                  ▼                  │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
+│  │   HUMAN      │  │  BEHAVIORAL  │  │  CULTURAL    │          │
+│  │  PROCESSOR   │  │  PROCESSOR   │  │  PROCESSOR   │          │
+│  │  NLP + Sent. │  │  Stats + ML  │  │  NER + Topic │          │
+│  │  Score: 0–1  │  │  Score: 0–1  │  │  Score: 0–1  │          │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘          │
+│         │                  │                  │                  │
+│         └──────────────────┼──────────────────┘                  │
+│                            ▼                                     │
+│              ┌─────────────────────────┐                         │
+│              │   CONSENSUS ENGINE      │                         │
+│              │   Convergence Detection │                         │
+│              │   Conflict Flagging     │                         │
+│              │   Confidence Scoring    │                         │
+│              │   Temporal Weighting    │                         │
+│              └────────────┬────────────┘                         │
+│                           ▼                                      │
+│         ┌─────────────────────────────────────┐                  │
+│         │         INTELLIGENCE LAYER           │                  │
+│         │  8 Surfaces · Brand Fidelity Index   │                  │
+│         │  Priority Alerts · Recommendations   │                  │
+│         └─────────────────────────────────────┘                  │
+└─────────────────────────────────────────────────────────────────┘</pre>
+        </div>
+
+        <!-- Consensus Algorithm -->
+        <div style="margin: 32px 0;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">CONSENSUS ALGORITHM</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 8px;">Convergence Detection</div>
+              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">When all three signal types agree on a trend direction, the system assigns elevated confidence (0.85–0.95). Cross-layer agreement is the strongest indicator of real market movement vs. noise.</p>
+            </div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 8px;">Conflict Resolution</div>
+              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">When signals diverge (e.g., sentiment positive but bookings declining), the engine produces a split-signal alert with each layer's individual confidence. This tells analysts where to dig deeper — divergence is signal, not failure.</p>
+            </div>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 8px;">Temporal Weighting</div>
+              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">Behavioral signals lag attitudinal shifts by 2–4 weeks. The engine applies temporal decay curves that discount stale data while amplifying recent convergence. Signal recency is weighted alongside signal strength.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Flow -->
+        <div style="margin: 32px 0; padding: 24px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 12px;">DATA FLOW — SIGNAL TO SURFACE</div>
+          <pre style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; line-height: 1.7; color: rgba(255,255,255,0.75); margin: 0; white-space: pre; overflow-x: auto;">
+  Raw Data (847+ daily streams)
+       │
+       ▼
+  ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+  │ NLP Pipeline │     │ Stats Engine│     │ Topic Model │
+  │ Sentiment    │     │ Time Series │     │ NER + Class │
+  │ Emotion      │     │ Anomaly Det │     │ Trend Ext   │
+  └──────┬──────┘     └──────┬──────┘     └──────┬──────┘
+         │                    │                    │
+         ▼                    ▼                    ▼
+  ┌─────────────────────────────────────────────────────┐
+  │              NORMALIZATION LAYER                     │
+  │  Propensity scores (0–1) · Confidence intervals     │
+  │  Source attribution · Recency timestamps             │
+  └───────────────────────┬─────────────────────────────┘
+                          │
+                          ▼
+  ┌─────────────────────────────────────────────────────┐
+  │              CONSENSUS ENGINE                        │
+  │  Cross-layer correlation · Convergence scoring       │
+  │  Split-signal detection · Temporal decay weighting   │
+  └───────────────────────┬─────────────────────────────┘
+                          │
+              ┌───────────┼───────────┐
+              ▼           ▼           ▼
+        ┌──────────┐ ┌──────────┐ ┌──────────┐
+        │ Brand    │ │ Priority │ │ 8 Surface│
+        │ Fidelity │ │ Alerts   │ │ Outputs  │
+        │ Index    │ │          │ │          │
+        └──────────┘ └──────────┘ └──────────┘</pre>
+        </div>
+
+        <!-- Technology Stack -->
+        <div style="margin: 32px 0;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">TECHNOLOGY STACK</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">NLP + SENTIMENT</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Anthropic Claude · Custom fine-tuned classifiers · Multi-language support</div>
+            </div>
+            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">BEHAVIORAL ANALYTICS</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Time-series analysis · Anomaly detection · Bayesian inference models</div>
+            </div>
+            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">CULTURAL SIGNALS</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Named entity recognition · Topic modeling · Regulatory feed parsers</div>
+            </div>
+            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">SIMULATION</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Agent-based modeling · Monte Carlo · 650 heterogeneous agents · 500 iterations</div>
+            </div>
+            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">INFRASTRUCTURE</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">Real-time signal ingestion · 847+ daily streams · Sub-second consensus scoring</div>
+            </div>
+            <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">OUTPUTS</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">8 interactive surfaces · Brand Fidelity composite · Glass Box traceability</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Version / Changelog -->
+        <div style="margin: 32px 0; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 12px;">CHANGELOG</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem;">
+            <div style="display: flex; gap: 16px; align-items: baseline;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(52,211,153,0.8); min-width: 48px;">v9.0</span>
+              <span style="color: rgba(255,255,255,0.7);">Brand Fidelity framework integrated as 8th surface · Consensus engine v3 · Signal Terminal drawer pattern · Phosphor icon system</span>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: baseline;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(52,211,153,0.6); min-width: 48px;">v8.0</span>
+              <span style="color: rgba(255,255,255,0.5);">Agent-based simulation engine · Virtual Focus Group mode · Signal Nexus · Guided Analysis with Anthropic API</span>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: baseline;">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(52,211,153,0.4); min-width: 48px;">v7.0</span>
+              <span style="color: rgba(255,255,255,0.4);">Command Center TL;DR dashboard · Glass Box methodology · Three-signal architecture · Confidence scoring</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- SECTION 3: SIGNAL LAYER DEEP DIVE -->
       <section class="architecture-section deep-bg reveal">
         <div class="scene-label">02. Signal Layers</div>
