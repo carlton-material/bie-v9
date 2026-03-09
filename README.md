@@ -12,7 +12,7 @@
 
 The Brand Intelligence Engine (BIE) replaces traditional quarterly brand tracking with a **continuous, multi-signal intelligence system**. It ingests three parallel signal streams — what people *say* (Human-Expressive), what people *do* (Behavioral), and what the world *does around them* (Cultural) — and synthesizes them into a unified Brand Fidelity score across six loyalty drivers.
 
-This repo contains the **interactive prototype** — 7 interconnected HTML surfaces that demonstrate the platform's architecture, data model, and UX vision using Stayworthy (fictional short-term rental brand) as the client case.
+This repo contains the **interactive prototype** — 8 interconnected HTML surfaces that demonstrate the platform's architecture, data model, and UX vision using Stayworthy (fictional short-term rental brand) as the client case.
 
 ### Three Things That Set This Apart
 
@@ -28,20 +28,33 @@ This repo contains the **interactive prototype** — 7 interconnected HTML surfa
 |---------|------|---------|
 | **Strategic Brief** | `index.html` | Executive overview — the case for reinvention |
 | **Day in the Life** | `day-in-the-life.html` | Cinematic scrollytelling — 6 moments from dawn to midnight |
+| **Brand Fidelity** | `brand-fidelity.html` | Six-driver framework — In the Moment + Over Time dimensions |
 | **How It Works** | `how-it-works.html` | Glass Box methodology — architecture, confidence, sources, framework |
 | **Command Center** | `command-center.html` | Morning intelligence brief — BF composite, radar, alerts, patterns |
 | **Signal Terminal** | `signal-terminal.html` | Live signal feed — filterable by type, severity, brand |
 | **Guided Analysis** | `guided-analysis.html` | AI-assisted analysis — structured questions, driver exploration |
-| **Scenario Lab** | `scenario-lab.html` | Simulation engine — funnels, war gaming, focus groups, Signal Nexus |
+| **Scenario Lab** | `scenario-lab.html` | Simulation engine — funnels, war gaming, focus groups, Fidelity LIVE |
 
 ---
 
 ## Screenshots
 
 <details>
-<summary>Signal Nexus — How Signals Converge Into Intelligence</summary>
+<summary>Strategic Brief — The Case for Reinvention</summary>
 
-![Signal Nexus](docs/screenshots/signal-nexus.png)
+![Strategic Brief](docs/screenshots/strategic-brief.png)
+</details>
+
+<details>
+<summary>Day in the Life — Dawn to Midnight Intelligence</summary>
+
+![Day in the Life](docs/screenshots/day-in-the-life.png)
+</details>
+
+<details>
+<summary>Brand Fidelity — Six Drivers of Brand Truth</summary>
+
+![Brand Fidelity](docs/screenshots/brand-fidelity.png)
 </details>
 
 <details>
@@ -51,9 +64,9 @@ This repo contains the **interactive prototype** — 7 interconnected HTML surfa
 </details>
 
 <details>
-<summary>Confidence Scoring — HIGH / MEDIUM / LOW</summary>
+<summary>Command Center — Morning Intelligence Brief</summary>
 
-![Confidence Scoring](docs/screenshots/confidence-scoring.png)
+![Command Center](docs/screenshots/command-center.png)
 </details>
 
 <details>
@@ -63,15 +76,15 @@ This repo contains the **interactive prototype** — 7 interconnected HTML surfa
 </details>
 
 <details>
-<summary>Guided Analysis</summary>
+<summary>Guided Analysis — AI-Assisted Exploration</summary>
 
 ![Guided Analysis](docs/screenshots/guided-analysis.png)
 </details>
 
 <details>
-<summary>Competitive Landscape + Active Patterns</summary>
+<summary>Scenario Lab — Simulation & Fidelity LIVE</summary>
 
-![Competitive Landscape](docs/screenshots/competitive-landscape.png)
+![Scenario Lab](docs/screenshots/scenario-lab.png)
 </details>
 
 ---
@@ -217,7 +230,7 @@ docs(readme): add architecture section and screenshots
 ```
 
 ### PR Checklist
-- [ ] Zero JS console errors across all 7 surfaces
+- [ ] Zero JS console errors across all 8 surfaces
 - [ ] All Glass Box toggles functional
 - [ ] All navigation links work
 - [ ] Screenshots updated if UI changed
