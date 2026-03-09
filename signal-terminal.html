@@ -900,30 +900,39 @@
     </footer>
   </div>
 
-  <!-- Analyst -->
+
+
+  <!-- MATERIAL ANALYST -->
   <div class="analyst-trigger" title="Material Analyst">
     <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     <span class="analyst-dot"></span>
   </div>
+
   <div class="analyst-panel">
     <div class="analyst-panel-header">
-      <span class="analyst-panel-title">Material Analyst</span>
-      <div class="analyst-mode-toggle">
-        <button class="mode-btn active" data-mode="guide">Ask a Question</button>
-        <button class="mode-btn" data-mode="guardian">Explore Data</button>
+      <div class="analyst-panel-avatar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
       </div>
-      <button class="analyst-panel-close">×</button>
+      <span class="analyst-panel-title">Material Analyst<small>Context-aware intelligence</small></span>
+      <button class="analyst-panel-close">&times;</button>
+    </div>
+    <div class="analyst-mode-toggle">
+      <button class="mode-btn active" data-mode="guide">Ask</button>
+      <button class="mode-btn" data-mode="guardian">Explore</button>
     </div>
     <div class="analyst-panel-messages"></div>
     <div class="analyst-panel-suggestions"></div>
     <div class="analyst-panel-input">
-      <input type="text" placeholder="Ask about signals, anomalies, brands...">
+      <input type="text" placeholder="Ask about signals, trends, convergence...">
       <button>Send</button>
     </div>
+    <div class="analyst-panel-footer">
+      <span>M+ Intelligence Engine</span>
+      <span>Signal Terminal</span>
+    </div>
   </div>
-
   <script src="js/analyst-llm.js"></script>
   <script src="js/app.js"></script>
   <script>

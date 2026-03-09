@@ -680,36 +680,6 @@
       </div>
     </div>
 
-    <!-- Analyst (must be inside main to avoid creating phantom grid row in .app) -->
-    <div class="analyst-trigger" title="Material Analyst">
-    <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <span class="analyst-dot"></span>
-  </div>
-  <div class="analyst-panel">
-    <div class="analyst-panel-header">
-      <span class="analyst-panel-title">Material Analyst</span>
-      <div class="analyst-mode-toggle">
-        <button class="mode-btn active" data-mode="guide">Ask a Question</button>
-        <button class="mode-btn" data-mode="guardian">Explore Data</button>
-      </div>
-      <button onclick="document.getElementById('analyst-settings').style.display = document.getElementById('analyst-settings').style.display === 'none' ? 'block' : 'none'" style="background: none; border: none; color: rgba(255,255,255,0.55); cursor: pointer; font-size: 14px; padding: 4px 8px;" title="API Settings">⚙</button>
-      <button class="analyst-panel-close">×</button>
-    </div>
-    <div id="analyst-settings" style="display: none; padding: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); margin: 8px 12px 0 12px; border-radius: 3px;">
-      <label style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); display: block; margin-bottom: 6px;">Anthropic API Key</label>
-      <input type="password" id="analyst-api-key" placeholder="sk-ant-..." style="width: 100%; padding: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.95); font-family: var(--font-mono); font-size: 0.75rem; border-radius: 2px; box-sizing: border-box;" onchange="analystConfig.apiKey = this.value; localStorage.setItem('bie-analyst-key', this.value);">
-      <div style="font-family: var(--font-body); font-size: 0.6875rem; color: rgba(255,255,255,0.45); margin-top: 8px;">Key stored locally. Never sent to our servers.</div>
-    </div>
-    <div class="analyst-panel-messages"></div>
-    <div class="analyst-panel-suggestions"></div>
-    <div class="analyst-panel-input">
-      <input type="text" placeholder="Ask about signals, drivers, competitors...">
-      <button>Send</button>
-    </div>
-    <div style="font-family: var(--font-body); font-size: 0.6rem; color: rgba(255,255,255,0.3); text-align: center; padding: 8px 12px; border-top: 1px solid rgba(255,255,255,0.06);">Powered by Claude</div>
-  </div>
   </main>
 
   <!-- Feed -->
@@ -717,6 +687,38 @@
     <span class="feed-label">Intelligence Feed</span>
     <div class="feed-ticker"><div class="feed-ticker-track"></div></div>
   </footer>
+  <!-- MATERIAL ANALYST -->
+  <div class="analyst-trigger" title="Material Analyst">
+    <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="analyst-dot"></span>
+  </div>
+
+  <div class="analyst-panel">
+    <div class="analyst-panel-header">
+      <div class="analyst-panel-avatar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
+      </div>
+      <span class="analyst-panel-title">Material Analyst<small>Context-aware intelligence</small></span>
+      <button class="analyst-panel-close">&times;</button>
+    </div>
+    <div class="analyst-mode-toggle">
+      <button class="mode-btn active" data-mode="guide">Ask</button>
+      <button class="mode-btn" data-mode="guardian">Explore</button>
+    </div>
+    <div class="analyst-panel-messages"></div>
+    <div class="analyst-panel-suggestions"></div>
+    <div class="analyst-panel-input">
+      <input type="text" placeholder="Ask about drivers, opportunities, strategy...">
+      <button>Send</button>
+    </div>
+    <div class="analyst-panel-footer">
+      <span>M+ Intelligence Engine</span>
+      <span>Guided Analysis</span>
+    </div>
+  </div>
+
 
   <script src="js/analyst-llm.js"></script>
   <script src="js/app.js"></script>
