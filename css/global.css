@@ -930,7 +930,7 @@ svg {
 /* Absolute-positioned children containment */
 [class*="card"],
 [class*="scene"],
-[class*="panel"],
+[class*="panel"]:not(.analyst-panel),
 [class*="section"] {
   position: relative;
   overflow: hidden;
