@@ -41,7 +41,16 @@ img { max-width: 100%; display: block; }
 }
 /* Pages without a feed — let content take full height */
 .app:not(:has(.app-feed)) {
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr !important;
+}
+/* Analyst positioning on no-feed pages */
+.app:not(:has(.app-feed)) ~ .analyst-trigger,
+body:not(:has(.app-feed)) .analyst-trigger {
+  bottom: var(--space-lg) !important;
+}
+.app:not(:has(.app-feed)) ~ .analyst-panel,
+body:not(:has(.app-feed)) .analyst-panel {
+  bottom: var(--space-lg) !important;
 }
 
 /* ═══════════════════════════════════════════════
