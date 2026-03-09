@@ -2883,12 +2883,11 @@
           el.classList.toggle('active', el.dataset.mode === mode);
         });
 
-        // Hide wizard stepper + scenario selector for modes with direct content
-        // (Brand Sim, Insight/Nearsight, Fidelity LIVE have their own controls)
+        // Modes that don't use the shared wizard stepper
+        const hideWizardModes = ['brand-sim', 'insight', 'signal-nexus'];
         const wizard = document.querySelector('.scenario-wizard-steps');
         const selector = document.getElementById('scenario-selector');
         const confidence = document.querySelector('.simulation-confidence');
-        const hideWizardModes = ['brand-sim', 'insight', 'signal-nexus'];
         if (hideWizardModes.includes(mode)) {
           if (wizard) wizard.style.display = 'none';
           if (selector) selector.style.display = 'none';
@@ -2897,6 +2896,13 @@
           if (wizard) wizard.style.display = '';
           if (selector) selector.style.display = '';
           if (confidence) confidence.style.display = '';
+        }
+
+        // Reset wizard step based on mode
+        if (mode === 'wargame') {
+          updateWizardStep(1); // Start at Choose Scenario
+        } else if (mode === 'focus-group') {
+          updateWizardStep(2); // Start at Configure
         }
 
         // Reset scenario if switching to wargame
@@ -2935,8 +2941,10 @@
 
         const scenario = card.dataset.scenario;
         this.currentScenario = scenario;
+        updateWizardStep(2); // Configure step
         this.showStrategicOutput(scenario);
         this.runSimulationForScenario(scenario);
+        updateWizardStep(3); // Running simulation
       },
 
       showStrategicOutput(scenario) {
@@ -3401,13 +3409,20 @@
 
           this.ctx.globalAlpha = 1;
 
-          // Label at end
+          // Label at end — flip alignment if label would clip past right edge
           if (points.length > 0) {
             const lastPoint = points[points.length - 1];
+            const label = brand.split('.')[0];
+            const labelWidth = label.length * 7;
             this.ctx.fillStyle = color;
-            this.ctx.font = '12px "JetBrains Mono", monospace';
-            this.ctx.textAlign = 'left';
-            this.ctx.fillText(brand.split('.')[0], lastPoint.x + 8, lastPoint.y + 4);
+            this.ctx.font = '11px "JetBrains Mono", monospace';
+            if (lastPoint.x + 8 + labelWidth > width - padding) {
+              this.ctx.textAlign = 'right';
+              this.ctx.fillText(label, lastPoint.x - 8, lastPoint.y + 4);
+            } else {
+              this.ctx.textAlign = 'left';
+              this.ctx.fillText(label, lastPoint.x + 8, lastPoint.y + 4);
+            }
           }
         });
 
@@ -3430,6 +3445,21 @@
         this.ctx.rotate(-Math.PI / 2);
         this.ctx.fillText('Brand Share', 0, 0);
         this.ctx.restore();
+
+        // Legend — top-right corner
+        const legendX = width - padding - 180;
+        const legendY = padding + 8;
+        const lineH = 16;
+        this.ctx.font = '10px "JetBrains Mono", monospace';
+        this.ctx.textAlign = 'left';
+        this.brands.slice(0, 6).forEach((brand, idx) => {
+          const color = brand === 'Stayworthy' ? '#745AFF' : colors[idx];
+          const y = legendY + idx * lineH;
+          this.ctx.fillStyle = color;
+          this.ctx.fillRect(legendX, y - 4, 12, 3);
+          this.ctx.fillStyle = 'rgba(255,255,255,0.6)';
+          this.ctx.fillText(brand, legendX + 18, y);
+        });
       }
     }
 
@@ -4284,6 +4314,18 @@
     })();
 
     /* ═══════════════════════════════════════════════════════════
+       WIZARD STEP SYNC — Updates the 4-step wizard stepper UI
+       ═══════════════════════════════════════════════════════════ */
+
+    function updateWizardStep(stepNum) {
+      document.querySelectorAll('.wizard-step').forEach((el, idx) => {
+        el.classList.remove('active', 'complete');
+        if (idx < stepNum - 1) el.classList.add('complete');
+        if (idx === stepNum - 1) el.classList.add('active');
+      });
+    }
+
+    /* ═══════════════════════════════════════════════════════════
        STEPPER FUNCTIONALITY - Configure → Run → Results
        ═══════════════════════════════════════════════════════════ */
 
@@ -4299,7 +4341,11 @@
         const nextStep = steps[currentIdx + 1];
         BIE.scenarioState[mode] = { step: nextStep };
         showStep(mode, nextStep);
-        
+
+        // Sync wizard stepper with step progression
+        const wizardMap = { 'configure': 2, 'run': 3, 'results': 4 };
+        if (wizardMap[nextStep]) updateWizardStep(wizardMap[nextStep]);
+
         // Auto-run simulation on Run step
         if (nextStep === 'run') {
           runSimulation(mode);
@@ -4345,7 +4391,8 @@
             BIE.scenarioState['focus-group'] = { step: 'results' };
             document.getElementById('fg-results-count').textContent = totalCount;
             showStep('focus-group', 'results');
-          }, 500);
+            updateWizardStep(4); // Results step
+          }, 3000);
         }
         progressCount.textContent = Math.min(current, totalCount);
         progressBar.style.width = (current / totalCount) * 100 + '%';
