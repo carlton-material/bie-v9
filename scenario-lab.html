@@ -2457,6 +2457,7 @@
           <div class="simulation-header">
             <label class="simulation-label">Agent-Based Market Simulation</label>
             <h3 class="simulation-title">Brand Share Evolution Under Scenario</h3>
+            <div id="wg-scenario-label" style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px;"></div>
           </div>
 
           <div class="glass-box-panel" style="margin-bottom: 32px;">
@@ -2855,7 +2856,10 @@
         const activeBtn = document.querySelector(`.scenario-mode-btn[data-mode="${mode}"]`);
         const triggerLabel = document.getElementById('mode-trigger-label');
         const dropdown = document.getElementById('mode-dropdown');
-        if (activeBtn && triggerLabel) triggerLabel.textContent = activeBtn.textContent;
+        if (activeBtn && triggerLabel) {
+          const nameOnly = activeBtn.childNodes[0]?.textContent?.trim() || activeBtn.textContent.split('\n')[0].trim();
+          triggerLabel.textContent = nameOnly;
+        }
         if (dropdown) dropdown.classList.remove('open');
 
         // Show/hide modes
@@ -2941,16 +2945,11 @@
         updateWizardStep(2);
         this.showStrategicOutput(scenario);
 
-        // Step 2 → 3 (Simulate): Run simulation after a beat
+        // Step 2 → 3 (Simulate): Run simulation after analysis loads
         setTimeout(() => {
           updateWizardStep(3);
           this.runSimulationForScenario(scenario);
-        }, 1500);
-
-        // Step 3 → 4 (Results): Mark complete when simulation settles
-        setTimeout(() => {
-          updateWizardStep(4);
-        }, 5000);
+        }, 2000);
       },
 
       showStrategicOutput(scenario) {
@@ -3032,6 +3031,15 @@
       },
 
       runSimulationForScenario(scenario) {
+        // Set scenario label
+        const labels = {
+          regulatory: 'Simulating: 2027 Regulatory Wave · Trust Recovery preset',
+          'ai-concierge': 'Simulating: 2029 AI Concierge Era · AI Innovation preset',
+          decentralized: 'Simulating: 2031 Decentralized Travel · Baseline preset'
+        };
+        const labelEl = document.getElementById('wg-scenario-label');
+        if (labelEl) labelEl.textContent = labels[scenario] || '';
+
         // Auto-select appropriate preset
         const presets = {
           regulatory: 'trust',
@@ -3255,6 +3263,7 @@
         if (!this.playing || this.iteration >= this.maxIterations) {
           this.playing = false;
           this.updateUI();
+          if (typeof updateWizardStep === 'function') updateWizardStep(4);
           return;
         }
 
