@@ -84,7 +84,7 @@
   --font-grotesk: var(--font-display);
 
   /* ── Confidence Halos (Glass Box principle) ── */
-  --confidence-high: rgba(52,211,153,0.3);
+  --confidence-high: rgba(129,140,248,0.25);
   --confidence-medium: rgba(245,158,11,0.2);
   --confidence-low: rgba(235,87,87,0.15);
 
