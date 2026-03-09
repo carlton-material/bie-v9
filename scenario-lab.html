@@ -1802,6 +1802,7 @@
     .mode-brand-sim { display: none; }
     .mode-brand-sim.active { display: block; }
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1">
 </head>
 <body data-page="scenario-lab" class="app">
   <nav class="nav">
@@ -1814,22 +1815,25 @@
     <div class="nav-confidential">Confidential · Internal Use Only</div>
     <div class="nav-section">
       <div class="nav-section-label">Foundation</div>
-      <a href="index.html" class="nav-item" data-page="strategic-brief"><span class="nav-item-icon">◇</span> Strategic Brief</a>
-      <a href="day-in-the-life.html" class="nav-item" data-page="day-in-the-life"><span class="nav-item-icon">◉</span> Day in the Life</a>
+      <a href="index.html" class="nav-item" data-page="strategic-brief"><span class="nav-item-icon"><i class="ph ph-diamond"></i></span> Strategic Brief</a>
+      <a href="day-in-the-life.html" class="nav-item" data-page="day-in-the-life"><span class="nav-item-icon"><i class="ph ph-sun-horizon"></i></span> Day in the Life</a>
     </div>
     <div class="nav-section">
       <div class="nav-section-label">Methodology</div>
-      <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon">◈</span> How It Works</a>
+      <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon"><i class="ph ph-gear-six"></i></span> How It Works</a>
+        <a href="brand-fidelity.html" class="nav-item" data-page="brand-fidelity">
+          <span class="nav-item-icon"><i class="ph ph-flower-lotus"></i></span> Brand Fidelity
+        </a>
     </div>
     <div class="nav-section">
       <div class="nav-section-label">Intelligence</div>
-      <a href="command-center.html" class="nav-item" data-page="command-center"><span class="nav-item-icon">▣</span> Command Center</a>
-      <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal"><span class="nav-item-icon">▤</span> Signal Terminal</a>
-      <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis"><span class="nav-item-icon">▥</span> Guided Analysis</a>
+      <a href="command-center.html" class="nav-item" data-page="command-center"><span class="nav-item-icon"><i class="ph ph-squares-four"></i></span> Command Center</a>
+      <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal"><span class="nav-item-icon"><i class="ph ph-terminal"></i></span> Signal Terminal</a>
+      <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis"><span class="nav-item-icon"><i class="ph ph-chat-centered-text"></i></span> Guided Analysis</a>
     </div>
     <div class="nav-section">
       <div class="nav-section-label">Simulation</div>
-      <a href="scenario-lab.html" class="nav-item active" data-page="scenario-lab"><span class="nav-item-icon">◬</span> Scenario Lab</a>
+      <a href="scenario-lab.html" class="nav-item active" data-page="scenario-lab"><span class="nav-item-icon"><i class="ph ph-flask"></i></span> Scenario Lab</a>
     </div>
     <div class="nav-pulse">
       <div class="nav-pulse-bar"></div>
@@ -2459,21 +2463,21 @@
           <!-- LEFT: Signal Layers -->
           <div class="nexus-signals">
             <div class="nexus-signal-card active" data-signal="human" onclick="SignalNexus.selectSignal('human')">
-              <div class="nexus-signal-icon">◈</div>
+              <div class="nexus-signal-icon"><i class="ph ph-gear-six"></i></div>
               <div class="nexus-signal-name">Human-Expressive</div>
               <div class="nexus-signal-score">312</div>
               <div class="nexus-signal-delta negative">▼ 3.2% vs last period</div>
             </div>
 
             <div class="nexus-signal-card" data-signal="behavioral" onclick="SignalNexus.selectSignal('behavioral')">
-              <div class="nexus-signal-icon">▣</div>
+              <div class="nexus-signal-icon"><i class="ph ph-squares-four"></i></div>
               <div class="nexus-signal-name">Behavioral</div>
               <div class="nexus-signal-score">298</div>
               <div class="nexus-signal-delta positive">▲ 1.8% vs last period</div>
             </div>
 
             <div class="nexus-signal-card" data-signal="cultural" onclick="SignalNexus.selectSignal('cultural')">
-              <div class="nexus-signal-icon">◬</div>
+              <div class="nexus-signal-icon"><i class="ph ph-flask"></i></div>
               <div class="nexus-signal-name">Cultural</div>
               <div class="nexus-signal-score">237</div>
               <div class="nexus-signal-delta positive">▲ 5.1% vs last period</div>
