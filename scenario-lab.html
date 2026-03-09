@@ -2507,10 +2507,12 @@
             </select>
           </div>
 
-          <!-- Canvas Visualization -->
-          <div class="canvas-container">
-            <canvas id="simulation-canvas" width="1000" height="400"></canvas>
+          <!-- Chart.js Visualization -->
+          <div class="canvas-container" style="position: relative; height: 400px; margin-bottom: 16px;">
+            <canvas id="wargame-chart"></canvas>
           </div>
+          <!-- Hidden ABM canvas for raw data (used internally) -->
+          <canvas id="simulation-canvas" width="1000" height="400" style="display:none;"></canvas>
 
           <!-- Tier Participation Meters -->
           <div class="tier-meters">
@@ -2927,11 +2929,11 @@
       initScenarioCards() {
         const cards = document.querySelectorAll('.scenario-card');
         cards.forEach(card => {
-          card.addEventListener('click', () => this.selectScenario(card));
+          card.addEventListener('click', () => this.selectWarGameScenario(card));
         });
       },
 
-      selectScenario(card) {
+      selectWarGameScenario(card) {
         // Toggle selection
         document.querySelectorAll('.scenario-card').forEach(c => {
           c.classList.remove('selected');
@@ -2944,6 +2946,10 @@
         // Step 1 → 2 (Analyze): Show strategic output first
         updateWizardStep(2);
         this.showStrategicOutput(scenario);
+
+        // Scroll to strategic output
+        const outputEl = document.getElementById('strategic-output');
+        if (outputEl) outputEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
         // Step 2 → 3 (Simulate): Run simulation after analysis loads
         setTimeout(() => {
@@ -3191,6 +3197,12 @@
         this.playing = false;
         this.history = [];
 
+        // Destroy existing chart so it's rebuilt fresh
+        if (this.chart) {
+          this.chart.destroy();
+          this.chart = null;
+        }
+
         // Initialize history with starting shares
         const initial = { iteration: 0, shares: { ...this.shares }, totalActive: this.getTotalActive() };
         this.history.push(initial);
@@ -3373,108 +3385,101 @@
         });
       }
 
-      drawCanvas() {
-        const width = this.canvas.width;
-        const height = this.canvas.height;
-        const padding = 40;
-        const graphWidth = width - 2 * padding;
-        const graphHeight = height - 2 * padding;
+      initChart() {
+        const chartCanvas = document.getElementById('wargame-chart');
+        if (!chartCanvas || this.chart) return;
 
-        // Clear
-        this.ctx.fillStyle = '#0a0a0a';
-        this.ctx.fillRect(0, 0, width, height);
+        const brandColors = {
+          'Airbnb': '#818cf8',
+          'Vrbo': '#34d399',
+          'Stayworthy': '#745AFF',
+          'Booking.com': '#f59e0b',
+          'Marriott': '#ec4899',
+          'Hilton': '#8b5cf6',
+          'Plum Guide': '#06b6d4',
+          'Hopper': '#14b8a6',
+          'Vacasa': '#f97316',
+          'Inspirato': '#6366f1'
+        };
 
-        if (this.history.length < 2) return;
+        const datasets = this.brands.map(brand => ({
+          label: brand,
+          data: [],
+          borderColor: brandColors[brand] || '#666',
+          borderWidth: brand === 'Stayworthy' ? 3 : 1.5,
+          pointRadius: 0,
+          tension: 0.3,
+          borderDash: brand === 'Stayworthy' ? [] : [],
+          hidden: false,
+          order: brand === 'Stayworthy' ? 0 : 1
+        }));
 
-        // Draw grid
-        this.ctx.strokeStyle = 'rgba(255,255,255,0.05)';
-        this.ctx.lineWidth = 1;
-        for (let i = 0; i <= 5; i++) {
-          const y = padding + (i / 5) * graphHeight;
-          this.ctx.beginPath();
-          this.ctx.moveTo(padding, y);
-          this.ctx.lineTo(width - padding, y);
-          this.ctx.stroke();
-        }
-
-        // Draw 10 brand lines
-        const colors = [
-          '#818cf8', '#34d399', '#f59e0b', '#745AFF', // Stayworthy is #745AFF (brand purple)
-          '#ec4899', '#8b5cf6', '#06b6d4', '#14b8a6', '#f97316', '#6366f1'
-        ];
-
-        this.brands.forEach((brand, idx) => {
-          const color = brand === 'Stayworthy' ? '#745AFF' : colors[idx];
-          const points = this.history.map((h, i) => ({
-            x: padding + (i / Math.max(this.history.length - 1, 1)) * graphWidth,
-            y: padding + graphHeight - (h.shares[brand] || 0) * graphHeight / 0.3
-          }));
-
-          // Draw line
-          this.ctx.strokeStyle = color;
-          this.ctx.lineWidth = brand === 'Stayworthy' ? 3 : 1.5;
-          this.ctx.globalAlpha = brand === 'Stayworthy' ? 1 : 0.6;
-
-          this.ctx.beginPath();
-          points.forEach((p, i) => {
-            if (i === 0) this.ctx.moveTo(p.x, Math.min(Math.max(p.y, padding), height - padding));
-            else this.ctx.lineTo(p.x, Math.min(Math.max(p.y, padding), height - padding));
-          });
-          this.ctx.stroke();
-
-          this.ctx.globalAlpha = 1;
-
-          // Label at end — flip alignment if label would clip past right edge
-          if (points.length > 0) {
-            const lastPoint = points[points.length - 1];
-            const label = brand.split('.')[0];
-            const labelWidth = label.length * 7;
-            this.ctx.fillStyle = color;
-            this.ctx.font = '11px "JetBrains Mono", monospace';
-            if (lastPoint.x + 8 + labelWidth > width - padding) {
-              this.ctx.textAlign = 'right';
-              this.ctx.fillText(label, lastPoint.x - 8, lastPoint.y + 4);
-            } else {
-              this.ctx.textAlign = 'left';
-              this.ctx.fillText(label, lastPoint.x + 8, lastPoint.y + 4);
+        this.chart = new Chart(chartCanvas.getContext('2d'), {
+          type: 'line',
+          data: { labels: [], datasets },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: false,
+            interaction: { mode: 'nearest', axis: 'x', intersect: false },
+            plugins: {
+              legend: {
+                display: true,
+                position: 'bottom',
+                labels: {
+                  color: 'rgba(255,255,255,0.6)',
+                  font: { family: '"JetBrains Mono", monospace', size: 10 },
+                  boxWidth: 20,
+                  boxHeight: 2,
+                  padding: 12,
+                  usePointStyle: false
+                }
+              },
+              tooltip: {
+                backgroundColor: 'rgba(10,10,10,0.95)',
+                borderColor: 'rgba(255,255,255,0.1)',
+                borderWidth: 1,
+                titleFont: { family: '"JetBrains Mono", monospace', size: 11 },
+                bodyFont: { family: '"JetBrains Mono", monospace', size: 10 },
+                titleColor: 'rgba(255,255,255,0.9)',
+                bodyColor: 'rgba(255,255,255,0.7)',
+                callbacks: {
+                  label: (ctx) => `${ctx.dataset.label}: ${(ctx.parsed.y * 100).toFixed(1)}%`
+                }
+              }
+            },
+            scales: {
+              x: {
+                title: { display: true, text: 'Iteration', color: 'rgba(255,255,255,0.4)', font: { family: '"JetBrains Mono", monospace', size: 11 } },
+                ticks: { color: 'rgba(255,255,255,0.3)', font: { family: '"JetBrains Mono", monospace', size: 10 }, maxTicksLimit: 10 },
+                grid: { color: 'rgba(255,255,255,0.04)' }
+              },
+              y: {
+                title: { display: true, text: 'Brand Share', color: 'rgba(255,255,255,0.4)', font: { family: '"JetBrains Mono", monospace', size: 11 } },
+                ticks: {
+                  color: 'rgba(255,255,255,0.3)',
+                  font: { family: '"JetBrains Mono", monospace', size: 10 },
+                  callback: (v) => (v * 100).toFixed(0) + '%'
+                },
+                grid: { color: 'rgba(255,255,255,0.04)' },
+                min: 0,
+                max: 0.3
+              }
             }
           }
         });
+      }
 
-        // Axes
-        this.ctx.strokeStyle = 'rgba(255,255,255,0.2)';
-        this.ctx.lineWidth = 1;
-        this.ctx.beginPath();
-        this.ctx.moveTo(padding, padding);
-        this.ctx.lineTo(padding, height - padding);
-        this.ctx.lineTo(width - padding, height - padding);
-        this.ctx.stroke();
+      drawCanvas() {
+        if (!this.chart) this.initChart();
+        if (!this.chart || this.history.length < 1) return;
 
-        // Labels
-        this.ctx.fillStyle = 'rgba(255,255,255,0.5)';
-        this.ctx.font = '11px "JetBrains Mono", monospace';
-        this.ctx.textAlign = 'center';
-        this.ctx.fillText('Iterations', width / 2, height - 10);
-        this.ctx.save();
-        this.ctx.translate(15, height / 2);
-        this.ctx.rotate(-Math.PI / 2);
-        this.ctx.fillText('Brand Share', 0, 0);
-        this.ctx.restore();
-
-        // Legend — top-right corner
-        const legendX = width - padding - 180;
-        const legendY = padding + 8;
-        const lineH = 16;
-        this.ctx.font = '10px "JetBrains Mono", monospace';
-        this.ctx.textAlign = 'left';
-        this.brands.slice(0, 6).forEach((brand, idx) => {
-          const color = brand === 'Stayworthy' ? '#745AFF' : colors[idx];
-          const y = legendY + idx * lineH;
-          this.ctx.fillStyle = color;
-          this.ctx.fillRect(legendX, y - 4, 12, 3);
-          this.ctx.fillStyle = 'rgba(255,255,255,0.6)';
-          this.ctx.fillText(brand, legendX + 18, y);
+        // Update Chart.js data
+        this.chart.data.labels = this.history.map((_, i) => i);
+        this.brands.forEach((brand, idx) => {
+          this.chart.data.datasets[idx].data = this.history.map(h => h.shares[brand] || 0);
         });
+        this.chart.update('none'); // 'none' = no animation for real-time updates
       }
     }
 
@@ -3509,9 +3514,9 @@
         const segmentSelector = document.getElementById('segment-selector');
         const topicSelector = document.getElementById('topic-selector');
 
-        runBtn.addEventListener('click', () => this.runSession());
-        segmentSelector.addEventListener('change', () => this.updateSession());
-        topicSelector.addEventListener('change', () => this.updateSession());
+        if (runBtn) runBtn.addEventListener('click', () => this.runSession());
+        if (segmentSelector) segmentSelector.addEventListener('change', () => this.updateSession());
+        if (topicSelector) topicSelector.addEventListener('change', () => this.updateSession());
       },
 
       runSession() {
