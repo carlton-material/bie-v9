@@ -1199,6 +1199,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
       });
 
       document.getElementById('question-text').innerHTML = b.question;
+      document.getElementById('brief-glass-text').innerHTML = b.glass || 'M+ Brand Fidelity Report 2026 · N=24,000 respondents · Travel Category · Confidence: HIGH · Survey Period: Feb 15–Mar 4, 2026';
       setState(STATE.OUTPUT);
       window.scrollTo(0, 0);
     }
@@ -1215,7 +1216,8 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             { title: 'Launch "Remember You" Personalization', description: ' Deploy ML-driven destination and property recommendations for logged-in users based on past stays and saved preferences. Messaging focus on "travel that fits you." Target: 60 days.' },
             { title: 'Establish "Stayworthy Promise" Trust Program', description: ' Offer flexible cancellation, 24/7 support guarantee, satisfaction-back money guarantee. Market heavily in Gen Z and Millennial channels. Rebuild Dependable from behavioral level up. Target: ongoing.' }
           ],
-          question: `If we rebuild Dependable and Personal by fixing the pricing and personalization experience, how do we measure success? Is repeat booking rate recovery to 38%+ within 90 days sufficient, or do we need Salient momentum to also turn positive?`
+          question: `If we rebuild Dependable and Personal by fixing the pricing and personalization experience, how do we measure success? Is repeat booking rate recovery to 38%+ within 90 days sufficient, or do we need Salient momentum to also turn positive?`,
+          glass: 'M+ Brand Fidelity Report 2026 · N=24,000 respondents · Travel Category · 6 Drivers (User Friendly, Personal, Accessible, Dependable, Meaningful, Salient) · Confidence: HIGH · Survey Period: Feb 15–Mar 4, 2026'
         };
       } else if (selectedDimension === 'competitive') {
         return {
@@ -1228,7 +1230,8 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             { title: 'Audacious Speed Campaign: "Book in 30 Seconds"', description: ' Redesign funnel for mobile-first, single-tap saved preferences, one-click pay. Compare load times and conversion vs Booking. Market the speed advantage. Target: 60 days.' },
             { title: 'Influencer Takeover Series: "How I Travel"', description: ' Partner with micro-influencers (10k–100k followers) across segments (budget, luxury, family). Each week, different influencer curates their Stayworthy collection. Drives Salient. Target: ongoing.' }
           ],
-          question: `If we successfully own the "personalization + ease" positioning (vs Booking's generic + easy), can we justify a 2–3 point Brand Fidelity premium within 120 days, or is this a longer play requiring market education?`
+          question: `If we successfully own the "personalization + ease" positioning (vs Booking's generic + easy), can we justify a 2–3 point Brand Fidelity premium within 120 days, or is this a longer play requiring market education?`,
+          glass: 'M+ Competitive Intelligence Report 2026 · Stayworthy (72) vs Booking.com (74), Marriott Homes (71), Vrbo (68), Airbnb (68.9) · SimilarWeb Traffic · Brandwatch Sentiment · Confidence: HIGH · Period: Rolling 90 days'
         };
       } else if (selectedDimension === 'segments') {
         return {
@@ -1241,9 +1244,10 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             { title: 'Millennial Win-Back Campaign', description: ' Email/SMS outreach to lapsed Millennial users (last booking 6+ months ago) with 20% discount, personalized recommendations, and loyalty-path clarity. Measure recovery rate weekly. Target: 14 days launch, 90-day assess.' },
             { title: 'Gen X Experience Design: "Curated Stays for Discerning Travelers"', description: ' Develop property collections, packages, and concierge services targeting Gen X motivations. Partner with local experiences (wine, culture, wellness). Premium positioning. Target: 90 days.' }
           ],
-          question: `Is the org ready to acknowledge that Gen Z growth is a channel, not a strategy? If we pivot to Gen X profitability + Millennial retention, can leadership accept slower headline growth for stronger unit economics?`
+          question: `Is the org ready to acknowledge that Gen Z growth is a channel, not a strategy? If we pivot to Gen X profitability + Millennial retention, can leadership accept slower headline growth for stronger unit economics?`,
+          glass: 'M+ Audience Segmentation Study 2026 · N=8,400 (Gen Z 2,100 / Millennial 3,200 / Gen X 1,800 / Boomer 1,300) · Panel + Behavioral Log Data · Confidence: HIGH · Survey Period: Jan 8–Feb 28, 2026'
         };
-      } else {
+      } else if (selectedDimension === 'sentiment') {
         return {
           diagnostic: `<strong>Critical Trust Divergence:</strong> Expressive sentiment (what customers say) declined 78 to 45 over 30 days; worrying but slow. Behavioral sentiment (what they do) collapsed 81 to 20; crisis-level. This 25-point gap is the signal: <em>people like Stayworthy in theory but are booking competitors in practice.</em> The timing and magnitude of behavioral drop (steepest between days 8-14) correlates with the pricing transparency issue reported in Feb. Expressive-behavioral gaps of this magnitude typically precede churn.`,
           attack: `<strong>Offensive Play: Radical Price Transparency + Trust Repair</strong><br>The behavioral collapse is anchored to the checkout experience. Attack by removing the pricing surprise: show all-in cost upfront, no hidden fees, no surprise surcharges. Broadcast this change loudly: "We ended surprise fees; see what you'll pay upfront." Pair with a customer apology campaign for past friction: credits for recent bookers affected by opaque pricing. This move targets the behavioral signal directly and is the most credible trust-repair action available.`,
@@ -1254,7 +1258,8 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             { title: 'Launch "We Fixed It" Campaign', description: ' Apologize to customers burned by opaque pricing in past 90 days. Offer $25 credits, emphasize the change, share before-and-after pricing examples. Rebuild trust through honesty. Target email: all customers in last 90 days.' },
             { title: 'Customer Stories: Authentic Traveler Testimonial Series', description: ' Showcase real customer journeys, motivations, and experiences. Video interviews with repeat guests from all segments. Boost across social and brand channels. Defend Salient and build expressive credibility. Target: 60-day content calendar.' }
           ],
-          question: `If we fix pricing transparency and see behavioral signals recover to 50+ within 60 days, what's the next trust lever to pull? Is this a technology/UX problem, a customer service problem, or deeper brand perception issue?`
+          question: `If we fix pricing transparency and see behavioral signals recover to 50+ within 60 days, what's the next trust lever to pull? Is this a technology/UX problem, a customer service problem, or deeper brand perception issue?`,
+          glass: 'M+ Sentiment Intelligence Pipeline · Expressive: Brandwatch + TripAdvisor + Reddit NLP (N=47,000 mentions) · Behavioral: Clickstream + Booking Funnel + Repeat Rate · 30-Day Rolling Window · Confidence: HIGH · Correlation: r=0.84'
         };
       }
     }
