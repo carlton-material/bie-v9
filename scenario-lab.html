@@ -111,6 +111,34 @@
       }
     }
 
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #ef4444;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      margin-right: 6px;
+    }
+
+    @keyframes shimmer {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    @keyframes sweep {
+      0% {
+        background-position: -1000px 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
     .scenario-headline {
       font-family: var(--font-display);
       font-size: 2.5rem;
@@ -300,6 +328,83 @@
     .scenario-selector {
       margin-bottom: var(--space-2xl);
       padding: 0 var(--space-xl);
+    }
+
+    /* Dropdown Scenario Chooser */
+    .scenario-chooser {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      margin-bottom: var(--space-2xl);
+      padding: var(--space-xl);
+      max-width: 500px;
+    }
+
+    .chooser-label {
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .scenario-dropdown {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.3);
+      color: var(--text-primary);
+      border: 1px solid rgba(129, 140, 248, 0.4);
+      border-radius: 8px;
+      width: 100%;
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-out);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(255,255,255,0.6)' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+
+    .scenario-dropdown:hover {
+      border-color: #818cf8;
+      background-color: rgba(129, 140, 248, 0.1);
+    }
+
+    .scenario-dropdown:focus {
+      outline: none;
+      border-color: #818cf8;
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.1);
+    }
+
+    .scenario-dropdown option {
+      background: #030303;
+      color: var(--text-primary);
+      padding: 10px;
+    }
+
+    .begin-analysis-btn {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 600;
+      padding: 14px 20px;
+      background: #818cf8;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-out);
+      letter-spacing: 0.02em;
+    }
+
+    .begin-analysis-btn:hover {
+      background: #a5b4fc;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(129, 140, 248, 0.3);
+    }
+
+    .begin-analysis-btn:active {
+      transform: translateY(0);
     }
 
     .scenario-select-card {
@@ -1489,11 +1594,24 @@
 
     /* ═══════════════════════════════════════════════════════════
        MODE 4: SIGNAL NEXUS - Multi-Signal Intelligence View
-       Inspired by Proto04 Signal Nexus + Rare Volume
+       Inspired by Proto04 Fidelity LIVE + Rare Volume
        ═══════════════════════════════════════════════════════════ */
 
-    .mode-signal-nexus { display: none; }
-    .mode-signal-nexus.active { display: block; }
+    .mode-signal-nexus {
+      display: none;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(239, 68, 68, 0.05) 50%,
+        transparent 100%
+      );
+      background-size: 1000px 100%;
+      animation: sweep 8s linear infinite;
+    }
+    .mode-signal-nexus.active {
+      display: block;
+      animation: sweep 8s linear infinite;
+    }
 
     .nexus-layout {
       display: grid;
@@ -1954,7 +2072,7 @@
           <button class="scenario-mode-btn active" data-mode="insight">Insight / Nearsight</button>
           <button class="scenario-mode-btn" data-mode="wargame">War Gaming / Foresight</button>
           <button class="scenario-mode-btn" data-mode="focus-group">Virtual Focus Group</button>
-          <button class="scenario-mode-btn" data-mode="signal-nexus">Signal Nexus</button>
+          <button class="scenario-mode-btn" data-mode="signal-nexus"><span class="live-dot"></span>Fidelity LIVE</button>
           <button class="scenario-mode-btn" data-mode="brand-sim">Strategic Scenario Lab</button>
         </div>
       </div>
@@ -1984,51 +2102,17 @@
     </div>
 
     <!-- Scenario Selector Panel -->
-    <div class="scenario-selector" id="scenario-selector">
-      <h3 style="color: rgba(255,255,255,0.5); font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: var(--space-lg);">Select an Analysis Type</h3>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-lg);">
-
-        <div class="scenario-select-card" data-scenario="insight" onclick="BIE.selectScenario('insight')">
-          <div style="font-size: var(--text-lg); font-family: var(--font-display); color: var(--text-primary); margin-bottom: var(--space-sm);">Insight / Nearsight</div>
-          <div style="color: var(--text-secondary); font-size: var(--text-small); margin-bottom: var(--space-md);">Conversion funnel analysis — where are we losing them and why?</div>
-          <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
-            <span class="scenario-tag">Funnel Drop-off</span>
-            <span class="scenario-tag">Friction Analysis</span>
-            <span class="scenario-tag">Opportunity Sizing</span>
-          </div>
-        </div>
-
-        <div class="scenario-select-card" data-scenario="wargame" onclick="BIE.selectScenario('wargame')">
-          <div style="font-size: var(--text-lg); font-family: var(--font-display); color: var(--text-primary); margin-bottom: var(--space-sm);">War Gaming / Foresight</div>
-          <div style="color: var(--text-secondary); font-size: var(--text-small); margin-bottom: var(--space-md);">Scenario planning — what futures should we prepare for?</div>
-          <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
-            <span class="scenario-tag">Regulatory Wave 2027</span>
-            <span class="scenario-tag">AI Concierge Era</span>
-            <span class="scenario-tag">Decentralized Travel</span>
-          </div>
-        </div>
-
-        <div class="scenario-select-card" data-scenario="focus-group" onclick="BIE.selectScenario('focus-group')">
-          <div style="font-size: var(--text-lg); font-family: var(--font-display); color: var(--text-primary); margin-bottom: var(--space-sm);">Virtual Focus Group</div>
-          <div style="color: var(--text-secondary); font-size: var(--text-small); margin-bottom: var(--space-md);">Synthetic respondents — what do real travelers think?</div>
-          <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
-            <span class="scenario-tag">Segment Deep Dive</span>
-            <span class="scenario-tag">Sentiment Analysis</span>
-            <span class="scenario-tag">Theme Extraction</span>
-          </div>
-        </div>
-
-        <div class="scenario-select-card" data-scenario="signal-nexus" onclick="BIE.selectScenario('signal-nexus')">
-          <div style="font-size: var(--text-lg); font-family: var(--font-display); color: var(--text-primary); margin-bottom: var(--space-sm);">Signal Nexus</div>
-          <div style="color: var(--text-secondary); font-size: var(--text-small); margin-bottom: var(--space-md);">Multi-signal convergence — how signals connect to intelligence.</div>
-          <div style="display: flex; gap: var(--space-xs); flex-wrap: wrap;">
-            <span class="scenario-tag">Cross-Signal</span>
-            <span class="scenario-tag">Convergence Map</span>
-            <span class="scenario-tag">Driver Impact</span>
-          </div>
-        </div>
-
-      </div>
+    <div class="scenario-chooser" id="scenario-selector">
+      <label class="chooser-label">Select your analysis type</label>
+      <select class="scenario-dropdown" id="scenario-dropdown">
+        <option value="" disabled selected>Choose a scenario...</option>
+        <option value="insight">Insight / Nearsight — Conversion funnel analysis</option>
+        <option value="wargame">War Gaming / Foresight — Scenario planning</option>
+        <option value="focus-group">Virtual Focus Group — Synthetic respondents</option>
+        <option value="fidelity-live">Fidelity LIVE — Real-time signal convergence</option>
+        <option value="brand-sim">Strategic Scenario Lab — Full simulation</option>
+      </select>
+      <button class="begin-analysis-btn" onclick="BIE.startSelectedScenario()">Begin Analysis →</button>
     </div>
 
     <div class="scenario-content">
@@ -2481,7 +2565,7 @@
            MODE 4: SIGNAL NEXUS
            ══════════════════════════════════════════════════════════ -->
       <div class="scenario-mode mode-signal-nexus" data-mode="signal-nexus">
-        <div class="scenario-mode-label">Signal Nexus · Multi-Signal Intelligence</div>
+        <div class="scenario-mode-label">Fidelity LIVE · Multi-Signal Intelligence</div>
         <h2 class="scenario-mode-headline" style="font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--text-primary); margin-bottom: 16px;">How Signals Converge Into Intelligence</h2>
         <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Three parallel signal streams - what people say, what they do, and what the world is doing around them - converge into a unified Brand Fidelity score. Real-time. Always live.</p>
         
@@ -3031,8 +3115,8 @@
 
         // 10 brands: competitive set
         this.brands = [
-          'Booking.com', 'Marriott', 'Vrbo', 'Stayworthy',
-          'Airbnb', 'Hilton', 'Plum Guide', 'Hopper', 'Vacasa', 'Inspirato'
+          'Airbnb', 'Vrbo', 'Stayworthy', 'Booking.com', 'Marriott',
+          'Hilton', 'Plum Guide', 'Hopper', 'Vacasa', 'Inspirato'
         ];
 
         // Initial shares (proportional to BF composite)
@@ -4155,6 +4239,31 @@
         progressBar.style.width = (current / totalCount) * 100 + '%';
       }, 150);
     }
+
+    // Start selected scenario from dropdown
+    BIE.startSelectedScenario = function() {
+      const dropdown = document.getElementById('scenario-dropdown');
+      const selectedValue = dropdown?.value;
+      
+      if (!selectedValue) {
+        alert('Please select a scenario first');
+        return;
+      }
+      
+      // Map dropdown values to mode names
+      const modeMap = {
+        'insight': 'insight',
+        'wargame': 'wargame',
+        'focus-group': 'focus-group',
+        'fidelity-live': 'signal-nexus',
+        'brand-sim': 'brand-sim'
+      };
+      
+      const mode = modeMap[selectedValue];
+      if (mode && window.ScenarioLab) {
+        window.ScenarioLab.switchMode(mode);
+      }
+    };
 
     /* ═══════════════════════════════════════════════════════════
        SIGNAL NEXUS - Live Animation & Ticker
