@@ -1043,12 +1043,7 @@ window.BIE = {
     const meta = this.glassBoxMeta;
     if (!meta?.metrics?.brandFidelity) return;
 
-    // Apply halo to BF composite section
-    const compositeSection = document.querySelector('.cc-composite');
-    if (compositeSection) {
-      const conf = meta.metrics.brandFidelity.composite.confidence;
-      compositeSection.classList.add(`confidence-halo-${conf}`);
-    }
+    // Confidence halo on composite section removed — too visually noisy
 
     // Apply data-status badges to driver cards
     document.querySelectorAll('.cc-driver').forEach(card => {
