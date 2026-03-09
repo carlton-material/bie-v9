@@ -2022,10 +2022,11 @@
         </div>
 
         <!-- Simulation Confidence — compact inline -->
-        <div class="simulation-confidence">
+        <div class="simulation-confidence" title="Model confidence derived from signal volume, recency, and cross-validation across 6 independent pipelines">
           <span class="confidence-value">87% confidence</span>
           <span class="confidence-separator">·</span>
           847 signals · 24K respondents · 6 pipelines
+          <span style="cursor: help; opacity: 0.4; font-size: 0.7rem;" title="How is confidence calculated? Signal volume × recency × cross-pipeline agreement. Higher values mean more reliable simulation outputs.">ⓘ</span>
         </div>
       </div>
       <div class="scenario-mode-dropdown" id="mode-dropdown">
@@ -2034,12 +2035,24 @@
           <span class="dropdown-arrow">▼</span>
         </button>
         <div class="scenario-mode-list">
-          <button class="scenario-mode-btn active" data-mode="insight">Insight / Nearsight</button>
-          <button class="scenario-mode-btn" data-mode="wargame">War Gaming / Foresight</button>
-          <button class="scenario-mode-btn" data-mode="focus-group">Virtual Focus Group</button>
-          <button class="scenario-mode-btn" data-mode="signal-nexus"><span class="live-dot"></span>Fidelity LIVE</button>
-          <button class="scenario-mode-btn" data-mode="brand-sim">Strategic Scenario Lab</button>
+          <button class="scenario-mode-btn active" data-mode="insight">
+            Insight / Nearsight
+            <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.4); font-weight: 400; margin-top: 2px;">Funnel analysis + focus group validation</span>
+          </button>
+          <button class="scenario-mode-btn" data-mode="wargame">
+            War Gaming / Foresight
+            <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.4); font-weight: 400; margin-top: 2px;">Explore 3 divergent futures, simulate responses</span>
+          </button>
+          <button class="scenario-mode-btn" data-mode="signal-nexus">
+            <span class="live-dot"></span>Fidelity LIVE
+            <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.4); font-weight: 400; margin-top: 2px;">Real-time signal convergence across 3 layers</span>
+          </button>
+          <button class="scenario-mode-btn" data-mode="brand-sim">
+            Strategic Scenario Lab
+            <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.4); font-weight: 400; margin-top: 2px;">Full market simulation with competitive modeling</span>
+          </button>
         </div>
+        <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.25); letter-spacing: 0.05em;">Select a mode above to begin analysis</div>
       </div>
     </div>
 
@@ -2071,9 +2084,8 @@
       <label class="chooser-label">Select your analysis type</label>
       <select class="scenario-dropdown" id="scenario-dropdown">
         <option value="" disabled selected>Choose a scenario...</option>
-        <option value="insight">Insight / Nearsight — Conversion funnel analysis</option>
+        <option value="insight">Insight / Nearsight — Funnel analysis + focus group</option>
         <option value="wargame">War Gaming / Foresight — Scenario planning</option>
-        <option value="focus-group">Virtual Focus Group — Synthetic respondents</option>
         <option value="fidelity-live">Fidelity LIVE — Real-time signal convergence</option>
         <option value="brand-sim">Strategic Scenario Lab — Full simulation</option>
       </select>
@@ -2085,9 +2097,9 @@
            MODE 1: INSIGHT / NEARSIGHT
            ══════════════════════════════════════════════════════════ -->
       <div class="scenario-mode active mode-insight" data-mode="insight">
-        <div class="scenario-mode-label">Insight / Nearsight</div>
-        <h2 class="scenario-mode-headline">Where Are We Losing Them?</h2>
-        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 24px; max-width: 700px; line-height: 1.6;">Descend through the conversion funnel layer by layer. Identify where friction emerges and what drives each drop. Single number: one insight.</p>
+        <div class="scenario-mode-label">Insight / Nearsight + Focus Group</div>
+        <h2 class="scenario-mode-headline">Where Are We Losing Them — And Why?</h2>
+        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 24px; max-width: 700px; line-height: 1.6;">Descend through the conversion funnel to find <em>where</em> friction emerges, then run a virtual focus group to understand <em>why</em>. From signals to respondents in one flow.</p>
 
         <!-- Conversion Funnel -->
         <div class="funnel-container">
@@ -2192,6 +2204,140 @@
         </div>
 
         <div class="glass-box-inline">◆ Funnel analysis via behavioral signals · 312K user sessions tracked · Session funnel data current: Mar 4, 2026 · Confidence: HIGH</div>
+
+        <!-- ── Validate with Focus Group (blended) ── -->
+        <div class="insight-focus-group-bridge" id="insight-fg-bridge" style="margin-top: 48px; padding: 32px; background: linear-gradient(135deg, rgba(129,140,248,0.08) 0%, rgba(245,158,11,0.06) 100%); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px;">
+          <div style="display: flex; align-items: flex-start; gap: 20px;">
+            <div style="flex: 1;">
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(129,140,248,0.7); margin-bottom: 8px;">Next Step</div>
+              <div style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 8px;">Validate Why They Drop Off</div>
+              <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.65); line-height: 1.6; margin: 0;">The funnel shows <em>where</em> friction occurs. Run a virtual focus group to understand <em>why</em>. Synthetic respondents generated from 4,700 real survey participants answer your questions at scale.</p>
+            </div>
+            <button id="insight-fg-trigger" onclick="BIE.showInsightFocusGroup()" style="margin-top: 8px; padding: 12px 28px; background: var(--signal-human); color: #000; border: none; border-radius: 2px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.2s;">Run Focus Group →</button>
+          </div>
+        </div>
+
+        <!-- Focus Group Panels (embedded in Insight) -->
+        <div id="insight-fg-panels" style="display: none; margin-top: 32px;">
+          <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px;">Virtual Focus Group · Synthetic Respondents</div>
+
+          <!-- Configure Step -->
+          <div class="step-panel insight-fg-step" data-step="configure" style="display: block;">
+            <div class="focus-group-configurator reveal">
+              <div class="configurator-section">
+                <label class="configurator-label">Audience Segment</label>
+                <select id="ifg-segment-selector" class="configurator-select">
+                  <option value="gen-z-travelers">Gen Z Travelers</option>
+                  <option value="millennial-families">Millennial Families</option>
+                  <option value="business-travelers">Business Travelers</option>
+                  <option value="budget-conscious">Budget Conscious</option>
+                  <option value="luxury-seekers">Luxury Seekers</option>
+                </select>
+              </div>
+
+              <div class="configurator-section">
+                <label class="configurator-label">Sample Size</label>
+                <select id="ifg-sample-size" class="configurator-select">
+                  <option value="100">100 respondents</option>
+                  <option value="500" selected>500 respondents</option>
+                  <option value="1000">1,000 respondents</option>
+                </select>
+              </div>
+
+              <div class="configurator-section">
+                <label class="configurator-label">Survey Questions</label>
+                <div style="display: grid; gap: 12px;">
+                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Brand awareness
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Booking preference drivers
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Price sensitivity
+                  </label>
+                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
+                    <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Platform trust
+                  </label>
+                </div>
+              </div>
+
+              <button onclick="BIE.runInsightFocusGroup()" style="margin-top: 24px; padding: 10px 24px; background: var(--signal-human); color: #000; border: none; border-radius: 2px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 500; cursor: pointer;">Run Focus Group →</button>
+            </div>
+          </div>
+
+          <!-- Run Step -->
+          <div class="step-panel insight-fg-step" data-step="run" style="display: none;">
+            <div style="text-align: center; padding: 60px 40px;">
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Generating Synthetic Respondents</div>
+              <div style="font-size: 2rem; font-weight: 300; margin-bottom: 40px;">
+                <span id="ifg-progress-count">0</span> / <span id="ifg-total-count">500</span>
+              </div>
+              <div style="max-width: 300px; margin: 0 auto; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
+                <div id="ifg-progress-bar" style="height: 100%; background: var(--signal-human); width: 0%; transition: width 0.3s ease;"></div>
+              </div>
+              <div style="margin-top: 24px; color: rgba(255,255,255,0.6); font-size: var(--text-small);">Generating personas from behavioral patterns...</div>
+            </div>
+          </div>
+
+          <!-- Results Step -->
+          <div class="step-panel insight-fg-step" data-step="results" style="display: none;">
+            <div style="padding: 40px 0;">
+              <div style="font-size: 1.25rem; font-weight: 500; margin-bottom: 8px;"><span id="ifg-results-count">500</span> Synthetic Respondents Generated</div>
+              <div style="color: rgba(255,255,255,0.6); font-size: var(--text-small); margin-bottom: 40px;">Directional Accuracy: ~85%</div>
+
+              <!-- Response Distribution -->
+              <div style="display: grid; gap: 24px; margin-bottom: 40px;">
+                <div>
+                  <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Brand Awareness</div>
+                  <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
+                      <div style="height: 100%; background: #00d084; width: 73%;"></div>
+                    </div>
+                    <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">73%</div>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Booking Preference: Direct Platform</div>
+                  <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
+                      <div style="height: 100%; background: #00d084; width: 58%;"></div>
+                    </div>
+                    <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">58%</div>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Price-Sensitive Decision Makers</div>
+                  <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
+                      <div style="height: 100%; background: #f59e0b; width: 64%;"></div>
+                    </div>
+                    <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">64%</div>
+                  </div>
+                </div>
+
+                <div>
+                  <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">High Platform Trust Score</div>
+                  <div style="display: flex; align-items: center; gap: 16px;">
+                    <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
+                      <div style="height: 100%; background: #3b82f6; width: 68%;"></div>
+                    </div>
+                    <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">68%</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="padding: 24px; background: var(--bg-elevated); border: 1px solid var(--border-default); border-radius: 6px;">
+                <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 12px;">Key Finding</div>
+                <p style="margin: 0; color: rgba(255,255,255,0.9); font-size: var(--text-small); line-height: 1.6;">Direct booking platform preference drives the highest conversion lift. Transparent pricing messaging resonates with 73% awareness, but price sensitivity remains the deciding factor for 64% of respondents.</p>
+              </div>
+
+              <div class="glass-box-inline" style="margin-top: 24px;">◆ Synthetic respondents from N=4,700 real survey respondents · Directional accuracy: 85% · Focus group completed: <span id="ifg-timestamp">—</span></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- ══════════════════════════════════════════════════════════
@@ -2200,7 +2346,8 @@
       <div class="scenario-mode mode-wargame" data-mode="wargame">
         <div class="scenario-mode-label">War Gaming / Foresight</div>
         <h2 class="scenario-mode-headline">What Futures Should We Prepare For?</h2>
-        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Explore three divergent futures. Click a scenario to run simulations and uncover strategic vectors: what to attack, what to defend, how to bridge from today to tomorrow.</p>
+        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 16px; max-width: 700px; line-height: 1.6;">Explore three divergent futures. Click a scenario to run simulations and uncover strategic vectors: what to attack, what to defend, how to bridge from today to tomorrow.</p>
+        <div style="font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; margin-bottom: 40px;"><i class="ph ph-cursor-click" style="margin-right: 4px;"></i>Click any scenario card below to begin simulation</div>
 
         <!-- Scenario Cards -->
         <div class="scenarios-grid">
@@ -2392,135 +2539,6 @@
                 <span id="tier-luxury-latent">25 latent</span>
                 <span id="tier-luxury-pct">58%</span>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ══════════════════════════════════════════════════════════
-           MODE 3: VIRTUAL FOCUS GROUP
-           ══════════════════════════════════════════════════════════ -->
-      <div class="scenario-mode mode-focus-group" data-mode="focus-group">
-        <div class="scenario-mode-label">Virtual Focus Group</div>
-        <h2 class="scenario-mode-headline">What Do Real Travelers Think?</h2>
-        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Sit in on a live focus group. Synthetic respondents from real data. Watch sentiment and drivers cluster.</p>
-
-        <!-- Attribution -->
-        <div class="glass-box-inline focus-group-attribution">
-          ◆ Synthetic respondents generated from N=4,700 real survey respondents. Directional accuracy: 85%.
-        </div>
-
-        <!-- Configure Step -->
-        <div class="step-panel" data-mode="focus-group" data-step="configure" style="display: block;">
-          <div class="focus-group-configurator reveal" style="margin-top: 40px;">
-            <div class="configurator-section">
-              <label class="configurator-label">Audience Segment</label>
-              <select id="fg-segment-selector" class="configurator-select">
-                <option value="gen-z-travelers">Gen Z Travelers</option>
-                <option value="millennial-families">Millennial Families</option>
-                <option value="business-travelers">Business Travelers</option>
-                <option value="budget-conscious">Budget Conscious</option>
-                <option value="luxury-seekers">Luxury Seekers</option>
-              </select>
-            </div>
-
-            <div class="configurator-section">
-              <label class="configurator-label">Sample Size</label>
-              <select id="fg-sample-size" class="configurator-select">
-                <option value="100">100 respondents</option>
-                <option value="500" selected>500 respondents</option>
-                <option value="1000">1,000 respondents</option>
-              </select>
-            </div>
-
-            <div class="configurator-section">
-              <label class="configurator-label">Survey Questions</label>
-              <div style="display: grid; gap: 12px;">
-                <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
-                  <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Brand awareness
-                </label>
-                <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
-                  <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Booking preference drivers
-                </label>
-                <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
-                  <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Price sensitivity
-                </label>
-                <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
-                  <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Platform trust
-                </label>
-              </div>
-            </div>
-
-            <button onclick="advanceStep('focus-group')" style="margin-top: 24px; padding: 10px 24px; background: var(--signal-human); color: #000; border: none; border-radius: 2px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 500; cursor: pointer;">Continue to Run →</button>
-          </div>
-        </div>
-
-        <!-- Run Step -->
-        <div class="step-panel" data-mode="focus-group" data-step="run" style="display: none;">
-          <div style="text-align: center; padding: 60px 40px;">
-            <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Generating Synthetic Respondents</div>
-            <div style="font-size: 2rem; font-weight: 300; margin-bottom: 40px;">
-              <span id="fg-progress-count">0</span> / <span id="fg-total-count">500</span>
-            </div>
-            <div style="max-width: 300px; margin: 0 auto; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
-              <div id="fg-progress-bar" style="height: 100%; background: var(--signal-human); width: 0%; transition: width 0.3s ease;"></div>
-            </div>
-            <div style="margin-top: 24px; color: rgba(255,255,255,0.6); font-size: var(--text-small);">Generating personas from behavioral patterns...</div>
-          </div>
-        </div>
-
-        <!-- Results Step -->
-        <div class="step-panel" data-mode="focus-group" data-step="results" style="display: none;">
-          <div style="padding: 40px 0;">
-            <div style="font-size: 1.25rem; font-weight: 500; margin-bottom: 8px;"><span id="fg-results-count">500</span> Synthetic Respondents Generated</div>
-            <div style="color: rgba(255,255,255,0.6); font-size: var(--text-small); margin-bottom: 40px;">Directional Accuracy: ~85%</div>
-
-            <!-- Response Distribution -->
-            <div style="display: grid; gap: 24px; margin-bottom: 40px;">
-              <div>
-                <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Brand Awareness</div>
-                <div style="display: flex; align-items: center; gap: 16px;">
-                  <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
-                    <div style="height: 100%; background: #00d084; width: 73%;"></div>
-                  </div>
-                  <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">73%</div>
-                </div>
-              </div>
-
-              <div>
-                <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Booking Preference: Direct Platform</div>
-                <div style="display: flex; align-items: center; gap: 16px;">
-                  <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
-                    <div style="height: 100%; background: #00d084; width: 58%;"></div>
-                  </div>
-                  <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">58%</div>
-                </div>
-              </div>
-
-              <div>
-                <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Price-Sensitive Decision Makers</div>
-                <div style="display: flex; align-items: center; gap: 16px;">
-                  <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
-                    <div style="height: 100%; background: #f59e0b; width: 64%;"></div>
-                  </div>
-                  <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">64%</div>
-                </div>
-              </div>
-
-              <div>
-                <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">High Platform Trust Score</div>
-                <div style="display: flex; align-items: center; gap: 16px;">
-                  <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
-                    <div style="height: 100%; background: #3b82f6; width: 68%;"></div>
-                  </div>
-                  <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">68%</div>
-                </div>
-              </div>
-            </div>
-
-            <div style="padding: 24px; background: var(--bg-elevated); border: 1px solid var(--border-default); border-radius: 6px;">
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 12px;">Key Finding</div>
-              <p style="margin: 0; color: rgba(255,255,255,0.9); font-size: var(--text-small); line-height: 1.6;">Direct booking platform preference drives the highest conversion lift. Transparent pricing messaging resonates with 73% awareness, but price sensitivity remains the deciding factor for 64% of respondents.</p>
             </div>
           </div>
         </div>
@@ -2842,13 +2860,12 @@
           if (wizard) wizard.style.display = '';
           if (confidence) confidence.style.display = '';
           // Hide scenario selector for modes that have their own selection UI
-          if (selector) selector.style.display = (mode === 'wargame' || mode === 'focus-group') ? 'none' : '';
+          if (selector) selector.style.display = (mode === 'wargame') ? 'none' : '';
         }
 
         // Mode-specific stepper labels + reset
         const stepLabels = {
-          wargame:       ['Select Future', 'Analyze', 'Simulate', 'Results'],
-          'focus-group': ['Mode Selected', 'Configure Panel', 'Run Session', 'Results']
+          wargame: ['Select Future', 'Analyze', 'Simulate', 'Results']
         };
         const labels = stepLabels[mode] || ['Choose Scenario', 'Configure', 'Run', 'Results'];
         document.querySelectorAll('.wizard-step-label').forEach((el, i) => {
@@ -2857,9 +2874,14 @@
 
         if (mode === 'wargame') {
           updateWizardStep(1); // Start at Select Future
-        } else if (mode === 'focus-group') {
-          // Focus Group skips step 1 — auto-complete it, start at Configure
-          updateWizardStep(2);
+        }
+
+        // Reset blended focus group when switching to Insight
+        if (mode === 'insight') {
+          const fgPanels = document.getElementById('insight-fg-panels');
+          const fgTrigger = document.getElementById('insight-fg-trigger');
+          if (fgPanels) fgPanels.style.display = 'none';
+          if (fgTrigger) { fgTrigger.textContent = 'Run Focus Group →'; fgTrigger.disabled = false; fgTrigger.style.opacity = '1'; }
         }
 
         // Reset scenario if switching to wargame
@@ -4418,6 +4440,67 @@
         progressBar.style.width = (current / totalCount) * 100 + '%';
       }, 150);
     }
+
+    /* ═══════════════════════════════════════════════════════════
+       BLENDED INSIGHT + FOCUS GROUP
+       ═══════════════════════════════════════════════════════════ */
+
+    BIE.showInsightFocusGroup = function() {
+      const panels = document.getElementById('insight-fg-panels');
+      const trigger = document.getElementById('insight-fg-trigger');
+      const bridge = document.getElementById('insight-fg-bridge');
+      if (panels) {
+        panels.style.display = 'block';
+        // Reset to configure step
+        panels.querySelectorAll('.insight-fg-step').forEach(p => p.style.display = 'none');
+        panels.querySelector('.insight-fg-step[data-step="configure"]').style.display = 'block';
+        // Hide CTA button, show "in progress" state
+        if (trigger) trigger.textContent = 'Configure below ↓';
+        if (trigger) trigger.disabled = true;
+        if (trigger) trigger.style.opacity = '0.5';
+        // Smooth scroll to panels
+        panels.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    BIE.runInsightFocusGroup = function() {
+      const panels = document.getElementById('insight-fg-panels');
+      if (!panels) return;
+      // Show run step
+      panels.querySelectorAll('.insight-fg-step').forEach(p => p.style.display = 'none');
+      panels.querySelector('.insight-fg-step[data-step="run"]').style.display = 'block';
+
+      const sizeSelect = document.getElementById('ifg-sample-size');
+      const totalCount = parseInt(sizeSelect?.value || '500');
+      document.getElementById('ifg-total-count').textContent = totalCount;
+
+      const progressBar = document.getElementById('ifg-progress-bar');
+      const progressCount = document.getElementById('ifg-progress-count');
+      progressBar.style.width = '0%';
+      progressCount.textContent = '0';
+
+      let current = 0;
+      const interval = setInterval(() => {
+        current += Math.random() * 150 + 50;
+        if (current >= totalCount) {
+          current = totalCount;
+          clearInterval(interval);
+          setTimeout(() => {
+            // Show results
+            panels.querySelectorAll('.insight-fg-step').forEach(p => p.style.display = 'none');
+            panels.querySelector('.insight-fg-step[data-step="results"]').style.display = 'block';
+            document.getElementById('ifg-results-count').textContent = totalCount;
+            const ts = document.getElementById('ifg-timestamp');
+            if (ts) ts.textContent = new Date().toLocaleString();
+            // Update bridge CTA
+            const trigger = document.getElementById('insight-fg-trigger');
+            if (trigger) { trigger.textContent = '✓ Focus Group Complete'; trigger.style.opacity = '0.5'; }
+          }, 2500);
+        }
+        progressCount.textContent = Math.floor(Math.min(current, totalCount));
+        progressBar.style.width = (Math.min(current, totalCount) / totalCount) * 100 + '%';
+      }, 150);
+    };
 
     // Start selected scenario from dropdown
     BIE.startSelectedScenario = function() {
