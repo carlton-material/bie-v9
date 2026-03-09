@@ -980,6 +980,111 @@
       display: block;
     }
 
+    /* ── War Gaming Phase Panes ── */
+    .wg-phase {
+      display: none;
+      animation: wgPhaseFadeIn 500ms var(--ease-out);
+    }
+    .wg-phase.active {
+      display: block;
+    }
+    @keyframes wgPhaseFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Override old visibility toggles when inside wg-phase */
+    .wg-phase.active .strategic-output { display: block; }
+    .wg-phase.active .simulation-section { display: block; }
+
+    /* Results pane */
+    .wg-results-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .wg-result-card {
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-default);
+      border-radius: 6px;
+    }
+    .wg-result-card h4 {
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin: 0 0 12px 0;
+    }
+    .wg-result-rank {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      font-size: var(--text-small);
+      color: rgba(255,255,255,0.85);
+    }
+    .wg-result-rank:last-child { border-bottom: none; }
+    .wg-result-rank .rank-pos {
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      color: rgba(255,255,255,0.3);
+      width: 24px;
+    }
+    .wg-result-rank .rank-name { flex: 1; }
+    .wg-result-rank .rank-share {
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+    .wg-result-rank .rank-delta {
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      margin-left: 8px;
+      min-width: 48px;
+      text-align: right;
+    }
+    .wg-result-rank .rank-delta.up { color: #34d399; }
+    .wg-result-rank .rank-delta.down { color: #f87171; }
+    .wg-result-rank .rank-delta.flat { color: rgba(255,255,255,0.3); }
+    .wg-stayworthy-brief {
+      padding: 24px;
+      background: rgba(116, 90, 255, 0.08);
+      border: 1px solid rgba(116, 90, 255, 0.25);
+      border-radius: 6px;
+      margin-bottom: 32px;
+    }
+    .wg-stayworthy-brief h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #745AFF;
+      margin: 0 0 12px 0;
+    }
+    .wg-replay-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-default);
+      border-radius: 4px;
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+      cursor: pointer;
+      transition: all 200ms;
+    }
+    .wg-replay-btn:hover {
+      border-color: #745AFF;
+      color: #745AFF;
+    }
+    @media (max-width: 768px) {
+      .wg-results-summary { grid-template-columns: 1fr; }
+    }
+
     .simulation-header {
       margin-bottom: 40px;
     }
@@ -2357,7 +2462,8 @@
         <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 16px; max-width: 700px; line-height: 1.6;">Explore three divergent futures. Click a scenario to run simulations and uncover strategic vectors: what to attack, what to defend, how to bridge from today to tomorrow.</p>
         <div style="font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; margin-bottom: 40px;"><i class="ph ph-cursor-click" style="margin-right: 4px;"></i>Click any scenario card below to begin simulation</div>
 
-        <!-- Scenario Cards -->
+        <!-- ─── Phase 1: Select Future ─── -->
+        <div class="wg-phase active" data-wg-phase="1">
         <div class="scenarios-grid">
           <div class="scenario-card" data-scenario="regulatory">
             <span class="scenario-card-badge">Share Shift</span>
@@ -2417,8 +2523,11 @@
           </div>
         </div>
 
-        <!-- Strategic Output Panel -->
-        <div class="strategic-output" id="strategic-output">
+        </div><!-- /wg-phase 1 -->
+
+        <!-- ─── Phase 2: Analyze ─── -->
+        <div class="wg-phase" data-wg-phase="2">
+        <div class="strategic-output visible" id="strategic-output">
           <div class="output-section">
             <label class="output-label">Diagnostic</label>
             <div class="output-content" id="output-diagnostic"></div>
@@ -2452,7 +2561,10 @@
           <div class="glass-box-inline">◆ ABM simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH</div>
         </div>
 
-        <!-- ABM Simulation Section -->
+        </div><!-- /wg-phase 2 -->
+
+        <!-- ─── Phase 3: Simulate ─── -->
+        <div class="wg-phase" data-wg-phase="3">
         <div class="simulation-section active" id="simulation-section">
           <div class="simulation-header">
             <label class="simulation-label">Agent-Based Market Simulation</label>
@@ -2553,6 +2665,50 @@
             </div>
           </div>
         </div>
+        </div><!-- /wg-phase 3 -->
+
+        <!-- ─── Phase 4: Results ─── -->
+        <div class="wg-phase" data-wg-phase="4">
+          <div style="margin-bottom: 24px;">
+            <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px;">Simulation Complete</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 300; color: var(--text-primary); margin: 0 0 8px 0;" id="wg-results-title">Results: Scenario Analysis</h3>
+            <div id="wg-results-scenario-label" style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase;"></div>
+          </div>
+
+          <!-- Stayworthy Executive Brief -->
+          <div class="wg-stayworthy-brief" id="wg-stayworthy-brief">
+            <h3><span data-brand="name">Stayworthy</span> Executive Brief</h3>
+            <p id="wg-stayworthy-brief-text" style="margin: 0; color: rgba(255,255,255,0.85); font-size: var(--text-small); line-height: 1.7;"></p>
+          </div>
+
+          <!-- Rankings + Key Metrics -->
+          <div class="wg-results-summary">
+            <div class="wg-result-card">
+              <h4>Final Market Share Rankings</h4>
+              <div id="wg-final-rankings"></div>
+            </div>
+            <div class="wg-result-card">
+              <h4>Biggest Movers</h4>
+              <div id="wg-biggest-movers"></div>
+            </div>
+          </div>
+
+          <!-- Strategic Recommendation -->
+          <div class="wg-result-card" style="margin-bottom: 32px;">
+            <h4>Strategic Recommendation</h4>
+            <p id="wg-strategic-rec" style="margin: 0; color: rgba(255,255,255,0.85); font-size: var(--text-small); line-height: 1.7;"></p>
+          </div>
+
+          <div class="glass-box-inline" style="margin-bottom: 24px;">◆ 650 agents · 100 iterations · Stochastic ABM with Bass diffusion · Confidence: HIGH</div>
+
+          <!-- Actions -->
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="wg-replay-btn" id="wg-replay-btn">↻ Run Another Scenario</button>
+            <button class="wg-replay-btn" id="wg-review-analysis-btn">← Review Analysis</button>
+            <button class="wg-replay-btn" id="wg-review-sim-btn">← Review Simulation</button>
+          </div>
+        </div><!-- /wg-phase 4 -->
+
       </div>
 
       <!-- ══════════════════════════════════════════════════════════
@@ -2912,8 +3068,10 @@
           document.querySelectorAll('.scenario-card').forEach(card => {
             card.classList.remove('selected');
           });
-          document.getElementById('strategic-output').classList.remove('visible');
-          document.getElementById('simulation-section').classList.add('active');
+          // Reset panes — show Phase 1 only
+          document.querySelectorAll('.wg-phase').forEach(p => p.classList.remove('active'));
+          const phase1 = document.querySelector('.wg-phase[data-wg-phase="1"]');
+          if (phase1) phase1.classList.add('active');
         }
 
         // Reset focus group if switching to it
@@ -2943,19 +3101,15 @@
         const scenario = card.dataset.scenario;
         this.currentScenario = scenario;
 
-        // Step 1 → 2 (Analyze): Show strategic output first
-        updateWizardStep(2);
+        // Step 1 → 2 (Analyze): Show strategic output pane
         this.showStrategicOutput(scenario);
+        updateWizardStep(2);
 
-        // Scroll to strategic output
-        const outputEl = document.getElementById('strategic-output');
-        if (outputEl) outputEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-        // Step 2 → 3 (Simulate): Run simulation after analysis loads
+        // Step 2 → 3 (Simulate): Auto-advance after analysis reads
         setTimeout(() => {
           updateWizardStep(3);
           this.runSimulationForScenario(scenario);
-        }, 2000);
+        }, 3000);
       },
 
       showStrategicOutput(scenario) {
@@ -3008,7 +3162,7 @@
         actionsEl.innerHTML = output.actions.map(action => `<div class="output-action">${action}</div>`).join('');
 
         document.getElementById('output-question').textContent = output.question;
-        document.getElementById('strategic-output').classList.add('visible');
+        // Visibility now handled by wg-phase pane system
       },
 
       /* ── ABM SIMULATION ENGINE ── */
@@ -3275,6 +3429,8 @@
         if (!this.playing || this.iteration >= this.maxIterations) {
           this.playing = false;
           this.updateUI();
+          // Populate results pane then advance
+          if (typeof populateWGResults === 'function') populateWGResults(this);
           if (typeof updateWizardStep === 'function') updateWizardStep(4);
           return;
         }
@@ -4444,7 +4600,145 @@
       arrows.forEach((arrow, idx) => {
         arrow.classList.toggle('complete', idx < stepNum - 1);
       });
+
+      // Swap War Gaming panes — only active phase visible
+      const phases = document.querySelectorAll('.wg-phase');
+      if (phases.length) {
+        phases.forEach(p => p.classList.remove('active'));
+        const target = document.querySelector(`.wg-phase[data-wg-phase="${stepNum}"]`);
+        if (target) {
+          target.classList.add('active');
+          // Scroll the wargame mode container into view
+          const wgMode = document.querySelector('.mode-wargame');
+          if (wgMode) wgMode.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     }
+
+    /* ═══════════════════════════════════════════════════════════
+       WAR GAMING RESULTS PANE POPULATION
+       ═══════════════════════════════════════════════════════════ */
+
+    function populateWGResults(sim) {
+      if (!sim || !sim.shares) return;
+
+      const scenario = window.ScenarioLab?.currentScenario || 'regulatory';
+      const scenarioNames = {
+        regulatory: '2027: Regulatory Wave',
+        'ai-concierge': '2029: AI Concierge Era',
+        decentralized: '2031: Decentralized Travel'
+      };
+
+      // Title + label
+      const titleEl = document.getElementById('wg-results-title');
+      if (titleEl) titleEl.textContent = 'Results: ' + (scenarioNames[scenario] || 'Scenario Analysis');
+      const labelEl = document.getElementById('wg-results-scenario-label');
+      if (labelEl) labelEl.textContent = '100 iterations · 650 agents · ABM simulation complete';
+
+      // Get initial shares for delta calc
+      const initialShares = {
+        'Airbnb': 0.22, 'Booking.com': 0.20, 'Vrbo': 0.15,
+        'Marriott': 0.13, 'Hilton': 0.10, 'Stayworthy': 0.07,
+        'Plum Guide': 0.05, 'Hopper': 0.04, 'TrustLayer': 0.025, 'NomadPass': 0.015
+      };
+
+      // Build sorted rankings
+      const brands = Object.keys(sim.shares);
+      const sorted = brands
+        .map(b => ({
+          name: b,
+          share: sim.shares[b],
+          initial: initialShares[b] || 0,
+          delta: (sim.shares[b] - (initialShares[b] || 0)) * 100
+        }))
+        .sort((a, b) => b.share - a.share);
+
+      // Rankings panel
+      const rankingsEl = document.getElementById('wg-final-rankings');
+      if (rankingsEl) {
+        rankingsEl.innerHTML = sorted.map((b, i) => {
+          const deltaClass = b.delta > 0.3 ? 'up' : b.delta < -0.3 ? 'down' : 'flat';
+          const deltaStr = b.delta > 0 ? '+' + b.delta.toFixed(1) + 'pp' : b.delta < -0.3 ? b.delta.toFixed(1) + 'pp' : '—';
+          return `<div class="wg-result-rank">
+            <span class="rank-pos">${i + 1}.</span>
+            <span class="rank-name">${b.name}</span>
+            <span class="rank-share">${(b.share * 100).toFixed(1)}%</span>
+            <span class="rank-delta ${deltaClass}">${deltaStr}</span>
+          </div>`;
+        }).join('');
+      }
+
+      // Biggest movers (top 3 up, top 3 down)
+      const moversEl = document.getElementById('wg-biggest-movers');
+      if (moversEl) {
+        const byDelta = [...sorted].sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta)).slice(0, 6);
+        moversEl.innerHTML = byDelta.map(b => {
+          const deltaClass = b.delta > 0.3 ? 'up' : b.delta < -0.3 ? 'down' : 'flat';
+          const arrow = b.delta > 0.3 ? '▲' : b.delta < -0.3 ? '▼' : '—';
+          const deltaStr = b.delta > 0 ? '+' + b.delta.toFixed(1) + 'pp' : b.delta.toFixed(1) + 'pp';
+          return `<div class="wg-result-rank">
+            <span class="rank-pos" style="color: ${deltaClass === 'up' ? '#34d399' : deltaClass === 'down' ? '#f87171' : 'rgba(255,255,255,0.3)'}">${arrow}</span>
+            <span class="rank-name">${b.name}</span>
+            <span class="rank-delta ${deltaClass}">${deltaStr}</span>
+          </div>`;
+        }).join('');
+      }
+
+      // Stayworthy brief
+      const swShare = sim.shares['Stayworthy'] || 0;
+      const swInitial = initialShares['Stayworthy'] || 0.07;
+      const swDelta = (swShare - swInitial) * 100;
+      const swRank = sorted.findIndex(b => b.name === 'Stayworthy') + 1;
+      const scenarioBriefs = {
+        regulatory: `Under the Regulatory Wave scenario, Stayworthy ${swDelta > 0 ? 'gains' : 'loses'} ${Math.abs(swDelta).toFixed(1)}pp to finish at ${(swShare * 100).toFixed(1)}% share (rank #${swRank}). Compliance-first positioning and trust moat strategy are critical. Recommendation: accelerate transparent pricing architecture and pursue regulatory pre-approval in top EU markets.`,
+        'ai-concierge': `In the AI Concierge Era, Stayworthy ${swDelta > 0 ? 'gains' : 'loses'} ${Math.abs(swDelta).toFixed(1)}pp to finish at ${(swShare * 100).toFixed(1)}% share (rank #${swRank}). The Personal driver becomes the primary differentiator as AI platforms disintermediate traditional booking. Recommendation: build proprietary AI concierge layer and secure LLM platform partnerships.`,
+        decentralized: `Under Decentralized Travel, Stayworthy ${swDelta > 0 ? 'gains' : 'loses'} ${Math.abs(swDelta).toFixed(1)}pp to finish at ${(swShare * 100).toFixed(1)}% share (rank #${swRank}). Hybrid model (centralized quality + decentralized community) is viable. Recommendation: pilot community marketplace with 50-100 boutique properties to test the model.`
+      };
+
+      const briefEl = document.getElementById('wg-stayworthy-brief-text');
+      if (briefEl) briefEl.textContent = scenarioBriefs[scenario] || `Stayworthy finishes at ${(swShare * 100).toFixed(1)}% share (rank #${swRank}).`;
+
+      // Strategic recommendation
+      const recEl = document.getElementById('wg-strategic-rec');
+      const recs = {
+        regulatory: 'Priority action: Build compliance infrastructure 18 months before regulation hits. The simulation shows trust-positioned brands gain disproportionate share in regulatory environments. Stayworthy should position as the "compliance partner" — the platform that chose transparency voluntarily.',
+        'ai-concierge': 'Priority action: Establish AI platform partnerships immediately. The simulation shows that brands embedded early in AI recommendation engines gain compounding advantages. Stayworthy\'s smaller scale is actually an advantage — more agile integration, higher-quality inventory signals.',
+        decentralized: 'Priority action: Launch community marketplace beta. The simulation shows blockchain-native entrants capture niche segments quickly, but struggle with quality. Stayworthy\'s hybrid approach — verified quality + community governance — creates a defensible middle ground.'
+      };
+      if (recEl) recEl.textContent = recs[scenario] || 'Review simulation results and align strategic priorities.';
+    }
+
+    // Results pane navigation buttons
+    document.addEventListener('DOMContentLoaded', () => {
+      const replayBtn = document.getElementById('wg-replay-btn');
+      if (replayBtn) replayBtn.addEventListener('click', () => {
+        // Reset to Phase 1
+        document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('selected'));
+        window.ScenarioLab.currentScenario = null;
+        updateWizardStep(1);
+      });
+
+      const reviewAnalysis = document.getElementById('wg-review-analysis-btn');
+      if (reviewAnalysis) reviewAnalysis.addEventListener('click', () => {
+        updateWizardStep(2);
+      });
+
+      const reviewSim = document.getElementById('wg-review-sim-btn');
+      if (reviewSim) reviewSim.addEventListener('click', () => {
+        updateWizardStep(3);
+      });
+
+      // Make completed wizard steps clickable for navigation
+      document.querySelectorAll('.wizard-step').forEach(step => {
+        step.style.cursor = 'pointer';
+        step.addEventListener('click', () => {
+          const stepNum = parseInt(step.dataset.step);
+          if (step.classList.contains('complete') || step.classList.contains('active')) {
+            updateWizardStep(stepNum);
+          }
+        });
+      });
+    });
 
     /* ═══════════════════════════════════════════════════════════
        STEPPER FUNCTIONALITY - Configure → Run → Results
