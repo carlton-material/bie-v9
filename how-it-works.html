@@ -1888,34 +1888,105 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
         </div>
       </section>
 
-      <!-- SECTION 2c: GLASS BOX PHILOSOPHY -->
+      <!-- SECTION 2c: GLASS BOX ARCHITECTURE -->
       <section class="architecture-section deep-bg reveal">
-        <div class="scene-label">01d. Transparency</div>
-        <h2 class="scene-headline">Glass Box: Why Every Insight Shows Its Work</h2>
-        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 800px; margin-bottom: 32px;">Traditional brand tracking is a black box: a number appears, and you're asked to trust it. The BIE operates as a Glass Box — every insight, score, and recommendation traces back to its source signals, confidence intervals, and methodology. This is not a feature; it is a design principle.</p>
+        <div class="scene-label">01d. Glass Box Architecture</div>
+        <h2 class="scene-headline">From Black Box to Glass Box: Enterprise-Grade Transparency</h2>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 850px; margin-bottom: 16px;">For enterprise applications, the "Black Box" era of AI — where a prompt goes in and a result comes out with no explanation — is increasingly unacceptable. To meet the demands of auditability, compliance, and high-stakes decision-making, the BIE implements a Glass Box architecture.</p>
+        <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 850px; margin-bottom: 36px;">Three interlocking mechanisms ensure ground-truth adherence: the Glass Box principle provides radical transparency, traceability creates the breadcrumb trail, and consensus agents form a council of experts that cross-verifies every output.</p>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 32px;">
-          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(52,211,153,0.7); letter-spacing: 0.1em; margin-bottom: 10px;">INTENT</div>
-            <div style="font-size: 0.9rem; color: rgba(255,255,255,0.85); font-weight: 500; margin-bottom: 8px;">Complete Methodological Transparency</div>
-            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
-              Every surface in the BIE includes a "Show My Work" drawer that reveals: which signals contributed to a score, what confidence level the consensus engine assigned, how many sources corroborated the finding, and when the data was last refreshed. The user never has to ask "where did this number come from?"
+        <!-- Pillar 1: Glass Box Principle -->
+        <div style="margin-bottom: 28px; padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(52,211,153,0.5); border-radius: 0 8px 8px 0;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(52,211,153,0.7); letter-spacing: 0.12em; margin-bottom: 10px;">PILLAR 1</div>
+          <div style="font-size: 1.05rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 12px;">The Glass Box Principle: Radical Transparency</div>
+          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 16px;">
+            The Glass Box principle is the antithesis of "just trust the AI." Instead of a single neural inference, the system uses modular workflows where every reasoning step is exposed. Every claim maps back to a specific document or data source. A human expert can look under the hood at any time to understand why a specific calculation was made — ensuring the model is not hallucinating or relying on outdated data.
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+            <div style="padding: 12px 16px; background: rgba(52,211,153,0.05); border-radius: 6px;">
+              <div style="font-size: 0.8rem; font-weight: 600; color: rgba(52,211,153,0.8); margin-bottom: 4px;">Explicit Logic</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Chain-of-thought reasoning with exposed decision branches at every pipeline stage</div>
+            </div>
+            <div style="padding: 12px 16px; background: rgba(52,211,153,0.05); border-radius: 6px;">
+              <div style="font-size: 0.8rem; font-weight: 600; color: rgba(52,211,153,0.8); margin-bottom: 4px;">Source Attribution</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Every claim linked to specific internal documents, database entries, or signal sources</div>
+            </div>
+            <div style="padding: 12px 16px; background: rgba(52,211,153,0.05); border-radius: 6px;">
+              <div style="font-size: 0.8rem; font-weight: 600; color: rgba(52,211,153,0.8); margin-bottom: 4px;">Auditability</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Complete inspection of any calculation or recommendation, ensuring no hallucination or stale data</div>
             </div>
           </div>
+        </div>
 
-          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.7); letter-spacing: 0.1em; margin-bottom: 10px;">IMPLEMENTATION</div>
-            <div style="font-size: 0.9rem; color: rgba(255,255,255,0.85); font-weight: 500; margin-bottom: 8px;">Source Attribution at Every Layer</div>
-            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
-              Each signal carries metadata through the entire pipeline: source ID, ingestion timestamp, processing steps applied, confidence score at each stage, and which Brand Fidelity drivers it maps to. The Glass Box panel on each surface reconstructs this provenance chain in real time. For AI-generated insights (Guided Analysis, Material Analyst), the system logs the prompt, model version, and input context.
+        <!-- Pillar 2: Traceability -->
+        <div style="margin-bottom: 28px; padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(129,140,248,0.5); border-radius: 0 8px 8px 0;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.7); letter-spacing: 0.12em; margin-bottom: 10px;">PILLAR 2</div>
+          <div style="font-size: 1.05rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 12px;">Traceability: The Breadcrumb Trail</div>
+          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 16px;">
+            Traceability is the mechanism that powers the Glass Box. A single BIE output may involve searching thousands of signal sources, querying structured databases, and performing multiple mathematical calculations. For every output, there is a complete lineage:
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+            <div style="padding: 12px 16px; background: rgba(129,140,248,0.05); border-radius: 6px;">
+              <div style="font-size: 0.8rem; font-weight: 600; color: rgba(129,140,248,0.8); margin-bottom: 4px;">Data Lineage</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Exactly which version of which document was used, when it was ingested, and how it was processed</div>
+            </div>
+            <div style="padding: 12px 16px; background: rgba(129,140,248,0.05); border-radius: 6px;">
+              <div style="font-size: 0.8rem; font-weight: 600; color: rgba(129,140,248,0.8); margin-bottom: 4px;">Process Lineage</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Which agents or functions were called, in what order, with what parameters</div>
+            </div>
+            <div style="padding: 12px 16px; background: rgba(129,140,248,0.05); border-radius: 6px;">
+              <div style="font-size: 0.8rem; font-weight: 600; color: rgba(129,140,248,0.8); margin-bottom: 4px;">Assumptions Log</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Clearly stated parameters (e.g., "assuming 5% inflation per Q4 Fiscal Policy document")</div>
             </div>
           </div>
+        </div>
 
-          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.7); letter-spacing: 0.1em; margin-bottom: 10px;">WHY IT MATTERS</div>
-            <div style="font-size: 0.9rem; color: rgba(255,255,255,0.85); font-weight: 500; margin-bottom: 8px;">Trust, Auditability, Compliance</div>
-            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
-              Brand intelligence informs multi-million dollar decisions. Executives need to trust the data. Regulators may audit the methodology. Clients need to explain insights to their stakeholders. The Glass Box makes all of this possible without additional documentation — the documentation is the product itself. In regulated industries (finance, healthcare), this traceability is not optional.
+        <!-- Pillar 3: Consensus Agents -->
+        <div style="margin-bottom: 28px; padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(245,158,11,0.5); border-radius: 0 8px 8px 0;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(245,158,11,0.7); letter-spacing: 0.12em; margin-bottom: 10px;">PILLAR 3</div>
+          <div style="font-size: 1.05rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 12px;">Consensus Agents: The "Council of Experts"</div>
+          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 16px;">
+            Even with transparency, a single AI agent can make mistakes. To increase confidence in ground-truth adherence, the BIE employs a Multi-Agent System (MAS) using a Consensus Pattern. Multiple agents with different specialized roles perform tasks independently, then a Verifier agent cross-checks the outputs. If agents disagree, a Reflection loop triggers where agents justify their reasoning until consensus is reached.
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div style="padding: 16px; background: rgba(245,158,11,0.04); border-radius: 6px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.6); margin-bottom: 8px;">HOW IT WORKS</div>
+              <div style="font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
+                <strong style="color: rgba(255,255,255,0.8);">1. Diversity of Thought</strong> — Multiple agents deploy with specialized roles (legal compliance, financial accuracy, historical data analysis).<br>
+                <strong style="color: rgba(255,255,255,0.8);">2. Independent Calculation</strong> — Each agent performs the task independently using the provided data.<br>
+                <strong style="color: rgba(255,255,255,0.8);">3. Cross-Verification</strong> — A Verifier agent compares outputs and triggers Reflection loops on disagreement.<br>
+                <strong style="color: rgba(255,255,255,0.8);">4. Confidence Scoring</strong> — Final output includes a confidence metric (e.g., "95% consensus across 3 independent agents").
+              </div>
+            </div>
+            <div style="padding: 16px; background: rgba(245,158,11,0.04); border-radius: 6px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.6); margin-bottom: 8px;">BIE IMPLEMENTATION</div>
+              <div style="font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
+                The Material Analyst employs consensus for strategic recommendations: a <strong style="color: rgba(255,255,255,0.8);">Brand Guardian</strong> validates defensive positioning, a <strong style="color: rgba(255,255,255,0.8);">Brand Guide</strong> proposes offensive strategies, and the <strong style="color: rgba(255,255,255,0.8);">Fidelity Engine</strong> stress-tests both against the 6-driver framework. Only recommendations that survive all three lenses appear in the Diagnostic → Attack → Defend → Bridge output.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enterprise Value Proposition -->
+        <div style="padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; margin-bottom: 16px;">THE ENTERPRISE VALUE PROPOSITION</div>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 20px; max-width: 800px;">In the enterprise, confidence is the currency. You don't get confidence through better marketing; you get it through verifiable, repeatable, and transparent logic.</p>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+            <div style="padding: 14px; background: rgba(52,211,153,0.04); border-left: 2px solid rgba(52,211,153,0.3); border-radius: 0 6px 6px 0;">
+              <div style="font-size: 0.82rem; font-weight: 600; color: rgba(52,211,153,0.8); margin-bottom: 6px;">Glass Box</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Simplifies regulatory compliance (GDPR, EU AI Act) and internal audits</div>
+            </div>
+            <div style="padding: 14px; background: rgba(129,140,248,0.04); border-left: 2px solid rgba(129,140,248,0.3); border-radius: 0 6px 6px 0;">
+              <div style="font-size: 0.82rem; font-weight: 600; color: rgba(129,140,248,0.8); margin-bottom: 6px;">Traceability</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Verify ground truth and reduce risk of costly business errors</div>
+            </div>
+            <div style="padding: 14px; background: rgba(245,158,11,0.04); border-left: 2px solid rgba(245,158,11,0.3); border-radius: 0 6px 6px 0;">
+              <div style="font-size: 0.82rem; font-weight: 600; color: rgba(245,158,11,0.8); margin-bottom: 6px;">Consensus Agents</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Minimize hallucinations via multi-point verification before final answer</div>
+            </div>
+            <div style="padding: 14px; background: rgba(255,255,255,0.03); border-left: 2px solid rgba(255,255,255,0.15); border-radius: 0 6px 6px 0;">
+              <div style="font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px;">Transparent Math</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">All calculations exposed as formulas, never hidden "magic numbers"</div>
             </div>
           </div>
         </div>
