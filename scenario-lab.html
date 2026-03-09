@@ -256,6 +256,42 @@
       transition: background var(--duration-fast) var(--ease-out);
     }
 
+    .wizard-step { cursor: pointer; }
+    .step-navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      margin-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .step-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.7);
+    }
+    .step-nav-btn:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-1px);
+    }
+    .step-nav-btn.primary {
+      background: var(--brand-purple, #818cf8);
+      color: #000;
+      border-color: transparent;
+    }
+    .step-nav-btn.primary:hover {
+      filter: brightness(1.1);
+    }
     .wizard-step.complete .wizard-step-arrow {
       background: var(--signal-behavioral);
     }
@@ -1891,7 +1927,7 @@
 
       <div class="scenario-header-left">
         <div class="scenario-label">Simulation Engine</div>
-        <h1 class="scenario-headline">Strategic Scenario Lab</h1>
+        <h1 class="scenario-headline">Simulation Engine</h1>
 
         <!-- SYNTHETIC BRAND NOTICE -->
         <div class="synthetic-brand-notice" style="margin-top: var(--space-md);">
@@ -2939,6 +2975,14 @@
         });
       },
 
+      nextStep() {
+        if (this.currentStep < 4) this.advanceStep(this.currentStep + 1);
+      },
+
+      prevStep() {
+        if (this.currentStep > 1) this.advanceStep(this.currentStep - 1);
+      },
+
       resetScenario() {
         this.currentStep = 1;
         this.selectedScenario = null;
@@ -2957,6 +3001,14 @@
     } else {
       window.BIE = ScenarioLab;
     }
+
+    // Make wizard steps clickable (only completed/active steps)
+    document.querySelectorAll('.wizard-step').forEach(el => {
+      el.addEventListener('click', () => {
+        const step = parseInt(el.dataset.step);
+        if (step <= BIE.currentStep) BIE.advanceStep(step);
+      });
+    });
 
     /* ═══════════════════════════════════════════════════════════
        AGENT-BASED MARKET MODEL
