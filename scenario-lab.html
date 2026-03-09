@@ -3156,21 +3156,21 @@
         // 10 brands: competitive set
         this.brands = [
           'Airbnb', 'Vrbo', 'Stayworthy', 'Booking.com', 'Marriott',
-          'Hilton', 'Plum Guide', 'Hopper', 'Vacasa', 'Inspirato'
+          'Hilton', 'Plum Guide', 'Hopper', 'TrustLayer', 'NomadPass'
         ];
 
         // Initial shares (proportional to BF composite)
         this.shares = {
-          'Booking.com': 0.18,
-          'Marriott': 0.15,
-          'Vrbo': 0.14,
-          'Stayworthy': 0.12,
-          'Airbnb': 0.17,
-          'Hilton': 0.12,
-          'Plum Guide': 0.06,
-          'Hopper': 0.03,
-          'Vacasa': 0.02,
-          'Inspirato': 0.01
+          'Airbnb': 0.22,
+          'Booking.com': 0.20,
+          'Vrbo': 0.15,
+          'Marriott': 0.13,
+          'Hilton': 0.10,
+          'Stayworthy': 0.07,
+          'Plum Guide': 0.05,
+          'Hopper': 0.04,
+          'TrustLayer': 0.025,
+          'NomadPass': 0.015
         };
 
         // ABM parameters (modifiable by preset)
@@ -3309,40 +3309,44 @@
         // Each scenario creates different competitive dynamics
         const scenarioStrength = {
           // Regulatory Wave: compliance = trust advantage, disruptors penalized
+          // TrustLayer (blockchain verification startup) surges; scrappy players suffer
           trust: {
-            'Stayworthy': 1.08, 'Marriott': 1.05, 'Hilton': 1.04,
-            'Booking.com': 0.97, 'Airbnb': 0.93, 'Vrbo': 0.94,
-            'Plum Guide': 1.02, 'Hopper': 0.91, 'Vacasa': 0.96, 'Inspirato': 1.01
+            'Marriott': 1.06, 'Hilton': 1.05, 'Stayworthy': 1.08,
+            'Booking.com': 0.97, 'Airbnb': 0.92, 'Vrbo': 0.94,
+            'Plum Guide': 1.03, 'Hopper': 0.90, 'TrustLayer': 1.14, 'NomadPass': 0.88
           },
           // AI Concierge: tech-forward brands surge, traditional lag
+          // NomadPass (AI-native travel agent) explodes; legacy brands lose ground
           ai: {
-            'Stayworthy': 1.10, 'Airbnb': 1.06, 'Booking.com': 1.04,
-            'Hopper': 1.12, 'Marriott': 0.94, 'Hilton': 0.93,
-            'Vrbo': 0.97, 'Plum Guide': 1.03, 'Vacasa': 0.95, 'Inspirato': 0.92
+            'Stayworthy': 1.10, 'Airbnb': 1.05, 'Booking.com': 1.03,
+            'Hopper': 1.11, 'Marriott': 0.93, 'Hilton': 0.92,
+            'Vrbo': 0.96, 'Plum Guide': 1.02, 'TrustLayer': 0.97, 'NomadPass': 1.18
           },
-          // Decentralized: community platforms gain, centralized lose
+          // Decentralized: community/niche platforms gain, centralized aggregators lose
+          // Both unknowns benefit — they represent the decentralized future
           baseline: {
-            'Stayworthy': 1.03, 'Airbnb': 0.96, 'Booking.com': 0.94,
-            'Vrbo': 1.02, 'Marriott': 0.95, 'Hilton': 0.95,
-            'Plum Guide': 1.06, 'Hopper': 0.98, 'Vacasa': 1.04, 'Inspirato': 1.08
+            'Stayworthy': 1.04, 'Airbnb': 0.95, 'Booking.com': 0.93,
+            'Vrbo': 1.01, 'Marriott': 0.94, 'Hilton': 0.94,
+            'Plum Guide': 1.07, 'Hopper': 0.99, 'TrustLayer': 1.10, 'NomadPass': 1.08
           },
           // Pricing transparency
           pricing: {
-            'Stayworthy': 1.07, 'Booking.com': 0.95, 'Airbnb': 1.02,
+            'Stayworthy': 1.07, 'Booking.com': 0.94, 'Airbnb': 1.02,
             'Vrbo': 1.01, 'Marriott': 1.03, 'Hilton': 1.02,
-            'Plum Guide': 1.04, 'Hopper': 0.94, 'Vacasa': 0.97, 'Inspirato': 0.99
+            'Plum Guide': 1.04, 'Hopper': 0.93, 'TrustLayer': 1.06, 'NomadPass': 0.95
           },
-          // Gen Z experience
+          // Gen Z experience — social-native and AI brands win
           genz: {
-            'Stayworthy': 1.09, 'Airbnb': 1.05, 'Hopper': 1.08,
-            'Booking.com': 0.96, 'Marriott': 0.93, 'Hilton': 0.92,
-            'Vrbo': 0.98, 'Plum Guide': 1.03, 'Vacasa': 0.97, 'Inspirato': 0.94
+            'Stayworthy': 1.08, 'Airbnb': 1.04, 'Hopper': 1.09,
+            'Booking.com': 0.95, 'Marriott': 0.92, 'Hilton': 0.91,
+            'Vrbo': 0.97, 'Plum Guide': 1.02, 'TrustLayer': 0.96, 'NomadPass': 1.12
           },
-          // Price war: race to bottom, large brands survive
+          // Price war: race to bottom, large brands survive on scale
+          // Small unknowns get crushed
           pricewar: {
-            'Stayworthy': 0.96, 'Airbnb': 1.03, 'Booking.com': 1.05,
-            'Vrbo': 1.02, 'Marriott': 1.04, 'Hilton': 1.03,
-            'Plum Guide': 0.88, 'Hopper': 0.94, 'Vacasa': 0.93, 'Inspirato': 0.85
+            'Stayworthy': 0.95, 'Airbnb': 1.04, 'Booking.com': 1.06,
+            'Vrbo': 1.03, 'Marriott': 1.05, 'Hilton': 1.03,
+            'Plum Guide': 0.87, 'Hopper': 0.93, 'TrustLayer': 0.84, 'NomadPass': 0.82
           }
         };
 
@@ -3443,8 +3447,8 @@
           'Hilton': '#8b5cf6',
           'Plum Guide': '#06b6d4',
           'Hopper': '#14b8a6',
-          'Vacasa': '#f97316',
-          'Inspirato': '#6366f1'
+          'TrustLayer': '#f97316',
+          'NomadPass': '#6366f1'
         };
 
         const datasets = this.brands.map(brand => ({
