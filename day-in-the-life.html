@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Day in the Life - Brand Intelligence Engine v9</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=4">
+  <link rel="stylesheet" href="css/global.css?v=5">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <!-- MATERIAL ANALYST -->
@@ -1958,13 +1958,29 @@
       </div>
     </div>
 
-    <div style="display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap; padding: 0 var(--space-2xl); padding-left: var(--space-3xl);">
-      <a href="command-center.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; color: var(--text-secondary); font-family: var(--font-body); font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-        <i class="ph ph-squares-four" style="font-size: 1rem;"></i> Open Command Center →
-      </a>
-      <a href="guided-analysis.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(129,140,248,0.1); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; color: #818cf8; font-family: var(--font-body); font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(129,140,248,0.18)'" onmouseout="this.style.background='rgba(129,140,248,0.1)'">
-        <i class="ph ph-chat-centered-text" style="font-size: 1rem;"></i> Start Analysis →
-      </a>
+    <!-- Glass Box: Day in the Life Provenance -->
+    <div class="glass-box-panel" style="margin: 32px var(--space-2xl) 0; margin-left: var(--space-3xl);">
+      <div class="glass-box-header">
+        <div class="glass-box-header-left">
+          <svg class="glass-box-header-icon" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5 5h6M5 8h4M5 11h5" stroke="currentColor" stroke-width="1" opacity="0.5"/></svg>
+          <span class="glass-box-header-title">Glass Box. Signal Provenance</span>
+        </div>
+        <button class="glass-box-toggle" data-target="ditl-glassbox" aria-expanded="false">
+          Show My Work <span class="chevron">▾</span>
+        </button>
+      </div>
+      <div class="glass-box-content" id="ditl-glassbox">
+        <div class="glass-box-inner">
+          <div class="glass-box-pipeline-container"></div>
+          <div class="glass-box-tiers-container"></div>
+          <div class="glass-box-timestamp-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav-ctas" style="padding: 0 var(--space-2xl); padding-left: var(--space-3xl);">
+      <a href="command-center.html" class="page-nav-cta"><i class="ph ph-squares-four"></i> Open Command Center →</a>
+      <a href="guided-analysis.html" class="page-nav-cta"><i class="ph ph-chat-centered-text"></i> Start Analysis →</a>
     </div>
 
     <div class="feed">
@@ -1990,7 +2006,7 @@
 
 
   <script src="js/analyst-llm.js"></script>
-  <script src="js/api-client.js"></script>
+  <script src="js/api-client.js?v=2"></script>
   <script src="js/app.js"></script>
   <script>
     /* ═══════════════════════════════════════════════════════════

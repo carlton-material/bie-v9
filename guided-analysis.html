@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guided Analysis - Brand Intelligence Engine v9</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=4">
+  <link rel="stylesheet" href="css/global.css?v=5">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
@@ -599,16 +599,10 @@
           </div>
         </div>
 
-        <div style="display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;">
-          <a href="signal-terminal.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; color: #22d3ee; font-family: var(--font-body); font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(52,211,153,0.18)'" onmouseout="this.style.background='rgba(52,211,153,0.1)'">
-            <i class="ph ph-terminal" style="font-size: 1rem;"></i> Browse Raw Signals →
-          </a>
-          <a href="command-center.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; color: var(--text-secondary); font-family: var(--font-body); font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">
-            <i class="ph ph-squares-four" style="font-size: 1rem;"></i> Command Center →
-          </a>
-          <a href="scenario-lab.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); border-radius: 6px; color: #fbbf24; font-family: var(--font-body); font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(245,158,11,0.18)'" onmouseout="this.style.background='rgba(245,158,11,0.1)'">
-            <i class="ph ph-flask" style="font-size: 1rem;"></i> Run Scenarios →
-          </a>
+        <div class="page-nav-ctas">
+          <a href="signal-terminal.html" class="page-nav-cta"><i class="ph ph-terminal"></i> Browse Raw Signals →</a>
+          <a href="command-center.html" class="page-nav-cta"><i class="ph ph-squares-four"></i> Command Center →</a>
+          <a href="scenario-lab.html" class="page-nav-cta"><i class="ph ph-flask"></i> Run Scenarios →</a>
         </div>
       </section>
     </div>
@@ -733,7 +727,7 @@
 
 
   <script src="js/analyst-llm.js"></script>
-  <script src="js/api-client.js"></script>
+  <script src="js/api-client.js?v=2"></script>
   <script src="js/app.js"></script>
   <script>
     // ── State Machine ──

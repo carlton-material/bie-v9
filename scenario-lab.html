@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brand Intelligence Engine - Scenario Lab</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=4">
+  <link rel="stylesheet" href="css/global.css?v=5">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
@@ -36,8 +36,9 @@
     /* ── MODE TOGGLE HEADER ── */
     .scenario-header {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
+      gap: 32px;
       padding: 32px 64px;
       border-bottom: 1px solid var(--border-subtle);
       position: relative;
@@ -405,6 +406,8 @@
     .scenario-mode-dropdown {
       position: relative;
       display: inline-block;
+      flex-shrink: 0;
+      margin-top: 28px; /* Align with headline */
     }
 
     .scenario-mode-trigger {
@@ -2029,14 +2032,9 @@
           <span style="cursor: help; opacity: 0.4; font-size: 0.7rem;" title="How is confidence calculated? Signal volume × recency × cross-pipeline agreement. Higher values mean more reliable simulation outputs.">ⓘ</span>
         </div>
 
-        <!-- Cross-Page Navigation CTAs -->
-        <div style="display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;">
-          <a href="signal-terminal.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; color: #22d3ee; font-family: var(--font-body); font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(52,211,153,0.18)'" onmouseout="this.style.background='rgba(52,211,153,0.1)'">
-            <i class="ph ph-terminal" style="font-size: 1rem;"></i> Browse Signals →
-          </a>
-          <a href="guided-analysis.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(129,140,248,0.1); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; color: #818cf8; font-family: var(--font-body); font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(129,140,248,0.18)'" onmouseout="this.style.background='rgba(129,140,248,0.1)'">
-            <i class="ph ph-chat-centered-text" style="font-size: 1rem;"></i> Ask the Analyst →
-          </a>
+        <div class="page-nav-ctas">
+          <a href="signal-terminal.html" class="page-nav-cta"><i class="ph ph-terminal"></i> Browse Signals →</a>
+          <a href="guided-analysis.html" class="page-nav-cta"><i class="ph ph-chat-centered-text"></i> Ask the Analyst →</a>
         </div>
       </div>
       <div class="scenario-mode-dropdown" id="mode-dropdown">
@@ -2808,7 +2806,7 @@
 
   <!-- SCRIPTS -->
   <script src="js/analyst-llm.js"></script>
-  <script src="js/api-client.js"></script>
+  <script src="js/api-client.js?v=2"></script>
   <script src="js/app.js"></script>
   <script src="js/brand-sim.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>

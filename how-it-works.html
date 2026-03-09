@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How It Works. Brand Intelligence Engine</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=4">
+  <link rel="stylesheet" href="css/global.css?v=5">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
@@ -1022,21 +1022,22 @@
 
     .bf-cta-link {
       display: inline-block;
-      padding: 12px 24px;
-      border-radius: 6px;
-      background: rgba(129, 140, 248, 0.15);
-      border: 1px solid rgba(129, 140, 248, 0.4);
-      color: rgba(129, 140, 248, 0.9);
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.4);
       text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      transition: all 0.2s ease;
     }
 
     .bf-cta-link:hover {
-      background: rgba(129, 140, 248, 0.25);
-      border-color: rgba(129, 140, 248, 0.6);
-      transform: translateX(4px);
+      color: rgba(255,255,255,0.7);
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.03);
     }
 
     /* Simulation Engine Section */
@@ -2327,13 +2328,9 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
         </div>
       </section>
 
-      <div style="display: flex; gap: 16px; margin-top: 32px; flex-wrap: wrap;">
-        <a href="signal-terminal.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; color: #34d399; font-family: var(--font-body); font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(52,211,153,0.18)'" onmouseout="this.style.background='rgba(52,211,153,0.1)'">
-          <i class="ph ph-terminal" style="font-size: 1rem;"></i> See Signals Live →
-        </a>
-        <a href="brand-fidelity.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(129,140,248,0.1); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; color: #818cf8; font-family: var(--font-body); font-size: 0.85rem; text-decoration: none; transition: all 0.2s ease;" onmouseover="this.style.background='rgba(129,140,248,0.18)'" onmouseout="this.style.background='rgba(129,140,248,0.1)'">
-          <i class="ph ph-flower-lotus" style="font-size: 1rem;"></i> Brand Fidelity Framework →
-        </a>
+      <div class="page-nav-ctas">
+        <a href="signal-terminal.html" class="page-nav-cta"><i class="ph ph-terminal"></i> See Signals Live →</a>
+        <a href="brand-fidelity.html" class="page-nav-cta"><i class="ph ph-flower-lotus"></i> Brand Fidelity Framework →</a>
       </div>
 
     </main>
