@@ -3508,46 +3508,89 @@
 
         // ── Layer 2: Scenario-specific brand strength modifiers ──
         // Each scenario creates different competitive dynamics
+        // DESIGN RULE: Stayworthy never tops — always mid-pack or below.
+        // Clear winners and losers must make narrative sense for each future.
         const scenarioStrength = {
-          // Regulatory Wave: compliance = trust advantage, disruptors penalized
-          // Sonder (tech-forward operator) gains from existing compliance; New Entrant struggles
+          // ── 2027: Regulatory Wave ──
+          // WINNERS: Hotel chains (Marriott, Hilton) — already compliant, lobbied for this.
+          //          Booking.com — works with regulated hotels, adapts fast.
+          //          Plum Guide — curated/professional, already vets every property.
+          // LOSERS:  Airbnb — individual hosts crushed by compliance costs.
+          //          Vrbo — same STR exposure as Airbnb.
+          //          New Entrant — can't afford compliance infrastructure.
+          // MID:     Stayworthy — manageable but not a differentiator.
+          //          Sonder — professionally managed, slight regulatory benefit.
           trust: {
-            'Marriott': 1.06, 'Hilton': 1.05, 'Stayworthy': 1.08,
-            'Booking.com': 0.97, 'Airbnb': 0.92, 'Vrbo': 0.94,
-            'Plum Guide': 1.03, 'Hopper': 0.90, 'Sonder': 1.03, 'New Entrant': 0.88
+            'Marriott': 1.09, 'Hilton': 1.08, 'Booking.com': 1.05,
+            'Plum Guide': 1.04, 'Sonder': 1.02, 'Stayworthy': 0.99,
+            'Hopper': 0.96, 'Vrbo': 0.90, 'Airbnb': 0.87, 'New Entrant': 0.84
           },
-          // AI Concierge: tech-forward brands surge, traditional lag
-          // New Entrant could be AI-native; Sonder benefits from tech stack
+          // ── 2029: AI Concierge Era ──
+          // WINNERS: Hopper — AI-native company, price prediction is their DNA.
+          //          Booking.com — massive R&D budget, already deploying AI at scale.
+          //          Airbnb — big tech resources, can invest heavily in AI features.
+          // LOSERS:  Marriott — legacy enterprise IT, slow adoption cycles.
+          //          Hilton — same legacy drag as Marriott.
+          //          Vrbo — aging platform, minimal AI investment.
+          // MID:     Stayworthy — tries but budget can't compete with giants.
+          //          New Entrant — could be AI-native but unproven.
           ai: {
-            'Stayworthy': 1.10, 'Airbnb': 1.05, 'Booking.com': 1.03,
-            'Hopper': 1.11, 'Marriott': 0.93, 'Hilton': 0.92,
-            'Vrbo': 0.96, 'Plum Guide': 1.02, 'Sonder': 1.06, 'New Entrant': 1.10
+            'Hopper': 1.13, 'Booking.com': 1.08, 'Airbnb': 1.06,
+            'New Entrant': 1.05, 'Sonder': 1.03, 'Stayworthy': 1.00,
+            'Plum Guide': 0.97, 'Vrbo': 0.93, 'Marriott': 0.91, 'Hilton': 0.90
           },
-          // Decentralized: community/niche platforms gain, centralized aggregators lose
-          // Sonder is centralized (loses); New Entrant could be decentralized-native
+          // ── 2031: Decentralized Travel ──
+          // WINNERS: Airbnb — peer-to-peer DNA, natural fit for decentralization.
+          //          New Entrant — built from scratch for this paradigm.
+          //          Vrbo — owner-direct model aligns with decentralized ethos.
+          // LOSERS:  Booking.com — intermediary model directly threatened.
+          //          Sonder — centralized operator, needs physical infrastructure.
+          //          Marriott/Hilton — centralized chains lose distribution control.
+          // MID:     Stayworthy — not built for decentralization, treads water.
+          //          Plum Guide — curated niche survives but doesn't thrive.
           baseline: {
-            'Stayworthy': 1.04, 'Airbnb': 0.95, 'Booking.com': 0.93,
-            'Vrbo': 1.01, 'Marriott': 0.94, 'Hilton': 0.94,
-            'Plum Guide': 1.07, 'Hopper': 0.99, 'Sonder': 0.94, 'New Entrant': 1.06
+            'Airbnb': 1.09, 'New Entrant': 1.08, 'Vrbo': 1.04,
+            'Hopper': 1.02, 'Plum Guide': 1.00, 'Stayworthy': 0.96,
+            'Marriott': 0.93, 'Hilton': 0.93, 'Sonder': 0.91, 'Booking.com': 0.88
           },
-          // Pricing transparency
+          // ── Pricing Transparency ──
+          // WINNERS: Hopper — price prediction IS their product, transparency helps them.
+          //          Booking.com — comparison engine, benefits from open pricing.
+          //          Airbnb — scale + brand trust in transparent market.
+          // LOSERS:  Plum Guide — premium pricing exposed, harder to justify margins.
+          //          Sonder — mid-tier pricing gets squeezed by transparency.
+          //          New Entrant — no pricing power yet.
+          // MID:     Stayworthy — neither helped nor hurt significantly.
           pricing: {
-            'Stayworthy': 1.07, 'Booking.com': 0.94, 'Airbnb': 1.02,
-            'Vrbo': 1.01, 'Marriott': 1.03, 'Hilton': 1.02,
-            'Plum Guide': 1.04, 'Hopper': 0.93, 'Sonder': 1.03, 'New Entrant': 0.95
+            'Hopper': 1.10, 'Booking.com': 1.06, 'Airbnb': 1.04,
+            'Marriott': 1.02, 'Hilton': 1.01, 'Stayworthy': 0.99,
+            'Vrbo': 0.98, 'New Entrant': 0.95, 'Sonder': 0.94, 'Plum Guide': 0.90
           },
-          // Gen Z experience — social-native and AI brands win
+          // ── Gen Z Takes Over ──
+          // WINNERS: Hopper — mobile-first, young demographic, TikTok-native brand.
+          //          Airbnb — experiences, social-first, authentic travel.
+          //          Sonder — Instagram-worthy urban apartments, design-forward.
+          // LOSERS:  Marriott — seen as parents' brand, corporate feel.
+          //          Hilton — same generational disconnect.
+          //          Vrbo — family vacation brand, not GenZ.
+          // MID:     Stayworthy — some appeal but not top-of-mind for GenZ.
           genz: {
-            'Stayworthy': 1.08, 'Airbnb': 1.04, 'Hopper': 1.09,
-            'Booking.com': 0.95, 'Marriott': 0.92, 'Hilton': 0.91,
-            'Vrbo': 0.97, 'Plum Guide': 1.02, 'Sonder': 1.06, 'New Entrant': 1.08
+            'Hopper': 1.11, 'Airbnb': 1.07, 'Sonder': 1.06,
+            'New Entrant': 1.05, 'Plum Guide': 1.01, 'Stayworthy': 0.97,
+            'Booking.com': 0.96, 'Vrbo': 0.93, 'Marriott': 0.90, 'Hilton': 0.89
           },
-          // Price war: race to bottom, large brands survive on scale
-          // Small unknowns get crushed
+          // ── Price War ──
+          // WINNERS: Booking.com — scale + volume = survives the race to bottom.
+          //          Airbnb — massive supply, can absorb margin compression.
+          //          Marriott/Hilton — loyalty programs cushion price pressure.
+          // LOSERS:  Plum Guide — premium model collapses in price war.
+          //          New Entrant — no war chest, gets crushed.
+          //          Sonder — thin margins on managed apartments, can't compete.
+          // MID:     Stayworthy — squeezed but not destroyed.
           pricewar: {
-            'Stayworthy': 0.95, 'Airbnb': 1.04, 'Booking.com': 1.06,
-            'Vrbo': 1.03, 'Marriott': 1.05, 'Hilton': 1.03,
-            'Plum Guide': 0.87, 'Hopper': 0.93, 'Sonder': 0.90, 'New Entrant': 0.82
+            'Booking.com': 1.07, 'Airbnb': 1.05, 'Marriott': 1.04,
+            'Hilton': 1.03, 'Vrbo': 1.02, 'Stayworthy': 0.94,
+            'Hopper': 0.92, 'Sonder': 0.88, 'New Entrant': 0.83, 'Plum Guide': 0.85
           }
         };
 
