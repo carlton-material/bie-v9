@@ -969,7 +969,7 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       ABM SIMULATION ENGINE
+       BIE SIMULATION ENGINE
        ═══════════════════════════════════════════════════════════ */
 
     .simulation-section {
@@ -1080,6 +1080,26 @@
     .wg-replay-btn:hover {
       border-color: #745AFF;
       color: #745AFF;
+    }
+    .wg-scenario-pick-btn {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: var(--text-small);
+      cursor: pointer;
+      transition: all 200ms;
+      text-align: left;
+    }
+    .wg-scenario-pick-btn:hover {
+      border-color: #745AFF;
+      background: rgba(116, 90, 255, 0.08);
+    }
+    .wg-scenario-pick-btn.just-ran {
+      opacity: 0.4;
+      pointer-events: none;
     }
     @media (max-width: 768px) {
       .wg-results-summary { grid-template-columns: 1fr; }
@@ -2024,7 +2044,7 @@
     }
 
     /* ═══════════════════════════════════════════════════════════
-       MODE 5: BRAND SIM - Agent-Based Market Simulation
+       MODE 5: BRAND SIM - BIE Market Simulation
        ═══════════════════════════════════════════════════════════ */
 
     .mode-brand-sim { display: none; }
@@ -2138,7 +2158,7 @@
         </div>
 
         <div class="page-nav-ctas">
-          <a href="signal-terminal.html" class="page-nav-cta"><i class="ph ph-terminal"></i> Browse Signals →</a>
+          <a href="signal-terminal.html" class="page-nav-cta"><i class="ph ph-compass"></i> Explore Signals →</a>
           <a href="guided-analysis.html" class="page-nav-cta"><i class="ph ph-chat-centered-text"></i> Ask the Analyst →</a>
         </div>
       </div>
@@ -2560,7 +2580,7 @@
             <div class="output-question" id="output-question"></div>
           </div>
 
-          <div class="glass-box-inline">◆ ABM simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH</div>
+          <div class="glass-box-inline">◆ BIE Simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH</div>
         </div>
 
         </div><!-- /wg-phase 2 -->
@@ -2569,7 +2589,7 @@
         <div class="wg-phase" data-wg-phase="3">
         <div class="simulation-section active" id="simulation-section">
           <div class="simulation-header">
-            <label class="simulation-label">Agent-Based Market Simulation</label>
+            <label class="simulation-label">BIE Market Simulation</label>
             <h3 class="simulation-title">Brand Share Evolution Under Scenario</h3>
             <div id="wg-scenario-label" style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px;"></div>
           </div>
@@ -2625,7 +2645,7 @@
           <div class="canvas-container" style="position: relative; height: 400px; margin-bottom: 16px;">
             <canvas id="wargame-chart"></canvas>
           </div>
-          <!-- Hidden ABM canvas for raw data (used internally) -->
+          <!-- Hidden simulation canvas for raw data (used internally) -->
           <canvas id="simulation-canvas" width="1000" height="400" style="display:none;"></canvas>
 
           <!-- Tier Participation Meters -->
@@ -2701,11 +2721,33 @@
             <p id="wg-strategic-rec" style="margin: 0; color: rgba(255,255,255,0.85); font-size: var(--text-small); line-height: 1.7;"></p>
           </div>
 
-          <div class="glass-box-inline" style="margin-bottom: 24px;">◆ 650 agents · 100 iterations · Stochastic ABM with Bass diffusion · Confidence: HIGH</div>
+          <div class="glass-box-inline" style="margin-bottom: 24px;">◆ 650 agents · 100 iterations · BIE Simulation with Bass diffusion · Confidence: HIGH</div>
 
-          <!-- Actions -->
+          <!-- Scenario Picker -->
+          <div style="margin-bottom: 24px;">
+            <h4 style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 0 0 12px 0;">Run Another Scenario</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 16px;">
+              <button class="wg-scenario-pick-btn" data-pick-scenario="regulatory" id="wg-pick-regulatory">
+                <span style="font-weight: 600;">2027: Regulatory Wave</span>
+                <span style="font-size: 0.7rem; opacity: 0.5; display: block; margin-top: 2px;">Share Shift · 72% Likely</span>
+              </button>
+              <button class="wg-scenario-pick-btn" data-pick-scenario="ai-concierge" id="wg-pick-ai">
+                <span style="font-weight: 600;">2029: AI Concierge Era</span>
+                <span style="font-size: 0.7rem; opacity: 0.5; display: block; margin-top: 2px;">Category Expansion · 65% Likely</span>
+              </button>
+              <button class="wg-scenario-pick-btn" data-pick-scenario="decentralized" id="wg-pick-decentral">
+                <span style="font-weight: 600;">2031: Decentralized Travel</span>
+                <span style="font-size: 0.7rem; opacity: 0.5; display: block; margin-top: 2px;">Mixed · 48% Likely</span>
+              </button>
+            </div>
+            <button class="wg-replay-btn" id="wg-custom-scenario-btn" style="border-color: #745AFF; color: #745AFF;">
+              <i class="ph ph-sparkle" style="margin-right: 4px;"></i> Generate Custom Scenario with Material Analyst
+            </button>
+          </div>
+
+          <!-- Navigation -->
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <button class="wg-replay-btn" id="wg-replay-btn">↻ Run Another Scenario</button>
+            <button class="wg-replay-btn" id="wg-replay-btn">↻ Back to Scenario Select</button>
             <button class="wg-replay-btn" id="wg-review-analysis-btn">← Review Analysis</button>
             <button class="wg-replay-btn" id="wg-review-sim-btn">← Review Simulation</button>
           </div>
@@ -2840,7 +2882,7 @@
     <!-- ══════════════ BRAND SIM ══════════════ -->
     <div class="scenario-mode mode-brand-sim" data-mode="brand-sim">
       <div style="max-width: 1100px;">
-        <div style="color: rgba(255,255,255,0.4); font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: var(--space-sm);">AGENT-BASED MARKET SIMULATION</div>
+        <div style="color: rgba(255,255,255,0.4); font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: var(--space-sm);">BIE MARKET SIMULATION</div>
         <h2 style="font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: var(--text-2xl, 1.75rem); color: var(--text-primary, #e8e8e8); margin-bottom: var(--space-sm);">Brand Competitive Dynamics</h2>
         <p style="color: var(--text-secondary, rgba(255,255,255,0.5)); max-width: 700px; margin-bottom: var(--space-lg); line-height: 1.6;">
           650 synthetic agents make brand choices based on price sensitivity, brand equity, innovation perception, and distribution access. Select a scenario, then watch market share evolve.
@@ -2949,8 +2991,8 @@
       <button class="analyst-panel-close">&times;</button>
     </div>
     <div class="analyst-mode-toggle">
-      <button class="mode-btn active" data-mode="guide">Ask</button>
-      <button class="mode-btn" data-mode="guardian">Explore</button>
+      <button class="mode-btn active" data-mode="guardian">Explore</button>
+      <button class="mode-btn" data-mode="guide">Ask</button>
     </div>
     <div class="analyst-panel-messages"></div>
     <div class="analyst-panel-suggestions"></div>
@@ -3168,9 +3210,9 @@
         // Visibility now handled by wg-phase pane system
       },
 
-      /* ── ABM SIMULATION ENGINE ── */
+      /* ── BIE SIMULATION ENGINE ── */
       initSimulation() {
-        this.simulation = new ABMSimulation('simulation-canvas');
+        this.simulation = new BIESimulation('simulation-canvas');
         this.simulation.init();
 
         // Control buttons
@@ -3292,10 +3334,10 @@
     });
 
     /* ═══════════════════════════════════════════════════════════
-       AGENT-BASED MARKET MODEL
+       BIE MARKET MODEL
        ═══════════════════════════════════════════════════════════ */
 
-    class ABMSimulation {
+    class BIESimulation {
       constructor(canvasId) {
         this.canvas = document.getElementById(canvasId);
         this.ctx = this.canvas.getContext('2d');
@@ -3313,7 +3355,7 @@
         // 10 brands: competitive set
         this.brands = [
           'Airbnb', 'Vrbo', 'Stayworthy', 'Booking.com', 'Marriott',
-          'Hilton', 'Plum Guide', 'Hopper', 'TrustLayer', 'NomadPass'
+          'Hilton', 'Plum Guide', 'Hopper', 'Sonder', 'New Entrant'
         ];
 
         // Initial shares (proportional to BF composite)
@@ -3326,11 +3368,11 @@
           'Stayworthy': 0.07,
           'Plum Guide': 0.05,
           'Hopper': 0.04,
-          'TrustLayer': 0.025,
-          'NomadPass': 0.015
+          'Sonder': 0.025,
+          'New Entrant': 0.015
         };
 
-        // ABM parameters (modifiable by preset)
+        // Simulation parameters (modifiable by preset)
         this.params = {
           advertisingEffect: 0.03,   // p (advertising)
           womEffect: 0.38,            // q (word-of-mouth)
@@ -3468,44 +3510,44 @@
         // Each scenario creates different competitive dynamics
         const scenarioStrength = {
           // Regulatory Wave: compliance = trust advantage, disruptors penalized
-          // TrustLayer (blockchain verification startup) surges; scrappy players suffer
+          // Sonder (tech-forward operator) gains from existing compliance; New Entrant struggles
           trust: {
             'Marriott': 1.06, 'Hilton': 1.05, 'Stayworthy': 1.08,
             'Booking.com': 0.97, 'Airbnb': 0.92, 'Vrbo': 0.94,
-            'Plum Guide': 1.03, 'Hopper': 0.90, 'TrustLayer': 1.14, 'NomadPass': 0.88
+            'Plum Guide': 1.03, 'Hopper': 0.90, 'Sonder': 1.03, 'New Entrant': 0.88
           },
           // AI Concierge: tech-forward brands surge, traditional lag
-          // NomadPass (AI-native travel agent) explodes; legacy brands lose ground
+          // New Entrant could be AI-native; Sonder benefits from tech stack
           ai: {
             'Stayworthy': 1.10, 'Airbnb': 1.05, 'Booking.com': 1.03,
             'Hopper': 1.11, 'Marriott': 0.93, 'Hilton': 0.92,
-            'Vrbo': 0.96, 'Plum Guide': 1.02, 'TrustLayer': 0.97, 'NomadPass': 1.18
+            'Vrbo': 0.96, 'Plum Guide': 1.02, 'Sonder': 1.06, 'New Entrant': 1.10
           },
           // Decentralized: community/niche platforms gain, centralized aggregators lose
-          // Both unknowns benefit — they represent the decentralized future
+          // Sonder is centralized (loses); New Entrant could be decentralized-native
           baseline: {
             'Stayworthy': 1.04, 'Airbnb': 0.95, 'Booking.com': 0.93,
             'Vrbo': 1.01, 'Marriott': 0.94, 'Hilton': 0.94,
-            'Plum Guide': 1.07, 'Hopper': 0.99, 'TrustLayer': 1.10, 'NomadPass': 1.08
+            'Plum Guide': 1.07, 'Hopper': 0.99, 'Sonder': 0.94, 'New Entrant': 1.06
           },
           // Pricing transparency
           pricing: {
             'Stayworthy': 1.07, 'Booking.com': 0.94, 'Airbnb': 1.02,
             'Vrbo': 1.01, 'Marriott': 1.03, 'Hilton': 1.02,
-            'Plum Guide': 1.04, 'Hopper': 0.93, 'TrustLayer': 1.06, 'NomadPass': 0.95
+            'Plum Guide': 1.04, 'Hopper': 0.93, 'Sonder': 1.03, 'New Entrant': 0.95
           },
           // Gen Z experience — social-native and AI brands win
           genz: {
             'Stayworthy': 1.08, 'Airbnb': 1.04, 'Hopper': 1.09,
             'Booking.com': 0.95, 'Marriott': 0.92, 'Hilton': 0.91,
-            'Vrbo': 0.97, 'Plum Guide': 1.02, 'TrustLayer': 0.96, 'NomadPass': 1.12
+            'Vrbo': 0.97, 'Plum Guide': 1.02, 'Sonder': 1.06, 'New Entrant': 1.08
           },
           // Price war: race to bottom, large brands survive on scale
           // Small unknowns get crushed
           pricewar: {
             'Stayworthy': 0.95, 'Airbnb': 1.04, 'Booking.com': 1.06,
             'Vrbo': 1.03, 'Marriott': 1.05, 'Hilton': 1.03,
-            'Plum Guide': 0.87, 'Hopper': 0.93, 'TrustLayer': 0.84, 'NomadPass': 0.82
+            'Plum Guide': 0.87, 'Hopper': 0.93, 'Sonder': 0.90, 'New Entrant': 0.82
           }
         };
 
@@ -3606,8 +3648,8 @@
           'Hilton': '#8b5cf6',
           'Plum Guide': '#06b6d4',
           'Hopper': '#14b8a6',
-          'TrustLayer': '#f97316',
-          'NomadPass': '#6366f1'
+          'Sonder': '#f97316',
+          'New Entrant': '#6366f1'
         };
 
         const datasets = this.brands.map(brand => ({
@@ -4639,13 +4681,13 @@
       const titleEl = document.getElementById('wg-results-title');
       if (titleEl) titleEl.textContent = 'Results: ' + (scenarioNames[scenario] || 'Scenario Analysis');
       const labelEl = document.getElementById('wg-results-scenario-label');
-      if (labelEl) labelEl.textContent = '100 iterations · 650 agents · ABM simulation complete';
+      if (labelEl) labelEl.textContent = '100 iterations · 650 agents · BIE Simulation complete';
 
       // Get initial shares for delta calc
       const initialShares = {
         'Airbnb': 0.22, 'Booking.com': 0.20, 'Vrbo': 0.15,
         'Marriott': 0.13, 'Hilton': 0.10, 'Stayworthy': 0.07,
-        'Plum Guide': 0.05, 'Hopper': 0.04, 'TrustLayer': 0.025, 'NomadPass': 0.015
+        'Plum Guide': 0.05, 'Hopper': 0.04, 'Sonder': 0.025, 'New Entrant': 0.015
       };
 
       // Build sorted rankings
@@ -4712,6 +4754,11 @@
         decentralized: 'Priority action: Launch community marketplace beta. The simulation shows blockchain-native entrants capture niche segments quickly, but struggle with quality. Stayworthy\'s hybrid approach — verified quality + community governance — creates a defensible middle ground.'
       };
       if (recEl) recEl.textContent = recs[scenario] || 'Review simulation results and align strategic priorities.';
+
+      // Mark the just-ran scenario in the results picker
+      document.querySelectorAll('.wg-scenario-pick-btn').forEach(b => b.classList.remove('just-ran'));
+      const justRan = document.querySelector(`.wg-scenario-pick-btn[data-pick-scenario="${scenario}"]`);
+      if (justRan) justRan.classList.add('just-ran');
     }
 
     // Results pane navigation buttons (run immediately — DOM already loaded at this point)
@@ -4720,6 +4767,7 @@
       if (replayBtn) replayBtn.addEventListener('click', () => {
         // Reset to Phase 1
         document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('selected'));
+        document.querySelectorAll('.wg-scenario-pick-btn').forEach(b => b.classList.remove('just-ran'));
         if (window.ScenarioLab) window.ScenarioLab.currentScenario = null;
         updateWizardStep(1);
       });
@@ -4732,6 +4780,37 @@
       const reviewSim = document.getElementById('wg-review-sim-btn');
       if (reviewSim) reviewSim.addEventListener('click', () => {
         updateWizardStep(3);
+      });
+
+      // Scenario quick-pick buttons in results pane
+      document.querySelectorAll('.wg-scenario-pick-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const scenario = btn.dataset.pickScenario;
+          if (!scenario || !window.ScenarioLab) return;
+          // Dim the button just clicked
+          document.querySelectorAll('.wg-scenario-pick-btn').forEach(b => b.classList.remove('just-ran'));
+          btn.classList.add('just-ran');
+          // Find the matching scenario card and trigger it
+          const card = document.querySelector(`.scenario-card[data-scenario="${scenario}"]`);
+          if (card) {
+            window.ScenarioLab.selectWarGameScenario(card);
+          }
+        });
+      });
+
+      // Custom scenario via Material Analyst
+      const customBtn = document.getElementById('wg-custom-scenario-btn');
+      if (customBtn) customBtn.addEventListener('click', () => {
+        // Open the analyst panel and pre-fill with scenario generation prompt
+        const analystPanel = document.querySelector('.analyst-panel');
+        if (analystPanel) {
+          analystPanel.classList.add('open');
+          const input = analystPanel.querySelector('.analyst-panel-input input, .analyst-panel-input textarea');
+          if (input) {
+            input.value = 'Generate a custom war gaming scenario for Stayworthy. Consider an emerging market disruption not covered by the existing three futures. Include the scenario name, time horizon, probability, market impact, and Stayworthy strategic play.';
+            input.focus();
+          }
+        }
       });
 
       // Make completed wizard steps clickable for navigation
