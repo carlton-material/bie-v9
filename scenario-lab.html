@@ -2975,7 +2975,8 @@
        SCENARIO LAB - Mode Toggle & Interactions
        ═══════════════════════════════════════════════════════════ */
 
-    const ScenarioLab = {
+    // Expose on window for cross-scope access
+    const ScenarioLab = window.ScenarioLab = {
       currentMode: 'insight',
       currentScenario: null,
       simulation: null,
@@ -4713,13 +4714,13 @@
       if (recEl) recEl.textContent = recs[scenario] || 'Review simulation results and align strategic priorities.';
     }
 
-    // Results pane navigation buttons
-    document.addEventListener('DOMContentLoaded', () => {
+    // Results pane navigation buttons (run immediately — DOM already loaded at this point)
+    (function initWGButtons() {
       const replayBtn = document.getElementById('wg-replay-btn');
       if (replayBtn) replayBtn.addEventListener('click', () => {
         // Reset to Phase 1
         document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('selected'));
-        window.ScenarioLab.currentScenario = null;
+        if (window.ScenarioLab) window.ScenarioLab.currentScenario = null;
         updateWizardStep(1);
       });
 
@@ -4743,7 +4744,7 @@
           }
         });
       });
-    });
+    })();
 
     /* ═══════════════════════════════════════════════════════════
        STEPPER FUNCTIONALITY - Configure → Run → Results
