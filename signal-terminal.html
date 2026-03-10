@@ -435,15 +435,15 @@
       font-weight: 600;
     }
 
-    /* ── Brand Fidelity Driver Badges ── */
-    .st-signal-drivers {
+    /* ── Brand Fidelity Dimension Badges ── */
+    .st-signal-dimensions {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
       margin-top: 8px;
     }
 
-    .st-driver-badge {
+    .st-dimension-badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -463,7 +463,7 @@
       height: 22px;
     }
 
-    .st-driver-badge::before {
+    .st-dimension-badge::before {
       content: '';
       display: inline-block;
       width: 3px;
@@ -472,37 +472,37 @@
       flex-shrink: 0;
     }
 
-    .st-driver-badge:hover {
+    .st-dimension-badge:hover {
       transform: translateY(-1px);
     }
 
-    .st-driver-badge.human {
+    .st-dimension-badge.human {
       border-color: rgba(129, 140, 248, 0.3);
       background: rgba(129, 140, 248, 0.12);
       color: var(--signal-human);
     }
 
-    .st-driver-badge.human::before {
+    .st-dimension-badge.human::before {
       background: var(--signal-human);
     }
 
-    .st-driver-badge.behavioral {
+    .st-dimension-badge.behavioral {
       border-color: rgba(52, 211, 153, 0.3);
       background: rgba(52, 211, 153, 0.12);
       color: var(--signal-behavioral);
     }
 
-    .st-driver-badge.behavioral::before {
+    .st-dimension-badge.behavioral::before {
       background: var(--signal-behavioral);
     }
 
-    .st-driver-badge.cultural {
+    .st-dimension-badge.cultural {
       border-color: rgba(245, 158, 11, 0.3);
       background: rgba(245, 158, 11, 0.12);
       color: var(--signal-cultural);
     }
 
-    .st-driver-badge.cultural::before {
+    .st-dimension-badge.cultural::before {
       background: var(--signal-cultural);
     }
 
@@ -892,7 +892,7 @@
           <div class="st-anomaly-title">Booking Abandonment → UX Friction</div>
           <div class="st-anomaly-detail">
             <strong>Confidence: MEDIUM</strong><br>
-            Booking abandonment surge (+7pp in 14 days) temporally aligned with mobile app session decline (−12%). Likely compound effect on <strong>User Friendly</strong> driver. Recommend UX audit.
+            Booking abandonment surge (+7pp in 14 days) temporally aligned with mobile app session decline (−12%). Likely compound effect on <strong>User Friendly</strong> dimension. Recommend UX audit.
           </div>
         </div>
       </div>
@@ -1163,8 +1163,8 @@
     function createSignalElement(signal, layer) {
       const el = document.createElement('div');
       el.className = `st-signal ${layer}`;
-      // Extract drivers from signal text
-      const driverMap = {
+      // Extract dimensions from signal text
+      const dimensionMap = {
         'user friendly': 'behavioral',
         'personal': 'human',
         'accessible': 'cultural',
@@ -1173,7 +1173,7 @@
         'salient': 'cultural'
       };
 
-      const driverShortcodes = {
+      const dimensionShortcodes = {
         'user friendly': 'UF',
         'personal': 'P',
         'accessible': 'A',
@@ -1182,55 +1182,55 @@
         'salient': 'S'
       };
 
-      // Signal patterns that indicate driver impact
-      const driverPatterns = {
+      // Signal patterns that indicate dimension impact
+      const dimensionPatterns = {
         'user friendly': [/UX|friction|search|book|usability|interface|experience.*flow|mobile app|session/i, /meets my needs|easily/i],
-        'personal': [/personalization|personalized|customize|preference|unique|tailored|individual/i, /understands.*unique|personal driver/i],
+        'personal': [/personalization|personalized|customize|preference|unique|tailored|individual/i, /understands.*unique|personal dimension/i],
         'accessible': [/availability|always.*there|24|downtime|outage|accessible|present|reliability/i, /when i need it/i],
         'dependable': [/consistency|consistent|reliable|stable|repeat rate|quality|reliability|support/i, /good experience|consistently/i],
         'meaningful': [/meaningful|significance|role.*life|engagement|value|purpose|authentic/i, /significant role|plays.*life/i],
         'salient': [/top.*mind|salience|recall|choice|prefer|brand.*choice|turn to/i, /when i.*need|turn to this brand/i]
       };
 
-      let driverBadges = '';
-      const textForDrivers = signal.text.toLowerCase();
-      const detectedDrivers = new Set();
+      let dimensionBadges = '';
+      const textForDimensions = signal.text.toLowerCase();
+      const detectedDimensions = new Set();
 
       // Explicit mention detection
-      Object.keys(driverMap).forEach(driver => {
-        if (textForDrivers.includes(driver)) {
-          detectedDrivers.add(driver);
+      Object.keys(dimensionMap).forEach(dim => {
+        if (textForDimensions.includes(dim)) {
+          detectedDimensions.add(dim);
         }
       });
 
       // Pattern-based detection if no explicit mentions
-      if (detectedDrivers.size === 0) {
-        Object.keys(driverPatterns).forEach(driver => {
-          const patterns = driverPatterns[driver];
+      if (detectedDimensions.size === 0) {
+        Object.keys(dimensionPatterns).forEach(dim => {
+          const patterns = dimensionPatterns[dim];
           if (patterns.some(pattern => pattern.test(signal.text))) {
-            detectedDrivers.add(driver);
+            detectedDimensions.add(dim);
           }
         });
       }
 
       // Layer-based inference
-      if (detectedDrivers.size === 0) {
+      if (detectedDimensions.size === 0) {
         if (signal.layer === 'human') {
-          if (Math.random() > 0.5) detectedDrivers.add('personal');
-          else detectedDrivers.add('meaningful');
+          if (Math.random() > 0.5) detectedDimensions.add('personal');
+          else detectedDimensions.add('meaningful');
         } else if (signal.layer === 'behavioral') {
-          if (Math.random() > 0.5) detectedDrivers.add('user friendly');
-          else detectedDrivers.add('dependable');
+          if (Math.random() > 0.5) detectedDimensions.add('user friendly');
+          else detectedDimensions.add('dependable');
         } else if (signal.layer === 'cultural') {
-          if (Math.random() > 0.5) detectedDrivers.add('accessible');
-          else detectedDrivers.add('salient');
+          if (Math.random() > 0.5) detectedDimensions.add('accessible');
+          else detectedDimensions.add('salient');
         }
       }
 
-      if (detectedDrivers.size > 0) {
-        driverBadges = Array.from(detectedDrivers).map(driver => {
-          const shortcode = driverShortcodes[driver] || 'BF';
-          return `<span class="signal-card-tag" title="Brand Fidelity: ${driver}">${shortcode}</span>`;
+      if (detectedDimensions.size > 0) {
+        dimensionBadges = Array.from(detectedDimensions).map(dim => {
+          const shortcode = dimensionShortcodes[dim] || 'BF';
+          return `<span class="signal-card-tag" title="Brand Fidelity: ${dim}">${shortcode}</span>`;
         }).join('');
       }
 
@@ -1255,7 +1255,7 @@
               </div>
               <div class="signal-card-tags">
                 <span class="signal-card-tag">${signal.layer}</span>
-                ${driverBadges}
+                ${dimensionBadges}
               </div>
             </div>
           </div>

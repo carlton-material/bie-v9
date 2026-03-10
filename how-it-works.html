@@ -467,7 +467,7 @@
       max-width: 1200px;
     }
 
-    .fidelity-drivers {
+    .fidelity-dimensions {
       display: flex;
       flex-direction: column;
       gap: 32px;
@@ -488,7 +488,7 @@
       font-weight: 600;
     }
 
-    .fidelity-driver-item {
+    .fidelity-dimension-item {
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -498,14 +498,14 @@
       border-radius: 4px;
     }
 
-    .fidelity-driver-name {
+    .fidelity-dimension-name {
       font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
       color: rgba(255, 255, 255, 0.8);
       font-weight: 500;
     }
 
-    .fidelity-driver-desc {
+    .fidelity-dimension-desc {
       font-family: 'Inter', sans-serif;
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.55);
@@ -1225,7 +1225,7 @@
           <div style="padding: 28px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 8px;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(129,140,248,0.7); margin-bottom: 12px;">Traceability</div>
             <div style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary); margin-bottom: 10px;">The Breadcrumb Trail</div>
-            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin: 0;">Every number in BIE has a story. A Brand Fidelity score of 72 isn't just a number — it decomposes into 6 driver scores, each synthesized from 3 signal types, each traceable to specific data sources with timestamps, sample sizes, and confidence intervals. Click any metric, and the system shows its work.</p>
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin: 0;">Every number in BIE has a story. A Brand Fidelity score of 72 isn't just a number — it decomposes into 6 dimension scores, each synthesized from 3 signal types, each traceable to specific data sources with timestamps, sample sizes, and confidence intervals. Click any metric, and the system shows its work.</p>
           </div>
 
           <!-- Consensus Agents -->
@@ -1522,7 +1522,7 @@
               <div class="signal-type-label human">● Human Signal</div>
               <div class="signal-layer-title">What People Believe</div>
               <div class="signal-layer-description">
-                Direct customer voice through interviews, surveys, and narrative research. Captures emotional drivers, brand perceptions, and values alignment — the conscious layer of brand choice.
+                Direct customer voice through interviews, surveys, and narrative research. Captures emotional dimensions, brand perceptions, and values alignment — the conscious layer of brand choice.
               </div>
               <div class="signal-sources">
                 <div class="sources-label">Data sources:</div>
@@ -1801,7 +1801,7 @@
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(245,158,11,0.6); letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border: 1px solid rgba(245,158,11,0.3); border-radius: 3px;">PLANNED · Q3 2026</span>
             </div>
             <div style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.7;">
-              Production deployment with real-time streaming architecture (event-driven ingestion replacing batch) · Horizontal scaling via Kubernetes · Multi-tenant support for brand/category isolation · Causal inference engine for driver attribution · Synthetic control groups for A/B testing brand interventions · Mobile-native surfaces (iOS/Android) · SSO + RBAC access control · 99.9% SLA with auto-failover
+              Production deployment with real-time streaming architecture (event-driven ingestion replacing batch) · Horizontal scaling via Kubernetes · Multi-tenant support for brand/category isolation · Causal inference engine for dimension attribution · Synthetic control groups for A/B testing brand interventions · Mobile-native surfaces (iOS/Android) · SSO + RBAC access control · 99.9% SLA with auto-failover
             </div>
           </div>
 
@@ -2140,7 +2140,7 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
               <strong style="color: rgba(255,255,255,0.9);">Dashboard Embedding:</strong> iframe-embeddable surfaces for client intranets, SharePoint, Confluence<br>
               <strong style="color: rgba(255,255,255,0.9);">Alerts:</strong> Slack/Teams webhook integration for HIGH-severity signal notifications and daily briefings<br>
               <strong style="color: rgba(255,255,255,0.9);">Export:</strong> PDF brief generation, CSV data export, PowerPoint deck builder for strategic briefs<br>
-              <strong style="color: rgba(255,255,255,0.9);">API Access:</strong> RESTful JSON API for programmatic signal queries, driver scores, and simulation results
+              <strong style="color: rgba(255,255,255,0.9);">API Access:</strong> RESTful JSON API for programmatic signal queries, dimension scores, and simulation results
             </div>
           </div>
         </div>
@@ -2227,7 +2227,7 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
             <div style="padding: 16px; background: rgba(245,158,11,0.04); border-radius: 6px;">
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.6); margin-bottom: 8px;">BIE IMPLEMENTATION</div>
               <div style="font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
-                The Material Analyst employs consensus for strategic recommendations: a <strong style="color: rgba(255,255,255,0.8);">Brand Guardian</strong> validates defensive positioning, a <strong style="color: rgba(255,255,255,0.8);">Brand Guide</strong> proposes offensive strategies, and the <strong style="color: rgba(255,255,255,0.8);">Fidelity Engine</strong> stress-tests both against the 6-driver framework. Only recommendations that survive all three lenses appear in the Diagnostic → Attack → Defend → Bridge output.
+                The Material Analyst employs consensus for strategic recommendations: a <strong style="color: rgba(255,255,255,0.8);">Brand Guardian</strong> validates defensive positioning, a <strong style="color: rgba(255,255,255,0.8);">Brand Guide</strong> proposes offensive strategies, and the <strong style="color: rgba(255,255,255,0.8);">Fidelity Engine</strong> stress-tests both against the 6-dimension framework. Only recommendations that survive all three lenses appear in the Diagnostic → Attack → Defend → Bridge output.
               </div>
             </div>
           </div>
@@ -2288,7 +2288,7 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(245,158,11,0.7); letter-spacing: 0.1em; margin-bottom: 8px;">Q4 2026</div>
             <div style="font-size: 0.95rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 8px;">Multi-Tenant Brand/Category Support</div>
             <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
-              Tenant isolation at the data and compute layers. Each client brand gets its own signal namespace, competitive set configuration, and Brand Fidelity driver weighting. Shared infrastructure, isolated intelligence. SSO + RBAC for team-based access control.
+              Tenant isolation at the data and compute layers. Each client brand gets its own signal namespace, competitive set configuration, and Brand Fidelity dimension weighting. Shared infrastructure, isolated intelligence. SSO + RBAC for team-based access control.
             </div>
           </div>
 
@@ -2297,7 +2297,7 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(239,68,68,0.7); letter-spacing: 0.1em; margin-bottom: 8px;">Q4 2026</div>
             <div style="font-size: 0.95rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 8px;">Causal Inference & Synthetic Controls</div>
             <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
-              Move beyond correlation to causation. Causal inference models (DiD, instrumental variables) to attribute driver changes to specific interventions. Synthetic control groups for A/B testing brand strategies without real-world contamination. Counterfactual scenario modeling.
+              Move beyond correlation to causation. Causal inference models (DiD, instrumental variables) to attribute dimension changes to specific interventions. Synthetic control groups for A/B testing brand strategies without real-world contamination. Counterfactual scenario modeling.
             </div>
           </div>
 
@@ -2341,7 +2341,7 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
               <div class="signal-type-label human">● Human Signal</div>
               <div class="signal-layer-title">What People Believe</div>
               <div class="signal-layer-description">
-                Direct customer voice through interviews, surveys, and narrative research. Captures emotional drivers, brand perceptions, and values alignment — the conscious layer of brand choice.
+                Direct customer voice through interviews, surveys, and narrative research. Captures emotional dimensions, brand perceptions, and values alignment — the conscious layer of brand choice.
               </div>
               <div class="signal-sources">
                 <div class="sources-label">Data sources:</div>
@@ -2479,7 +2479,7 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
             <text x="125" y="15" text-anchor="middle" fill="rgba(129, 140, 248, 0.5)" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">IN THE MOMENT</text>
             <text x="125" y="245" text-anchor="middle" fill="rgba(129, 140, 248, 0.5)" font-size="11" font-family="'JetBrains Mono', monospace" font-weight="600">OVER TIME</text>
             
-            <!-- Driver labels -->
+            <!-- Dimension labels -->
             <text x="95" y="50" text-anchor="middle" fill="rgba(255, 255, 255, 0.8)" font-size="10" font-family="'Inter', sans-serif" font-weight="500">Meaningful</text>
             <text x="155" y="50" text-anchor="middle" fill="rgba(255, 255, 255, 0.8)" font-size="10" font-family="'Inter', sans-serif" font-weight="500">Accessible</text>
             <text x="190" y="125" text-anchor="middle" fill="rgba(255, 255, 255, 0.8)" font-size="10" font-family="'Inter', sans-serif" font-weight="500">Salient</text>
@@ -2490,7 +2490,7 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
 
           <div class="bf-wheel-explanation">
             <p class="bf-teaser-text">
-              <strong>Brand Fidelity</strong> is our proprietary framework — 6 drivers across 2 dimensions that predict business outcomes with 2–3× accuracy. Each driver is weighted by signal convergence and recency, creating a dynamic composite score that captures both immediate brand experience and long-term loyalty potential.
+              <strong>Brand Fidelity</strong> is our proprietary framework — 6 dimensions across 2 dimensions that predict business outcomes with 2–3× accuracy. Each dimension is weighted by signal convergence and recency, creating a dynamic composite score that captures both immediate brand experience and long-term loyalty potential.
             </p>
             <a href="brand-fidelity.html" class="bf-cta-link">Deep dive into Brand Fidelity →</a>
           </div>
@@ -2512,7 +2512,7 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
             <div class="sim-metric">
               <div class="sim-metric-label">Utility Model</div>
               <div class="sim-metric-value">Softmax</div>
-              <div class="sim-metric-description">Probabilistic choice model based on Brand Fidelity drivers and competitive pricing.</div>
+              <div class="sim-metric-description">Probabilistic choice model based on Brand Fidelity dimensions and competitive pricing.</div>
             </div>
             <div class="sim-metric">
               <div class="sim-metric-label">Diffusion Pattern</div>

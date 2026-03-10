@@ -254,8 +254,8 @@
       z-index: 1;
     }
 
-    /* ── Brand Fidelity Driver Badges ── */
-    .ditl-drivers {
+    /* ── Brand Fidelity Dimension Badges ── */
+    .ditl-dimensions {
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-md);
@@ -266,12 +266,12 @@
       transition-delay: 0.45s;
     }
 
-    .scene-visible .ditl-drivers {
+    .scene-visible .ditl-dimensions {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .ditl-driver-badge {
+    .ditl-dimension-badge {
       display: inline-flex;
       align-items: center;
       gap: var(--space-sm);
@@ -285,35 +285,35 @@
       transition: all var(--duration-normal);
     }
 
-    /* Signal layer colors based on BF drivers */
+    /* Signal layer colors based on BF dimensions */
     /* Human signals (purple/indigo): Personal (P), Meaningful (M) */
-    .ditl-driver-badge[data-signal="human"] {
+    .ditl-dimension-badge[data-signal="human"] {
       background: rgba(129, 140, 248, 0.06);
       border-color: rgba(129, 140, 248, 0.15);
       color: #818cf8;
     }
 
     /* Behavioral signals (green): User Friendly (UF), Dependable (D) */
-    .ditl-driver-badge[data-signal="behavioral"] {
+    .ditl-dimension-badge[data-signal="behavioral"] {
       background: rgba(52, 211, 153, 0.06);
       border-color: rgba(52, 211, 153, 0.15);
       color: #34d399;
     }
 
     /* Cultural signals (amber): Salient (S), Accessible (A) */
-    .ditl-driver-badge[data-signal="cultural"] {
+    .ditl-dimension-badge[data-signal="cultural"] {
       background: rgba(245, 158, 11, 0.06);
       border-color: rgba(245, 158, 11, 0.15);
       color: #f59e0b;
     }
 
-    .ditl-driver-badge::before {
+    .ditl-dimension-badge::before {
       content: '◆';
       font-size: 10px;
       opacity: 0.6;
     }
 
-    .ditl-driver-context {
+    .ditl-dimension-context {
       font-family: var(--font-body);
       font-size: var(--text-small);
       color: var(--text-tertiary);
@@ -325,7 +325,7 @@
       transition-delay: 0.5s;
     }
 
-    .scene-visible .ditl-driver-context {
+    .scene-visible .ditl-dimension-context {
       opacity: 1;
       transform: translateY(0);
     }
@@ -793,14 +793,14 @@
       letter-spacing: 0.5px;
     }
 
-    .persona-drivers {
+    .persona-dimensions {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       margin-left: auto;
     }
 
-    .persona-driver-chip {
+    .persona-dimension-chip {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -814,19 +814,19 @@
       border: 1px solid;
     }
 
-    .persona-driver-chip[data-signal="human"] {
+    .persona-dimension-chip[data-signal="human"] {
       background: rgba(129, 140, 248, 0.06);
       border-color: rgba(129, 140, 248, 0.15);
       color: #818cf8;
     }
 
-    .persona-driver-chip[data-signal="behavioral"] {
+    .persona-dimension-chip[data-signal="behavioral"] {
       background: rgba(52, 211, 153, 0.06);
       border-color: rgba(52, 211, 153, 0.15);
       color: #34d399;
     }
 
-    .persona-driver-chip[data-signal="cultural"] {
+    .persona-dimension-chip[data-signal="cultural"] {
       background: rgba(245, 158, 11, 0.06);
       border-color: rgba(245, 158, 11, 0.15);
       color: #f59e0b;
@@ -1289,8 +1289,8 @@
                 <div class="persona-name">Sarah Chen</div>
                 <div class="persona-title">Chief Brand Officer</div>
               </div>
-              <div class="persona-drivers">
-                <div class="persona-driver-chip" data-signal="human">Human-Expressive</div>
+              <div class="persona-dimensions">
+                <div class="persona-dimension-chip" data-signal="human">Human-Expressive</div>
               </div>
             </div>
             <h2 class="ditl-scene-headline">Three Red Flags Before Sunrise</h2>
@@ -1322,11 +1322,11 @@
 
 
 
-            <div class="ditl-drivers">
-              <div class="ditl-driver-badge" data-signal="behavioral">Dependable</div>
-              <div class="ditl-driver-badge" data-signal="cultural">Salient</div>
+            <div class="ditl-dimensions">
+              <div class="ditl-dimension-badge" data-signal="behavioral">Dependable</div>
+              <div class="ditl-dimension-badge" data-signal="cultural">Salient</div>
             </div>
-            <div class="ditl-driver-context">Trust indicators flagged as critical - overnight signal processing from 847 data points</div>
+            <div class="ditl-dimension-context">Trust indicators flagged as critical - overnight signal processing from 847 data points</div>
 
             <div class="ditl-preview">
               <div class="ditl-preview-label">Command Center Preview</div>
@@ -1373,8 +1373,8 @@
                 <div class="persona-name">Marcus Rivera</div>
                 <div class="persona-title">VP Marketing</div>
               </div>
-              <div class="persona-drivers">
-                <div class="persona-driver-chip" data-signal="behavioral">Behavioral</div>
+              <div class="persona-dimensions">
+                <div class="persona-dimension-chip" data-signal="behavioral">Behavioral</div>
               </div>
             </div>
             <h2 class="ditl-scene-headline">Where Words Diverge from Action</h2>
@@ -1445,11 +1445,11 @@
               <div class="ditl-insight-text">This is not a perception problem. The operational friction is real. The system has traced the fracture to its source.</div>
             </div>
 
-            <div class="ditl-drivers">
-              <div class="ditl-driver-badge" data-signal="behavioral">User Friendly</div>
-              <div class="ditl-driver-badge" data-signal="human">Personal</div>
+            <div class="ditl-dimensions">
+              <div class="ditl-dimension-badge" data-signal="behavioral">User Friendly</div>
+              <div class="ditl-dimension-badge" data-signal="human">Personal</div>
             </div>
-            <div class="ditl-driver-context">Friction surfaces at the moment of transaction - where customer expectations meet reality</div>
+            <div class="ditl-dimension-context">Friction surfaces at the moment of transaction - where customer expectations meet reality</div>
 
             <div class="ditl-preview">
               <div class="ditl-preview-label">Guided Analysis Preview</div>
@@ -1460,7 +1460,7 @@
                     <div style="padding: var(--space-xs); color: var(--text-primary);"><i class="ph ph-arrow-right"></i> Over Time (past 30 days)</div>
                   </div>
                   <div class="preview-ga-thread">
-                    <div class="preview-ga-msg system">Key driver identified: Support response time</div>
+                    <div class="preview-ga-msg system">Key dimension identified: Support response time</div>
                     <div style="padding: var(--space-xs); color: var(--text-primary);">Correlation: r=0.82</div>
                   </div>
                   <div class="preview-ga-thread">
@@ -1488,8 +1488,8 @@
                 <div class="persona-name">Priya Nair</div>
                 <div class="persona-title">Data Analyst</div>
               </div>
-              <div class="persona-drivers">
-                <div class="persona-driver-chip" data-signal="cultural">Cultural</div>
+              <div class="persona-dimensions">
+                <div class="persona-dimension-chip" data-signal="cultural">Cultural</div>
               </div>
             </div>
             <h2 class="ditl-scene-headline">Signal Unfiltered</h2>
@@ -1543,15 +1543,15 @@
               <div class="ditl-insight-text">The 25–34 cohort is behaving differently. Younger users are booking. Older users are hesitating. This is not a brand problem — it's a segmentation clue.</div>
             </div>
 
-            <div class="ditl-drivers">
-              <div class="ditl-driver-badge" data-signal="behavioral">User Friendly</div>
-              <div class="ditl-driver-badge" data-signal="human">Personal</div>
-              <div class="ditl-driver-badge" data-signal="cultural">Accessible</div>
-              <div class="ditl-driver-badge" data-signal="behavioral">Dependable</div>
-              <div class="ditl-driver-badge" data-signal="human">Meaningful</div>
-              <div class="ditl-driver-badge" data-signal="cultural">Salient</div>
+            <div class="ditl-dimensions">
+              <div class="ditl-dimension-badge" data-signal="behavioral">User Friendly</div>
+              <div class="ditl-dimension-badge" data-signal="human">Personal</div>
+              <div class="ditl-dimension-badge" data-signal="cultural">Accessible</div>
+              <div class="ditl-dimension-badge" data-signal="behavioral">Dependable</div>
+              <div class="ditl-dimension-badge" data-signal="human">Meaningful</div>
+              <div class="ditl-dimension-badge" data-signal="cultural">Salient</div>
             </div>
-            <div class="ditl-driver-context">Full composite review - all six drivers cross-referenced for holistic brand health assessment</div>
+            <div class="ditl-dimension-context">Full composite review - all six dimensions cross-referenced for holistic brand health assessment</div>
 
             <div class="ditl-preview">
               <div class="ditl-preview-label">Signal Terminal Preview</div>
@@ -1599,8 +1599,8 @@
                 <div class="persona-name">James Park</div>
                 <div class="persona-title">Strategy Director</div>
               </div>
-              <div class="persona-drivers">
-                <div class="persona-driver-chip" data-signal="human">Human-Expressive</div>
+              <div class="persona-dimensions">
+                <div class="persona-dimension-chip" data-signal="human">Human-Expressive</div>
               </div>
             </div>
             <h2 class="ditl-scene-headline">Strategic Levers in Motion</h2>
@@ -1658,11 +1658,11 @@
               </div>
             </div>
 
-            <div class="ditl-drivers">
-              <div class="ditl-driver-badge" data-signal="human">Meaningful</div>
-              <div class="ditl-driver-badge" data-signal="behavioral">Dependable</div>
+            <div class="ditl-dimensions">
+              <div class="ditl-dimension-badge" data-signal="human">Meaningful</div>
+              <div class="ditl-dimension-badge" data-signal="behavioral">Dependable</div>
             </div>
-            <div class="ditl-driver-context">Strategic levers identified through simulation - which drivers move the composite and when</div>
+            <div class="ditl-dimension-context">Strategic levers identified through simulation - which dimensions move the composite and when</div>
 
             <div class="ditl-preview">
               <div class="ditl-preview-label">Scenario Lab Preview</div>
@@ -1706,8 +1706,8 @@
                 <div class="persona-name">Elena Vasquez</div>
                 <div class="persona-title">CMO</div>
               </div>
-              <div class="persona-drivers">
-                <div class="persona-driver-chip" data-signal="behavioral">Behavioral</div>
+              <div class="persona-dimensions">
+                <div class="persona-dimension-chip" data-signal="behavioral">Behavioral</div>
               </div>
             </div>
             <h2 class="ditl-scene-headline">From Intelligence to Execution</h2>
@@ -1727,7 +1727,7 @@
                   <span class="ditl-compare-value" style="color: rgba(255,255,255,0.4);">Perception / messaging</span>
                 </div>
                 <div class="ditl-compare-row">
-                  <span class="ditl-compare-metric">Driver</span>
+                  <span class="ditl-compare-metric">Dimension</span>
                   <span class="ditl-compare-value alert">Support response time</span>
                 </div>
               </div>
@@ -1767,11 +1767,11 @@
               <div class="ditl-insight-text">Every projection, every insight, every number traces directly back to its data source. Priya's signals. Marcus's diagnostic. James's simulations. All visible. All defensible.</div>
             </div>
 
-            <div class="ditl-drivers">
-              <div class="ditl-driver-badge" data-signal="cultural">Salient</div>
-              <div class="ditl-driver-badge" data-signal="cultural">Accessible</div>
+            <div class="ditl-dimensions">
+              <div class="ditl-dimension-badge" data-signal="cultural">Salient</div>
+              <div class="ditl-dimension-badge" data-signal="cultural">Accessible</div>
             </div>
-            <div class="ditl-driver-context">Repositioning check - market signals and competitive positioning against category leaders</div>
+            <div class="ditl-dimension-context">Repositioning check - market signals and competitive positioning against category leaders</div>
 
             <div class="ditl-preview">
               <div class="ditl-preview-label">Instant Brief - Executive Summary</div>
@@ -1816,8 +1816,8 @@
                 <div class="persona-name">System Autonomy</div>
                 <div class="persona-title">Signal Nexus Engine</div>
               </div>
-              <div class="persona-drivers">
-                <div class="persona-driver-chip" data-signal="cultural">Cultural</div>
+              <div class="persona-dimensions">
+                <div class="persona-dimension-chip" data-signal="cultural">Cultural</div>
               </div>
             </div>
             <h2 class="ditl-scene-headline">The Intelligence That Never Sleeps</h2>
@@ -1863,7 +1863,7 @@
               <div class="ditl-journey-step">
                 <div class="ditl-journey-icon behavioral"><i class="ph ph-scales"></i></div>
                 <div class="ditl-journey-name">Recalibrate</div>
-                <div class="ditl-journey-meta">Driver weights</div>
+                <div class="ditl-journey-meta">Dimension weights</div>
               </div>
               <div class="ditl-journey-arrow"><i class="ph ph-arrow-right"></i></div>
               <div class="ditl-journey-step">
@@ -1877,11 +1877,11 @@
               <div class="ditl-insight-text">By 6:15 AM, a new Morning Brief will be waiting. The system will have been thinking about it all night. Every pattern. Every signal. Every possibility.</div>
             </div>
 
-            <div class="ditl-drivers">
-              <div class="ditl-driver-badge" data-signal="cultural">Accessible</div>
-              <div class="ditl-driver-badge" data-signal="cultural">Salient</div>
+            <div class="ditl-dimensions">
+              <div class="ditl-dimension-badge" data-signal="cultural">Accessible</div>
+              <div class="ditl-dimension-badge" data-signal="cultural">Salient</div>
             </div>
-            <div class="ditl-driver-context">All drivers monitored continuously - 847 signals flowing, patterns emerging, intelligence building for tomorrow</div>
+            <div class="ditl-dimension-context">All dimensions monitored continuously - 847 signals flowing, patterns emerging, intelligence building for tomorrow</div>
 
             <div class="ditl-preview">
               <div class="ditl-preview-label">Signal Terminal - Autonomous</div>

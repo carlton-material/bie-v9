@@ -21,12 +21,12 @@ const AnalystLLM = {
   },
 
   buildSystemPrompt(mode, currentPage, brand) {
-    const driverData = brand?.drivers || {};
-    const inTheMoment = driverData.inTheMoment || [];
-    const overTime = driverData.overTime || [];
+    const dimensionData = brand?.dimensions || {};
+    const inTheMoment = dimensionData.inTheMoment || [];
+    const overTime = dimensionData.overTime || [];
 
-    // Format driver scores
-    const driverList = [
+    // Format dimension scores
+    const dimensionList = [
       ...inTheMoment.map(d => `${d.name} ${d.score}/${d.delta > 0 ? '+' : ''}${d.delta}`),
       ...overTime.map(d => `${d.name} ${d.score}/${d.delta > 0 ? '+' : ''}${d.delta}`)
     ].join(', ');
@@ -88,12 +88,12 @@ FORMAT:
 
     // ── PAGE-SPECIFIC CONTEXT ──
     const pageContexts = {
-      'strategic-brief': `The user is on the STRATEGIC BRIEF — the narrative overview of the brand's position. This page covers market context, competitive landscape, driver trajectory, signal composition, and the delivery model. Help them understand the big picture and how the pieces connect.`,
-      'command-center': `The user is on the COMMAND CENTER — their daily operational dashboard. This surfaces the morning's most important signals, driver health status (red/amber/green), and the TL;DR briefing. Help them prioritize what to act on today.`,
+      'strategic-brief': `The user is on the STRATEGIC BRIEF — the narrative overview of the brand's position. This page covers market context, competitive landscape, dimension trajectory, signal composition, and the delivery model. Help them understand the big picture and how the pieces connect.`,
+      'command-center': `The user is on the COMMAND CENTER — their daily operational dashboard. This surfaces the morning's most important signals, dimension health status (red/amber/green), and the TL;DR briefing. Help them prioritize what to act on today.`,
       'signal-terminal': `The user is on the SIGNAL TERMINAL — the raw signal feed across all three layers (Human-Expressive, Behavioral, Cultural). This is where signals are ingested, filtered, and surfaced by confidence. Help them read the signal patterns, spot convergences, and identify anomalies.`,
       'guided-analysis': `The user is on GUIDED ANALYSIS — the structured analytical workflow. They choose a dimension (Brand Health, Competitive, Audience, Sentiment), then ask questions that build toward a structured brief. Help them construct rigorous analytical narratives.`,
       'scenario-lab': `The user is on the SCENARIO LAB — the simulation engine. Five modes: War Gaming (competitive scenarios), Brand Sim (agent-based modeling), Focus Groups (synthetic qualitative), Insight Mode (pattern discovery), Signal Nexus (cross-layer analysis). Help them design experiments and interpret simulation results.`,
-      'brand-fidelity': `The user is on BRAND FIDELITY — the 6-driver framework dashboard. Shows the radar chart, driver scores, and competitive benchmarks. The 6 drivers: User Friendly, Personal, Accessible (In the Moment) and Dependable, Meaningful, Salient (Over Time). Help them understand driver dynamics and interdependencies.`,
+      'brand-fidelity': `The user is on BRAND FIDELITY — the 6-dimension framework dashboard. Shows the radar chart, dimension scores, and competitive benchmarks. The 6 dimensions: User Friendly, Personal, Accessible (In the Moment) and Dependable, Meaningful, Salient (Over Time). Help them understand dimension dynamics and interdependencies.`,
       'day-in-the-life': `The user is on DAY IN THE LIFE — a narrative showing how different roles (strategist, analyst, executive) use BIE in their daily workflow. Help them see how the platform fits their specific workflow and role.`,
       'how-it-works': `The user is on HOW IT WORKS — the architecture and methodology transparency layer. Covers the signal processing pipeline, data sources, ML models, confidence scoring, and the Glass Box philosophy. Help them understand the technical rigor behind every insight.`
     };
@@ -108,13 +108,13 @@ ${pageContext}
 
 BRAND DATA (${brand?.name || 'Stayworthy'}):
 - Composite: ${brand?.composite || 72} (${brand?.compositeDelta || -4})
-- Drivers: ${driverList}
+- Dimensions: ${dimensionList}
 - Key Insight: ${brand?.keyInsight || 'Brand health data available'}
 - Signals: ${signalVolume.humanExpressive} Human-Expressive, ${signalVolume.behavioral} Behavioral, ${signalVolume.cultural} Cultural (N=${signalVolume.total} total)
 - Competitors: ${brand?.competitors?.slice(0, 3).map(c => `${c.name} (${c.composite})`).join(', ') || 'Data available'}
 
 BRAND FIDELITY FRAMEWORK:
-The 6 drivers in two time horizons:
+The 6 dimensions in two time horizons:
 IN THE MOMENT: User Friendly (72/-4), Personal (64/-8), Accessible (71/+1)
 OVER TIME: Dependable (58/-6) [CRISIS], Meaningful (66/-3), Salient (74/+2)
 

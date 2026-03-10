@@ -144,8 +144,8 @@
       filter: drop-shadow(0 0 30px rgba(129, 140, 248, 0.2));
     }
 
-    /* Six Drivers Grid */
-    .drivers-grid {
+    /* Six Dimensions Grid */
+    .dimensions-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 32px;
@@ -153,7 +153,7 @@
       max-width: 1000px;
     }
 
-    .driver-card {
+    .dimension-card {
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -165,20 +165,20 @@
       transition: all 0.3s ease;
     }
 
-    .driver-card:hover {
+    .dimension-card:hover {
       background: rgba(255, 255, 255, 0.06);
       border-color: rgba(255, 255, 255, 0.15);
       transform: translateY(-4px);
     }
 
-    .driver-name {
+    .dimension-name {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.5rem;
       font-weight: 600;
       color: rgba(255, 255, 255, 0.95);
     }
 
-    .driver-dimension {
+    .dimension-attribute {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.15em;
@@ -187,14 +187,14 @@
       font-weight: 600;
     }
 
-    .driver-definition {
+    .dimension-definition {
       font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
       line-height: 1.6;
       color: rgba(255, 255, 255, 0.75);
     }
 
-    .driver-predicts {
+    .dimension-predicts {
       font-family: 'Inter', sans-serif;
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.6);
@@ -203,24 +203,24 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .driver-predicts strong {
+    .dimension-predicts strong {
       color: rgba(255, 255, 255, 0.75);
     }
 
-    .driver-score {
+    .dimension-score {
       display: flex;
       align-items: center;
       gap: 16px;
       font-family: 'Space Grotesk', sans-serif;
     }
 
-    .driver-score-value {
+    .dimension-score-value {
       font-size: 2rem;
       font-weight: 600;
       color: #818cf8;
     }
 
-    .driver-score-delta {
+    .dimension-score-delta {
       font-size: 0.95rem;
       font-weight: 500;
     }
@@ -521,7 +521,7 @@
         font-size: 2.5rem;
       }
 
-      .drivers-grid {
+      .dimensions-grid {
         grid-template-columns: 1fr;
       }
 
@@ -555,7 +555,7 @@
         font-size: 1.2rem;
       }
 
-      .driver-card {
+      .dimension-card {
         padding: 24px;
       }
 
@@ -639,7 +639,7 @@
         <div class="scene-hero-subtitle">The proprietary framework that predicts business outcomes from brand relationships</div>
 
         <p class="scene-body" style="margin-top: 40px; max-width: 800px;">
-          6 drivers. 2 dimensions. One score that matters.
+          6 dimensions. 2 dimensions. One score that matters.
         </p>
       </section>
 
@@ -649,92 +649,92 @@
 
         <h2 class="scene-headline">The Framework</h2>
 
-        <p class="scene-body">Brand Fidelity measures how deeply and consistently a brand relationship drives business outcomes. It synthesizes six evidence-based drivers into a single composite score that predicts advocacy, profitability, and competitive differentiation.</p>
+        <p class="scene-body">Brand Fidelity measures how deeply and consistently a brand relationship drives business outcomes. It synthesizes six evidence-based dimensions into a single composite score that predicts advocacy, profitability, and competitive differentiation.</p>
 
         <!-- Wheel Diagram — Official Brand Fidelity Image -->
         <div class="wheel-container" style="display: flex; justify-content: center; padding: 32px 0;">
-          <img src="assets/images/fidelity-wheel.png" alt="Brand Fidelity Framework — 6 Drivers: Accessible, User Friendly, Personal, Dependable, Salient, Meaningful" style="max-width: 500px; width: 100%; height: auto; display: block;">
+          <img src="assets/images/fidelity-wheel.png" alt="Brand Fidelity Framework — 6 Dimensions: Accessible, User Friendly, Personal, Dependable, Salient, Meaningful" style="max-width: 500px; width: 100%; height: auto; display: block;">
         </div>
       </section>
 
-      <!-- SCENE 3: THE SIX DRIVERS -->
+      <!-- SCENE 3: THE SIX DIMENSIONS -->
       <section class="scene reveal">
-        <div class="scene-label">Drivers</div>
+        <div class="scene-label">Dimensions</div>
 
-        <h2 class="scene-headline">The Six Drivers</h2>
+        <h2 class="scene-headline">The Six Dimensions</h2>
 
-        <p class="scene-body">Each driver measures a distinct aspect of the brand relationship. Together they capture both immediate perception and sustained performance.</p>
+        <p class="scene-body">Each dimension measures a distinct aspect of the brand relationship. Together they capture both immediate perception and sustained performance.</p>
 
-        <div class="drivers-grid">
-          <!-- Driver 1: User Friendly -->
-          <div class="driver-card">
-            <div class="driver-name">User Friendly</div>
-            <div class="driver-dimension">In the Moment</div>
-            <div class="driver-definition">How intuitive and effortless the brand experience feels.</div>
-            <div class="driver-predicts"><strong>Predicts:</strong> Trial and adoption rates</div>
-            <div class="driver-score">
-              <span class="driver-score-value">72</span>
-              <span class="driver-score-delta delta-negative">−4</span>
+        <div class="dimensions-grid">
+          <!-- Dimension 1: User Friendly -->
+          <div class="dimension-card">
+            <div class="dimension-name">User Friendly</div>
+            <div class="dimension-attribute">In the Moment</div>
+            <div class="dimension-definition">How intuitive and effortless the brand experience feels.</div>
+            <div class="dimension-predicts"><strong>Predicts:</strong> Trial and adoption rates</div>
+            <div class="dimension-score">
+              <span class="dimension-score-value">72</span>
+              <span class="dimension-score-delta delta-negative">−4</span>
             </div>
           </div>
 
-          <!-- Driver 2: Personal -->
-          <div class="driver-card">
-            <div class="driver-name">Personal</div>
-            <div class="driver-dimension">In the Moment</div>
-            <div class="driver-definition">How well the brand understands and responds to individual needs.</div>
-            <div class="driver-predicts"><strong>Predicts:</strong> Loyalty and lifetime value</div>
-            <div class="driver-score">
-              <span class="driver-score-value">64</span>
-              <span class="driver-score-delta delta-negative">−8</span>
+          <!-- Dimension 2: Personal -->
+          <div class="dimension-card">
+            <div class="dimension-name">Personal</div>
+            <div class="dimension-attribute">In the Moment</div>
+            <div class="dimension-definition">How well the brand understands and responds to individual needs.</div>
+            <div class="dimension-predicts"><strong>Predicts:</strong> Loyalty and lifetime value</div>
+            <div class="dimension-score">
+              <span class="dimension-score-value">64</span>
+              <span class="dimension-score-delta delta-negative">−8</span>
             </div>
           </div>
 
-          <!-- Driver 3: Accessible -->
-          <div class="driver-card">
-            <div class="driver-name">Accessible</div>
-            <div class="driver-dimension">In the Moment</div>
-            <div class="driver-definition">How available and approachable the brand is across touchpoints.</div>
-            <div class="driver-predicts"><strong>Predicts:</strong> Reach and consideration</div>
-            <div class="driver-score">
-              <span class="driver-score-value">71</span>
-              <span class="driver-score-delta delta-positive">+1</span>
+          <!-- Dimension 3: Accessible -->
+          <div class="dimension-card">
+            <div class="dimension-name">Accessible</div>
+            <div class="dimension-attribute">In the Moment</div>
+            <div class="dimension-definition">How available and approachable the brand is across touchpoints.</div>
+            <div class="dimension-predicts"><strong>Predicts:</strong> Reach and consideration</div>
+            <div class="dimension-score">
+              <span class="dimension-score-value">71</span>
+              <span class="dimension-score-delta delta-positive">+1</span>
             </div>
           </div>
 
-          <!-- Driver 4: Dependable -->
-          <div class="driver-card">
-            <div class="driver-name">Dependable</div>
-            <div class="driver-dimension">Over Time</div>
-            <div class="driver-definition">How consistently the brand delivers on its promises over time.</div>
-            <div class="driver-predicts"><strong>Predicts:</strong> Retention and trust</div>
-            <div class="driver-score">
-              <span class="driver-score-value">58</span>
-              <span class="driver-score-delta delta-negative">−6</span>
+          <!-- Dimension 4: Dependable -->
+          <div class="dimension-card">
+            <div class="dimension-name">Dependable</div>
+            <div class="dimension-attribute">Over Time</div>
+            <div class="dimension-definition">How consistently the brand delivers on its promises over time.</div>
+            <div class="dimension-predicts"><strong>Predicts:</strong> Retention and trust</div>
+            <div class="dimension-score">
+              <span class="dimension-score-value">58</span>
+              <span class="dimension-score-delta delta-negative">−6</span>
             </div>
           </div>
 
-          <!-- Driver 5: Meaningful -->
-          <div class="driver-card">
-            <div class="driver-name">Meaningful</div>
-            <div class="driver-dimension">Over Time</div>
-            <div class="driver-definition">How deeply the brand connects to what matters in people's lives.</div>
-            <div class="driver-predicts"><strong>Predicts:</strong> Advocacy and word-of-mouth</div>
-            <div class="driver-score">
-              <span class="driver-score-value">66</span>
-              <span class="driver-score-delta delta-negative">−3</span>
+          <!-- Dimension 5: Meaningful -->
+          <div class="dimension-card">
+            <div class="dimension-name">Meaningful</div>
+            <div class="dimension-attribute">Over Time</div>
+            <div class="dimension-definition">How deeply the brand connects to what matters in people's lives.</div>
+            <div class="dimension-predicts"><strong>Predicts:</strong> Advocacy and word-of-mouth</div>
+            <div class="dimension-score">
+              <span class="dimension-score-value">66</span>
+              <span class="dimension-score-delta delta-negative">−3</span>
             </div>
           </div>
 
-          <!-- Driver 6: Salient -->
-          <div class="driver-card">
-            <div class="driver-name">Salient</div>
-            <div class="driver-dimension">Over Time</div>
-            <div class="driver-definition">How easily the brand comes to mind in relevant situations.</div>
-            <div class="driver-predicts"><strong>Predicts:</strong> Market share and competitive position</div>
-            <div class="driver-score">
-              <span class="driver-score-value">74</span>
-              <span class="driver-score-delta delta-positive">+2</span>
+          <!-- Dimension 6: Salient -->
+          <div class="dimension-card">
+            <div class="dimension-name">Salient</div>
+            <div class="dimension-attribute">Over Time</div>
+            <div class="dimension-definition">How easily the brand comes to mind in relevant situations.</div>
+            <div class="dimension-predicts"><strong>Predicts:</strong> Market share and competitive position</div>
+            <div class="dimension-score">
+              <span class="dimension-score-value">74</span>
+              <span class="dimension-score-delta delta-positive">+2</span>
             </div>
           </div>
         </div>
@@ -785,7 +785,7 @@
 
         <div class="composite-section">
           <div class="composite-explanation">
-            <p>The Brand Fidelity Composite is calculated as an unweighted average of the six drivers. This approach treats each dimension equally because each has independent predictive power across different business outcomes.</p>
+            <p>The Brand Fidelity Composite is calculated as an unweighted average of the six dimensions. This approach treats each dimension equally because each has independent predictive power across different business outcomes.</p>
             <div class="formula-box">Composite = (User Friendly + Personal + Accessible + Dependable + Meaningful + Salient) ÷ 6</div>
             <p>The result is a single, trackable number that reflects overall brand relationship health and predicts customer behavior change 4-8 weeks in advance.</p>
           </div>
@@ -835,7 +835,7 @@
             <div class="application-icon"><i class="ph ph-squares-four"></i></div>
             <div class="application-title">Command Center</div>
             <div class="application-description">
-              Real-time Brand Fidelity dashboard showing composite score, six driver health, and competitive standing. Alerts when drivers shift outside expected ranges.
+              Real-time Brand Fidelity dashboard showing composite score, six dimension health, and competitive standing. Alerts when dimensions shift outside expected ranges.
             </div>
             <a href="command-center.html" class="application-link">Explore →</a>
           </div>
@@ -844,7 +844,7 @@
             <div class="application-icon"><i class="ph ph-chat-centered-text"></i></div>
             <div class="application-title">Guided Analysis</div>
             <div class="application-description">
-              Investigative interface that drills into each driver. Shows which signal types contributed to each score, with source transparency.
+              Investigative interface that drills into each dimension. Shows which signal types contributed to each score, with source transparency.
             </div>
             <a href="guided-analysis.html" class="application-link">Explore →</a>
           </div>
@@ -853,7 +853,7 @@
             <div class="application-icon"><i class="ph ph-flask"></i></div>
             <div class="application-title">Scenario Lab</div>
             <div class="application-description">
-              Modeling environment where you test strategic moves against projected Brand Fidelity outcomes. See how interventions move drivers.
+              Modeling environment where you test strategic moves against projected Brand Fidelity outcomes. See how interventions move dimensions.
             </div>
             <a href="scenario-lab.html" class="application-link">Explore →</a>
           </div>
@@ -943,7 +943,7 @@
     <div class="analyst-panel-messages"></div>
     <div class="analyst-panel-suggestions"></div>
     <div class="analyst-panel-input">
-      <input type="text" placeholder="Ask about fidelity scores, drivers, benchmarks...">
+      <input type="text" placeholder="Ask about fidelity scores, dimensions, benchmarks...">
       <button>Send</button>
     </div>
     <div class="analyst-panel-footer">

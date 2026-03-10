@@ -350,7 +350,7 @@
       max-width: 1200px;
     }
 
-    .fidelity-drivers {
+    .fidelity-dimensions {
       display: flex;
       flex-direction: column;
       gap: 24px;
@@ -531,7 +531,7 @@
       color: var(--text-muted);
     }
 
-    .bf-drivers-section {
+    .bf-dimensions-section {
       border-top: 1px solid var(--border-subtle);
       padding-top: 32px;
     }
@@ -558,19 +558,19 @@
       max-width: 500px;
     }
 
-    .bf-drivers-grid {
+    .bf-dimensions-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
 
-    .bf-driver-card {
+    .bf-dimension-card {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
-    .bf-driver-name {
+    .bf-dimension-name {
       font-family: var(--font-body);
       font-size: 0.8rem;
       color: var(--text-muted);
@@ -580,14 +580,14 @@
       letter-spacing: 0.06em;
     }
 
-    .bf-driver-bar-container {
+    .bf-dimension-bar-container {
       display: flex;
       gap: 12px;
       align-items: center;
       margin-bottom: 8px;
     }
 
-    .bf-driver-bar {
+    .bf-dimension-bar {
       flex: 1;
       height: 6px;
       background: var(--gray-50);
@@ -595,12 +595,12 @@
       overflow: hidden;
     }
 
-    .bf-driver-bar-fill {
+    .bf-dimension-bar-fill {
       height: 100%;
       border-radius: 3px;
     }
 
-    .bf-driver-score {
+    .bf-dimension-score {
       font-family: var(--font-display);
       font-size: 1.1rem;
       font-weight: 500;
@@ -609,17 +609,17 @@
       text-align: right;
     }
 
-    .bf-driver-footer {
+    .bf-dimension-footer {
       font-family: var(--font-body);
       font-size: 0.7rem;
       color: var(--text-muted);
     }
 
-    .bf-driver-footer .bf-delta-negative {
+    .bf-dimension-footer .bf-delta-negative {
       color: var(--red-500);
     }
 
-    .bf-driver-footer .bf-delta-positive {
+    .bf-dimension-footer .bf-delta-positive {
       color: var(--signal-behavioral);
     }
 
@@ -1081,7 +1081,7 @@
 
         <h2 class="scene-headline">Your Brand at a Glance. Where Loyalty Lives</h2>
 
-        <p class="scene-body">The single metric that tells us if <span data-brand="name">Stayworthy</span> is earning long-term brand loyalty across all six drivers. A score below 75 signals structural weakness; at current decline rates, <span data-brand="name">Stayworthy</span> crosses below competitive median within two quarters.</p>
+        <p class="scene-body">The single metric that tells us if <span data-brand="name">Stayworthy</span> is earning long-term brand loyalty across all six dimensions. A score below 75 signals structural weakness; at current decline rates, <span data-brand="name">Stayworthy</span> crosses below competitive median within two quarters.</p>
 
         <div class="bf-composite-card">
           <div class="bf-composite-header">
@@ -1095,7 +1095,7 @@
             </div>
           </div>
 
-          <div class="bf-drivers-section">
+          <div class="bf-dimensions-section">
             <div class="bf-group">
               <div class="bf-group-label">In the Moment</div>
               <p class="bf-group-description">How <span data-brand="name">Stayworthy</span> performs in active user interactions. Emotional responsiveness, personalization, and availability.</p>
@@ -1329,10 +1329,10 @@
       <section class="scene reveal">
         <div class="scene-label">Brand Fidelity Framework</div>
 
-        <h2 class="scene-headline">Six Drivers of Brand Equity</h2>
+        <h2 class="scene-headline">Six Dimensions of Brand Fidelity</h2>
         
         <div class="fidelity-grid">
-          <div class="fidelity-drivers">
+          <div class="fidelity-dimensions">
             <div class="fidelity-group">
               <div class="fidelity-group-label">In the Moment</div>
               
@@ -1622,7 +1622,7 @@
     <div class="analyst-panel-messages"></div>
     <div class="analyst-panel-suggestions"></div>
     <div class="analyst-panel-input">
-      <input type="text" placeholder="Ask about brand health, drivers, competitors...">
+      <input type="text" placeholder="Ask about brand health, dimensions, competitors...">
       <button>Send</button>
     </div>
     <div class="analyst-panel-footer">

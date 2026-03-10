@@ -211,17 +211,17 @@
       height: 280px;
     }
 
-    /* ── Driver Health Grid ── */
-    .cc-drivers {
+    /* ── Dimension Health Grid ── */
+    .cc-dimensions {
       margin-bottom: 56px;
       animation: terminal-fade-in 0.7s ease-out 0.3s backwards;
     }
-    .cc-driver-grid {
+    .cc-dimension-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
-    .cc-driver-card {
+    .cc-dimension-card {
       padding: 20px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.06);
@@ -229,40 +229,40 @@
       border-left: 3px solid rgba(255, 255, 255, 0.1);
       transition: background 0.2s ease;
     }
-    .cc-driver-card:hover {
+    .cc-dimension-card:hover {
       background: rgba(255, 255, 255, 0.05);
     }
-    .cc-driver-card.crisis { border-left-color: #ef4444; }
-    .cc-driver-card.critical { border-left-color: #f97316; }
-    .cc-driver-card.strength { border-left-color: #10b981; }
-    .cc-driver-card.stable { border-left-color: #818cf8; }
-    .cc-driver-header {
+    .cc-dimension-card.crisis { border-left-color: #ef4444; }
+    .cc-dimension-card.critical { border-left-color: #f97316; }
+    .cc-dimension-card.strength { border-left-color: #10b981; }
+    .cc-dimension-card.stable { border-left-color: #818cf8; }
+    .cc-dimension-header {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       margin-bottom: 8px;
     }
-    .cc-driver-name {
+    .cc-dimension-name {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 0.95rem;
       font-weight: 500;
       color: rgba(255, 255, 255, 0.9);
     }
-    .cc-driver-score {
+    .cc-dimension-score {
       font-family: 'JetBrains Mono', monospace;
       font-size: 1.3rem;
       font-weight: 600;
       color: rgba(255, 255, 255, 0.9);
     }
-    .cc-driver-delta {
+    .cc-dimension-delta {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.7rem;
       font-weight: 600;
       margin-bottom: 12px;
     }
-    .cc-driver-delta.negative { color: #ef4444; }
-    .cc-driver-delta.positive { color: #34d399; }
-    .cc-driver-status {
+    .cc-dimension-delta.negative { color: #ef4444; }
+    .cc-dimension-delta.positive { color: #34d399; }
+    .cc-dimension-status {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.6rem;
       letter-spacing: 0.15em;
@@ -270,32 +270,32 @@
       font-weight: 600;
       margin-bottom: 10px;
     }
-    .cc-driver-card.crisis .cc-driver-status { color: #ef4444; }
-    .cc-driver-card.critical .cc-driver-status { color: #f97316; }
-    .cc-driver-card.strength .cc-driver-status { color: #10b981; }
-    .cc-driver-card.stable .cc-driver-status { color: #818cf8; }
-    .cc-driver-desc {
+    .cc-dimension-card.crisis .cc-dimension-status { color: #ef4444; }
+    .cc-dimension-card.critical .cc-dimension-status { color: #f97316; }
+    .cc-dimension-card.strength .cc-dimension-status { color: #10b981; }
+    .cc-dimension-card.stable .cc-dimension-status { color: #818cf8; }
+    .cc-dimension-desc {
       font-family: 'Inter', sans-serif;
       font-size: 0.8rem;
       color: rgba(255, 255, 255, 0.45);
       line-height: 1.5;
     }
-    .cc-driver-bar {
+    .cc-dimension-bar {
       height: 3px;
       background: rgba(255, 255, 255, 0.06);
       border-radius: 2px;
       margin-top: 14px;
       overflow: hidden;
     }
-    .cc-driver-bar-fill {
+    .cc-dimension-bar-fill {
       height: 100%;
       border-radius: 2px;
       transition: width 0.6s ease;
     }
-    .cc-driver-card.crisis .cc-driver-bar-fill { background: #ef4444; }
-    .cc-driver-card.critical .cc-driver-bar-fill { background: #f97316; }
-    .cc-driver-card.strength .cc-driver-bar-fill { background: #10b981; }
-    .cc-driver-card.stable .cc-driver-bar-fill { background: #818cf8; }
+    .cc-dimension-card.crisis .cc-dimension-bar-fill { background: #ef4444; }
+    .cc-dimension-card.critical .cc-dimension-bar-fill { background: #f97316; }
+    .cc-dimension-card.strength .cc-dimension-bar-fill { background: #10b981; }
+    .cc-dimension-card.stable .cc-dimension-bar-fill { background: #818cf8; }
 
     /* ── Active Patterns ── */
     .cc-patterns {
@@ -408,12 +408,12 @@
     /* ── Responsive ── */
     @media (max-width: 1600px) {
       .cc-briefing-grid { grid-template-columns: repeat(2, 1fr); }
-      .cc-driver-grid { grid-template-columns: repeat(2, 1fr); }
+      .cc-dimension-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 1200px) {
       .command-center { padding: 32px 32px 100px; }
       .cc-briefing-grid { grid-template-columns: 1fr; }
-      .cc-driver-grid { grid-template-columns: 1fr; }
+      .cc-dimension-grid { grid-template-columns: 1fr; }
       .cc-pattern-grid { grid-template-columns: 1fr; }
       .cc-header-title { font-size: 1.8rem; }
     }
@@ -523,75 +523,75 @@
         </div>
       </section>
 
-      <!-- 6-Driver Health Grid -->
-      <section class="cc-drivers">
-        <div class="cc-section-label">Driver Health — 6 Dimensions</div>
-        <div class="cc-driver-grid">
+      <!-- 6-Dimension Health Grid -->
+      <section class="cc-dimensions">
+        <div class="cc-section-label">Dimension Health — 6 Dimensions</div>
+        <div class="cc-dimension-grid">
 
-          <div class="cc-driver-card stable">
-            <div class="cc-driver-header">
-              <div class="cc-driver-name">User Friendly</div>
-              <div class="cc-driver-score">72</div>
+          <div class="cc-dimension-card stable">
+            <div class="cc-dimension-header">
+              <div class="cc-dimension-name">User Friendly</div>
+              <div class="cc-dimension-score">72</div>
             </div>
-            <div class="cc-driver-delta negative">▼ −4</div>
-            <div class="cc-driver-status">In the Moment</div>
-            <div class="cc-driver-desc">Friction in the booking flow is eroding ease-of-use. UX audit recommended within 2 weeks.</div>
-            <div class="cc-driver-bar"><div class="cc-driver-bar-fill" style="width: 72%;"></div></div>
+            <div class="cc-dimension-delta negative">▼ −4</div>
+            <div class="cc-dimension-status">In the Moment</div>
+            <div class="cc-dimension-desc">Friction in the booking flow is eroding ease-of-use. UX audit recommended within 2 weeks.</div>
+            <div class="cc-dimension-bar"><div class="cc-dimension-bar-fill" style="width: 72%;"></div></div>
           </div>
 
-          <div class="cc-driver-card crisis">
-            <div class="cc-driver-header">
-              <div class="cc-driver-name">Personal</div>
-              <div class="cc-driver-score">64</div>
+          <div class="cc-dimension-card crisis">
+            <div class="cc-dimension-header">
+              <div class="cc-dimension-name">Personal</div>
+              <div class="cc-dimension-score">64</div>
             </div>
-            <div class="cc-driver-delta negative">▼ −8</div>
-            <div class="cc-driver-status">Crisis</div>
-            <div class="cc-driver-desc">The steepest decline across all drivers. Personalization is falling behind competitor expectations.</div>
-            <div class="cc-driver-bar"><div class="cc-driver-bar-fill" style="width: 64%;"></div></div>
+            <div class="cc-dimension-delta negative">▼ −8</div>
+            <div class="cc-dimension-status">Crisis</div>
+            <div class="cc-dimension-desc">The steepest decline across all dimensions. Personalization is falling behind competitor expectations.</div>
+            <div class="cc-dimension-bar"><div class="cc-dimension-bar-fill" style="width: 64%;"></div></div>
           </div>
 
-          <div class="cc-driver-card strength">
-            <div class="cc-driver-header">
-              <div class="cc-driver-name">Accessible</div>
-              <div class="cc-driver-score">71</div>
+          <div class="cc-dimension-card strength">
+            <div class="cc-dimension-header">
+              <div class="cc-dimension-name">Accessible</div>
+              <div class="cc-dimension-score">71</div>
             </div>
-            <div class="cc-driver-delta positive">▲ +1</div>
-            <div class="cc-driver-status">Stable</div>
-            <div class="cc-driver-desc">Stable. Availability and uptime are not the current bottleneck.</div>
-            <div class="cc-driver-bar"><div class="cc-driver-bar-fill" style="width: 71%;"></div></div>
+            <div class="cc-dimension-delta positive">▲ +1</div>
+            <div class="cc-dimension-status">Stable</div>
+            <div class="cc-dimension-desc">Stable. Availability and uptime are not the current bottleneck.</div>
+            <div class="cc-dimension-bar"><div class="cc-dimension-bar-fill" style="width: 71%;"></div></div>
           </div>
 
-          <div class="cc-driver-card critical">
-            <div class="cc-driver-header">
-              <div class="cc-driver-name">Dependable</div>
-              <div class="cc-driver-score">58</div>
+          <div class="cc-dimension-card critical">
+            <div class="cc-dimension-header">
+              <div class="cc-dimension-name">Dependable</div>
+              <div class="cc-dimension-score">58</div>
             </div>
-            <div class="cc-driver-delta negative">▼ −6</div>
-            <div class="cc-driver-status">Critical</div>
-            <div class="cc-driver-desc">Support response times have doubled. This driver anchors long-term loyalty.</div>
-            <div class="cc-driver-bar"><div class="cc-driver-bar-fill" style="width: 58%;"></div></div>
+            <div class="cc-dimension-delta negative">▼ −6</div>
+            <div class="cc-dimension-status">Critical</div>
+            <div class="cc-dimension-desc">Support response times have doubled. This dimension anchors long-term loyalty.</div>
+            <div class="cc-dimension-bar"><div class="cc-dimension-bar-fill" style="width: 58%;"></div></div>
           </div>
 
-          <div class="cc-driver-card stable">
-            <div class="cc-driver-header">
-              <div class="cc-driver-name">Meaningful</div>
-              <div class="cc-driver-score">66</div>
+          <div class="cc-dimension-card stable">
+            <div class="cc-dimension-header">
+              <div class="cc-dimension-name">Meaningful</div>
+              <div class="cc-dimension-score">66</div>
             </div>
-            <div class="cc-driver-delta negative">▼ −3</div>
-            <div class="cc-driver-status">Over Time</div>
-            <div class="cc-driver-desc">Brand significance is slipping. Customers are using Stayworthy but not identifying with it.</div>
-            <div class="cc-driver-bar"><div class="cc-driver-bar-fill" style="width: 66%;"></div></div>
+            <div class="cc-dimension-delta negative">▼ −3</div>
+            <div class="cc-dimension-status">Over Time</div>
+            <div class="cc-dimension-desc">Brand significance is slipping. Customers are using Stayworthy but not identifying with it.</div>
+            <div class="cc-dimension-bar"><div class="cc-dimension-bar-fill" style="width: 66%;"></div></div>
           </div>
 
-          <div class="cc-driver-card strength">
-            <div class="cc-driver-header">
-              <div class="cc-driver-name">Salient</div>
-              <div class="cc-driver-score">74</div>
+          <div class="cc-dimension-card strength">
+            <div class="cc-dimension-header">
+              <div class="cc-dimension-name">Salient</div>
+              <div class="cc-dimension-score">74</div>
             </div>
-            <div class="cc-driver-delta positive">▲ +2</div>
-            <div class="cc-driver-status">Strength</div>
-            <div class="cc-driver-desc">Bright spot. Top-of-mind awareness is holding, but it can't sustain growth if other drivers erode.</div>
-            <div class="cc-driver-bar"><div class="cc-driver-bar-fill" style="width: 74%;"></div></div>
+            <div class="cc-dimension-delta positive">▲ +2</div>
+            <div class="cc-dimension-status">Strength</div>
+            <div class="cc-dimension-desc">Bright spot. Top-of-mind awareness is holding, but it can't sustain growth if other dimensions erode.</div>
+            <div class="cc-dimension-bar"><div class="cc-dimension-bar-fill" style="width: 74%;"></div></div>
           </div>
 
         </div>
@@ -621,7 +621,7 @@
 
           <div class="cc-pattern-card">
             <div class="cc-pattern-title">Pricing Transparency Gap</div>
-            <div class="cc-pattern-body">User Friendly driver linked to opaque pricing model. Search results hide final cost; revealed only in checkout. Behavioral signal surge in abandoned carts.</div>
+            <div class="cc-pattern-body">User Friendly dimension linked to opaque pricing model. Search results hide final cost; revealed only in checkout. Behavioral signal surge in abandoned carts.</div>
             <div class="cc-pattern-layers">
               <span class="cc-layer-tag behavioral">Behavioral</span>
             </div>
@@ -656,7 +656,7 @@
               <div class="cc-method-text">
                 <p><strong>Data Sources:</strong> This morning brief synthesizes 862 live signals across three layers — 318 human-expressive (survey responses, interviews, review sentiment), 295 behavioral (booking patterns, abandonment rates, session analytics), and 249 cultural (market trends, regulatory filings, social listening).</p>
                 <br>
-                <p><strong>Composite Methodology:</strong> The Brand Fidelity Index (72) is a weighted composite of 6 drivers mapped to M+'s proprietary framework. Scores are normalized to a 0-100 scale with confidence intervals derived from signal volume and recency. Delta values compare to the prior 30-day wave.</p>
+                <p><strong>Composite Methodology:</strong> The Brand Fidelity Index (72) is a weighted composite of 6 dimensions mapped to M+'s proprietary framework. Scores are normalized to a 0-100 scale with confidence intervals derived from signal volume and recency. Delta values compare to the prior 30-day wave.</p>
                 <br>
                 <p><strong>Priority Ranking:</strong> Alerts are ranked by a severity score combining signal convergence (multiple layers confirming the same pattern), velocity (rate of change), and business impact (estimated revenue at risk). HIGH = 3+ layer convergence + accelerating velocity.</p>
                 <br>
@@ -722,7 +722,7 @@
       const cx = W / 2, cy = H / 2 + 10;
       const R = Math.min(W, H) / 2 - 40;
 
-      const drivers = [
+      const dimensions = [
         { name: 'User Friendly', score: 72 },
         { name: 'Personal', score: 64 },
         { name: 'Accessible', score: 71 },
@@ -731,7 +731,7 @@
         { name: 'Salient', score: 74 }
       ];
 
-      const n = drivers.length;
+      const n = dimensions.length;
       const angleStep = (2 * Math.PI) / n;
       const startAngle = -Math.PI / 2;
 
@@ -759,7 +759,7 @@
       }
 
       // Data polygon
-      const points = drivers.map((d, i) => {
+      const points = dimensions.map((d, i) => {
         const a = startAngle + i * angleStep;
         const r = (d.score / 100) * R;
         return { x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r };
@@ -777,7 +777,7 @@
       // Score dots + labels
       ctx.font = '11px "JetBrains Mono", monospace';
       ctx.textAlign = 'center';
-      drivers.forEach((d, i) => {
+      dimensions.forEach((d, i) => {
         const a = startAngle + i * angleStep;
         const lx = cx + Math.cos(a) * (R + 22);
         const ly = cy + Math.sin(a) * (R + 22);

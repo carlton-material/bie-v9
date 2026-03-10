@@ -129,8 +129,8 @@
       border-top: 1px solid rgba(255,255,255,0.06);
     }
 
-    /* ── Driver Labels ── */
-    .ga-card-drivers {
+    /* ── Dimension Labels ── */
+    .ga-card-dimensions {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
@@ -139,7 +139,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
-    .ga-driver-label {
+    .ga-dimension-label {
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -156,7 +156,7 @@
       transition: all var(--duration-fast) var(--ease-out);
     }
 
-    .ga-driver-label::before {
+    .ga-dimension-label::before {
       content: '';
       display: inline-block;
       width: 3px;
@@ -165,12 +165,12 @@
       flex-shrink: 0;
     }
 
-    .ga-driver-label.human { border-color: rgba(129, 140, 248, 0.2); color: #a78bfa; }
-    .ga-driver-label.human::before { background: #a78bfa; }
-    .ga-driver-label.behavioral { border-color: rgba(52, 211, 153, 0.2); color: #6ee7b7; }
-    .ga-driver-label.behavioral::before { background: #6ee7b7; }
-    .ga-driver-label.cultural { border-color: rgba(245, 158, 11, 0.2); color: #fbbf24; }
-    .ga-driver-label.cultural::before { background: #fbbf24; }
+    .ga-dimension-label.human { border-color: rgba(129, 140, 248, 0.2); color: #a78bfa; }
+    .ga-dimension-label.human::before { background: #a78bfa; }
+    .ga-dimension-label.behavioral { border-color: rgba(52, 211, 153, 0.2); color: #6ee7b7; }
+    .ga-dimension-label.behavioral::before { background: #6ee7b7; }
+    .ga-dimension-label.cultural { border-color: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .ga-dimension-label.cultural::before { background: #fbbf24; }
 
     /* ── TOPIC & CHAT: Conversation Container ── */
     .ga-conversation {
@@ -550,15 +550,15 @@
           <div class="ga-card" data-dimension="brand-health">
             <div class="ga-card-icon"><i class="ph ph-briefcase"></i></div>
             <div class="ga-card-title">Brand Health</div>
-            <div class="ga-card-description">Which drivers are strengthening loyalty and which are eroding it? Start here for board presentations and quarterly reviews.</div>
+            <div class="ga-card-description">Which dimensions are strengthening loyalty and which are eroding it? Start here for board presentations and quarterly reviews.</div>
             <div class="ga-card-best">Best for: quarterly reviews, board presentations, competitive benchmarking</div>
-            <div class="ga-card-drivers">
-              <span class="ga-driver-label human" title="Personal">P</span>
-              <span class="ga-driver-label human" title="Meaningful">M</span>
-              <span class="ga-driver-label behavioral" title="User Friendly">UF</span>
-              <span class="ga-driver-label behavioral" title="Dependable">D</span>
-              <span class="ga-driver-label cultural" title="Salient">S</span>
-              <span class="ga-driver-label cultural" title="Accessible">A</span>
+            <div class="ga-card-dimensions">
+              <span class="ga-dimension-label human" title="Personal">P</span>
+              <span class="ga-dimension-label human" title="Meaningful">M</span>
+              <span class="ga-dimension-label behavioral" title="User Friendly">UF</span>
+              <span class="ga-dimension-label behavioral" title="Dependable">D</span>
+              <span class="ga-dimension-label cultural" title="Salient">S</span>
+              <span class="ga-dimension-label cultural" title="Accessible">A</span>
             </div>
           </div>
 
@@ -567,10 +567,10 @@
             <div class="ga-card-title">Competitive Dynamics</div>
             <div class="ga-card-description">Booking.com leads by 2 points. Where can Stayworthy close the gap, and where should it differentiate instead?</div>
             <div class="ga-card-best">Best for: strategy sessions, pricing decisions, market positioning</div>
-            <div class="ga-card-drivers">
-              <span class="ga-driver-label cultural" title="Salient">S</span>
-              <span class="ga-driver-label cultural" title="Accessible">A</span>
-              <span class="ga-driver-label human" title="Personal">P</span>
+            <div class="ga-card-dimensions">
+              <span class="ga-dimension-label cultural" title="Salient">S</span>
+              <span class="ga-dimension-label cultural" title="Accessible">A</span>
+              <span class="ga-dimension-label human" title="Personal">P</span>
             </div>
           </div>
 
@@ -579,10 +579,10 @@
             <div class="ga-card-title">Audience Segments</div>
             <div class="ga-card-description">Budget Travelers are your largest segment at 28%, but Experience Seekers show the highest growth potential. Who should you invest in?</div>
             <div class="ga-card-best">Best for: marketing planning, product roadmaps, segment targeting</div>
-            <div class="ga-card-drivers">
-              <span class="ga-driver-label behavioral" title="User Friendly">UF</span>
-              <span class="ga-driver-label behavioral" title="Dependable">D</span>
-              <span class="ga-driver-label human" title="Personal">P</span>
+            <div class="ga-card-dimensions">
+              <span class="ga-dimension-label behavioral" title="User Friendly">UF</span>
+              <span class="ga-dimension-label behavioral" title="Dependable">D</span>
+              <span class="ga-dimension-label human" title="Personal">P</span>
             </div>
           </div>
 
@@ -591,10 +591,10 @@
             <div class="ga-card-title">Sentiment Patterns</div>
             <div class="ga-card-description">Stated satisfaction is 78%, but behavioral repeat rate is 56%. This 22-point gap is your most urgent signal. Track it here.</div>
             <div class="ga-card-best">Best for: crisis monitoring, campaign impact measurement, narrative tracking</div>
-            <div class="ga-card-drivers">
-              <span class="ga-driver-label human" title="Personal">P</span>
-              <span class="ga-driver-label human" title="Meaningful">M</span>
-              <span class="ga-driver-label cultural" title="Salient">S</span>
+            <div class="ga-card-dimensions">
+              <span class="ga-dimension-label human" title="Personal">P</span>
+              <span class="ga-dimension-label human" title="Meaningful">M</span>
+              <span class="ga-dimension-label cultural" title="Salient">S</span>
             </div>
           </div>
         </div>
@@ -716,7 +716,7 @@
     <div class="analyst-panel-messages"></div>
     <div class="analyst-panel-suggestions"></div>
     <div class="analyst-panel-input">
-      <input type="text" placeholder="Ask about drivers, opportunities, strategy...">
+      <input type="text" placeholder="Ask about dimensions, opportunities, strategy...">
       <button>Send</button>
     </div>
     <div class="analyst-panel-footer">
@@ -747,12 +747,12 @@
 
 Your analysis framework:
 - Diagnostic: What's happening? (identify the signal)
-- Root Cause: Why is it happening? (trace to drivers)
+- Root Cause: Why is it happening? (trace to dimensions)
 - Strategic: What should we do? (Attack / Defend / Bridge)
 
 You have access to Stayworthy brand data:
 - Brand Fidelity Composite: 67.5 (−2.3)
-- Drivers: User Friendly 72 (−4), Personal 64 (−8), Accessible 71 (+1), Dependable 58 (−6), Meaningful 66 (−3), Salient 74 (+2)
+- Dimensions: User Friendly 72 (−4), Personal 64 (−8), Accessible 71 (+1), Dependable 58 (−6), Meaningful 66 (−3), Salient 74 (+2)
 - Key issue: 22-point expressive-behavioral gap
 - Competitive set: Booking.com 74, Marriott Homes 71, Vrbo 68
 
@@ -863,11 +863,11 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
         appendQuestion('topic-thread', 'Question 1: Which time horizon matters most to you?', `
           <button class="ga-question-btn" onclick="answerBrandHealth('horizon', 'moment')">
             <span class="ga-question-btn-label">In the Moment</span>
-            <span class="ga-question-btn-text">User Friendly, Personal, Accessible drivers</span>
+            <span class="ga-question-btn-text">User Friendly, Personal, Accessible dimensions</span>
           </button>
           <button class="ga-question-btn" onclick="answerBrandHealth('horizon', 'time')">
             <span class="ga-question-btn-label">Over Time</span>
-            <span class="ga-question-btn-text">Dependable, Meaningful, Salient drivers</span>
+            <span class="ga-question-btn-text">Dependable, Meaningful, Salient dimensions</span>
           </button>
         `);
       }, 400);
@@ -922,8 +922,8 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             <span class="ga-question-btn-label">Perception Decline</span>
             <span class="ga-question-btn-text">Overall sentiment moving negative</span>
           </button>
-          <button class="ga-question-btn" onclick="answerSentiment('concern', 'drivers')">
-            <span class="ga-question-btn-label">Driver-Level Shifts</span>
+          <button class="ga-question-btn" onclick="answerSentiment('concern', 'dimensions')">
+            <span class="ga-question-btn-label">Dimension-Level Shifts</span>
             <span class="ga-question-btn-text">Which perception pillars are eroding?</span>
           </button>
         `);
@@ -938,7 +938,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
         setTimeout(() => {
           appendQuestion('topic-thread', 'Question 2: What\'s your primary concern?', `
             <button class="ga-question-btn" onclick="answerBrandHealth('concern', 'decline')">
-              <span class="ga-question-btn-label">Declining Drivers</span>
+              <span class="ga-question-btn-label">Declining Dimensions</span>
               <span class="ga-question-btn-text">Which metrics are slipping?</span>
             </button>
             <button class="ga-question-btn" onclick="answerBrandHealth('concern', 'positioning')">
@@ -952,7 +952,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
           `);
         }, 300);
       } else if (question === 'concern') {
-        const labels = { 'decline': 'Declining Drivers', 'positioning': 'Competitive Positioning', 'segment': 'Segment-Specific Issues' };
+        const labels = { 'decline': 'Declining Dimensions', 'positioning': 'Competitive Positioning', 'segment': 'Segment-Specific Issues' };
         addMessage('topic-thread', 'user', labels[answer]);
         setTimeout(() => {
           appendQuestion('topic-thread', 'Question 3: Would you like attack and defend recommendations?', `
@@ -975,31 +975,31 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
         const labels = { 'top5': 'Top 5 by Brand Fidelity', 'direct': 'Direct Competitors', 'disruptors': 'Category Disruptors' };
         addMessage('topic-thread', 'user', labels[answer]);
         setTimeout(() => {
-          appendQuestion('topic-thread', 'Question 2: Which Brand Fidelity driver should we focus on?', `
-            <button class="ga-question-btn" onclick="answerCompetitive('driver', 'composite')">
+          appendQuestion('topic-thread', 'Question 2: Which Brand Fidelity dimension should we focus on?', `
+            <button class="ga-question-btn" onclick="answerCompetitive('dimension', 'composite')">
               <span class="ga-question-btn-label">Overall Composite</span>
               <span class="ga-question-btn-text">Total Brand Fidelity score</span>
             </button>
-            <button class="ga-question-btn" onclick="answerCompetitive('driver', 'specific')">
-              <span class="ga-question-btn-label">Specific Driver</span>
-              <span class="ga-question-btn-text">Drill into individual drivers</span>
+            <button class="ga-question-btn" onclick="answerCompetitive('dimension', 'specific')">
+              <span class="ga-question-btn-label">Specific Dimension</span>
+              <span class="ga-question-btn-text">Drill into individual dimensions</span>
             </button>
           `);
         }, 300);
-      } else if (question === 'driver') {
-        addMessage('topic-thread', 'user', answer === 'composite' ? 'Overall Composite' : 'Specific Driver');
+      } else if (question === 'dimension') {
+        addMessage('topic-thread', 'user', answer === 'composite' ? 'Overall Composite' : 'Specific Dimension');
         if (answer === 'specific') {
           setTimeout(() => {
-            appendQuestion('topic-thread', 'Which driver would you like to compare?', `
-              <button class="ga-question-btn" onclick="answerCompetitive('specificDriver', 'personalizable')">
+            appendQuestion('topic-thread', 'Which dimension would you like to compare?', `
+              <button class="ga-question-btn" onclick="answerCompetitive('specificDimension', 'personalizable')">
                 <span class="ga-question-btn-label">Personal</span>
                 <span class="ga-question-btn-text">Feel recognized and understood</span>
               </button>
-              <button class="ga-question-btn" onclick="answerCompetitive('specificDriver', 'accessible')">
+              <button class="ga-question-btn" onclick="answerCompetitive('specificDimension', 'accessible')">
                 <span class="ga-question-btn-label">Accessible</span>
                 <span class="ga-question-btn-text">Easy to use and navigate</span>
               </button>
-              <button class="ga-question-btn" onclick="answerCompetitive('specificDriver', 'dependable')">
+              <button class="ga-question-btn" onclick="answerCompetitive('specificDimension', 'dependable')">
                 <span class="ga-question-btn-label">Dependable</span>
                 <span class="ga-question-btn-text">Reliable and trustworthy</span>
               </button>
@@ -1019,8 +1019,8 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             `);
           }, 300);
         }
-      } else if (question === 'specificDriver') {
-        addMessage('topic-thread', 'user', 'Specific Driver Comparison');
+      } else if (question === 'specificDimension') {
+        addMessage('topic-thread', 'user', 'Specific Dimension Comparison');
         setTimeout(() => startChatPhase(), 300);
       }
     }
@@ -1056,7 +1056,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
     function answerSentiment(question, answer) {
       conversationPath.push({ dimension: 'sentiment', question, answer });
       if (question === 'concern') {
-        const labels = { 'divergence': 'Trust Divergence', 'decline': 'Perception Decline', 'drivers': 'Driver-Level Shifts' };
+        const labels = { 'divergence': 'Trust Divergence', 'decline': 'Perception Decline', 'dimensions': 'Dimension-Level Shifts' };
         addMessage('topic-thread', 'user', labels[answer]);
         setTimeout(() => {
           appendQuestion('topic-thread', 'Question 2: Across all segments, or focus on one?', `
@@ -1095,7 +1095,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
     function loadBrandHealthChat() {
       const t = 'chat-thread';
       addMessage(t, 'analyst',
-        `<strong>Your Focus:</strong> Brand Health across the 6 Fidelity drivers<br><br><strong>Key Finding:</strong> Stayworthy's composite score has declined 4 points YTD to 72. Personal (−8) and Dependable (−6) show <em>crisis-level erosion</em>, while Salient (+2) remains a bright spot. This creates a critical gap: <strong>people still remember us, but don't trust us.</strong>`,
+        `<strong>Your Focus:</strong> Brand Health across the 6 Fidelity dimensions<br><br><strong>Key Finding:</strong> Stayworthy's composite score has declined 4 points YTD to 72. Personal (−8) and Dependable (−6) show <em>crisis-level erosion</em>, while Salient (+2) remains a bright spot. This creates a critical gap: <strong>people still remember us, but don't trust us.</strong>`,
         'Signals tracked: 847 live · Confidence: HIGH · Source: M+ Brand Fidelity Model'
       );
       setTimeout(() => {
@@ -1105,7 +1105,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
       }, 600);
       setTimeout(() => {
         document.getElementById('chat-suggestions').innerHTML = `
-          <button class="ga-suggestion-pill" onclick="addFollow('Personal Deep Dive')">Drill into Personal driver</button>
+          <button class="ga-suggestion-pill" onclick="addFollow('Personal Deep Dive')">Drill into Personal dimension</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Segment Breakdown')">Which segments most affected?</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Competitor Comparison')">How do competitors compare?</button>
           <button class="ga-suggestion-pill" onclick="generateBrief()">Generate Brief</button>
@@ -1121,12 +1121,12 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
       );
       setTimeout(() => {
         addMessage(t, 'analyst',
-          `<strong>Strategic Insight:</strong> The 2-point gap vs Booking is not a defensive position; it's a vulnerability. Booking's Accessible driver (77 vs our 71) means they win on ease of use. Yet Stayworthy's Salient advantage suggests brand awareness is not the issue. The fight is over <em>trusted simplicity.</em> Marriott's rise signals category disruption: established hospitality players are learning digital.`
+          `<strong>Strategic Insight:</strong> The 2-point gap vs Booking is not a defensive position; it's a vulnerability. Booking's Accessible dimension (77 vs our 71) means they win on ease of use. Yet Stayworthy's Salient advantage suggests brand awareness is not the issue. The fight is over <em>trusted simplicity.</em> Marriott's rise signals category disruption: established hospitality players are learning digital.`
         );
       }, 600);
       setTimeout(() => {
         document.getElementById('chat-suggestions').innerHTML = `
-          <button class="ga-suggestion-pill" onclick="addFollow('Accessible Driver Gap')">Why losing on ease?</button>
+          <button class="ga-suggestion-pill" onclick="addFollow('Accessible Dimension Gap')">Why losing on ease?</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Marriott Threat')">Analyze Marriott's momentum</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Pricing Strategy')">Pricing impact on perception?</button>
           <button class="ga-suggestion-pill" onclick="generateBrief()">Generate Brief</button>
@@ -1169,7 +1169,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
       setTimeout(() => {
         document.getElementById('chat-suggestions').innerHTML = `
           <button class="ga-suggestion-pill" onclick="addFollow('Pricing Impact')">Quantify pricing role</button>
-          <button class="ga-suggestion-pill" onclick="addFollow('Trust Drivers')">Which moments erode trust?</button>
+          <button class="ga-suggestion-pill" onclick="addFollow('Trust Dimensions')">Which moments erode trust?</button>
           <button class="ga-suggestion-pill" onclick="addFollow('Recovery Curve')">Can we reverse the trend?</button>
           <button class="ga-suggestion-pill" onclick="generateBrief()">Generate Brief</button>
         `;
@@ -1216,8 +1216,8 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
     function getBriefContent() {
       if (selectedDimension === 'brand-health') {
         return {
-          diagnostic: `Stayworthy's Brand Fidelity composite (72, −4 YTD) masks a <strong>two-speed deterioration:</strong> In-the-Moment drivers (User Friendly 72, Personal 64, Accessible 71) are slipping due to friction in the booking experience. Personal shows crisis-level decline (−8), signaling a personalization deficit. Over-Time drivers reveal decay in trust: Dependable (58, −6) and Meaningful (66, −3) are collapsing. Salient (74, +2) remains a competitive bright spot. <em>The core issue:</em> High awareness, low trust. Behavioral signals confirm: repeat booking rate down 3.2% weekly.`,
-          attack: `<strong>Offensive Play: Personalization-First Experience Redesign</strong><br>Attack Personal driver through a rapid UX overhaul. Implement real-time price transparency (remove hidden final-cost surprise at checkout). Deploy context-aware recommendations based on booking history and stated preferences. Fast-track a loyalty program that recognizes and rewards repeat travelers with meaningful benefits (room upgrades, flexible cancellation). These moves repair the Accessible driver and rebuild Personal trust. Messaging: "We remember you. Every stay, better."`,
+          diagnostic: `Stayworthy's Brand Fidelity composite (72, −4 YTD) masks a <strong>two-speed deterioration:</strong> In-the-Moment dimensions (User Friendly 72, Personal 64, Accessible 71) are slipping due to friction in the booking experience. Personal shows crisis-level decline (−8), signaling a personalization deficit. Over-Time dimensions reveal decay in trust: Dependable (58, −6) and Meaningful (66, −3) are collapsing. Salient (74, +2) remains a competitive bright spot. <em>The core issue:</em> High awareness, low trust. Behavioral signals confirm: repeat booking rate down 3.2% weekly.`,
+          attack: `<strong>Offensive Play: Personalization-First Experience Redesign</strong><br>Attack Personal dimension through a rapid UX overhaul. Implement real-time price transparency (remove hidden final-cost surprise at checkout). Deploy context-aware recommendations based on booking history and stated preferences. Fast-track a loyalty program that recognizes and rewards repeat travelers with meaningful benefits (room upgrades, flexible cancellation). These moves repair the Accessible dimension and rebuild Personal trust. Messaging: "We remember you. Every stay, better."`,
           defend: `<strong>Protect: Salient Advantage & Dependable Foundation</strong><br>Your 74 Salient score is a moat. Defend it with consistent brand presence and earned media focus. Allocate budget to maintain top-of-mind awareness in Gen Z and Millennial core. For Dependable, establish a trust-building initiative: transparent communication on cancellation policies, 24/7 support visibility, customer review authenticity. Quick wins: customer testimonial campaign, "backed by 2M+ traveler reviews" positioning, money-back satisfaction guarantee.`,
           bridge: `<strong>How Attack Unlocks Defense:</strong> Fixing the pricing transparency (attack move) directly feeds Dependable rebuilding (defend move). When customers experience honest pricing and personalized recommendations, your reliability story becomes credible again. This also protects Salient by making your brand not just memorable, but trustworthy. The bridge is operational excellence: deliver on the promise, consistently.`,
           actions: [
@@ -1226,7 +1226,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             { title: 'Establish "Stayworthy Promise" Trust Program', description: ' Offer flexible cancellation, 24/7 support guarantee, satisfaction-back money guarantee. Market heavily in Gen Z and Millennial channels. Rebuild Dependable from behavioral level up. Target: ongoing.' }
           ],
           question: `If we rebuild Dependable and Personal by fixing the pricing and personalization experience, how do we measure success? Is repeat booking rate recovery to 38%+ within 90 days sufficient, or do we need Salient momentum to also turn positive?`,
-          glass: 'M+ Brand Fidelity Report 2026 · N=24,000 respondents · Travel Category · 6 Drivers (User Friendly, Personal, Accessible, Dependable, Meaningful, Salient) · Confidence: HIGH · Survey Period: Feb 15–Mar 4, 2026'
+          glass: 'M+ Brand Fidelity Report 2026 · N=24,000 respondents · Travel Category · 6 Dimensions (User Friendly, Personal, Accessible, Dependable, Meaningful, Salient) · Confidence: HIGH · Survey Period: Feb 15–Mar 4, 2026'
         };
       } else if (selectedDimension === 'competitive') {
         return {

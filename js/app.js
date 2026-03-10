@@ -93,9 +93,9 @@ window.BIE = {
     const radarContainer = document.getElementById('bf-radar');
     if (!radarContainer || !this.brand) return;
 
-    const drivers = this.brand.drivers;
+    const dimensions = this.brand.dimensions;
     const competitor = this.brand.competitors && this.brand.competitors[0];
-    renderRadarChart('bf-radar', drivers, {
+    renderRadarChart('bf-radar', dimensions, {
       width: 400,
       height: 400,
       showCompetitor: true,
@@ -280,7 +280,7 @@ window.BIE = {
     const suggestedQuestions = {
       guide: {
         'strategic-brief': [
-          "What patterns do you see in these drivers?",
+          "What patterns do you see in these dimensions?",
           "Why might trust gap differ by segment?",
           "What story does this brief tell you?"
         ],
@@ -295,18 +295,18 @@ window.BIE = {
           "What hypothesis does this suggest?"
         ],
         'guided-analysis': [
-          "What story do the drivers tell?",
+          "What story do the dimensions tell?",
           "Where's the hidden opportunity?",
           "What assumption should we question?"
         ],
         'scenario-lab': [
           "What scenario feels most realistic?",
-          "Which drivers would cascade first?",
+          "Which dimensions would cascade first?",
           "What risk are we not seeing?"
         ],
         'brand-fidelity': [
           "Why does Dependable matter most?",
-          "How do In-Moment drivers connect to Over Time?",
+          "How do In-Moment dimensions connect to Over Time?",
           "What would move this score fastest?"
         ],
         'day-in-the-life': [
@@ -329,7 +329,7 @@ window.BIE = {
         'strategic-brief': [
           "Diagnose the trust gap",
           "Compare us vs. competitors",
-          "Show driver risk analysis"
+          "Show dimension risk analysis"
         ],
         'command-center': [
           "What needs attention today?",
@@ -342,19 +342,19 @@ window.BIE = {
           "Where do layers converge?"
         ],
         'guided-analysis': [
-          "Run full driver diagnostic",
+          "Run full dimension diagnostic",
           "Identify biggest opportunity",
           "What should change first?"
         ],
         'scenario-lab': [
           "Best ROI scenario?",
           "Confidence on projections",
-          "Model driver cascade effects"
+          "Model dimension cascade effects"
         ],
         'brand-fidelity': [
           "Diagnose Dependable crisis",
-          "Which driver moves composite most?",
-          "Show competitive driver comparison"
+          "Which dimension moves composite most?",
+          "Show competitive dimension comparison"
         ],
         'day-in-the-life': [
           "Key insights for my role",
@@ -368,7 +368,7 @@ window.BIE = {
         ],
         'default': [
           "Surface the key insights",
-          "Which drivers need attention?",
+          "Which dimensions need attention?",
           "Show me the data"
         ]
       }
@@ -429,18 +429,18 @@ window.BIE = {
     }
 
     const contextMessages = {
-      'strategic-brief': "You're reading the strategic brief — the narrative foundation of the brand intelligence picture. I can walk you through market dynamics, driver trajectories, or competitive positioning. What catches your eye?",
+      'strategic-brief': "You're reading the strategic brief — the narrative foundation of the brand intelligence picture. I can walk you through market dynamics, dimension trajectories, or competitive positioning. What catches your eye?",
       'how-it-works': "This is the architecture transparency layer — every methodology, data source, and confidence score exposed. Ask me about any signal type, pipeline stage, or analytical approach. I'll show my work.",
-      'command-center': "Welcome to your Command Center — your daily operational intelligence. I've flagged `3 signals` that need attention this morning. The Dependable driver is in critical territory.",
+      'command-center': "Welcome to your Command Center — your daily operational intelligence. I've flagged `3 signals` that need attention this morning. The Dependable dimension is in critical territory.",
       'signal-terminal': "Signal Terminal active — monitoring `847 signals` across Human-Expressive, Behavioral, and Cultural layers. I can surface anomalies, convergences, or drill into any signal source.",
-      'guided-analysis': "Ready for guided analysis. Tell me what you're trying to understand — a driver, a competitive question, an audience segment — and I'll help you build a structured brief.",
+      'guided-analysis': "Ready for guided analysis. Tell me what you're trying to understand — a dimension, a competitive question, an audience segment — and I'll help you build a structured brief.",
       'scenario-lab': "Scenario Lab loaded — `650 agents`, 5 simulation modes. War gaming, brand simulation, focus groups, insight generation, or signal nexus. What strategy question are you testing?",
-      'brand-fidelity': "Brand Fidelity dashboard — 6 drivers across two time horizons. Composite at `72` with a `-4` delta. I can diagnose any driver, compare competitive positions, or explain the framework.",
+      'brand-fidelity': "Brand Fidelity dashboard — 6 dimensions across two time horizons. Composite at `72` with a `-4` delta. I can diagnose any dimension, compare competitive positions, or explain the framework.",
       'day-in-the-life': "Day in the Life — see how BIE fits into real workflows. I can personalize this narrative for your specific role: strategist, analyst, or executive."
     };
 
-    // Initial context message
-    if (messages && this.currentPage && contextMessages[this.currentPage]) {
+    // Initial context message (render only once to prevent duplicates)
+    if (messages && this.currentPage && contextMessages[this.currentPage] && messages.children.length === 0) {
       const msg = document.createElement('div');
       msg.className = 'analyst-msg system mode-guide';
       msg.innerHTML = this.parseAnalystResponse(contextMessages[this.currentPage]);
@@ -564,7 +564,7 @@ window.BIE = {
             'signal-terminal': ["What's the counter-argument?", "Which signal do you trust most?", "What's missing from this picture?"],
             'guided-analysis': ["How confident are you in that?", "What would change your mind?", "What's the next question?"],
             'scenario-lab': ["What assumption are we making?", "How would competitors respond?", "What's the downside risk?"],
-            'brand-fidelity': ["Which driver surprises you?", "How do these connect?", "What would move the needle?"],
+            'brand-fidelity': ["Which dimension surprises you?", "How do these connect?", "What would move the needle?"],
             'day-in-the-life': ["What resonates with your workflow?", "What's the biggest gap?", "What would you change?"],
             'how-it-works': ["What makes this defensible?", "Where are the limitations?", "What would you add?"],
             'default': ["Tell me more", "What's the implication?", "What should we explore next?"]
@@ -573,9 +573,9 @@ window.BIE = {
             'strategic-brief': ["Deep dive on Dependable", "Show competitive gaps", "Signal source breakdown"],
             'command-center': ["Drill into anomalies", "Week-over-week delta", "Priority action list"],
             'signal-terminal': ["Filter high-confidence only", "Cross-layer correlation", "Show source diversity"],
-            'guided-analysis': ["Run sensitivity analysis", "Compare to category benchmark", "Show driver interdependencies"],
+            'guided-analysis': ["Run sensitivity analysis", "Compare to category benchmark", "Show dimension interdependencies"],
             'scenario-lab': ["Model alternative scenario", "Stress test assumptions", "Show agent behavior distribution"],
-            'brand-fidelity': ["Benchmark vs. category", "Driver correlation matrix", "Trend trajectory 6-month"],
+            'brand-fidelity': ["Benchmark vs. category", "Dimension correlation matrix", "Trend trajectory 6-month"],
             'day-in-the-life': ["Time-to-insight metrics", "Surface usage analytics", "Compare role workflows"],
             'how-it-works': ["Pipeline latency stats", "Signal quality audit", "Coverage gap analysis"],
             'default': ["Go deeper", "Show the data", "What else should I know?"]
@@ -709,32 +709,32 @@ window.BIE = {
     // Fallback responses use markdown (parsed by parseAnalystResponse)
     const responses = {
       trust: {
-        guide: `### What does the 22-point trust gap tell you?\n\nThere's a 22-point divergence between what users *say* about ${brandName} (expressive sentiment at 78%) and what they *do* (behavioral signals at 56%). That's a wide gap — and it's widening.\n\n- Consider the **functional vs. emotional** dimensions of trust\n- Which driver might be at the root: \`User Friendly\` or \`Dependable\`?\n- How might segment differences explain the gap?\n\n> If trust is high in words but low in actions, what's the friction point in the booking experience?`,
+        guide: `### What does the 22-point trust gap tell you?\n\nThere's a 22-point divergence between what users *say* about ${brandName} (expressive sentiment at 78%) and what they *do* (behavioral signals at 56%). That's a wide gap — and it's widening.\n\n- Consider the **functional vs. emotional** dimensions of trust\n- Which dimension might be at the root: \`User Friendly\` or \`Dependable\`?\n- How might segment differences explain the gap?\n\n> If trust is high in words but low in actions, what's the friction point in the booking experience?`,
         guardian: `### Diagnostic\n\n${brandName}'s trust metrics show a **22-point gap** between expressive sentiment (\`78%\`) and behavioral signals (\`56%\`). Gap widened 4 points in 6 weeks — a leading indicator of churn.\n\n### Attack\n\nDeploy transparent pricing pilot in top 3 markets to close User Friendly gap.\n\n### Defend\n\nMaintain Salient advantage (\`74, +2\`) through consistent booking experience.\n\n### Bridge\n\nPartner with verified-review platforms to convert stated trust into behavioral loyalty.\n\n◆ Human-Expressive + Behavioral signal correlation · N=847 · Confidence: HIGH`
       },
       competitor: {
-        guide: `### Where's the real competitive opportunity?\n\n${competitorName} leads at \`74\`, but ${brandName} is closing at \`72\`. Look at *which* drivers they're strong in vs. where the whitespace is.\n\n- **Personal** and **Meaningful** are both underdeveloped category-wide\n- ${competitorName} wins on Dependable (+8 vs category) and User Friendly (+6)\n- Neither brand owns the emotional loyalty space\n\n> Why do you think Personal and Meaningful are underserved across the whole category? What structural factor might explain that?`,
+        guide: `### Where's the real competitive opportunity?\n\n${competitorName} leads at \`74\`, but ${brandName} is closing at \`72\`. Look at *which* dimensions they're strong in vs. where the whitespace is.\n\n- **Personal** and **Meaningful** are both underdeveloped category-wide\n- ${competitorName} wins on Dependable (+8 vs category) and User Friendly (+6)\n- Neither brand owns the emotional loyalty space\n\n> Why do you think Personal and Meaningful are underserved across the whole category? What structural factor might explain that?`,
         guardian: `### Diagnostic\n\n${competitorName} leads at \`74\` BF composite, driven by Dependable (+8 vs category) and User Friendly (+6). ${brandName}'s opportunity lies in **Meaningful** and **Personal**, both underserved category-wide.\n\n### Attack\n\nInvest in Personal (\`64, -8\`) through ML-driven recommendation personalization.\n\n### Defend\n\nProtect Salient (\`74\`) through brand recall campaigns in peak booking season.\n\n### Bridge\n\nMeaningful (\`66, -3\`) bridges functional satisfaction to emotional loyalty.\n\n◆ Brand Fidelity Report 2026 · Travel Category · N=24,000 · Confidence: HIGH`
       },
       'gen z': {
-        guide: `### How do you read the Gen Z paradox?\n\nGen Z engagement with peer-reviewed content is up **34%** despite lower trust in brands overall. They don't trust *you* — but they trust *communities you host*.\n\n- How does this paradox inform the **Meaningful** driver?\n- What would a community-first experience actually look like?\n- Can you shift perception from transactional to belonging?\n\n> If Gen Z trusts communities more than brands, what would it take to make your platform feel like a community rather than a marketplace?`,
-        guardian: `### Diagnostic\n\nGen Z trust in travel platforms declined **12% YoY**, but engagement with peer-reviewed content is up **34%**. They trust communities hosted on brand platforms, not the brands themselves.\n\n### Attack\n\nLaunch UGC-first booking experience with social proof at every decision point.\n\n### Bridge\n\nThis is a **Meaningful** driver opportunity: make the platform a place Gen Z identifies with, not just transacts on.\n\n◆ Cultural + Behavioral signal cross-ref · TikTok, Reddit, Google Trends · Confidence: MEDIUM`
+        guide: `### How do you read the Gen Z paradox?\n\nGen Z engagement with peer-reviewed content is up **34%** despite lower trust in brands overall. They don't trust *you* — but they trust *communities you host*.\n\n- How does this paradox inform the **Meaningful** dimension?\n- What would a community-first experience actually look like?\n- Can you shift perception from transactional to belonging?\n\n> If Gen Z trusts communities more than brands, what would it take to make your platform feel like a community rather than a marketplace?`,
+        guardian: `### Diagnostic\n\nGen Z trust in travel platforms declined **12% YoY**, but engagement with peer-reviewed content is up **34%**. They trust communities hosted on brand platforms, not the brands themselves.\n\n### Attack\n\nLaunch UGC-first booking experience with social proof at every decision point.\n\n### Bridge\n\nThis is a **Meaningful** dimension opportunity: make the platform a place Gen Z identifies with, not just transacts on.\n\n◆ Cultural + Behavioral signal cross-ref · TikTok, Reddit, Google Trends · Confidence: MEDIUM`
       },
       scenario: {
-        guide: `### Which driver moves first in a pricing intervention?\n\nIf you ran a transparent pricing pilot and saw a \`3.2-point\` composite lift, think about the cascade:\n\n- Would **User Friendly** move first (immediate experience)?\n- Or would Over Time drivers like **Dependable** shift?\n- How do you expect the first mover to cascade into others?\n\n> What's your theory on whether functional fixes translate into emotional loyalty gains — and over what timeframe?`,
-        guardian: `### Diagnostic\n\nStart with **Transparent Pricing** scenario. Directly targets User Friendly (\`72, -4\`).\n\n- Simulation: \`3.2 point\` composite lift over 8 weeks at 78% confidence\n- Alternative: Trust Recovery Campaign produces \`2.1 point\` lift with higher certainty (89%) but slower trajectory (12 weeks)\n\n### Attack\n\nPrioritize transparent pricing — higher ceiling, faster payoff.\n\n### Bridge\n\nBoth scenarios improve Dependable indirectly through operational trust signals.\n\n◆ ABM simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH`
+        guide: `### Which dimension moves first in a pricing intervention?\n\nIf you ran a transparent pricing pilot and saw a \`3.2-point\` composite lift, think about the cascade:\n\n- Would **User Friendly** move first (immediate experience)?\n- Or would Over Time dimensions like **Dependable** shift?\n- How do you expect the first mover to cascade into others?\n\n> What's your theory on whether functional fixes translate into emotional loyalty gains — and over what timeframe?`,
+        guardian: `### Diagnostic\n\nStart with **Transparent Pricing** scenario. Directly targets User Friendly (\`72, -4\`).\n\n- Simulation: \`3.2 point\` composite lift over 8 weeks at 78% confidence\n- Alternative: Trust Recovery Campaign produces \`2.1 point\` lift with higher certainty (89%) but slower trajectory (12 weeks)\n\n### Attack\n\nPrioritize transparent pricing — higher ceiling, faster payoff.\n\n### Bridge\n\nBoth scenarios improve Dependable indirectly through operational trust signals.\n\n◆ BIE simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH`
       },
       fidelity: {
-        guide: `### Why does Dependable matter more than Personal right now?\n\nLooking at the 6 drivers, **Dependable** is the crisis point at \`58\`. It's an Over Time driver — it anchors long-term loyalty.\n\n- A **6-point decline** over 2 quarters signals something systemic\n- Personal (-8) is the biggest single delta, but operates at shorter horizons\n- Dependable defines whether customers *return*\n\n> What does a sustained Dependable decline tell you about the operational experience? And why might fixing it matter more than improving Personal right now?`,
-        guardian: `### Diagnostic\n\n**Brand Fidelity — 6 Drivers:**\n\n- In the Moment: User Friendly (\`72, -4\`) · Personal (\`64, -8\`) · Accessible (\`71, +1\`)\n- Over Time: Dependable (\`58, -6\`) · Meaningful (\`66, -3\`) · Salient (\`74, +2\`)\n\n### Key Insight\n\nDependable is the crisis driver at \`58 (-6)\`. It anchors long-term loyalty and is dragging the composite. Personal (-8) is the biggest single delta but operates at shorter time horizons.\n\n◆ M+ Brand Fidelity Framework · 2X advocacy, 2.5X profitability, 3X differentiation · Confidence: HIGH`
+        guide: `### Why does Dependable matter more than Personal right now?\n\nLooking at the 6 dimensions, **Dependable** is the crisis point at \`58\`. It's an Over Time dimension — it anchors long-term loyalty.\n\n- A **6-point decline** over 2 quarters signals something systemic\n- Personal (-8) is the biggest single delta, but operates at shorter horizons\n- Dependable defines whether customers *return*\n\n> What does a sustained Dependable decline tell you about the operational experience? And why might fixing it matter more than improving Personal right now?`,
+        guardian: `### Diagnostic\n\n**Brand Fidelity — 6 Dimensions:**\n\n- In the Moment: User Friendly (\`72, -4\`) · Personal (\`64, -8\`) · Accessible (\`71, +1\`)\n- Over Time: Dependable (\`58, -6\`) · Meaningful (\`66, -3\`) · Salient (\`74, +2\`)\n\n### Key Insight\n\nDependable is the crisis dimension at \`58 (-6)\`. It anchors long-term loyalty and is dragging the composite. Personal (-8) is the biggest single delta but operates at shorter time horizons.\n\n◆ M+ Brand Fidelity Framework · 2X advocacy, 2.5X profitability, 3X differentiation · Confidence: HIGH`
       },
       meaningful: {
-        guide: `### What would make the brand *meaningful* — not just useful?\n\nMeaningful sits at \`66\` with a **-3 decline**. It's the bridge between functional satisfaction and emotional loyalty.\n\n- What would a "Stories Worth Staying For" content program change about behavior?\n- How do you measure success beyond engagement metrics?\n- Can you create belonging, not just transactions?\n\n> Brands with high Meaningful scores see 2.8X higher advocacy rates. What's the fastest path to making your brand mean something beyond its utility?`,
+        guide: `### What would make the brand *meaningful* — not just useful?\n\nMeaningful sits at \`66\` with a **-3 decline**. It's the bridge between functional satisfaction and emotional loyalty.\n\n- What would a "Stories Worth Staying For" content program change about behavior?\n- How do you measure success beyond engagement metrics?\n- Can you create belonging, not just transactions?\n\n> Brands with high Meaningful dimension scores see 2.8X higher advocacy rates. What's the fastest path to making your brand mean something beyond its utility?`,
         guardian: `### Diagnostic\n\nMeaningful (\`66, -3\`) is the bridge between functional satisfaction and emotional loyalty. Brands with high Meaningful scores see **2.8X** higher advocacy rates.\n\n### Attack\n\nLaunch a "Stories Worth Staying For" content series. Turn property stays into narratives.\n\n### Defend\n\nDon't let Meaningful erosion cascade into Dependable. Monitor monthly.\n\n◆ BF Report 2026 · Cross-category analysis · N=229 brands · Confidence: HIGH`
       },
       dependable: {
         guide: `### What's breaking the Dependable promise?\n\nDependable is in critical territory at \`58 (-6)\`. The behavioral data says **73%** of its decline correlates with post-booking experience.\n\n- If you could fix just the top 3 operational pain points — cancellation friction, response time, billing — which comes first?\n- What's your theory on the root cause?\n- Is this perception or reality?\n\n> Behavioral signals don't lie. If 73% of the decline is post-booking, is the brand problem actually a product problem?`,
-        guardian: `### Diagnostic\n\nDependable (\`58, -6\`) is in critical territory. This is the most influential Over Time driver. A 6-point decline over 2 quarters signals **systemic operational issues**, not just perception.\n\n### Attack\n\nAudit and fix the top 5 operational pain points surfaced in behavioral signals:\n\n- Cancellation friction\n- Response time\n- Billing accuracy\n\n### Bridge\n\nBehavioral data shows **73%** of Dependable declines correlate with post-booking experience, not pre-booking perception.\n\n◆ Behavioral signal cluster analysis · Booking + post-stay data · N=312 signals · Confidence: HIGH`
+        guardian: `### Diagnostic\n\nDependable (\`58, -6\`) is in critical territory. This is the most influential Over Time dimension. A 6-point decline over 2 quarters signals **systemic operational issues**, not just perception.\n\n### Attack\n\nAudit and fix the top 5 operational pain points surfaced in behavioral signals:\n\n- Cancellation friction\n- Response time\n- Billing accuracy\n\n### Bridge\n\nBehavioral data shows **73%** of Dependable declines correlate with post-booking experience, not pre-booking perception.\n\n◆ Behavioral signal cluster analysis · Booking + post-stay data · N=312 signals · Confidence: HIGH`
       }
     };
 
@@ -745,8 +745,8 @@ window.BIE = {
       }
     }
 
-    const defaultGuide = "### Let me help you find the thread...\n\nWhat pattern do you notice first when you look at these drivers? The Human-Expressive signals suggest one story, but Behavioral signals tell something different.\n\n> *Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Fidelity drivers, Meaningful, or Dependable.*";
-    const defaultGuardian = "### Cross-referencing signal layers...\n\nThe Human-Expressive data suggests one pattern, but Behavioral signals tell a different story. Let me surface the specific data points and confidence scores.\n\n> *Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Fidelity drivers, Meaningful, or Dependable.*";
+    const defaultGuide = "### Let me help you find the thread...\n\nWhat pattern do you notice first when you look at these dimensions? The Human-Expressive signals suggest one story, but Behavioral signals tell something different.\n\n> *Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Fidelity dimensions, Meaningful, or Dependable.*";
+    const defaultGuardian = "### Cross-referencing signal layers...\n\nThe Human-Expressive data suggests one pattern, but Behavioral signals tell a different story. Let me surface the specific data points and confidence scores.\n\n> *Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Fidelity dimensions, Meaningful, or Dependable.*";
 
     return this.parseAnalystResponse(isGuide ? defaultGuide : defaultGuardian);
   },
@@ -879,9 +879,9 @@ window.BIE = {
         visual: 'pulse'
       },
       {
-        title: 'Brand Fidelity: Six Drivers of Brand Truth',
-        description: 'Every insight maps to six measurable drivers: three "In the Moment" (User Friendly, Personal, Accessible) and three "Over Time" (Dependable, Meaningful, Salient). Together, they reveal the full picture.',
-        visual: 'drivers'
+        title: 'Brand Fidelity: Six Dimensions of Brand Fidelity',
+        description: 'Every insight maps to six measurable dimensions: three "In the Moment" (User Friendly, Personal, Accessible) and three "Over Time" (Dependable, Meaningful, Salient). Together, they reveal the full picture.',
+        visual: 'dimensions'
       },
       {
         title: 'Intelligence That Moves With Your Day',
@@ -1049,11 +1049,11 @@ window.BIE = {
           </style>
         `;
 
-      case 'drivers':
+      case 'dimensions':
         // Official Brand Fidelity wheel image
         return `
           <div style="display: flex; align-items: center; justify-content: center;">
-            <img src="assets/images/fidelity-wheel.png" alt="Brand Fidelity Framework — Six Drivers" style="max-width: 200px; width: 100%; height: auto; border-radius: 8px;">
+            <img src="assets/images/fidelity-wheel.png" alt="Brand Fidelity Framework — Six Dimensions" style="max-width: 200px; width: 100%; height: auto; border-radius: 8px;">
           </div>
         `;
 
@@ -1298,28 +1298,28 @@ window.BIE = {
 
     // Confidence halo on composite section removed — too visually noisy
 
-    // Apply data-status badges to driver cards
-    document.querySelectorAll('.cc-driver').forEach(card => {
-      const driverName = card.querySelector('.cc-driver-header span')?.textContent?.trim().toLowerCase().replace(/\s+/g, '');
-      if (!driverName) return;
+    // Apply data-status badges to dimension cards
+    document.querySelectorAll('.cc-dimension').forEach(card => {
+      const dimensionName = card.querySelector('.cc-dimension-header span')?.textContent?.trim().toLowerCase().replace(/\s+/g, '');
+      if (!dimensionName) return;
 
       // Map display names to metric keys
       const keyMap = { 'userfriendly': 'userFriendly', 'personal': 'personal', 'accessible': 'accessible', 'dependable': 'dependable', 'meaningful': 'meaningful', 'salient': 'salient' };
-      const key = keyMap[driverName];
+      const key = keyMap[dimensionName];
       if (!key) return;
 
-      const driver = meta.metrics.brandFidelity.drivers[key];
-      if (!driver) return;
+      const dimension = meta.metrics.brandFidelity.dimensions[key];
+      if (!dimension) return;
 
       // Add confidence and data-status badges
-      const existingBadges = card.querySelector('.driver-badges');
+      const existingBadges = card.querySelector('.dimension-badges');
       if (!existingBadges) {
         const badges = document.createElement('div');
-        badges.className = 'driver-badges';
+        badges.className = 'dimension-badges';
         badges.style.cssText = 'display:flex;gap:4px;margin-top:4px;';
         badges.innerHTML = `
-          <span class="confidence-badge ${driver.confidence}">${driver.confidence}</span>
-          <span class="data-status-badge ${driver.dataStatus}">${driver.dataStatus === 'ai-enriched' ? 'AI-Enriched' : driver.dataStatus}</span>
+          <span class="confidence-badge ${dimension.confidence}">${dimension.confidence}</span>
+          <span class="data-status-badge ${dimension.dataStatus}">${dimension.dataStatus === 'ai-enriched' ? 'AI-Enriched' : dimension.dataStatus}</span>
         `;
         card.appendChild(badges);
       }
@@ -1427,17 +1427,17 @@ function renderRadarChart(containerId, data, options = {}) {
     svg.appendChild(line);
   }
 
-  // Prepare driver data: in the moment (0-2) + over time (3-5)
-  const drivers = [
+  // Prepare dimension data: in the moment (0-2) + over time (3-5)
+  const dimensions = [
     ...data.inTheMoment,
     ...data.overTime
   ];
 
   // Draw Stayworthy polygon
   const polygonPoints = [];
-  drivers.forEach((driver, i) => {
+  dimensions.forEach((dimension, i) => {
     const angle = (i / axes) * Math.PI * 2 - Math.PI / 2;
-    const value = driver.score;
+    const value = dimension.score;
     const distance = (value / scale) * radius;
     const x = center.x + distance * Math.cos(angle);
     const y = center.y + distance * Math.sin(angle);
@@ -1475,7 +1475,7 @@ function renderRadarChart(containerId, data, options = {}) {
   }
 
   // Draw axis labels with scores and groupings
-  drivers.forEach((driver, i) => {
+  dimensions.forEach((dimension, i) => {
     const angle = (i / axes) * Math.PI * 2 - Math.PI / 2;
     const labelDistance = radius * 1.12;
     const x = center.x + labelDistance * Math.cos(angle);
@@ -1486,7 +1486,7 @@ function renderRadarChart(containerId, data, options = {}) {
     const groupLabel = isInTheMoment ? 'IN THE MOMENT' : 'OVER TIME';
     const groupColor = isInTheMoment ? 'rgba(100, 200, 255, 0.5)' : 'rgba(100, 255, 200, 0.5)';
 
-    // Driver name
+    // Dimension name
     const nameText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     nameText.setAttribute('x', x);
     nameText.setAttribute('y', y - 4);
@@ -1495,7 +1495,7 @@ function renderRadarChart(containerId, data, options = {}) {
     nameText.setAttribute('font-family', 'var(--font-body)');
     nameText.setAttribute('font-weight', '600');
     nameText.setAttribute('fill', '#f0f0f0');
-    nameText.textContent = driver.name;
+    nameText.textContent = dimension.name;
     svg.appendChild(nameText);
 
     // Score value
@@ -1507,7 +1507,7 @@ function renderRadarChart(containerId, data, options = {}) {
     scoreText.setAttribute('font-family', 'var(--font-mono)');
     scoreText.setAttribute('fill', '#745AFF');
     scoreText.setAttribute('font-weight', '600');
-    scoreText.textContent = `${driver.score} (${driver.delta > 0 ? '+' : ''}${driver.delta})`;
+    scoreText.textContent = `${dimension.score} (${dimension.delta > 0 ? '+' : ''}${dimension.delta})`;
     svg.appendChild(scoreText);
   });
 
