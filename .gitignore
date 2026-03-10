@@ -43,4 +43,30 @@ npm-debug.log*
 # Temporary
 tmp/
 temp/
+
+# Internal reference docs (archived in bie-v9-archive)
+ANALYSIS.md
+BUILDER-LOG.md
+BUILDER_LOG.md
+CODE_REFERENCE.md
+DATA_VIZ_AUDIT_FINDINGS*
+DATA_VIZ_AUDIT_SUMMARY*
+IMPLEMENTATION_GUIDE.md
+IMPLEMENTATION_SUMMARY.md
+LLM_INTEGRATION.md
+PROJECT_SUMMARY.md
+QA_AUDIT_REPORT.md
+README_ANALYSIS.md
 SECURITY_AUDIT.md
+MATERIAL_ANALYST_*
+ANALYST_QUICK_REFERENCE*
+tasks/
+
+# Build artifacts
+*.tar.gz
+*.bundle
+*.backup
+audit_check*.sh
+final_audit.sh
+.push_test
+.mailmap

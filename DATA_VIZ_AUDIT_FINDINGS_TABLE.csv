@@ -1,9 +1,0 @@
-Issue_ID,Severity,File,Line,Component,Category,Title,Current_State,Expected_State,Impact
-1,CRITICAL,how-it-works.html,396,Confidence Bar (LOW),Signal Color,Confidence Bar Color Inconsistency,#ef4444 (red),#818cf8 (signal-human),Breaks chromatic design system
-2,MEDIUM,how-it-works.html,1133,Orbital Diagram SVG,Responsive Design,SVG Responsive Sizing Missing,width=400 hardcoded,max-width: 100%; height: auto,Overflow on mobile < 400px
-3,MEDIUM,scenario-lab.html,"2092, 890-895",Canvas Chart,Responsive Design,Canvas Aspect Ratio Issue,width="1000" height="400" with CSS width: 100%,Use aspect-ratio or dynamic resizing,Content distortion on non-1000px viewports
-4,MEDIUM,command-center.html,"511, 675, 680",Sparkline/Ring Animations,Animation Timing,Inconsistent Chart Animation Timing,2s sparkline vs 3s pulse,Standardize to 2.4s,Visual rhythm unpredictability
-5,LOW,command-center.html,1527,Sentiment Chart,Typography,SVG Numeric Labels Too Small,font-size="10",font-size="11" or responsive,Reduced readability on mobile
-6,LOW,how-it-works.html,379,Confidence Bar,Contrast,Confidence Bar Track Too Subtle,rgba(255,255,255,0.05),rgba(255,255,255,0.08-0.1),Barely visible empty track
-7,LOW,scenario-lab.html,2847,Brand Simulation Canvas,Typography,Canvas Text Too Small on Mobile,11px monospace,Responsive: 9px mobile / 11px desktop,Unreadable on small screens
-8,LOW,command-center.html,647,Signal Ring SVG,Responsive Design,Signal Ring SVG Missing max-width,width: 200px; height: 200px;,Add max-width: 100%; height: auto,No responsive fallback
