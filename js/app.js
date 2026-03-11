@@ -1576,4 +1576,8 @@ function renderRadarChart(containerId, data, options = {}) {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => BIE.init());
+document.addEventListener('DOMContentLoaded', () => {
+  BIE.init();
+  // Safety net: ensure help button renders even if init chain has issues
+  setTimeout(() => { try { BIE.addHelpButton(); } catch(e) {} }, 2000);
+});

@@ -58,7 +58,7 @@ body:not(:has(.app-feed)) .analyst-panel {
    ═══════════════════════════════════════════════ */
 .nav {
   grid-column: 1;
-  grid-row: 1 / -1;
+  grid-row: 1;
   background: var(--bg-deep);
   border-right: 1px solid var(--border-subtle);
   display: flex;

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brand Intelligence Engine - Scenario Lab</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=13">
+  <link rel="stylesheet" href="css/global.css?v=14">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
@@ -19,6 +19,42 @@
       transform: rotate(90deg);
     }
     details > summary::-webkit-details-marker { display: none; }
+
+    /* ── Collapsible Insight Panels ── */
+    .insight-collapse {
+      margin-bottom: 24px;
+    }
+    .insight-collapse-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono, 'JetBrains Mono', monospace);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      cursor: pointer;
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      list-style: none;
+      margin-bottom: 24px;
+    }
+    .insight-collapse-trigger:hover {
+      color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.15);
+    }
+    .insight-collapse-arrow {
+      display: inline-block;
+      transition: transform 0.2s ease;
+      font-size: 0.85rem;
+    }
+    .insight-collapse[open] .insight-collapse-arrow {
+      transform: rotate(90deg);
+    }
 
     [data-page="scenario-lab"] {
       --bg-void: #000000;
@@ -2269,6 +2305,11 @@
         <h2 class="scenario-mode-headline">Where Are We Losing Them — And Why?</h2>
         <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 24px; max-width: 700px; line-height: 1.6;">Descend through the conversion funnel to find <em>where</em> friction emerges, then run a virtual focus group to understand <em>why</em>. From signals to respondents in one flow.</p>
 
+        <details class="insight-collapse">
+          <summary class="insight-collapse-trigger">
+            <span class="insight-collapse-arrow">▸</span> View Funnel Analysis &amp; Proof Points
+          </summary>
+
         <!-- Conversion Funnel -->
         <div class="funnel-container">
           <div class="funnel-stage">
@@ -2372,6 +2413,8 @@
         </div>
 
         <div class="glass-box-inline">◆ Funnel analysis via behavioral signals · 312K user sessions tracked · Session funnel data current: Mar 4, 2026 · Confidence: HIGH</div>
+
+        </details><!-- /insight-collapse -->
 
         <!-- ── Validate with Focus Group (blended) ── -->
         <div class="insight-focus-group-bridge" id="insight-fg-bridge" style="margin-top: 48px; padding: 32px; background: linear-gradient(135deg, rgba(129,140,248,0.08) 0%, rgba(245,158,11,0.06) 100%); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px;">
@@ -3055,7 +3098,7 @@
   <!-- SCRIPTS -->
   <script src="js/analyst-llm.js"></script>
   <script src="js/api-client.js?v=3"></script>
-  <script src="js/app.js?v=13"></script>
+  <script src="js/app.js?v=14"></script>
   <script src="js/brand-sim.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script>
