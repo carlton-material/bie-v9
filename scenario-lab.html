@@ -2343,7 +2343,7 @@
         <div class="metrics-panel">
           <div class="metric-box">
             <span class="metric-box-label">Conversion Rate</span>
-            <div class="metric-box-value"><span class="count-up" data-value="4.0" data-decimals="1" data-suffix="%">0.0%</span></div>
+            <div class="metric-box-value"><span class="count-up" data-value="4.0" data-decimals="1" data-suffix="%">4.0%</span></div>
             <div class="metric-box-detail">150M → 6M</div>
           </div>
 
@@ -2547,11 +2547,11 @@
               <h3 class="scenario-card-title" style="margin-bottom: 0;">2029: AI Concierge Era</h3>
               <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(255,255,255,0.4);">65% likely</div>
             </div>
-            <p class="scenario-card-premise">AI trip planners become default booking channel. Google, Apple disintermediate OTAs.</p>
+            <p class="scenario-card-premise">Agent-to-agent protocols become the default. Google and Apple AI talk to each other about who to recommend — your brand is disintermediated unless you signal value to the agents themselves.</p>
             <div class="scenario-card-impact">
-              <strong>Impact:</strong> Category expands 25% as friction drops. Brand loyalty shifts to AI platform.
+              <strong>Impact:</strong> Category expands 25% as friction drops. Brand loyalty shifts from human perception to agent optimization. SEO stuffing for AI actually makes results worse — you need intentionally well-reasoned signal.
               <br><br>
-              <strong><span data-brand="name">Stayworthy</span> Play:</strong> Build the AI concierge layer before Google does - Personal dimension becomes key differentiator
+              <strong><span data-brand="name">Stayworthy</span> Play:</strong> Build the AI concierge layer before Google does. Personal dimension becomes the differentiator in an agent-mediated world.
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; font-size: var(--text-small);">
               <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+7 Personal</span></div>
@@ -3172,6 +3172,17 @@
           const container = document.getElementById('personas-container');
           if (container) container.innerHTML = '';
         }
+
+        // Re-trigger count-up animations for newly visible panels
+        setTimeout(() => {
+          const activePanel = document.querySelector(`.scenario-mode.active`);
+          if (activePanel) {
+            activePanel.querySelectorAll('.count-up, [data-count]').forEach(el => {
+              el.dataset.counted = '';
+            });
+            if (typeof BIE !== 'undefined' && BIE.initCountUp) BIE.initCountUp();
+          }
+        }, 100);
       },
 
       /* ── Scenario Card Selection ── */

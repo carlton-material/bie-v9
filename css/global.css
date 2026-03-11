@@ -995,40 +995,47 @@ body:not(:has(.app-feed)) .analyst-panel {
   order: 3;
 }
 
-/* ── Help Button — Relaunch Onboarding ── */
+/* ── Help Button — Relaunch Onboarding (upper-right of nav logo row) ── */
+.nav-logo {
+  position: relative;
+}
+
 .help-trigger {
   position: absolute;
-  bottom: var(--space-lg);
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-muted);
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 12px;
   display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: var(--z-analyst);
   transition: all var(--duration-normal) var(--ease-out);
-  margin-top: auto;
+  padding: 0;
+  line-height: 1;
+}
+
+.help-trigger i {
+  font-size: 12px;
 }
 
 .help-trigger:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.10);
   color: var(--text-secondary);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateX(-50%) scale(1.1);
-  box-shadow: 0 0 20px rgba(116, 90, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 12px rgba(116, 90, 255, 0.2);
 }
 
 .help-trigger:active {
-  transform: translateX(-50%) scale(0.98);
+  transform: translateY(-50%) scale(0.95);
 }
 
 /* ═══════════════════════════════════════════════════════════

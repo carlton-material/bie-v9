@@ -894,8 +894,8 @@ window.BIE = {
         visual: 'analyst'
       },
       {
-        title: 'Begin Your Intelligence Journey',
-        description: 'Navigate the sidebar to explore each surface. Start with the Strategic Brief for the big picture, or dive into Day in the Life to see the platform in action.',
+        title: 'Explore at Your Own Pace',
+        description: 'The system reveals itself as you go — think fog-of-war, not firehose. Start with the Strategic Brief for the big picture, or dive into Day in the Life to see it in action. Each surface unlocks a new layer of intelligence.',
         visual: 'arrow'
       }
     ];
@@ -1330,14 +1330,13 @@ window.BIE = {
     // Only add help button if not already present
     if (document.querySelector('.help-trigger')) return;
 
-    const nav = document.querySelector('.nav');
-    if (!nav) return;
+    const logoRow = document.querySelector('.nav-logo');
+    if (!logoRow) return;
 
-    // Wrap nav content in a flex container if needed
     const helpBtn = document.createElement('button');
     helpBtn.className = 'help-trigger';
-    helpBtn.textContent = '?';
-    helpBtn.title = 'Replay onboarding wizard';
+    helpBtn.innerHTML = '<i class="ph ph-question"></i>';
+    helpBtn.title = 'Replay onboarding guide';
     helpBtn.setAttribute('aria-label', 'Help: replay onboarding');
 
     helpBtn.addEventListener('click', () => {
@@ -1345,8 +1344,10 @@ window.BIE = {
       location.reload();
     });
 
-    // Add to nav footer
-    nav.appendChild(helpBtn);
+    // Add to logo row (upper right of nav header)
+    logoRow.appendChild(helpBtn);
+    // Show the button (CSS default is display:none for initial page load)
+    requestAnimationFrame(() => helpBtn.style.display = 'flex');
   }
 };
 
