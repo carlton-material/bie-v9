@@ -997,6 +997,41 @@
     .wg-phase.active .strategic-output { display: block; }
     .wg-phase.active .simulation-section { display: block; }
 
+    /* ── Wizard Navigation Buttons ── */
+    .wizard-nav {
+      padding-top: 8px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .wizard-nav-btn {
+      font-family: var(--font-display);
+      font-size: var(--text-small);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.65rem 1.6rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+    .wizard-nav-btn.primary {
+      border: 1px solid var(--brand-purple);
+      background: var(--brand-purple-dim);
+      color: var(--text-primary);
+    }
+    .wizard-nav-btn.primary:hover {
+      background: var(--brand-purple);
+      box-shadow: 0 0 24px rgba(116,90,255,0.3);
+    }
+    .wizard-nav-btn.secondary {
+      border: 1px solid var(--border-default);
+      background: transparent;
+      color: var(--text-secondary);
+    }
+    .wizard-nav-btn.secondary:hover {
+      border-color: var(--border-strong);
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.03);
+    }
+
     /* Results pane */
     .wg-results-summary {
       display: grid;
@@ -2581,6 +2616,12 @@
           </div>
 
           <div class="glass-box-inline">◆ BIE Simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH</div>
+
+          <!-- Wizard Navigation: User initiates progression -->
+          <div class="wizard-nav" style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 12px;">
+            <button class="wizard-nav-btn secondary" onclick="ScenarioLab.resetWarGame()">← Back to Scenarios</button>
+            <button class="wizard-nav-btn primary" id="wg-continue-to-sim" style="display:none;">Continue to Simulation →</button>
+          </div>
         </div>
 
         </div><!-- /wg-phase 2 -->
@@ -2687,6 +2728,11 @@
             </div>
           </div>
         </div>
+
+          <!-- Wizard Navigation: Back to Analysis -->
+          <div class="wizard-nav" style="margin-top: 24px; display: flex; justify-content: space-between; gap: 12px;">
+            <button class="wizard-nav-btn secondary" id="wg-back-to-analyze" onclick="ScenarioLab.backToAnalyze()">← Back to Analysis</button>
+          </div>
         </div><!-- /wg-phase 3 -->
 
         <!-- ─── Phase 4: Results ─── -->
@@ -3150,11 +3196,16 @@
         this.showStrategicOutput(scenario);
         updateWizardStep(2);
 
-        // Step 2 → 3 (Simulate): Auto-advance after analysis reads
-        setTimeout(() => {
-          updateWizardStep(3);
-          this.runSimulationForScenario(scenario);
-        }, 3000);
+        // Enable the "Continue to Simulation" button (user initiates next step)
+        const continueBtn = document.getElementById('wg-continue-to-sim');
+        if (continueBtn) {
+          continueBtn.style.display = '';
+          continueBtn.onclick = () => {
+            continueBtn.style.display = 'none';
+            updateWizardStep(3);
+            this.runSimulationForScenario(scenario);
+          };
+        }
       },
 
       showStrategicOutput(scenario) {
@@ -3208,6 +3259,33 @@
 
         document.getElementById('output-question').textContent = output.question;
         // Visibility now handled by wg-phase pane system
+      },
+
+      /* ── War Gaming Navigation ── */
+      resetWarGame() {
+        // Back to Phase 1 (Select Future)
+        this.currentScenario = null;
+        document.querySelectorAll('.scenario-card').forEach(c => c.classList.remove('selected'));
+        document.querySelectorAll('.wg-phase').forEach(p => p.classList.remove('active'));
+        const phase1 = document.querySelector('.wg-phase[data-wg-phase="1"]');
+        if (phase1) phase1.classList.add('active');
+        updateWizardStep(1);
+        // Hide continue button
+        const continueBtn = document.getElementById('wg-continue-to-sim');
+        if (continueBtn) continueBtn.style.display = 'none';
+      },
+
+      backToAnalyze() {
+        // Stop simulation if running
+        if (this.simulation) this.simulation.pause();
+        // Return to Phase 2 (Analyze)
+        document.querySelectorAll('.wg-phase').forEach(p => p.classList.remove('active'));
+        const phase2 = document.querySelector('.wg-phase[data-wg-phase="2"]');
+        if (phase2) phase2.classList.add('active');
+        updateWizardStep(2);
+        // Re-show continue button
+        const continueBtn = document.getElementById('wg-continue-to-sim');
+        if (continueBtn) continueBtn.style.display = '';
       },
 
       /* ── BIE SIMULATION ENGINE ── */
