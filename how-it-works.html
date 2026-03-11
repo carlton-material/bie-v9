@@ -2659,7 +2659,8 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
       btn.title = 'Replay onboarding guide';
       btn.setAttribute('aria-label', 'Help: replay onboarding');
       btn.addEventListener('click', () => { localStorage.removeItem('bie-onboarded'); location.href = 'index.html'; });
-      document.body.appendChild(btn);
+      const nav = document.querySelector('.nav');
+      if (nav) { nav.appendChild(btn); } else { document.body.appendChild(btn); }
       requestAnimationFrame(() => btn.style.display = 'flex');
     }
 

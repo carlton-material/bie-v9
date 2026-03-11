@@ -1341,8 +1341,13 @@ window.BIE = {
       location.reload();
     });
 
-    // Fixed bottom-right corner — visible on every page
-    document.body.appendChild(helpBtn);
+    // Append to nav, below signal activity pulse
+    const nav = document.querySelector('.nav');
+    if (nav) {
+      nav.appendChild(helpBtn);
+    } else {
+      document.body.appendChild(helpBtn);
+    }
     requestAnimationFrame(() => helpBtn.style.display = 'flex');
   }
 };

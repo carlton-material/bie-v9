@@ -63,7 +63,7 @@ body:not(:has(.app-feed)) .analyst-panel {
   border-right: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
-  padding: var(--space-lg) 0;
+  padding: var(--space-lg) 0 var(--space-md);
   z-index: var(--z-nav);
   overflow-y: auto;
   position: relative;
@@ -995,42 +995,40 @@ body:not(:has(.app-feed)) .analyst-panel {
   order: 3;
 }
 
-/* ── Help Button — Relaunch Onboarding (fixed bottom-right corner) ── */
+/* ── Help Button — Relaunch Onboarding (bottom of left nav) ── */
 .help-trigger {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #ffffff;
-  font-size: 14px;
+  font-size: 13px;
   display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 9999;
   transition: all var(--duration-normal) var(--ease-out);
   padding: 0;
   line-height: 1;
+  margin: var(--space-md) auto 0;
+  flex-shrink: 0;
 }
 
 .help-trigger i {
-  font-size: 14px;
+  font-size: 13px;
   color: #ffffff;
 }
 
 .help-trigger:hover {
-  background: rgba(255, 255, 255, 0.16);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: scale(1.12);
-  box-shadow: 0 0 18px rgba(116, 90, 255, 0.3);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: scale(1.1);
+  box-shadow: 0 0 14px rgba(116, 90, 255, 0.25);
 }
 
 .help-trigger:active {
-  transform: scale(0.94);
+  transform: scale(0.95);
 }
 
 /* ═══════════════════════════════════════════════════════════
