@@ -35,16 +35,12 @@ window.BIE = {
 
   /* ── Theme (light/dark) ── */
   initTheme() {
+    // BIE defaults to dark mode — only switch to light if user explicitly chose it
     const saved = localStorage.getItem('bie-theme');
     if (saved === 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
-    } else if (!saved) {
-      // Respect OS preference on first visit
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('bie-theme', 'light');
-      }
     }
+    // No OS preference auto-detect: dark is the canonical BIE experience
   },
 
   toggleTheme() {
