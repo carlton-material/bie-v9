@@ -1330,9 +1330,6 @@ window.BIE = {
     // Only add help button if not already present
     if (document.querySelector('.help-trigger')) return;
 
-    const logoRow = document.querySelector('.nav-logo');
-    if (!logoRow) return;
-
     const helpBtn = document.createElement('button');
     helpBtn.className = 'help-trigger';
     helpBtn.innerHTML = '<i class="ph ph-question"></i>';
@@ -1344,9 +1341,8 @@ window.BIE = {
       location.reload();
     });
 
-    // Add to logo row (upper right of nav header)
-    logoRow.appendChild(helpBtn);
-    // Show the button (CSS default is display:none for initial page load)
+    // Fixed bottom-right corner — visible on every page
+    document.body.appendChild(helpBtn);
     requestAnimationFrame(() => helpBtn.style.display = 'flex');
   }
 };

@@ -2649,9 +2649,24 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
       elements.forEach(el => observer.observe(el));
     }
 
+    // Help button — replay onboarding (mirrors app.js logic)
+    function addHelpButton() {
+      if (document.querySelector('.help-trigger')) return;
+      if (!localStorage.getItem('bie-onboarded')) return;
+      const btn = document.createElement('button');
+      btn.className = 'help-trigger';
+      btn.innerHTML = '<i class="ph ph-question"></i>';
+      btn.title = 'Replay onboarding guide';
+      btn.setAttribute('aria-label', 'Help: replay onboarding');
+      btn.addEventListener('click', () => { localStorage.removeItem('bie-onboarded'); location.href = 'index.html'; });
+      document.body.appendChild(btn);
+      requestAnimationFrame(() => btn.style.display = 'flex');
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       initRevealAnimations();
       animateCountUp();
+      addHelpButton();
     });
   </script>
 
