@@ -38,6 +38,8 @@ img { max-width: 100%; display: block; }
 .app-feed {
   grid-column: 1 / -1;
   grid-row: 2;
+  position: relative;
+  z-index: 250; /* Above nav (z-nav: 200) so feed renders over nav corner */
 }
 /* Pages without a feed — let content take full height */
 .app:not(:has(.app-feed)) {
@@ -58,7 +60,7 @@ body:not(:has(.app-feed)) .analyst-panel {
    ═══════════════════════════════════════════════ */
 .nav {
   grid-column: 1;
-  grid-row: 1;
+  grid-row: 1 / -1;
   background: var(--bg-deep);
   border-right: 1px solid var(--border-subtle);
   display: flex;
@@ -67,7 +69,6 @@ body:not(:has(.app-feed)) .analyst-panel {
   z-index: var(--z-nav);
   overflow-y: auto;
   position: relative;
-  height: 100%;
 }
 
 .nav-logo {
@@ -295,6 +296,15 @@ body:not(:has(.app-feed)) .analyst-panel {
 @keyframes tickerScroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ═══════════════════════════════════════════════
