@@ -11,6 +11,9 @@ window.BIE = {
   analystMode: 'guide', // guide or guardian
 
   async init() {
+    // Apply saved theme before paint to prevent flash
+    this.initTheme();
+
     // Load brand config from registry
     await this.loadBrand();
 
@@ -28,6 +31,31 @@ window.BIE = {
     this.initOnboarding();
 
     document.body.classList.add('loaded');
+  },
+
+  /* ── Theme (light/dark) ── */
+  initTheme() {
+    const saved = localStorage.getItem('bie-theme');
+    if (saved === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else if (!saved) {
+      // Respect OS preference on first visit
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('bie-theme', 'light');
+      }
+    }
+  },
+
+  toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    if (next === 'dark') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+    localStorage.setItem('bie-theme', next);
   },
 
   // Load brand registry, then active brand data
