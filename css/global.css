@@ -20,6 +20,61 @@ a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 img { max-width: 100%; display: block; }
 
+/* ── Accessibility Utilities ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  z-index: 10000;
+  padding: 0.75rem 1.25rem;
+  background: var(--brand-purple);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 0 0 6px 6px;
+  text-decoration: none;
+  transition: top var(--duration-fast) var(--ease-out);
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ── Focus Indicators (WCAG 2.4.7) ── */
+:focus-visible {
+  outline: 2px solid var(--brand-purple);
+  outline-offset: 2px;
+}
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--brand-purple);
+  outline-offset: 2px;
+}
+/* Remove outline:none on inputs — use focus-visible instead */
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
 /* ── App Shell ── */
 .app {
   display: grid;
@@ -326,7 +381,8 @@ body:not(:has(.app-feed)) .analyst-panel {
   transition: all var(--duration-normal) var(--ease-out);
   cursor: pointer;
 }
-.analyst-trigger:hover {
+.analyst-trigger:hover,
+.analyst-trigger:focus-visible {
   border-color: var(--brand-purple-hover);
   background: var(--brand-purple-hover);
   transform: scale(1.05);
@@ -561,7 +617,6 @@ body:not(:has(.app-feed)) .analyst-panel {
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: var(--text-small);
-  outline: none;
   transition: border-color var(--duration-fast) var(--ease-out);
 }
 .analyst-panel-input input::placeholder {

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Day in the Life - Brand Intelligence Engine v9</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=19">
+  <link rel="stylesheet" href="css/global.css?v=20">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
@@ -1203,9 +1203,10 @@
   </style>
 </head>
 <body data-page="day-in-the-life">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <div class="ditl-ambient-bg"></div>
   <div class="app">
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <div class="nav-logo">
         <div class="nav-logo-content">
           <img class="nav-logo-mark" src="assets/logos/monogram-white.png" alt="Material+" width="24">
@@ -1215,25 +1216,25 @@
       <div class="nav-confidential">Confidential · Internal Use Only</div>
       <div class="nav-section">
         <div class="nav-section-label">Foundation</div>
-        <a href="index.html" class="nav-item" data-page="strategic-brief"><span class="nav-item-icon"><i class="ph ph-diamond"></i></span> Strategic Brief</a>
-        <a href="day-in-the-life.html" class="nav-item active" data-page="day-in-the-life"><span class="nav-item-icon"><i class="ph ph-sun-horizon"></i></span> Day in the Life</a>
+        <a href="index.html" class="nav-item" data-page="strategic-brief"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-diamond"></i></span> Strategic Brief</a>
+        <a href="day-in-the-life.html" class="nav-item active" data-page="day-in-the-life"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-sun-horizon"></i></span> Day in the Life</a>
       </div>
       <div class="nav-section">
         <div class="nav-section-label">Methodology</div>
-        <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon"><i class="ph ph-gear-six"></i></span> How It Works</a>
+        <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-gear-six"></i></span> How It Works</a>
         <a href="brand-fidelity.html" class="nav-item" data-page="brand-fidelity">
-          <span class="nav-item-icon"><i class="ph ph-flower-lotus"></i></span> Brand Score
+          <span class="nav-item-icon" aria-hidden="true"><i class="ph ph-flower-lotus"></i></span> Brand Score
         </a>
       </div>
       <div class="nav-section">
         <div class="nav-section-label">Intelligence</div>
-        <a href="command-center.html" class="nav-item" data-page="command-center"><span class="nav-item-icon"><i class="ph ph-squares-four"></i></span> Command Center</a>
-        <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal"><span class="nav-item-icon"><i class="ph ph-terminal"></i></span> Signal Terminal</a>
-        <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis"><span class="nav-item-icon"><i class="ph ph-chat-centered-text"></i></span> Guided Analysis</a>
+        <a href="command-center.html" class="nav-item" data-page="command-center"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-squares-four"></i></span> Command Center</a>
+        <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-terminal"></i></span> Signal Terminal</a>
+        <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-chat-centered-text"></i></span> Guided Analysis</a>
       </div>
       <div class="nav-section">
         <div class="nav-section-label">Simulation</div>
-        <a href="scenario-lab.html" class="nav-item" data-page="scenario-lab"><span class="nav-item-icon"><i class="ph ph-flask"></i></span> Scenario Lab</a>
+        <a href="scenario-lab.html" class="nav-item" data-page="scenario-lab"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-flask"></i></span> Scenario Lab</a>
       </div>
       <div class="nav-pulse">
         <div class="nav-pulse-bar"></div>
@@ -1241,7 +1242,7 @@
       </div>
     </nav>
 
-    <div class="app-content">
+    <main id="main-content" class="app-content">
       <div class="ditl-timeline">
         <div class="ditl-spine"></div>
         <div class="ditl-dots">
@@ -1951,7 +1952,7 @@
         <a href="guided-analysis.html" class="page-nav-cta"><i class="ph ph-chat-centered-text"></i> Start Analysis →</a>
       </div>
 
-    </div><!-- /app-content -->
+    </main><!-- /app-content -->
     <footer class="feed app-feed">
       <span class="feed-label">Intelligence Feed</span>
       <div class="feed-ticker"><div class="feed-ticker-track"></div></div>
@@ -1961,20 +1962,20 @@
 
 
   <!-- MATERIAL ANALYST -->
-  <div class="analyst-trigger" title="Material Analyst">
-    <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <button class="analyst-trigger" title="Material Analyst" aria-label="Open Material Analyst">
+    <svg class="analyst-trigger-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     <span class="analyst-dot"></span>
-  </div>
+  </button>
 
-  <div class="analyst-panel">
+  <div class="analyst-panel" role="dialog" aria-label="Material Analyst">
     <div class="analyst-panel-header">
       <div class="analyst-panel-avatar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
       </div>
       <span class="analyst-panel-title">Material Analyst<small>Context-aware intelligence</small></span>
-      <button class="analyst-panel-close">&times;</button>
+      <button class="analyst-panel-close" aria-label="Close analyst panel">&times;</button>
     </div>
     <div class="analyst-mode-toggle">
       <button class="mode-btn active" data-mode="guide">Ask</button>
@@ -1983,7 +1984,7 @@
     <div class="analyst-panel-messages"></div>
     <div class="analyst-panel-suggestions"></div>
     <div class="analyst-panel-input">
-      <input type="text" placeholder="Ask about insights, workflow, narratives...">
+      <input type="text" aria-label="Ask the Material Analyst" placeholder="Ask about insights, workflow, narratives...">
       <button>Send</button>
     </div>
     <div class="analyst-panel-footer">

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brand Intelligence Engine - Scenario Lab</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=19">
+  <link rel="stylesheet" href="css/global.css?v=20">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
@@ -2262,7 +2262,8 @@
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1">
 </head>
 <body data-page="scenario-lab" class="app">
-  <nav class="nav">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <nav class="nav" aria-label="Main navigation">
     <div class="nav-logo">
       <div class="nav-logo-content">
         <img class="nav-logo-mark" src="assets/logos/monogram-white.png" alt="Material+" width="24">
@@ -2272,25 +2273,25 @@
     <div class="nav-confidential">Confidential · Internal Use Only</div>
     <div class="nav-section">
       <div class="nav-section-label">Foundation</div>
-      <a href="index.html" class="nav-item" data-page="strategic-brief"><span class="nav-item-icon"><i class="ph ph-diamond"></i></span> Strategic Brief</a>
-      <a href="day-in-the-life.html" class="nav-item" data-page="day-in-the-life"><span class="nav-item-icon"><i class="ph ph-sun-horizon"></i></span> Day in the Life</a>
+      <a href="index.html" class="nav-item" data-page="strategic-brief"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-diamond"></i></span> Strategic Brief</a>
+      <a href="day-in-the-life.html" class="nav-item" data-page="day-in-the-life"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-sun-horizon"></i></span> Day in the Life</a>
     </div>
     <div class="nav-section">
       <div class="nav-section-label">Methodology</div>
-      <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon"><i class="ph ph-gear-six"></i></span> How It Works</a>
+      <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-gear-six"></i></span> How It Works</a>
         <a href="brand-fidelity.html" class="nav-item" data-page="brand-fidelity">
-          <span class="nav-item-icon"><i class="ph ph-flower-lotus"></i></span> Brand Score
+          <span class="nav-item-icon" aria-hidden="true"><i class="ph ph-flower-lotus"></i></span> Brand Score
         </a>
     </div>
     <div class="nav-section">
       <div class="nav-section-label">Intelligence</div>
-      <a href="command-center.html" class="nav-item" data-page="command-center"><span class="nav-item-icon"><i class="ph ph-squares-four"></i></span> Command Center</a>
-      <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal"><span class="nav-item-icon"><i class="ph ph-terminal"></i></span> Signal Terminal</a>
-      <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis"><span class="nav-item-icon"><i class="ph ph-chat-centered-text"></i></span> Guided Analysis</a>
+      <a href="command-center.html" class="nav-item" data-page="command-center"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-squares-four"></i></span> Command Center</a>
+      <a href="signal-terminal.html" class="nav-item" data-page="signal-terminal"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-terminal"></i></span> Signal Terminal</a>
+      <a href="guided-analysis.html" class="nav-item" data-page="guided-analysis"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-chat-centered-text"></i></span> Guided Analysis</a>
     </div>
     <div class="nav-section">
       <div class="nav-section-label">Simulation</div>
-      <a href="scenario-lab.html" class="nav-item active" data-page="scenario-lab"><span class="nav-item-icon"><i class="ph ph-flask"></i></span> Scenario Lab</a>
+      <a href="scenario-lab.html" class="nav-item active" data-page="scenario-lab"><span class="nav-item-icon" aria-hidden="true"><i class="ph ph-flask"></i></span> Scenario Lab</a>
     </div>
     <div class="nav-pulse">
       <div class="nav-pulse-bar"></div>
@@ -2298,7 +2299,7 @@
     </div>
   </nav>
 
-  <main class="app-content scenario-lab">
+  <main id="main-content" class="app-content scenario-lab">
     <div class="scenario-header">
       <!-- Animated simulation mesh background -->
       <svg class="scenario-lab-mesh" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice">
@@ -2364,8 +2365,8 @@
           <span id="mode-trigger-label">Insight / Nearsight</span>
           <span class="dropdown-arrow">▼</span>
         </button>
-        <div class="scenario-mode-list">
-          <button class="scenario-mode-btn active" data-mode="insight">
+        <div class="scenario-mode-list" role="listbox" aria-label="Analysis mode">
+          <button class="scenario-mode-btn active" data-mode="insight" role="option" aria-selected="true">
             Insight / Nearsight
             <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.55); font-weight: 400; margin-top: 2px;">Funnel analysis + focus group validation</span>
           </button>
@@ -2888,7 +2889,7 @@
 
           <!-- Chart.js Visualization -->
           <div class="canvas-container" style="position: relative; height: 400px; margin-bottom: 16px;">
-            <canvas id="wargame-chart"></canvas>
+            <canvas id="wargame-chart" aria-label="War Gaming simulation results chart" role="img">Simulation chart — data shown in results below</canvas>
           </div>
           <!-- Hidden simulation canvas for raw data (used internally) -->
           <canvas id="simulation-canvas" width="1000" height="400" style="display:none;"></canvas>
@@ -3180,14 +3181,14 @@
           <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: var(--space-lg);">
             <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: var(--space-md);">MARKET SHARE OVER TIME</div>
             <div style="display: grid; grid-template-columns: 1fr 200px; gap: var(--space-lg); align-items: start;">
-              <canvas id="sim-share-chart" width="960" height="600" style="width: 100%; height: auto;"></canvas>
+              <canvas id="sim-share-chart" width="960" height="600" style="width: 100%; height: auto;" aria-label="Market share over time" role="img">Market share chart — data shown in rankings below</canvas>
               <div id="sim-share-legend" style="display: flex; flex-direction: column; gap: 12px; padding-top: 8px;"></div>
             </div>
           </div>
           <!-- Tier Distribution -->
           <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: var(--space-lg);">
             <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: var(--space-md);">TIER DISTRIBUTION</div>
-            <canvas id="sim-tier-chart" width="960" height="350" style="width: 100%; height: auto;"></canvas>
+            <canvas id="sim-tier-chart" width="960" height="350" style="width: 100%; height: auto;" aria-label="Tier distribution chart" role="img">Tier distribution chart — data shown in rankings below</canvas>
           </div>
         </div>
 
@@ -3231,20 +3232,20 @@
 
 
     <!-- MATERIAL ANALYST -->
-  <div class="analyst-trigger" title="Material Analyst">
-    <svg class="analyst-trigger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <button class="analyst-trigger" title="Material Analyst" aria-label="Open Material Analyst">
+    <svg class="analyst-trigger-icon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     <span class="analyst-dot"></span>
-  </div>
+  </button>
 
-  <div class="analyst-panel">
+  <div class="analyst-panel" role="dialog" aria-label="Material Analyst">
     <div class="analyst-panel-header">
       <div class="analyst-panel-avatar">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 4v16M4 12h16" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
       </div>
       <span class="analyst-panel-title">Material Analyst<small>Context-aware intelligence</small></span>
-      <button class="analyst-panel-close">&times;</button>
+      <button class="analyst-panel-close" aria-label="Close analyst panel">&times;</button>
     </div>
     <div class="analyst-mode-toggle">
       <button class="mode-btn active" data-mode="guardian">Explore</button>
@@ -3253,7 +3254,7 @@
     <div class="analyst-panel-messages"></div>
     <div class="analyst-panel-suggestions"></div>
     <div class="analyst-panel-input">
-      <input type="text" placeholder="Ask about scenarios, simulations, ROI...">
+      <input type="text" aria-label="Ask the Material Analyst" placeholder="Ask about scenarios, simulations, ROI...">
       <button>Send</button>
     </div>
     <div class="analyst-panel-footer">
@@ -3265,7 +3266,7 @@
   <!-- SCRIPTS -->
   <script src="js/analyst-llm.js"></script>
   <script src="js/api-client.js?v=3"></script>
-  <script src="js/app.js?v=19"></script>
+  <script src="js/app.js?v=20"></script>
   <script src="js/brand-sim.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script>
