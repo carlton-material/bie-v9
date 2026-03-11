@@ -1341,12 +1341,14 @@ window.BIE = {
       location.reload();
     });
 
-    // Append to nav, below signal activity pulse
-    const nav = document.querySelector('.nav');
-    if (nav) {
-      nav.appendChild(helpBtn);
+    // Append inline with Signal Activity label row
+    const pulseLabel = document.querySelector('.nav-pulse-label');
+    if (pulseLabel) {
+      pulseLabel.appendChild(helpBtn);
     } else {
-      document.body.appendChild(helpBtn);
+      const nav = document.querySelector('.nav');
+      if (nav) nav.appendChild(helpBtn);
+      else document.body.appendChild(helpBtn);
     }
     requestAnimationFrame(() => helpBtn.style.display = 'flex');
   }

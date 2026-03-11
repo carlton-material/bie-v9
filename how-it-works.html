@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How It Works. Brand Intelligence Engine</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=10">
+  <link rel="stylesheet" href="css/global.css?v=11">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
@@ -2659,8 +2659,8 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
       btn.title = 'Replay onboarding guide';
       btn.setAttribute('aria-label', 'Help: replay onboarding');
       btn.addEventListener('click', () => { localStorage.removeItem('bie-onboarded'); location.href = 'index.html'; });
-      const nav = document.querySelector('.nav');
-      if (nav) { nav.appendChild(btn); } else { document.body.appendChild(btn); }
+      const pulseLabel = document.querySelector('.nav-pulse-label');
+      if (pulseLabel) { pulseLabel.appendChild(btn); } else { const nav = document.querySelector('.nav'); if (nav) nav.appendChild(btn); else document.body.appendChild(btn); }
       requestAnimationFrame(() => btn.style.display = 'flex');
     }
 
