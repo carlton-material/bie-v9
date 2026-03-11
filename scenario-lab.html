@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brand Intelligence Engine - Scenario Lab</title>
-  <script>try{if(localStorage.getItem("bie-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
-  <link rel="stylesheet" href="css/tokens.css?v=3">
-  <link rel="stylesheet" href="css/global.css?v=10">
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/global.css?v=9">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
@@ -44,7 +43,7 @@
       border-bottom: 1px solid var(--border-subtle);
       position: relative;
       z-index: 10;
-      background: linear-gradient(180deg, rgba(var(--base-rgb),0.02) 0%, rgba(var(--base-rgb),0) 100%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 100%);
     }
 
     /* ── ANIMATED SIMULATION MESH ── */
@@ -99,7 +98,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 12px;
     }
 
@@ -152,7 +151,7 @@
       font-family: var(--font-display);
       font-size: 2.5rem;
       font-weight: 300;
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
       letter-spacing: -0.03em;
       color: var(--text-primary);
       line-height: 1.2;
@@ -187,7 +186,7 @@
       align-items: center;
       margin-bottom: var(--space-lg);
       padding: var(--space-sm) var(--space-md);
-      background: rgba(var(--base-rgb),0.02);
+      background: rgba(255,255,255,0.02);
       border: 1px solid var(--border-subtle);
       border-radius: 2px;
     }
@@ -200,7 +199,7 @@
       border-radius: 2px;
       transition: background var(--duration-fast) var(--ease-out);
     }
-    .wizard-step:hover { background: rgba(var(--base-rgb),0.03); }
+    .wizard-step:hover { background: rgba(255,255,255,0.03); }
     .wizard-step-number {
       display: flex;
       align-items: center;
@@ -283,7 +282,7 @@
       color: var(--text-secondary);
     }
     .step-nav-btn:hover {
-      background: rgba(var(--base-rgb),0.04);
+      background: rgba(255,255,255,0.04);
     }
     .step-nav-btn.primary {
       background: var(--signal-human);
@@ -313,7 +312,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.6);
+      color: rgba(255,255,255,0.6);
     }
 
     .scenario-dropdown {
@@ -328,7 +327,7 @@
       cursor: pointer;
       transition: all var(--duration-normal) var(--ease-out);
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(var(--base-rgb),0.6)' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(255,255,255,0.6)' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 12px center;
       padding-right: 36px;
@@ -376,8 +375,8 @@
     }
 
     .scenario-select-card {
-      background: var(--bg-card, rgba(var(--base-rgb),0.03));
-      border: 1px solid rgba(var(--base-rgb),0.06);
+      background: var(--bg-card, rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: var(--radius-lg, 12px);
       padding: var(--space-xl, 1.5rem);
       cursor: pointer;
@@ -397,10 +396,10 @@
       font-size: 10px;
       letter-spacing: 0.05em;
       padding: 4px 8px;
-      background: rgba(var(--base-rgb),0.04);
-      border: 1px solid rgba(var(--base-rgb),0.08);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 4px;
-      color: rgba(var(--base-rgb),0.5);
+      color: rgba(255,255,255,0.5);
     }
 
     /* Mode Dropdown Selector */
@@ -419,7 +418,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 6px;
-      color: rgba(var(--base-rgb),0.9);
+      color: rgba(255,255,255,0.9);
       font-family: var(--font-body);
       font-size: var(--text-small);
       font-weight: 500;
@@ -474,7 +473,7 @@
       padding: 10px 16px;
       border: none;
       background: transparent;
-      color: rgba(var(--base-rgb),0.6);
+      color: rgba(255,255,255,0.6);
       font-family: var(--font-body);
       font-size: var(--text-small);
       font-weight: 500;
@@ -487,12 +486,12 @@
 
     .scenario-mode-btn.active {
       background: var(--bg-elevated);
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
     }
 
     .scenario-mode-btn:hover {
-      background: rgba(var(--base-rgb),0.06);
-      color: rgba(var(--base-rgb),0.9);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.9);
     }
 
     /* ── CONTENT AREA ── */
@@ -547,7 +546,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 20px;
     }
 
@@ -556,7 +555,7 @@
       font-size: 2rem;
       font-weight: 300;
       letter-spacing: -0.02em;
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 60px;
     }
 
@@ -631,7 +630,7 @@
       font-family: var(--font-mono);
       font-size: var(--text-small);
       font-weight: 600;
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
     }
 
     .funnel-stage-label {
@@ -651,7 +650,7 @@
     .funnel-stage-title {
       font-family: var(--font-body);
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.65);
+      color: rgba(255,255,255,0.65);
     }
 
     .funnel-stage-detail {
@@ -662,12 +661,12 @@
       border: 1px solid var(--border-subtle);
       border-radius: 4px;
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
       line-height: 1.5;
     }
 
     .funnel-stage-detail strong {
-      color: rgba(var(--base-rgb),0.9);
+      color: rgba(255,255,255,0.9);
       display: block;
       margin-bottom: 4px;
     }
@@ -710,12 +709,12 @@
       font-family: var(--font-display);
       font-size: 2rem;
       font-weight: 400;
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
     }
 
     .metric-box-detail {
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.6);
+      color: rgba(255,255,255,0.6);
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -726,7 +725,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 20px;
     }
 
@@ -735,7 +734,7 @@
       font-size: 2rem;
       font-weight: 300;
       letter-spacing: -0.02em;
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 60px;
     }
 
@@ -803,7 +802,7 @@
     .scenario-card-badge {
       display: inline-block;
       padding: 6px 12px;
-      background: rgba(var(--base-rgb),0.08);
+      background: rgba(255,255,255,0.08);
       border: 1px solid currentColor;
       border-radius: 4px;
       font-family: var(--font-mono);
@@ -824,7 +823,7 @@
       font-family: var(--font-display);
       font-size: 1.5rem;
       font-weight: 400;
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 12px;
       position: relative;
       z-index: 1;
@@ -832,7 +831,7 @@
 
     .scenario-card-premise {
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.75);
+      color: rgba(255,255,255,0.75);
       margin-bottom: 20px;
       line-height: 1.6;
       position: relative;
@@ -845,14 +844,14 @@
       border: 1px solid var(--border-subtle);
       border-radius: 4px;
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
       line-height: 1.6;
       position: relative;
       z-index: 1;
     }
 
     .scenario-card-impact strong {
-      color: rgba(var(--base-rgb),0.85);
+      color: rgba(255,255,255,0.85);
     }
 
     .scenario-card-cta {
@@ -860,7 +859,7 @@
       padding: 12px;
       text-align: center;
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.5);
+      color: rgba(255,255,255,0.5);
       border: 1px dashed var(--border-subtle);
       border-radius: 3px;
       transition: all var(--duration-fast);
@@ -869,7 +868,7 @@
     }
 
     .scenario-card:hover .scenario-card-cta {
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
       border-color: var(--border-default);
     }
 
@@ -912,7 +911,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 8px;
       display: block;
     }
@@ -921,11 +920,11 @@
       font-family: var(--font-body);
       font-size: var(--text-body);
       line-height: 1.7;
-      color: rgba(var(--base-rgb),0.75);
+      color: rgba(255,255,255,0.75);
     }
 
     .output-content strong {
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
     }
 
     .output-actions {
@@ -941,11 +940,11 @@
       border-left: 3px solid var(--signal-behavioral);
       border-radius: 2px;
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
     }
 
     .output-action strong {
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
     }
 
     .output-question {
@@ -954,7 +953,7 @@
       border-left: 3px solid var(--signal-behavioral);
       border-radius: 3px;
       font-style: italic;
-      color: rgba(var(--base-rgb),0.75);
+      color: rgba(255,255,255,0.75);
       margin-top: 12px;
     }
 
@@ -1030,7 +1029,7 @@
     .wizard-nav-btn.secondary:hover {
       border-color: var(--border-strong);
       color: var(--text-primary);
-      background: rgba(var(--base-rgb),0.03);
+      background: rgba(255,255,255,0.03);
     }
 
     /* Results pane */
@@ -1051,7 +1050,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
       margin: 0 0 12px 0;
     }
     .wg-result-rank {
@@ -1059,15 +1058,15 @@
       justify-content: space-between;
       align-items: center;
       padding: 8px 0;
-      border-bottom: 1px solid rgba(var(--base-rgb),0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.85);
+      color: rgba(255,255,255,0.85);
     }
     .wg-result-rank:last-child { border-bottom: none; }
     .wg-result-rank .rank-pos {
       font-family: var(--font-mono);
       font-size: var(--text-nano);
-      color: rgba(var(--base-rgb),0.3);
+      color: rgba(255,255,255,0.3);
       width: 24px;
     }
     .wg-result-rank .rank-name { flex: 1; }
@@ -1084,7 +1083,7 @@
     }
     .wg-result-rank .rank-delta.up { color: #34d399; }
     .wg-result-rank .rank-delta.down { color: #f87171; }
-    .wg-result-rank .rank-delta.flat { color: rgba(var(--base-rgb),0.3); }
+    .wg-result-rank .rank-delta.flat { color: rgba(255,255,255,0.3); }
     .wg-stayworthy-brief {
       padding: 24px;
       background: rgba(116, 90, 255, 0.08);
@@ -1107,7 +1106,7 @@
       background: var(--bg-glass);
       border: 1px solid var(--border-default);
       border-radius: 4px;
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
       font-family: var(--font-mono);
       font-size: var(--text-small);
       cursor: pointer;
@@ -1118,8 +1117,8 @@
       color: #745AFF;
     }
     .wg-scenario-pick-btn {
-      background: rgba(var(--base-rgb),0.03);
-      border: 1px solid rgba(var(--base-rgb),0.1);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 8px;
       padding: 12px 16px;
       color: var(--text-primary);
@@ -1150,7 +1149,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 12px;
       display: block;
     }
@@ -1187,7 +1186,7 @@
       background: var(--bg-elevated);
       border: 1px solid var(--border-default);
       border-radius: 4px;
-      color: rgba(var(--base-rgb),0.65);
+      color: rgba(255,255,255,0.65);
       font-size: var(--text-small);
       font-weight: 500;
       cursor: pointer;
@@ -1197,7 +1196,7 @@
     .control-btn:hover {
       background: var(--bg-glass-hover);
       border-color: var(--border-strong);
-      color: rgba(var(--base-rgb),0.9);
+      color: rgba(255,255,255,0.9);
     }
 
     .control-btn.active {
@@ -1209,7 +1208,7 @@
     .control-stat {
       font-family: var(--font-mono);
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
       padding: 0 12px;
       border-left: 1px solid var(--border-subtle);
     }
@@ -1225,7 +1224,7 @@
       background: var(--bg-glass);
       border: 1px solid var(--border-subtle);
       border-radius: 3px;
-      color: rgba(var(--base-rgb),0.5);
+      color: rgba(255,255,255,0.5);
       font-size: var(--text-small);
       font-weight: 500;
       cursor: pointer;
@@ -1243,7 +1242,7 @@
       background: var(--bg-elevated);
       border: 1px solid var(--border-default);
       border-radius: 4px;
-      color: rgba(var(--base-rgb),0.8);
+      color: rgba(255,255,255,0.8);
       font-size: var(--text-small);
       font-weight: 500;
       cursor: pointer;
@@ -1253,7 +1252,7 @@
     .scenario-preset:hover {
       background: var(--bg-glass-hover);
       border-color: var(--border-strong);
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
     }
 
     /* Canvas Container */
@@ -1348,7 +1347,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
     }
 
     .configurator-select {
@@ -1356,7 +1355,7 @@
       background: var(--bg-secondary);
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      color: rgba(var(--base-rgb),0.9);
+      color: rgba(255,255,255,0.9);
       font-family: var(--font-body);
       font-size: 14px;
       cursor: pointer;
@@ -1439,14 +1438,14 @@
       font-family: var(--font-display);
       font-size: 18px;
       font-weight: 600;
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
       margin-bottom: 4px;
     }
 
     .persona-metadata {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 12px;
@@ -1456,7 +1455,7 @@
 
     .persona-profile {
       font-size: 13px;
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
       line-height: 1.5;
       margin-bottom: 16px;
       font-style: italic;
@@ -1469,7 +1468,7 @@
       border-radius: 6px;
       margin-bottom: 12px;
       font-size: 13px;
-      color: rgba(var(--base-rgb),0.75);
+      color: rgba(255,255,255,0.75);
       line-height: 1.6;
       font-style: italic;
     }
@@ -1574,7 +1573,7 @@
       font-family: var(--font-display);
       font-size: 16px;
       font-weight: 600;
-      color: rgba(var(--base-rgb),0.9);
+      color: rgba(255,255,255,0.9);
       margin-bottom: 16px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -1598,7 +1597,7 @@
       min-width: 80px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
     }
 
     .sentiment-bar.positive .sentiment-bar-label {
@@ -1639,7 +1638,7 @@
     }
 
     .sentiment-bar-fill span {
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
@@ -1658,12 +1657,12 @@
       border-left: 3px solid var(--accent-human);
       border-radius: 6px;
       font-size: 13px;
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
       line-height: 1.6;
     }
 
     .theme-item strong {
-      color: rgba(var(--base-rgb),0.9);
+      color: rgba(255,255,255,0.9);
     }
 
     .dimension-pills {
@@ -1681,7 +1680,7 @@
 
     .confidence-badge {
       font-size: 14px;
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
@@ -1804,7 +1803,7 @@
       font-family: var(--font-display);
       font-size: 0.9rem;
       font-weight: 500;
-      color: rgba(var(--base-rgb),0.9);
+      color: rgba(255,255,255,0.9);
       margin-bottom: 4px;
     }
 
@@ -1840,7 +1839,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 8px;
     }
 
@@ -1848,7 +1847,7 @@
       font-family: var(--font-display);
       font-size: 2.5rem;
       font-weight: 300;
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
       line-height: 1;
     }
 
@@ -1879,7 +1878,7 @@
       font-size: var(--text-nano);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 16px;
     }
 
@@ -1913,14 +1912,14 @@
       font-size: var(--text-nano);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(var(--base-rgb),0.4);
+      color: rgba(255,255,255,0.4);
       margin-bottom: 12px;
     }
 
     .nexus-detail-text {
       font-family: var(--font-body);
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.75);
+      color: rgba(255,255,255,0.75);
       line-height: 1.6;
     }
 
@@ -1941,13 +1940,13 @@
     }
 
     .nexus-dimension-name {
-      color: rgba(var(--base-rgb),0.7);
+      color: rgba(255,255,255,0.7);
     }
 
     .nexus-dimension-value {
       font-family: var(--font-mono);
       font-weight: 600;
-      color: rgba(var(--base-rgb),0.95);
+      color: rgba(255,255,255,0.95);
     }
 
     .nexus-dimension-delta {
@@ -1963,7 +1962,7 @@
       border-radius: 2px;
       font-family: var(--font-body);
       font-size: var(--text-small);
-      color: rgba(var(--base-rgb),0.75);
+      color: rgba(255,255,255,0.75);
       line-height: 1.6;
       font-style: italic;
     }
@@ -2085,8 +2084,8 @@
 
     .mode-brand-sim { display: none; }
     .mode-brand-sim.active { display: block; }
-    .sim-scenario-card:hover { background: rgba(var(--base-rgb),0.06) !important; }
-    .sim-scenario-card.active { background: rgba(var(--base-rgb),0.06) !important; box-shadow: inset 0 0 0 1px rgba(var(--base-rgb),0.15); }
+    .sim-scenario-card:hover { background: rgba(255,255,255,0.06) !important; }
+    .sim-scenario-card.active { background: rgba(255,255,255,0.06) !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.15); }
   </style>
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1">
 </head>
@@ -2099,10 +2098,6 @@
       </div>
     </div>
     <div class="nav-confidential">Confidential · Internal Use Only</div>
-      <button class="theme-toggle" onclick="BIE.toggleTheme()" aria-label="Toggle light/dark mode" title="Toggle theme">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
     <div class="nav-section">
       <div class="nav-section-label">Foundation</div>
       <a href="index.html" class="nav-item" data-page="strategic-brief"><span class="nav-item-icon"><i class="ph ph-diamond"></i></span> Strategic Brief</a>
@@ -2145,38 +2140,38 @@
           </filter>
         </defs>
         <!-- Connection lines -->
-        <line x1="120" y1="80" x2="280" y2="150" stroke="rgba(var(--base-rgb),0.1)" stroke-width="0.8"/>
-        <line x1="280" y1="150" x2="450" y2="100" stroke="rgba(var(--base-rgb),0.1)" stroke-width="0.8"/>
-        <line x1="450" y1="100" x2="620" y2="200" stroke="rgba(var(--base-rgb),0.1)" stroke-width="0.8"/>
-        <line x1="620" y1="200" x2="800" y2="120" stroke="rgba(var(--base-rgb),0.1)" stroke-width="0.8"/>
-        <line x1="120" y1="80" x2="450" y2="100" stroke="rgba(var(--base-rgb),0.08)" stroke-width="0.8"/>
-        <line x1="280" y1="150" x2="800" y2="120" stroke="rgba(var(--base-rgb),0.08)" stroke-width="0.8"/>
-        <line x1="150" y1="250" x2="350" y2="220" stroke="rgba(var(--base-rgb),0.1)" stroke-width="0.8"/>
-        <line x1="350" y1="220" x2="550" y2="260" stroke="rgba(var(--base-rgb),0.1)" stroke-width="0.8"/>
-        <line x1="550" y1="260" x2="750" y2="230" stroke="rgba(var(--base-rgb),0.1)" stroke-width="0.8"/>
-        <line x1="150" y1="250" x2="550" y2="260" stroke="rgba(var(--base-rgb),0.08)" stroke-width="0.8"/>
+        <line x1="120" y1="80" x2="280" y2="150" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="280" y1="150" x2="450" y2="100" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="450" y1="100" x2="620" y2="200" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="620" y1="200" x2="800" y2="120" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="120" y1="80" x2="450" y2="100" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+        <line x1="280" y1="150" x2="800" y2="120" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
+        <line x1="150" y1="250" x2="350" y2="220" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="350" y1="220" x2="550" y2="260" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="550" y1="260" x2="750" y2="230" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="150" y1="250" x2="550" y2="260" stroke="rgba(255,255,255,0.08)" stroke-width="0.8"/>
 
         <!-- Network nodes -->
-        <circle cx="120" cy="80" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="280" cy="150" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="450" cy="100" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="620" cy="200" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="800" cy="120" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="150" cy="250" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="350" cy="220" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="550" cy="260" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="750" cy="230" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="900" cy="180" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="200" cy="140" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="380" cy="180" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="680" cy="150" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="850" cy="250" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="500" cy="200" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="320" cy="260" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="650" cy="80" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="400" cy="40" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="750" cy="140" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
-        <circle cx="100" cy="180" r="3" fill="rgba(var(--base-rgb),0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="120" cy="80" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="280" cy="150" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="450" cy="100" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="620" cy="200" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="800" cy="120" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="150" cy="250" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="350" cy="220" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="550" cy="260" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="750" cy="230" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="900" cy="180" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="200" cy="140" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="380" cy="180" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="680" cy="150" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="850" cy="250" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="500" cy="200" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="320" cy="260" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="650" cy="80" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="400" cy="40" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="750" cy="140" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
+        <circle cx="100" cy="180" r="3" fill="rgba(255,255,255,0.3)" class="mesh-node" filter="url(#mesh-glow)"/>
       </svg>
 
       <div class="scenario-header-left">
@@ -2210,22 +2205,22 @@
         <div class="scenario-mode-list">
           <button class="scenario-mode-btn active" data-mode="insight">
             Insight / Nearsight
-            <span style="display: block; font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); font-weight: 400; margin-top: 2px;">Funnel analysis + focus group validation</span>
+            <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.4); font-weight: 400; margin-top: 2px;">Funnel analysis + focus group validation</span>
           </button>
           <button class="scenario-mode-btn" data-mode="wargame">
             War Gaming / Foresight
-            <span style="display: block; font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); font-weight: 400; margin-top: 2px;">Explore 3 divergent futures, simulate responses</span>
+            <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.4); font-weight: 400; margin-top: 2px;">Explore 3 divergent futures, simulate responses</span>
           </button>
           <button class="scenario-mode-btn" data-mode="signal-nexus">
             <span class="live-dot"></span>Fidelity LIVE
-            <span style="display: block; font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); font-weight: 400; margin-top: 2px;">Real-time signal convergence across 3 layers</span>
+            <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.4); font-weight: 400; margin-top: 2px;">Real-time signal convergence across 3 layers</span>
           </button>
           <button class="scenario-mode-btn" data-mode="brand-sim">
             Strategic Scenario Lab
-            <span style="display: block; font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); font-weight: 400; margin-top: 2px;">Full market simulation with competitive modeling</span>
+            <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.4); font-weight: 400; margin-top: 2px;">Full market simulation with competitive modeling</span>
           </button>
         </div>
-        <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.6rem; color: rgba(var(--base-rgb),0.25); letter-spacing: 0.05em;">Select a mode above to begin analysis</div>
+        <div style="margin-top: 8px; font-family: var(--font-mono); font-size: 0.6rem; color: rgba(255,255,255,0.25); letter-spacing: 0.05em;">Select a mode above to begin analysis</div>
       </div>
     </div>
 
@@ -2272,7 +2267,7 @@
       <div class="scenario-mode active mode-insight" data-mode="insight">
         <div class="scenario-mode-label">Insight / Nearsight + Focus Group</div>
         <h2 class="scenario-mode-headline">Where Are We Losing Them — And Why?</h2>
-        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(var(--base-rgb),0.75); margin-bottom: 24px; max-width: 700px; line-height: 1.6;">Descend through the conversion funnel to find <em>where</em> friction emerges, then run a virtual focus group to understand <em>why</em>. From signals to respondents in one flow.</p>
+        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 24px; max-width: 700px; line-height: 1.6;">Descend through the conversion funnel to find <em>where</em> friction emerges, then run a virtual focus group to understand <em>why</em>. From signals to respondents in one flow.</p>
 
         <!-- Conversion Funnel -->
         <div class="funnel-container">
@@ -2372,8 +2367,8 @@
         </div>
 
         <div style="padding: 40px; background: var(--bg-elevated); border: 1px solid var(--border-default); border-radius: 6px; margin-bottom: 40px;">
-          <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(var(--base-rgb),0.4); margin-bottom: 16px;">Key Opportunity</div>
-          <p style="font-family: var(--font-body); font-size: var(--text-body); color: rgba(var(--base-rgb),0.95); line-height: 1.7; margin: 0;">The biggest opportunity is in the Aware to Considered stage. A 5% improvement here adds 4.5M potential customers to consideration. This is where pricing transparency and trust messaging converge. Win this stage, win the funnel.</p>
+          <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px;">Key Opportunity</div>
+          <p style="font-family: var(--font-body); font-size: var(--text-body); color: rgba(255,255,255,0.95); line-height: 1.7; margin: 0;">The biggest opportunity is in the Aware to Considered stage. A 5% improvement here adds 4.5M potential customers to consideration. This is where pricing transparency and trust messaging converge. Win this stage, win the funnel.</p>
         </div>
 
         <div class="glass-box-inline">◆ Funnel analysis via behavioral signals · 312K user sessions tracked · Session funnel data current: Mar 4, 2026 · Confidence: HIGH</div>
@@ -2384,7 +2379,7 @@
             <div style="flex: 1;">
               <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(129,140,248,0.7); margin-bottom: 8px;">Next Step</div>
               <div style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 8px;">Validate Why They Drop Off</div>
-              <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(var(--base-rgb),0.65); line-height: 1.6; margin: 0;">The funnel shows <em>where</em> friction occurs. Run a virtual focus group to understand <em>why</em>. Synthetic respondents generated from 4,700 real survey participants answer your questions at scale.</p>
+              <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.65); line-height: 1.6; margin: 0;">The funnel shows <em>where</em> friction occurs. Run a virtual focus group to understand <em>why</em>. Synthetic respondents generated from 4,700 real survey participants answer your questions at scale.</p>
             </div>
             <button id="insight-fg-trigger" onclick="BIE.showInsightFocusGroup()" style="margin-top: 8px; padding: 12px 28px; background: var(--signal-human); color: #000; border: none; border-radius: 2px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.2s;">Run Focus Group →</button>
           </div>
@@ -2392,7 +2387,7 @@
 
         <!-- Focus Group Panels (embedded in Insight) -->
         <div id="insight-fg-panels" style="display: none; margin-top: 32px;">
-          <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(var(--base-rgb),0.4); margin-bottom: 20px;">Virtual Focus Group · Synthetic Respondents</div>
+          <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 20px;">Virtual Focus Group · Synthetic Respondents</div>
 
           <!-- Configure Step -->
           <div class="step-panel insight-fg-step" data-step="configure" style="display: block;">
@@ -2420,16 +2415,16 @@
               <div class="configurator-section">
                 <label class="configurator-label">Survey Questions</label>
                 <div style="display: grid; gap: 12px;">
-                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(var(--base-rgb),0.8); font-size: var(--text-small); cursor: pointer;">
+                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
                     <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Brand awareness
                   </label>
-                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(var(--base-rgb),0.8); font-size: var(--text-small); cursor: pointer;">
+                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
                     <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Booking preference dimensions
                   </label>
-                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(var(--base-rgb),0.8); font-size: var(--text-small); cursor: pointer;">
+                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
                     <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Price sensitivity
                   </label>
-                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(var(--base-rgb),0.8); font-size: var(--text-small); cursor: pointer;">
+                  <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-size: var(--text-small); cursor: pointer;">
                     <input type="checkbox" checked style="width: 16px; height: 16px; cursor: pointer;"> Platform trust
                   </label>
                 </div>
@@ -2442,14 +2437,14 @@
           <!-- Run Step -->
           <div class="step-panel insight-fg-step" data-step="run" style="display: none;">
             <div style="text-align: center; padding: 60px 40px;">
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.15em; text-transform: uppercase; color: rgba(var(--base-rgb),0.5); margin-bottom: 24px;">Generating Synthetic Respondents</div>
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px;">Generating Synthetic Respondents</div>
               <div style="font-size: 2rem; font-weight: 300; margin-bottom: 40px;">
                 <span id="ifg-progress-count">0</span> / <span id="ifg-total-count">500</span>
               </div>
-              <div style="max-width: 300px; margin: 0 auto; height: 8px; background: rgba(var(--base-rgb),0.1); border-radius: 2px; overflow: hidden;">
+              <div style="max-width: 300px; margin: 0 auto; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
                 <div id="ifg-progress-bar" style="height: 100%; background: var(--signal-human); width: 0%; transition: width 0.3s ease;"></div>
               </div>
-              <div style="margin-top: 24px; color: rgba(var(--base-rgb),0.6); font-size: var(--text-small);">Generating personas from behavioral patterns...</div>
+              <div style="margin-top: 24px; color: rgba(255,255,255,0.6); font-size: var(--text-small);">Generating personas from behavioral patterns...</div>
             </div>
           </div>
 
@@ -2457,54 +2452,54 @@
           <div class="step-panel insight-fg-step" data-step="results" style="display: none;">
             <div style="padding: 40px 0;">
               <div style="font-size: 1.25rem; font-weight: 500; margin-bottom: 8px;"><span id="ifg-results-count">500</span> Synthetic Respondents Generated</div>
-              <div style="color: rgba(var(--base-rgb),0.6); font-size: var(--text-small); margin-bottom: 40px;">Directional Accuracy: ~85%</div>
+              <div style="color: rgba(255,255,255,0.6); font-size: var(--text-small); margin-bottom: 40px;">Directional Accuracy: ~85%</div>
 
               <!-- Response Distribution -->
               <div style="display: grid; gap: 24px; margin-bottom: 40px;">
                 <div>
-                  <div style="color: rgba(var(--base-rgb),0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Brand Awareness</div>
+                  <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Brand Awareness</div>
                   <div style="display: flex; align-items: center; gap: 16px;">
-                    <div style="flex: 1; height: 8px; background: rgba(var(--base-rgb),0.1); border-radius: 2px; overflow: hidden;">
+                    <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
                       <div style="height: 100%; background: #00d084; width: 73%;"></div>
                     </div>
-                    <div style="min-width: 40px; text-align: right; color: rgba(var(--base-rgb),0.8);">73%</div>
+                    <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">73%</div>
                   </div>
                 </div>
 
                 <div>
-                  <div style="color: rgba(var(--base-rgb),0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Booking Preference: Direct Platform</div>
+                  <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Booking Preference: Direct Platform</div>
                   <div style="display: flex; align-items: center; gap: 16px;">
-                    <div style="flex: 1; height: 8px; background: rgba(var(--base-rgb),0.1); border-radius: 2px; overflow: hidden;">
+                    <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
                       <div style="height: 100%; background: #00d084; width: 58%;"></div>
                     </div>
-                    <div style="min-width: 40px; text-align: right; color: rgba(var(--base-rgb),0.8);">58%</div>
+                    <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">58%</div>
                   </div>
                 </div>
 
                 <div>
-                  <div style="color: rgba(var(--base-rgb),0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Price-Sensitive Decision Makers</div>
+                  <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">Price-Sensitive Decision Makers</div>
                   <div style="display: flex; align-items: center; gap: 16px;">
-                    <div style="flex: 1; height: 8px; background: rgba(var(--base-rgb),0.1); border-radius: 2px; overflow: hidden;">
+                    <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
                       <div style="height: 100%; background: #f59e0b; width: 64%;"></div>
                     </div>
-                    <div style="min-width: 40px; text-align: right; color: rgba(var(--base-rgb),0.8);">64%</div>
+                    <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">64%</div>
                   </div>
                 </div>
 
                 <div>
-                  <div style="color: rgba(var(--base-rgb),0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">High Platform Trust Score</div>
+                  <div style="color: rgba(255,255,255,0.7); font-size: var(--text-small); margin-bottom: 12px; font-weight: 500;">High Platform Trust Score</div>
                   <div style="display: flex; align-items: center; gap: 16px;">
-                    <div style="flex: 1; height: 8px; background: rgba(var(--base-rgb),0.1); border-radius: 2px; overflow: hidden;">
+                    <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
                       <div style="height: 100%; background: #3b82f6; width: 68%;"></div>
                     </div>
-                    <div style="min-width: 40px; text-align: right; color: rgba(var(--base-rgb),0.8);">68%</div>
+                    <div style="min-width: 40px; text-align: right; color: rgba(255,255,255,0.8);">68%</div>
                   </div>
                 </div>
               </div>
 
               <div style="padding: 24px; background: var(--bg-elevated); border: 1px solid var(--border-default); border-radius: 6px;">
-                <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(var(--base-rgb),0.4); margin-bottom: 12px;">Key Finding</div>
-                <p style="margin: 0; color: rgba(var(--base-rgb),0.9); font-size: var(--text-small); line-height: 1.6;">Direct booking platform preference drives the highest conversion lift. Transparent pricing messaging resonates with 73% awareness, but price sensitivity remains the deciding factor for 64% of respondents.</p>
+                <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 12px;">Key Finding</div>
+                <p style="margin: 0; color: rgba(255,255,255,0.9); font-size: var(--text-small); line-height: 1.6;">Direct booking platform preference drives the highest conversion lift. Transparent pricing messaging resonates with 73% awareness, but price sensitivity remains the deciding factor for 64% of respondents.</p>
               </div>
 
               <div class="glass-box-inline" style="margin-top: 24px;">◆ Synthetic respondents from N=4,700 real survey respondents · Directional accuracy: 85% · Focus group completed: <span id="ifg-timestamp">—</span></div>
@@ -2520,8 +2515,8 @@
         <div class="scenario-mode-label">War Gaming / Foresight</div>
         <div id="wg-intro-block">
           <h2 class="scenario-mode-headline">What Futures Should We Prepare For?</h2>
-          <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(var(--base-rgb),0.75); margin-bottom: 16px; max-width: 700px; line-height: 1.6;">Explore three divergent futures. Click a scenario to run simulations and uncover strategic vectors: what to attack, what to defend, how to bridge from today to tomorrow.</p>
-          <div style="font-family: var(--font-mono); font-size: 0.65rem; color: rgba(var(--base-rgb),0.3); letter-spacing: 0.05em; margin-bottom: 40px;"><i class="ph ph-cursor-click" style="margin-right: 4px;"></i>Click any scenario card below to begin simulation</div>
+          <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 16px; max-width: 700px; line-height: 1.6;">Explore three divergent futures. Click a scenario to run simulations and uncover strategic vectors: what to attack, what to defend, how to bridge from today to tomorrow.</p>
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; margin-bottom: 40px;"><i class="ph ph-cursor-click" style="margin-right: 4px;"></i>Click any scenario card below to begin simulation</div>
         </div>
 
         <!-- ─── Phase 1: Select Future ─── -->
@@ -2531,7 +2526,7 @@
             <span class="scenario-card-badge">Share Shift</span>
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
               <h3 class="scenario-card-title" style="margin-bottom: 0;">2027: Regulatory Wave</h3>
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(var(--base-rgb),0.4);">72% likely</div>
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(255,255,255,0.4);">72% likely</div>
             </div>
             <p class="scenario-card-premise">EU-wide STR regulations mandate transparency. Barcelona model spreads to 15 major markets.</p>
             <div class="scenario-card-impact">
@@ -2540,8 +2535,8 @@
               <strong><span data-brand="name">Stayworthy</span> Play:</strong> First-mover on regulatory compliance - trust moat - Dependable dimension +8
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; font-size: var(--text-small);">
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(var(--base-rgb),0.4); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #34d399; font-weight: 600;">+8 Dependable</span></div>
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(var(--base-rgb),0.4); font-family: var(--font-mono);">Status</span><br><span style="color: #f59e0b; font-weight: 600;">NOT STARTED</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #34d399; font-weight: 600;">+8 Dependable</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">Status</span><br><span style="color: #f59e0b; font-weight: 600;">NOT STARTED</span></div>
             </div>
             <div class="scenario-card-cta">Click to explore strategic response</div>
           </div>
@@ -2550,7 +2545,7 @@
             <span class="scenario-card-badge">Category Expansion</span>
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
               <h3 class="scenario-card-title" style="margin-bottom: 0;">2029: AI Concierge Era</h3>
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(var(--base-rgb),0.4);">65% likely</div>
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(255,255,255,0.4);">65% likely</div>
             </div>
             <p class="scenario-card-premise">AI trip planners become default booking channel. Google, Apple disintermediate OTAs.</p>
             <div class="scenario-card-impact">
@@ -2559,8 +2554,8 @@
               <strong><span data-brand="name">Stayworthy</span> Play:</strong> Build the AI concierge layer before Google does - Personal dimension becomes key differentiator
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; font-size: var(--text-small);">
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(var(--base-rgb),0.4); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+7 Personal</span></div>
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(var(--base-rgb),0.4); font-family: var(--font-mono);">Status</span><br><span style="color: #34d399; font-weight: 600;">IN PROGRESS</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+7 Personal</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">Status</span><br><span style="color: #34d399; font-weight: 600;">IN PROGRESS</span></div>
             </div>
             <div class="scenario-card-cta">Click to explore strategic response</div>
           </div>
@@ -2569,7 +2564,7 @@
             <span class="scenario-card-badge">Mixed</span>
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
               <h3 class="scenario-card-title" style="margin-bottom: 0;">2031: Decentralized Travel</h3>
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(var(--base-rgb),0.4);">48% likely</div>
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(255,255,255,0.4);">48% likely</div>
             </div>
             <p class="scenario-card-premise">Blockchain-verified stays, peer-to-peer booking, community-owned platforms.</p>
             <div class="scenario-card-impact">
@@ -2578,8 +2573,8 @@
               <strong><span data-brand="name">Stayworthy</span> Play:</strong> Hybrid model - centralized quality + decentralized community - Meaningful dimension critical
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; font-size: var(--text-small);">
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(var(--base-rgb),0.4); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+6 Meaningful</span></div>
-              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(var(--base-rgb),0.4); font-family: var(--font-mono);">Status</span><br><span style="color: #818cf8; font-weight: 600;">READY</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+6 Meaningful</span></div>
+              <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.4); font-family: var(--font-mono);">Status</span><br><span style="color: #818cf8; font-weight: 600;">READY</span></div>
             </div>
             <div class="scenario-card-cta">Click to explore strategic response</div>
           </div>
@@ -2637,7 +2632,7 @@
           <div class="simulation-header">
             <label class="simulation-label">BIE Market Simulation</label>
             <h3 class="simulation-title">Brand Share Evolution Under Scenario</h3>
-            <div id="wg-scenario-label" style="font-family: var(--font-mono); font-size: 11px; color: rgba(var(--base-rgb),0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px;"></div>
+            <div id="wg-scenario-label" style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px;"></div>
           </div>
 
           <div class="glass-box-panel" style="margin-bottom: 32px;">
@@ -2743,15 +2738,15 @@
         <!-- ─── Phase 4: Results ─── -->
         <div class="wg-phase" data-wg-phase="4">
           <div style="margin-bottom: 24px;">
-            <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(var(--base-rgb),0.4); margin-bottom: 8px;">Simulation Complete</div>
+            <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px;">Simulation Complete</div>
             <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 300; color: var(--text-primary); margin: 0 0 8px 0;" id="wg-results-title">Results: Scenario Analysis</h3>
-            <div id="wg-results-scenario-label" style="font-family: var(--font-mono); font-size: 11px; color: rgba(var(--base-rgb),0.4); letter-spacing: 0.08em; text-transform: uppercase;"></div>
+            <div id="wg-results-scenario-label" style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; text-transform: uppercase;"></div>
           </div>
 
           <!-- Stayworthy Executive Brief -->
           <div class="wg-stayworthy-brief" id="wg-stayworthy-brief">
             <h3><span data-brand="name">Stayworthy</span> Executive Brief</h3>
-            <p id="wg-stayworthy-brief-text" style="margin: 0; color: rgba(var(--base-rgb),0.85); font-size: var(--text-small); line-height: 1.7;"></p>
+            <p id="wg-stayworthy-brief-text" style="margin: 0; color: rgba(255,255,255,0.85); font-size: var(--text-small); line-height: 1.7;"></p>
           </div>
 
           <!-- Rankings + Key Metrics -->
@@ -2769,14 +2764,14 @@
           <!-- Strategic Recommendation -->
           <div class="wg-result-card" style="margin-bottom: 32px;">
             <h4>Strategic Recommendation</h4>
-            <p id="wg-strategic-rec" style="margin: 0; color: rgba(var(--base-rgb),0.85); font-size: var(--text-small); line-height: 1.7;"></p>
+            <p id="wg-strategic-rec" style="margin: 0; color: rgba(255,255,255,0.85); font-size: var(--text-small); line-height: 1.7;"></p>
           </div>
 
           <div class="glass-box-inline" style="margin-bottom: 24px;">◆ 650 agents · 100 iterations · BIE Simulation with Bass diffusion · Confidence: HIGH</div>
 
           <!-- Scenario Picker -->
           <div style="margin-bottom: 24px;">
-            <h4 style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(var(--base-rgb),0.5); margin: 0 0 12px 0;">Run Another Scenario</h4>
+            <h4 style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin: 0 0 12px 0;">Run Another Scenario</h4>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 16px;">
               <button class="wg-scenario-pick-btn" data-pick-scenario="regulatory" id="wg-pick-regulatory">
                 <span style="font-weight: 600;">2027: Regulatory Wave</span>
@@ -2812,13 +2807,13 @@
       <div class="scenario-mode mode-signal-nexus" data-mode="signal-nexus">
         <div class="scenario-mode-label">Fidelity LIVE · Multi-Signal Intelligence</div>
         <h2 class="scenario-mode-headline" style="font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--text-primary); margin-bottom: 16px;">How Signals Converge Into Intelligence</h2>
-        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(var(--base-rgb),0.75); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Three parallel signal streams - what people say, what they do, and what the world is doing around them - converge into a unified Brand Fidelity score. Real-time. Always live.</p>
+        <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Three parallel signal streams - what people say, what they do, and what the world is doing around them - converge into a unified Brand Fidelity score. Real-time. Always live.</p>
         
         <!-- Live Indicator -->
         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 40px; padding: 12px 16px; background: rgba(0, 208, 132, 0.1); border: 1px solid rgba(0, 208, 132, 0.3); border-radius: 4px; width: fit-content;">
           <div style="width: 8px; height: 8px; background: #00d084; border-radius: 50%; animation: pulse 2s infinite;"></div>
           <span style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; color: #00d084; font-weight: 600;">LIVE</span>
-          <span style="color: rgba(var(--base-rgb),0.6); font-size: var(--text-small); margin-left: 8px;">
+          <span style="color: rgba(255,255,255,0.6); font-size: var(--text-small); margin-left: 8px;">
             <span id="signal-count-live">862</span> signals flowing
           </span>
         </div>
@@ -2933,33 +2928,33 @@
     <!-- ══════════════ BRAND SIM ══════════════ -->
     <div class="scenario-mode mode-brand-sim" data-mode="brand-sim">
       <div style="max-width: 1100px;">
-        <div style="color: rgba(var(--base-rgb),0.4); font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: var(--space-sm);">BIE MARKET SIMULATION</div>
+        <div style="color: rgba(255,255,255,0.4); font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: var(--space-sm);">BIE MARKET SIMULATION</div>
         <h2 style="font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: var(--text-2xl, 1.75rem); color: var(--text-primary, #e8e8e8); margin-bottom: var(--space-sm);">Brand Competitive Dynamics</h2>
-        <p style="color: var(--text-secondary, rgba(var(--base-rgb),0.5)); max-width: 700px; margin-bottom: var(--space-lg); line-height: 1.6;">
+        <p style="color: var(--text-secondary, rgba(255,255,255,0.5)); max-width: 700px; margin-bottom: var(--space-lg); line-height: 1.6;">
           650 synthetic agents make brand choices based on price sensitivity, brand equity, innovation perception, and distribution access. Select a scenario, then watch market share evolve.
         </p>
 
         <!-- Definitive Scenario Cards -->
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: var(--space-lg);">
-          <button class="sim-scenario-card active" data-sim-scenario="status-quo" onclick="selectSimScenario(this)" style="background: rgba(var(--base-rgb),0.03); border: 1px solid rgba(239, 68, 68, 0.3); border-left: 3px solid #ef4444; border-radius: 6px; padding: 16px; text-align: left; cursor: pointer; transition: all 0.2s; color: var(--text-primary);">
+          <button class="sim-scenario-card active" data-sim-scenario="status-quo" onclick="selectSimScenario(this)" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(239, 68, 68, 0.3); border-left: 3px solid #ef4444; border-radius: 6px; padding: 16px; text-align: left; cursor: pointer; transition: all 0.2s; color: var(--text-primary);">
             <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #ef4444; margin-bottom: 6px;">Baseline</div>
             <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Status Quo</div>
-            <div style="font-size: 11px; color: rgba(var(--base-rgb),0.5); line-height: 1.4;">No intervention. Gradual decline: 72 → 61</div>
+            <div style="font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.4;">No intervention. Gradual decline: 72 → 61</div>
           </button>
-          <button class="sim-scenario-card" data-sim-scenario="premium-push" onclick="selectSimScenario(this)" style="background: rgba(var(--base-rgb),0.03); border: 1px solid rgba(0, 208, 132, 0.3); border-left: 3px solid #00d084; border-radius: 6px; padding: 16px; text-align: left; cursor: pointer; transition: all 0.2s; color: var(--text-primary);">
+          <button class="sim-scenario-card" data-sim-scenario="premium-push" onclick="selectSimScenario(this)" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(0, 208, 132, 0.3); border-left: 3px solid #00d084; border-radius: 6px; padding: 16px; text-align: left; cursor: pointer; transition: all 0.2s; color: var(--text-primary);">
             <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #00d084; margin-bottom: 6px;">Growth</div>
             <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Premium Positioning</div>
-            <div style="font-size: 11px; color: rgba(var(--base-rgb),0.5); line-height: 1.4;">Invest in equity + innovation: 72 → 81</div>
+            <div style="font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.4;">Invest in equity + innovation: 72 → 81</div>
           </button>
-          <button class="sim-scenario-card" data-sim-scenario="price-war" onclick="selectSimScenario(this)" style="background: rgba(var(--base-rgb),0.03); border: 1px solid rgba(59, 130, 246, 0.3); border-left: 3px solid #3b82f6; border-radius: 6px; padding: 16px; text-align: left; cursor: pointer; transition: all 0.2s; color: var(--text-primary);">
+          <button class="sim-scenario-card" data-sim-scenario="price-war" onclick="selectSimScenario(this)" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(59, 130, 246, 0.3); border-left: 3px solid #3b82f6; border-radius: 6px; padding: 16px; text-align: left; cursor: pointer; transition: all 0.2s; color: var(--text-primary);">
             <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #3b82f6; margin-bottom: 6px;">Threat</div>
             <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Price War</div>
-            <div style="font-size: 11px; color: rgba(var(--base-rgb),0.5); line-height: 1.4;">Competitors slash prices: 72 → 65</div>
+            <div style="font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.4;">Competitors slash prices: 72 → 65</div>
           </button>
-          <button class="sim-scenario-card" data-sim-scenario="market-expansion" onclick="selectSimScenario(this)" style="background: rgba(var(--base-rgb),0.03); border: 1px solid rgba(245, 158, 11, 0.3); border-left: 3px solid #f59e0b; border-radius: 6px; padding: 16px; text-align: left; cursor: pointer; transition: all 0.2s; color: var(--text-primary);">
+          <button class="sim-scenario-card" data-sim-scenario="market-expansion" onclick="selectSimScenario(this)" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(245, 158, 11, 0.3); border-left: 3px solid #f59e0b; border-radius: 6px; padding: 16px; text-align: left; cursor: pointer; transition: all 0.2s; color: var(--text-primary);">
             <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: #f59e0b; margin-bottom: 6px;">Expansion</div>
             <div style="font-weight: 600; font-size: 14px; margin-bottom: 4px;">Market Expansion</div>
-            <div style="font-size: 11px; color: rgba(var(--base-rgb),0.5); line-height: 1.4;">Travel boom, all tiers surge: 72 → 76</div>
+            <div style="font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.4;">Travel boom, all tiers surge: 72 → 76</div>
           </button>
         </div>
 
@@ -2967,10 +2962,10 @@
         <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-lg); flex-wrap: wrap;">
           <input type="hidden" id="sim-scenario-select" value="status-quo">
           <button id="sim-run-btn" style="background: var(--signal-human, #818cf8); color: #000; border: none; padding: 8px 20px; border-radius: 6px; font-family: var(--font-display, 'Space Grotesk', sans-serif); font-weight: 600; font-size: 13px; cursor: pointer; transition: opacity 0.2s;">▶ Run 20 Quarters</button>
-          <button id="sim-step-btn" style="background: rgba(var(--base-rgb),0.06); color: var(--text-primary, #e8e8e8); border: 1px solid rgba(var(--base-rgb),0.1); padding: 8px 16px; border-radius: 6px; font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: 13px; cursor: pointer;">Step</button>
-          <button id="sim-reset-btn" style="background: rgba(var(--base-rgb),0.06); color: var(--text-primary, #e8e8e8); border: 1px solid rgba(var(--base-rgb),0.1); padding: 8px 16px; border-radius: 6px; font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: 13px; cursor: pointer;">Reset</button>
-          <span id="sim-step-counter" style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 12px; color: rgba(var(--base-rgb),0.4);">Q0</span>
-          <div id="sim-scenario-desc" style="flex: 1; padding: 8px 16px; background: rgba(129, 140, 248, 0.04); border-left: 2px solid var(--signal-human, #818cf8); border-radius: 0 6px 6px 0; color: var(--text-secondary, rgba(var(--base-rgb),0.5)); font-size: 12px; line-height: 1.5; min-width: 200px;">
+          <button id="sim-step-btn" style="background: rgba(255,255,255,0.06); color: var(--text-primary, #e8e8e8); border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 6px; font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: 13px; cursor: pointer;">Step</button>
+          <button id="sim-reset-btn" style="background: rgba(255,255,255,0.06); color: var(--text-primary, #e8e8e8); border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 6px; font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: 13px; cursor: pointer;">Reset</button>
+          <span id="sim-step-counter" style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 12px; color: rgba(255,255,255,0.4);">Q0</span>
+          <div id="sim-scenario-desc" style="flex: 1; padding: 8px 16px; background: rgba(129, 140, 248, 0.04); border-left: 2px solid var(--signal-human, #818cf8); border-radius: 0 6px 6px 0; color: var(--text-secondary, rgba(255,255,255,0.5)); font-size: 12px; line-height: 1.5; min-width: 200px;">
             No strategic changes. Market dynamics play out naturally.
           </div>
         </div>
@@ -2978,38 +2973,38 @@
         <!-- Charts Grid (single column, larger canvases) -->
         <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-xl); margin-top: var(--space-xl);">
           <!-- Brand Share Chart + Legend -->
-          <div style="background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 12px; padding: var(--space-lg);">
-            <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(var(--base-rgb),0.4); margin-bottom: var(--space-md);">MARKET SHARE OVER TIME</div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: var(--space-lg);">
+            <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: var(--space-md);">MARKET SHARE OVER TIME</div>
             <div style="display: grid; grid-template-columns: 1fr 200px; gap: var(--space-lg); align-items: start;">
               <canvas id="sim-share-chart" width="960" height="600" style="width: 100%; height: auto;"></canvas>
               <div id="sim-share-legend" style="display: flex; flex-direction: column; gap: 12px; padding-top: 8px;"></div>
             </div>
           </div>
           <!-- Tier Distribution -->
-          <div style="background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 12px; padding: var(--space-lg);">
-            <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(var(--base-rgb),0.4); margin-bottom: var(--space-md);">TIER DISTRIBUTION</div>
+          <div style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: var(--space-lg);">
+            <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: var(--space-md);">TIER DISTRIBUTION</div>
             <canvas id="sim-tier-chart" width="960" height="350" style="width: 100%; height: auto;"></canvas>
           </div>
         </div>
 
         <!-- Brand Rankings -->
-        <div style="margin-top: var(--space-xl); background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 12px; padding: var(--space-lg);">
-          <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(var(--base-rgb),0.4); margin-bottom: var(--space-md);">CURRENT BRAND RANKINGS</div>
+        <div style="margin-top: var(--space-xl); background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: var(--space-lg);">
+          <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: var(--space-md);">CURRENT BRAND RANKINGS</div>
           <div id="sim-rankings" style="display: flex; flex-direction: column; gap: var(--space-sm);"></div>
         </div>
 
         <!-- Agent Stats -->
         <div style="margin-top: var(--space-lg); display: flex; gap: var(--space-xl); flex-wrap: wrap;">
           <div>
-            <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; color: rgba(var(--base-rgb),0.3); text-transform: uppercase; letter-spacing: 0.1em;">Total Agents</div>
+            <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em;">Total Agents</div>
             <div id="sim-total-agents" style="font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: var(--text-2xl, 1.75rem); color: var(--text-primary, #e8e8e8);">650</div>
           </div>
           <div>
-            <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; color: rgba(var(--base-rgb),0.3); text-transform: uppercase; letter-spacing: 0.1em;">Active Buyers</div>
+            <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em;">Active Buyers</div>
             <div id="sim-active-agents" style="font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: var(--text-2xl, 1.75rem); color: var(--signal-behavioral, #34d399);">—</div>
           </div>
           <div>
-            <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; color: rgba(var(--base-rgb),0.3); text-transform: uppercase; letter-spacing: 0.1em;">Latent (Non-Buyers)</div>
+            <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em;">Latent (Non-Buyers)</div>
             <div id="sim-latent-agents" style="font-family: var(--font-display, 'Space Grotesk', sans-serif); font-size: var(--text-2xl, 1.75rem); color: var(--signal-cultural, #f59e0b);">—</div>
           </div>
         </div>
@@ -3803,7 +3798,7 @@
                 display: true,
                 position: 'bottom',
                 labels: {
-                  color: 'rgba(var(--base-rgb),0.6)',
+                  color: 'rgba(255,255,255,0.6)',
                   font: { family: '"JetBrains Mono", monospace', size: 10 },
                   boxWidth: 20,
                   boxHeight: 2,
@@ -3813,12 +3808,12 @@
               },
               tooltip: {
                 backgroundColor: 'rgba(10,10,10,0.95)',
-                borderColor: 'rgba(var(--base-rgb),0.1)',
+                borderColor: 'rgba(255,255,255,0.1)',
                 borderWidth: 1,
                 titleFont: { family: '"JetBrains Mono", monospace', size: 11 },
                 bodyFont: { family: '"JetBrains Mono", monospace', size: 10 },
-                titleColor: 'rgba(var(--base-rgb),0.9)',
-                bodyColor: 'rgba(var(--base-rgb),0.7)',
+                titleColor: 'rgba(255,255,255,0.9)',
+                bodyColor: 'rgba(255,255,255,0.7)',
                 callbacks: {
                   label: (ctx) => `${ctx.dataset.label}: ${(ctx.parsed.y * 100).toFixed(1)}%`
                 }
@@ -3826,18 +3821,18 @@
             },
             scales: {
               x: {
-                title: { display: true, text: 'Iteration', color: 'rgba(var(--base-rgb),0.4)', font: { family: '"JetBrains Mono", monospace', size: 11 } },
-                ticks: { color: 'rgba(var(--base-rgb),0.3)', font: { family: '"JetBrains Mono", monospace', size: 10 }, maxTicksLimit: 10 },
-                grid: { color: 'rgba(var(--base-rgb),0.04)' }
+                title: { display: true, text: 'Iteration', color: 'rgba(255,255,255,0.4)', font: { family: '"JetBrains Mono", monospace', size: 11 } },
+                ticks: { color: 'rgba(255,255,255,0.3)', font: { family: '"JetBrains Mono", monospace', size: 10 }, maxTicksLimit: 10 },
+                grid: { color: 'rgba(255,255,255,0.04)' }
               },
               y: {
-                title: { display: true, text: 'Brand Share', color: 'rgba(var(--base-rgb),0.4)', font: { family: '"JetBrains Mono", monospace', size: 11 } },
+                title: { display: true, text: 'Brand Share', color: 'rgba(255,255,255,0.4)', font: { family: '"JetBrains Mono", monospace', size: 11 } },
                 ticks: {
-                  color: 'rgba(var(--base-rgb),0.3)',
+                  color: 'rgba(255,255,255,0.3)',
                   font: { family: '"JetBrains Mono", monospace', size: 10 },
                   callback: (v) => (v * 100).toFixed(0) + '%'
                 },
-                grid: { color: 'rgba(var(--base-rgb),0.04)' },
+                grid: { color: 'rgba(255,255,255,0.04)' },
                 min: 0,
                 max: 0.3
               }
@@ -4234,7 +4229,7 @@
             if (liveIndicator) {
               timeBadge = document.createElement('div');
               timeBadge.id = 'sim-time-badge';
-              timeBadge.style.cssText = 'position: absolute; top: -28px; right: 0; font-family: var(--font-mono); font-size: 11px; color: rgba(var(--base-rgb),0.5); letter-spacing: 0.05em;';
+              timeBadge.style.cssText = 'position: absolute; top: -28px; right: 0; font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.05em;';
               liveIndicator.style.position = 'relative';
               liveIndicator.prepend(timeBadge);
             }
@@ -4290,14 +4285,14 @@
         for (let i = 0; i <= 4; i++) {
           const y = pad + (plotH / 4) * i;
           const val = 100 - (i * 25);
-          html += `<line x1="${pad}" y1="${y}" x2="${w - pad}" y2="${y}" stroke="rgba(var(--base-rgb),0.06)" stroke-width="1"/>`;
-          html += `<text x="${pad - 8}" y="${y + 4}" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(var(--base-rgb),0.3)" text-anchor="end">${val}</text>`;
+          html += `<line x1="${pad}" y1="${y}" x2="${w - pad}" y2="${y}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>`;
+          html += `<text x="${pad - 8}" y="${y + 4}" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="end">${val}</text>`;
         }
 
         // X-axis labels
         for (let i = 0; i < 30; i += 5) {
           const x = pad + (plotW / 29) * i;
-          html += `<text x="${x}" y="${h - 5}" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(var(--base-rgb),0.3)" text-anchor="middle">D${i + 1}</text>`;
+          html += `<text x="${x}" y="${h - 5}" font-family="JetBrains Mono, monospace" font-size="9" fill="rgba(255,255,255,0.3)" text-anchor="middle">D${i + 1}</text>`;
         }
 
         // Draw all 3 signal lines
@@ -4370,7 +4365,7 @@
             const angle = (Math.PI * 2 / n) * i - Math.PI / 2;
             pts.push(`${cx + ringR * Math.cos(angle)},${cy + ringR * Math.sin(angle)}`);
           }
-          html += `<polygon points="${pts.join(' ')}" fill="none" stroke="rgba(var(--base-rgb),${ring === 4 ? 0.1 : 0.05})" stroke-width="1"/>`;
+          html += `<polygon points="${pts.join(' ')}" fill="none" stroke="rgba(255,255,255,${ring === 4 ? 0.1 : 0.05})" stroke-width="1"/>`;
         }
 
         // Axis lines
@@ -4378,7 +4373,7 @@
           const angle = (Math.PI * 2 / n) * i - Math.PI / 2;
           const x2 = cx + r * Math.cos(angle);
           const y2 = cy + r * Math.sin(angle);
-          html += `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="rgba(var(--base-rgb),0.08)" stroke-width="1"/>`;
+          html += `<line x1="${cx}" y1="${cy}" x2="${x2}" y2="${y2}" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>`;
         }
 
         // Benchmark ring (industry avg ~70)
@@ -4388,7 +4383,7 @@
           const bR = (70 / 100) * r;
           benchPts.push(`${cx + bR * Math.cos(angle)},${cy + bR * Math.sin(angle)}`);
         }
-        html += `<polygon points="${benchPts.join(' ')}" fill="none" stroke="rgba(var(--base-rgb),0.15)" stroke-width="1" stroke-dasharray="4,4"/>`;
+        html += `<polygon points="${benchPts.join(' ')}" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="4,4"/>`;
 
         // Data polygon
         const dataPts = [];
@@ -4419,12 +4414,12 @@
           const anchor = Math.abs(angle) < 0.1 || Math.abs(angle - Math.PI) < 0.1 ? 'middle' : (lx > cx ? 'start' : 'end');
 
           html += `<text x="${lx}" y="${ly}" font-family="JetBrains Mono, monospace" font-size="9" font-weight="600" fill="${color}" text-anchor="${anchor}" opacity="${isActive ? 1 : 0.5}">${dimensions[i].name}</text>`;
-          html += `<text x="${lx}" y="${ly + 13}" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="400" fill="rgba(var(--base-rgb),0.8)" text-anchor="${anchor}">${dimensions[i].value}</text>`;
+          html += `<text x="${lx}" y="${ly + 13}" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="400" fill="rgba(255,255,255,0.8)" text-anchor="${anchor}">${dimensions[i].value}</text>`;
         }
 
         // Center score
-        html += `<text x="${cx}" y="${cy + 6}" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="300" fill="rgba(var(--base-rgb),0.9)" text-anchor="middle">72</text>`;
-        html += `<text x="${cx}" y="${cy + 20}" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(var(--base-rgb),0.4)" text-anchor="middle" letter-spacing="0.1em">COMPOSITE</text>`;
+        html += `<text x="${cx}" y="${cy + 6}" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="300" fill="rgba(255,255,255,0.9)" text-anchor="middle">72</text>`;
+        html += `<text x="${cx}" y="${cy + 20}" font-family="JetBrains Mono, monospace" font-size="8" fill="rgba(255,255,255,0.4)" text-anchor="middle" letter-spacing="0.1em">COMPOSITE</text>`;
 
         svg.innerHTML = html;
       }
@@ -4490,10 +4485,10 @@
       function selectSimScenario(btn) {
         document.querySelectorAll('.sim-scenario-card').forEach(c => {
           c.classList.remove('active');
-          c.style.background = 'rgba(var(--base-rgb),0.03)';
+          c.style.background = 'rgba(255,255,255,0.03)';
         });
         btn.classList.add('active');
-        btn.style.background = 'rgba(var(--base-rgb),0.06)';
+        btn.style.background = 'rgba(255,255,255,0.06)';
         const scenarioId = btn.dataset.simScenario;
         const hiddenInput = document.getElementById('sim-scenario-select');
         if (hiddenInput) hiddenInput.value = scenarioId;
@@ -4591,7 +4586,7 @@
             <div style="width: 14px; height: 3px; background: ${color}; border-radius: 2px; flex-shrink: 0;"></div>
             <div style="flex: 1; min-width: 0;">
               <div style="font-family: var(--font-body, Inter, sans-serif); font-size: 12px; font-weight: ${weight}; color: ${color}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${brand.name}</div>
-              <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; color: rgba(var(--base-rgb),0.5);">${share}%</div>
+              <div style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 10px; color: rgba(255,255,255,0.5);">${share}%</div>
             </div>
           </div>`;
         }).join('');
@@ -4608,7 +4603,7 @@
         ctx.clearRect(0, 0, W, H);
 
         if (history.length < 2) {
-          ctx.fillStyle = 'rgba(var(--base-rgb),0.2)';
+          ctx.fillStyle = 'rgba(255,255,255,0.2)';
           ctx.font = '12px Inter, sans-serif';
           ctx.textAlign = 'center';
           ctx.fillText('Run simulation to see market share evolution', W/2, H/2);
@@ -4619,7 +4614,7 @@
         const plotH = H - pad.top - pad.bottom;
 
         // Axes
-        ctx.strokeStyle = 'rgba(var(--base-rgb),0.08)';
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(pad.left, pad.top);
@@ -4628,14 +4623,14 @@
         ctx.stroke();
 
         // Y-axis labels (0% - 50%)
-        ctx.fillStyle = 'rgba(var(--base-rgb),0.3)';
+        ctx.fillStyle = 'rgba(255,255,255,0.3)';
         ctx.font = '10px JetBrains Mono, monospace';
         ctx.textAlign = 'right';
         for (let pct = 0; pct <= 50; pct += 10) {
           const y = H - pad.bottom - (pct / 50) * plotH;
           ctx.fillText(pct + '%', pad.left - 8, y + 3);
           if (pct > 0) {
-            ctx.strokeStyle = 'rgba(var(--base-rgb),0.04)';
+            ctx.strokeStyle = 'rgba(255,255,255,0.04)';
             ctx.beginPath();
             ctx.moveTo(pad.left, y);
             ctx.lineTo(W - pad.right, y);
@@ -4706,13 +4701,13 @@
           const totalWidth = (data.total / maxTotal) * barMaxWidth;
 
           // Tier label
-          ctx.fillStyle = 'rgba(var(--base-rgb),0.5)';
+          ctx.fillStyle = 'rgba(255,255,255,0.5)';
           ctx.font = '12px Inter, sans-serif';
           ctx.textAlign = 'right';
           ctx.fillText(tier, barLeft - 12, y + barHeight / 2 + 4);
 
           // Background bar (total/latent)
-          ctx.fillStyle = 'rgba(var(--base-rgb),0.04)';
+          ctx.fillStyle = 'rgba(255,255,255,0.04)';
           ctx.beginPath();
           ctx.roundRect(barLeft, y, totalWidth, barHeight, 4);
           ctx.fill();
@@ -4745,12 +4740,12 @@
 
         container.innerHTML = sorted.map((b, i) => `
           <div style="display: flex; align-items: center; gap: var(--space-md, 1rem);">
-            <span style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; color: rgba(var(--base-rgb),0.3); width: 20px;">#${i + 1}</span>
+            <span style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 11px; color: rgba(255,255,255,0.3); width: 20px;">#${i + 1}</span>
             <span style="font-family: var(--font-body, Inter, sans-serif); font-size: 13px; color: ${b.isSelf ? '#818cf8' : 'var(--text-primary, #e8e8e8)'}; width: 120px; font-weight: ${b.isSelf ? '600' : '400'};">${b.name}</span>
-            <div style="flex: 1; height: 6px; background: rgba(var(--base-rgb),0.04); border-radius: 3px; overflow: hidden;">
+            <div style="flex: 1; height: 6px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden;">
               <div style="width: ${(b.share / maxShare) * 100}%; height: 100%; background: ${brandColors[b.id] || '#888'}; border-radius: 3px; transition: width 0.3s ease;"></div>
             </div>
-            <span style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 12px; color: ${b.isSelf ? '#818cf8' : 'rgba(var(--base-rgb),0.5)'}; width: 50px; text-align: right;">${(b.share * 100).toFixed(1)}%</span>
+            <span style="font-family: var(--font-mono, 'JetBrains Mono', monospace); font-size: 12px; color: ${b.isSelf ? '#818cf8' : 'rgba(255,255,255,0.5)'}; width: 50px; text-align: right;">${(b.share * 100).toFixed(1)}%</span>
           </div>
         `).join('');
       }
@@ -4851,7 +4846,7 @@
           const arrow = b.delta > 0.3 ? '▲' : b.delta < -0.3 ? '▼' : '—';
           const deltaStr = b.delta > 0 ? '+' + b.delta.toFixed(1) + 'pp' : b.delta.toFixed(1) + 'pp';
           return `<div class="wg-result-rank">
-            <span class="rank-pos" style="color: ${deltaClass === 'up' ? '#34d399' : deltaClass === 'down' ? '#f87171' : 'rgba(var(--base-rgb),0.3)'}">${arrow}</span>
+            <span class="rank-pos" style="color: ${deltaClass === 'up' ? '#34d399' : deltaClass === 'down' ? '#f87171' : 'rgba(255,255,255,0.3)'}">${arrow}</span>
             <span class="rank-name">${b.name}</span>
             <span class="rank-delta ${deltaClass}">${deltaStr}</span>
           </div>`;
@@ -5222,7 +5217,7 @@
               display: true,
               position: 'top',
               labels: {
-                color: 'rgba(var(--base-rgb),0.8)',
+                color: 'rgba(255,255,255,0.8)',
                 font: {
                   family: 'Inter, sans-serif',
                   size: 12
@@ -5238,11 +5233,11 @@
               min: 50,
               max: 85,
               grid: {
-                color: 'rgba(var(--base-rgb),0.05)',
+                color: 'rgba(255,255,255,0.05)',
                 drawBorder: false
               },
               ticks: {
-                color: 'rgba(var(--base-rgb),0.5)',
+                color: 'rgba(255,255,255,0.5)',
                 font: {
                   family: 'JetBrains Mono, monospace',
                   size: 11
@@ -5254,7 +5249,7 @@
                 display: false
               },
               ticks: {
-                color: 'rgba(var(--base-rgb),0.5)',
+                color: 'rgba(255,255,255,0.5)',
                 font: {
                   family: 'JetBrains Mono, monospace',
                   size: 11

@@ -5,9 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>How It Works. Brand Intelligence Engine</title>
-  <script>try{if(localStorage.getItem("bie-theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
-  <link rel="stylesheet" href="css/tokens.css?v=3">
-  <link rel="stylesheet" href="css/global.css?v=10">
+  <link rel="stylesheet" href="css/tokens.css?v=2">
+  <link rel="stylesheet" href="css/global.css?v=9">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
@@ -1026,8 +1025,8 @@
       padding: 6px 12px;
       border-radius: 4px;
       background: transparent;
-      border: 1px solid rgba(var(--base-rgb),0.08);
-      color: rgba(var(--base-rgb),0.4);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.4);
       text-decoration: none;
       font-family: var(--font-mono, 'JetBrains Mono', monospace);
       font-size: 11px;
@@ -1036,9 +1035,9 @@
     }
 
     .bf-cta-link:hover {
-      color: rgba(var(--base-rgb),0.7);
-      border-color: rgba(var(--base-rgb),0.15);
-      background: rgba(var(--base-rgb),0.03);
+      color: rgba(255,255,255,0.7);
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.03);
     }
 
     /* Simulation Engine Section */
@@ -1145,10 +1144,6 @@
         </div>
       </div>
       <div class="nav-confidential">Confidential · Internal Use Only</div>
-      <button class="theme-toggle" onclick="BIE.toggleTheme()" aria-label="Toggle light/dark mode" title="Toggle theme">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
 
       <div class="nav-section">
         <div class="nav-section-label">Foundation</div>
@@ -1230,43 +1225,43 @@
           <div style="padding: 28px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 8px;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(129,140,248,0.7); margin-bottom: 12px;">Traceability</div>
             <div style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary); margin-bottom: 10px;">The Breadcrumb Trail</div>
-            <p style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.65; margin: 0;">Every number in BIE has a story. A Brand Fidelity score of 72 isn't just a number — it decomposes into 6 dimension scores, each synthesized from 3 signal types, each traceable to specific data sources with timestamps, sample sizes, and confidence intervals. Click any metric, and the system shows its work.</p>
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin: 0;">Every number in BIE has a story. A Brand Fidelity score of 72 isn't just a number — it decomposes into 6 dimension scores, each synthesized from 3 signal types, each traceable to specific data sources with timestamps, sample sizes, and confidence intervals. Click any metric, and the system shows its work.</p>
           </div>
 
           <!-- Consensus Agents -->
           <div style="padding: 28px; background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.15); border-radius: 8px;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(52,211,153,0.7); margin-bottom: 12px;">Consensus Agents</div>
             <div style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary); margin-bottom: 10px;">The Council of Experts</div>
-            <p style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.65; margin: 0;">Instead of one model making one prediction, BIE runs three independent analytical pipelines — Human-Expressive, Behavioral, and Cultural — each with distinct methodologies and data sources. They "debate" through a consensus engine. Agreement amplifies confidence. Disagreement triggers deeper investigation.</p>
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin: 0;">Instead of one model making one prediction, BIE runs three independent analytical pipelines — Human-Expressive, Behavioral, and Cultural — each with distinct methodologies and data sources. They "debate" through a consensus engine. Agreement amplifies confidence. Disagreement triggers deeper investigation.</p>
           </div>
 
           <!-- Transparent Math -->
           <div style="padding: 28px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15); border-radius: 8px;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(245,158,11,0.7); margin-bottom: 12px;">Transparent Math</div>
             <div style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary); margin-bottom: 10px;">Show Your Work</div>
-            <p style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.65; margin: 0;">Confidence scores aren't magic — they're computed from signal volume, recency, and cross-pipeline agreement. Every surface in BIE includes a Glass Box panel that explains exactly how the intelligence was derived. If a confidence score drops, you can see exactly which signals shifted and why.</p>
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin: 0;">Confidence scores aren't magic — they're computed from signal volume, recency, and cross-pipeline agreement. Every surface in BIE includes a Glass Box panel that explains exactly how the intelligence was derived. If a confidence score drops, you can see exactly which signals shifted and why.</p>
           </div>
         </div>
 
         <!-- Enterprise Value Proposition -->
-        <div style="margin-top: 48px; padding: 32px; background: rgba(0,0,0,0.3); border: 1px solid rgba(var(--base-rgb),0.08); border-radius: 8px;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(var(--base-rgb),0.35); margin-bottom: 16px;">Why This Matters for Enterprise</div>
+        <div style="margin-top: 48px; padding: 32px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px;">Why This Matters for Enterprise</div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
             <div>
               <div style="font-size: 0.9rem; font-weight: 500; color: var(--text-primary); margin-bottom: 6px;">Audit-Ready</div>
-              <p style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.55); line-height: 1.6; margin: 0;">Every recommendation can be traced to source data. Regulatory teams get the provenance trail they need.</p>
+              <p style="font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0;">Every recommendation can be traced to source data. Regulatory teams get the provenance trail they need.</p>
             </div>
             <div>
               <div style="font-size: 0.9rem; font-weight: 500; color: var(--text-primary); margin-bottom: 6px;">Stakeholder Trust</div>
-              <p style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.55); line-height: 1.6; margin: 0;">When the C-suite asks "why should we trust this?", the system shows its work instead of demanding faith.</p>
+              <p style="font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0;">When the C-suite asks "why should we trust this?", the system shows its work instead of demanding faith.</p>
             </div>
             <div>
               <div style="font-size: 0.9rem; font-weight: 500; color: var(--text-primary); margin-bottom: 6px;">Continuous Calibration</div>
-              <p style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.55); line-height: 1.6; margin: 0;">Transparent assumptions are testable assumptions. If the model drifts, teams can identify exactly where and why.</p>
+              <p style="font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0;">Transparent assumptions are testable assumptions. If the model drifts, teams can identify exactly where and why.</p>
             </div>
             <div>
               <div style="font-size: 0.9rem; font-weight: 500; color: var(--text-primary); margin-bottom: 6px;">No Vendor Lock-In Fear</div>
-              <p style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.55); line-height: 1.6; margin: 0;">When methodology is visible, teams build internal expertise. The intelligence compounds rather than creates dependency.</p>
+              <p style="font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0;">When methodology is visible, teams build internal expertise. The intelligence compounds rather than creates dependency.</p>
             </div>
           </div>
         </div>
@@ -1280,26 +1275,26 @@
 
         <p class="scene-body" style="max-width: 800px;">The Brand Intelligence Engine is source-agnostic by design. Data sources are interchangeable connectors — what matters is the signal type, not the vendor. Today's configuration illustrates how real-world sources map into three signal layers.</p>
 
-        <p class="scene-body" style="max-width: 800px; color: rgba(var(--base-rgb),0.5); font-size: 0.9rem; margin-top: -20px;"><em>Data sources are always subject to change based on client application. This is for illustration purposes.</em></p>
+        <p class="scene-body" style="max-width: 800px; color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-top: -20px;"><em>Data sources are always subject to change based on client application. This is for illustration purposes.</em></p>
 
         <!-- The Statics Diagram -->
-        <div style="margin: 32px 0; padding: 32px; background: rgba(0,0,0,0.4); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 12px;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(var(--base-rgb),0.4); margin-bottom: 24px;">THE STATICS — SOURCE NETWORK</div>
+        <div style="margin: 32px 0; padding: 32px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 24px;">THE STATICS — SOURCE NETWORK</div>
 
           <div style="display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 0; align-items: start;">
 
             <!-- Column 1: Sources -->
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(var(--base-rgb),0.3); margin-bottom: 16px; text-align: center;">DATA SOURCES</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 16px; text-align: center;">DATA SOURCES</div>
 
               <!-- Human Sources -->
               <div style="margin-bottom: 20px;">
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; letter-spacing: 0.08em; color: rgba(129,140,248,0.6); margin-bottom: 8px;">HUMAN-EXPRESSIVE</div>
                 <div style="display: flex; flex-direction: column; gap: 6px;">
-                  <div style="padding: 8px 12px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">Medallia<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">CX surveys</span></div>
-                  <div style="padding: 8px 12px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">Listen Labs<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">AI interviews</span></div>
-                  <div style="padding: 8px 12px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">Discuss.io<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">qual research</span></div>
-                  <div style="padding: 8px 12px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">Review APIs<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">TripAdvisor, Google</span></div>
+                  <div style="padding: 8px 12px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">Medallia<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">CX surveys</span></div>
+                  <div style="padding: 8px 12px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">Listen Labs<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">AI interviews</span></div>
+                  <div style="padding: 8px 12px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">Discuss.io<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">qual research</span></div>
+                  <div style="padding: 8px 12px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">Review APIs<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">TripAdvisor, Google</span></div>
                 </div>
               </div>
 
@@ -1307,10 +1302,10 @@
               <div style="margin-bottom: 20px;">
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; letter-spacing: 0.08em; color: rgba(52,211,153,0.6); margin-bottom: 8px;">BEHAVIORAL & MARKET</div>
                 <div style="display: flex; flex-direction: column; gap: 6px;">
-                  <div style="padding: 8px 12px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">CB Insights<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">market intelligence</span></div>
-                  <div style="padding: 8px 12px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">Booking APIs<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">OTA pricing, availability</span></div>
-                  <div style="padding: 8px 12px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">Search & Web Analytics<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">intent signals</span></div>
-                  <div style="padding: 8px 12px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">Industry Reports<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">analyst benchmarks</span></div>
+                  <div style="padding: 8px 12px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">CB Insights<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">market intelligence</span></div>
+                  <div style="padding: 8px 12px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">Booking APIs<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">OTA pricing, availability</span></div>
+                  <div style="padding: 8px 12px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">Search & Web Analytics<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">intent signals</span></div>
+                  <div style="padding: 8px 12px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">Industry Reports<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">analyst benchmarks</span></div>
                 </div>
               </div>
 
@@ -1318,78 +1313,78 @@
               <div>
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; letter-spacing: 0.08em; color: rgba(245,158,11,0.6); margin-bottom: 8px;">CULTURAL & CONTEXTUAL</div>
                 <div style="display: flex; flex-direction: column; gap: 6px;">
-                  <div style="padding: 8px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">Reddit / Forums<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">organic discussion</span></div>
-                  <div style="padding: 8px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">TikTok / Social<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">trend velocity</span></div>
-                  <div style="padding: 8px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">News / RSS Feeds<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">47 publications</span></div>
-                  <div style="padding: 8px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">Regulatory Filings<span style="font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); margin-left: 6px;">compliance signals</span></div>
+                  <div style="padding: 8px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">Reddit / Forums<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">organic discussion</span></div>
+                  <div style="padding: 8px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">TikTok / Social<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">trend velocity</span></div>
+                  <div style="padding: 8px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">News / RSS Feeds<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">47 publications</span></div>
+                  <div style="padding: 8px 12px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">Regulatory Filings<span style="font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-left: 6px;">compliance signals</span></div>
                 </div>
               </div>
             </div>
 
             <!-- Arrow Column 1 -->
             <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 12px; min-height: 100%;">
-              <div style="font-size: 1.8rem; color: rgba(var(--base-rgb),0.15); writing-mode: horizontal-tb;">→</div>
+              <div style="font-size: 1.8rem; color: rgba(255,255,255,0.15); writing-mode: horizontal-tb;">→</div>
             </div>
 
             <!-- Column 2: Signal Layers + Processing -->
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(var(--base-rgb),0.3); margin-bottom: 16px; text-align: center;">SIGNAL LAYERS → PROCESSING</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 16px; text-align: center;">SIGNAL LAYERS → PROCESSING</div>
 
               <!-- Three signal processors -->
               <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
                 <div style="padding: 16px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.2); border-radius: 8px; text-align: center;">
                   <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #818cf8; font-size: 0.95rem;">Human-Expressive Layer</div>
-                  <div style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); margin-top: 4px;">NLP · Sentiment · Emotion</div>
+                  <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">NLP · Sentiment · Emotion</div>
                 </div>
                 <div style="padding: 16px; background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.2); border-radius: 8px; text-align: center;">
                   <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #34d399; font-size: 0.95rem;">Behavioral & Market Layer</div>
-                  <div style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); margin-top: 4px;">Time Series · Anomaly Detection</div>
+                  <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">Time Series · Anomaly Detection</div>
                 </div>
                 <div style="padding: 16px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; text-align: center;">
                   <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #f59e0b; font-size: 0.95rem;">Cultural & Contextual Layer</div>
-                  <div style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); margin-top: 4px;">NER · Topic Modeling · Trend</div>
+                  <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">NER · Topic Modeling · Trend</div>
                 </div>
               </div>
 
               <!-- Converge -->
-              <div style="text-align: center; padding: 6px 0; color: rgba(var(--base-rgb),0.15); font-size: 1rem;">↘ &nbsp; ▼ &nbsp; ↙</div>
+              <div style="text-align: center; padding: 6px 0; color: rgba(255,255,255,0.15); font-size: 1rem;">↘ &nbsp; ▼ &nbsp; ↙</div>
 
               <!-- Consensus Engine -->
               <div style="padding: 20px; background: linear-gradient(135deg, rgba(129,140,248,0.12), rgba(52,211,153,0.08)); border: 1px solid rgba(129,140,248,0.25); border-radius: 10px; text-align: center;">
-                <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.95); font-size: 1rem;">Consensus Engine</div>
-                <div style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); margin-top: 4px;">Validated through custom algorithm · Convergence scoring</div>
+                <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.95); font-size: 1rem;">Consensus Engine</div>
+                <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">Validated through custom algorithm · Convergence scoring</div>
               </div>
             </div>
 
             <!-- Arrow Column 2 -->
             <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 12px; min-height: 100%;">
-              <div style="font-size: 1.8rem; color: rgba(var(--base-rgb),0.15); writing-mode: horizontal-tb;">→</div>
+              <div style="font-size: 1.8rem; color: rgba(255,255,255,0.15); writing-mode: horizontal-tb;">→</div>
             </div>
 
             <!-- Column 3: Intelligence Outputs -->
             <div>
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(var(--base-rgb),0.3); margin-bottom: 16px; text-align: center;">INTELLIGENCE SURFACES</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 16px; text-align: center;">INTELLIGENCE SURFACES</div>
 
               <div style="display: flex; flex-direction: column; gap: 6px;">
-                <div style="padding: 10px 14px; background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">
+                <div style="padding: 10px 14px; background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">
                   <span style="color: #34d399;">◆</span> Brand Fidelity Index
                 </div>
-                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">
+                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">
                   <span style="color: #818cf8;">◆</span> Command Center
                 </div>
-                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">
+                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">
                   <span style="color: #818cf8;">◆</span> Signal Terminal
                 </div>
-                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">
+                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">
                   <span style="color: #818cf8;">◆</span> Guided Analysis
                 </div>
-                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">
+                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">
                   <span style="color: #818cf8;">◆</span> Scenario Lab
                 </div>
-                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">
+                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">
                   <span style="color: #818cf8;">◆</span> Fidelity Live
                 </div>
-                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8);">
+                <div style="padding: 10px 14px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 6px; font-size: 0.8rem; color: rgba(255,255,255,0.8);">
                   <span style="color: #818cf8;">◆</span> Material Analyst
                 </div>
               </div>
@@ -1407,8 +1402,8 @@
         <p class="scene-body" style="max-width: 800px;">The statics show what connects where. The dynamics show how intelligence flows through the system — from raw signal ingestion, through enrichment and consensus, to actionable surfaces. This is a continuous loop, not a batch process. The engine is always awake.</p>
 
         <!-- Dynamics Flow -->
-        <div style="margin: 32px 0; padding: 32px; background: rgba(0,0,0,0.4); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 12px;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(var(--base-rgb),0.4); margin-bottom: 24px;">THE DYNAMICS — SIGNAL LIFECYCLE</div>
+        <div style="margin: 32px 0; padding: 32px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 24px;">THE DYNAMICS — SIGNAL LIFECYCLE</div>
 
           <!-- Step 1: Ingest -->
           <div style="display: grid; grid-template-columns: 60px 1fr; gap: 16px; margin-bottom: 24px; align-items: start;">
@@ -1416,11 +1411,11 @@
               <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(129,140,248,0.15); border: 1px solid rgba(129,140,248,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
                 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #818cf8; font-size: 1rem;">1</span>
               </div>
-              <div style="width: 2px; height: 24px; background: rgba(var(--base-rgb),0.08); margin: 8px auto 0;"></div>
+              <div style="width: 2px; height: 24px; background: rgba(255,255,255,0.08); margin: 8px auto 0;"></div>
             </div>
             <div style="padding: 20px; background: rgba(129,140,248,0.04); border: 1px solid rgba(129,140,248,0.12); border-radius: 10px;">
-              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.95); font-size: 1.05rem; margin-bottom: 8px;">Ingest</div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.7;">847+ daily streams flow in from APIs, feeds, and connectors. Each signal is tagged with source, type, timestamp, and reliability. Schema validation and deduplication run automatically. Latency ranges from real-time (&lt;5 min) to periodic (6h) depending on source tier.</div>
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.95); font-size: 1.05rem; margin-bottom: 8px;">Ingest</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.7;">847+ daily streams flow in from APIs, feeds, and connectors. Each signal is tagged with source, type, timestamp, and reliability. Schema validation and deduplication run automatically. Latency ranges from real-time (&lt;5 min) to periodic (6h) depending on source tier.</div>
             </div>
           </div>
 
@@ -1430,11 +1425,11 @@
               <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(52,211,153,0.15); border: 1px solid rgba(52,211,153,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
                 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #34d399; font-size: 1rem;">2</span>
               </div>
-              <div style="width: 2px; height: 24px; background: rgba(var(--base-rgb),0.08); margin: 8px auto 0;"></div>
+              <div style="width: 2px; height: 24px; background: rgba(255,255,255,0.08); margin: 8px auto 0;"></div>
             </div>
             <div style="padding: 20px; background: rgba(52,211,153,0.04); border: 1px solid rgba(52,211,153,0.12); border-radius: 10px;">
-              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.95); font-size: 1.05rem; margin-bottom: 8px;">Enrich & Process</div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.7;">Raw data is only so good. Three parallel pipelines enrich signals: NLP for sentiment and emotion, time-series analysis for behavioral patterns, and topic modeling for cultural context. A baseline is established, then synthetic amplification gives the data more life across modalities using heavy reasoning.</div>
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.95); font-size: 1.05rem; margin-bottom: 8px;">Enrich & Process</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.7;">Raw data is only so good. Three parallel pipelines enrich signals: NLP for sentiment and emotion, time-series analysis for behavioral patterns, and topic modeling for cultural context. A baseline is established, then synthetic amplification gives the data more life across modalities using heavy reasoning.</div>
             </div>
           </div>
 
@@ -1444,11 +1439,11 @@
               <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
                 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #f59e0b; font-size: 1rem;">3</span>
               </div>
-              <div style="width: 2px; height: 24px; background: rgba(var(--base-rgb),0.08); margin: 8px auto 0;"></div>
+              <div style="width: 2px; height: 24px; background: rgba(255,255,255,0.08); margin: 8px auto 0;"></div>
             </div>
             <div style="padding: 20px; background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.12); border-radius: 10px;">
-              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.95); font-size: 1.05rem; margin-bottom: 8px;">Synthesize & Score</div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.7;">The consensus engine cross-references all three layers. When signals converge, confidence rises. When they diverge, the system flags the conflict — divergence is signal, not failure. Output: a Brand Fidelity composite with confidence intervals and a complete audit trail from source to score.</div>
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.95); font-size: 1.05rem; margin-bottom: 8px;">Synthesize & Score</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.7;">The consensus engine cross-references all three layers. When signals converge, confidence rises. When they diverge, the system flags the conflict — divergence is signal, not failure. Output: a Brand Fidelity composite with confidence intervals and a complete audit trail from source to score.</div>
             </div>
           </div>
 
@@ -1458,11 +1453,11 @@
               <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(129,140,248,0.15); border: 1px solid rgba(129,140,248,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto;">
                 <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #818cf8; font-size: 1rem;">4</span>
               </div>
-              <div style="width: 2px; height: 24px; background: rgba(var(--base-rgb),0.08); margin: 8px auto 0;"></div>
+              <div style="width: 2px; height: 24px; background: rgba(255,255,255,0.08); margin: 8px auto 0;"></div>
             </div>
             <div style="padding: 20px; background: rgba(129,140,248,0.04); border: 1px solid rgba(129,140,248,0.12); border-radius: 10px;">
-              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.95); font-size: 1.05rem; margin-bottom: 8px;">Surface</div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.7;">Intelligence deploys across 7 surfaces — from one-number executive briefs to raw signal terminals. The system is headless: build once, deploy across multiple surfaces. It could be a single action, guided workflows, opinionated canvases, modular panels, or the full Bloomberg-for-brands experience. All can coexist.</div>
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.95); font-size: 1.05rem; margin-bottom: 8px;">Surface</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.7;">Intelligence deploys across 7 surfaces — from one-number executive briefs to raw signal terminals. The system is headless: build once, deploy across multiple surfaces. It could be a single action, guided workflows, opinionated canvases, modular panels, or the full Bloomberg-for-brands experience. All can coexist.</div>
             </div>
           </div>
 
@@ -1474,8 +1469,8 @@
               </div>
             </div>
             <div style="padding: 20px; background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.12); border-radius: 10px;">
-              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.95); font-size: 1.05rem; margin-bottom: 8px;">Learn & Loop</div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.7;">The engine is always awake. While the office is dark and conference rooms are empty, data still streams in, signals still move, and by 6 AM the next morning a new brief is waiting. The system learns from what it did before, calibrating its models, adjusting confidence weights, and getting ahead of the next challenge. This is recursive intelligence — not a report.</div>
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.95); font-size: 1.05rem; margin-bottom: 8px;">Learn & Loop</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.7;">The engine is always awake. While the office is dark and conference rooms are empty, data still streams in, signals still move, and by 6 AM the next morning a new brief is waiting. The system learns from what it did before, calibrating its models, adjusting confidence weights, and getting ahead of the next challenge. This is recursive intelligence — not a report.</div>
             </div>
           </div>
         </div>
@@ -1598,8 +1593,8 @@
         <p class="scene-body">BIE is a multi-model consensus system. Rather than relying on a single analytical pipeline, it orchestrates three independent signal processors — each with distinct data sources, methodologies, and confidence models — and synthesizes their outputs into a unified intelligence layer. When signals converge, confidence rises. When they diverge, the system flags the conflict for human review.</p>
 
         <!-- High-Level Architecture Diagram (Visual) -->
-        <div style="margin: 32px 0; padding: 32px; background: rgba(0,0,0,0.4); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 12px;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(var(--base-rgb),0.4); margin-bottom: 24px;">HIGH-LEVEL ARCHITECTURE</div>
+        <div style="margin: 32px 0; padding: 32px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 24px;">HIGH-LEVEL ARCHITECTURE</div>
 
           <!-- Tier 1: Data Ingestion -->
           <div style="text-align: center; margin-bottom: 8px;">
@@ -1608,61 +1603,61 @@
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 8px;">
             <div style="padding: 20px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 8px; text-align: center; backdrop-filter: blur(8px);">
               <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #818cf8; font-size: 0.9rem; margin-bottom: 6px;">Interviews + Surveys</div>
-              <div style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); line-height: 1.5;">AI Interviews · Open Surveys · Reviews</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.5;">AI Interviews · Open Surveys · Reviews</div>
             </div>
             <div style="padding: 20px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 8px; text-align: center; backdrop-filter: blur(8px);">
               <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #34d399; font-size: 0.9rem; margin-bottom: 6px;">Booking + Market APIs</div>
-              <div style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); line-height: 1.5;">Search Logs · Market Data · Pricing</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Search Logs · Market Data · Pricing</div>
             </div>
             <div style="padding: 20px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; text-align: center; backdrop-filter: blur(8px);">
               <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #f59e0b; font-size: 0.9rem; margin-bottom: 6px;">News + Social + Reg</div>
-              <div style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); line-height: 1.5;">Social Feeds · Regulatory · Trend Data</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Social Feeds · Regulatory · Trend Data</div>
             </div>
           </div>
 
           <!-- Arrow down -->
-          <div style="text-align: center; padding: 8px 0; color: rgba(var(--base-rgb),0.2); font-size: 1.2rem;">▼ &nbsp; ▼ &nbsp; ▼</div>
+          <div style="text-align: center; padding: 8px 0; color: rgba(255,255,255,0.2); font-size: 1.2rem;">▼ &nbsp; ▼ &nbsp; ▼</div>
 
           <!-- Tier 2: Processors -->
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 8px;">
             <div style="padding: 20px; background: rgba(129,140,248,0.04); border: 1px solid rgba(129,140,248,0.15); border-radius: 8px; text-align: center;">
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(129,140,248,0.6); margin-bottom: 8px;">HUMAN PROCESSOR</div>
-              <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.7);">NLP + Sentiment Analysis</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">NLP + Sentiment Analysis</div>
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.5); margin-top: 6px;">Score: 0–1</div>
             </div>
             <div style="padding: 20px; background: rgba(52,211,153,0.04); border: 1px solid rgba(52,211,153,0.15); border-radius: 8px; text-align: center;">
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(52,211,153,0.6); margin-bottom: 8px;">BEHAVIORAL PROCESSOR</div>
-              <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.7);">Stats + ML Pipeline</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Stats + ML Pipeline</div>
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(52,211,153,0.5); margin-top: 6px;">Score: 0–1</div>
             </div>
             <div style="padding: 20px; background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.15); border-radius: 8px; text-align: center;">
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(245,158,11,0.6); margin-bottom: 8px;">CULTURAL PROCESSOR</div>
-              <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.7);">NER + Topic Modeling</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">NER + Topic Modeling</div>
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.5); margin-top: 6px;">Score: 0–1</div>
             </div>
           </div>
 
           <!-- Converging arrows -->
-          <div style="text-align: center; padding: 8px 0; color: rgba(var(--base-rgb),0.2); font-size: 1.2rem;">↘ &nbsp;&nbsp; ▼ &nbsp;&nbsp; ↙</div>
+          <div style="text-align: center; padding: 8px 0; color: rgba(255,255,255,0.2); font-size: 1.2rem;">↘ &nbsp;&nbsp; ▼ &nbsp;&nbsp; ↙</div>
 
           <!-- Tier 3: Consensus Engine -->
           <div style="max-width: 480px; margin: 0 auto 8px; padding: 24px; background: linear-gradient(135deg, rgba(129,140,248,0.12), rgba(52,211,153,0.08)); border: 1px solid rgba(129,140,248,0.25); border-radius: 12px; text-align: center; backdrop-filter: blur(12px);">
-            <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.95); font-size: 1.1rem; margin-bottom: 10px;">Consensus Engine</div>
+            <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.95); font-size: 1.1rem; margin-bottom: 10px;">Consensus Engine</div>
             <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
-              <span style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); padding: 4px 10px; background: rgba(var(--base-rgb),0.05); border-radius: 4px;">Convergence</span>
-              <span style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); padding: 4px 10px; background: rgba(var(--base-rgb),0.05); border-radius: 4px;">Conflict Flagging</span>
-              <span style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); padding: 4px 10px; background: rgba(var(--base-rgb),0.05); border-radius: 4px;">Confidence</span>
-              <span style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); padding: 4px 10px; background: rgba(var(--base-rgb),0.05); border-radius: 4px;">Temporal Weighting</span>
+              <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5); padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">Convergence</span>
+              <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5); padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">Conflict Flagging</span>
+              <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5); padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">Confidence</span>
+              <span style="font-size: 0.75rem; color: rgba(255,255,255,0.5); padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">Temporal Weighting</span>
             </div>
           </div>
 
           <!-- Arrow down -->
-          <div style="text-align: center; padding: 8px 0; color: rgba(var(--base-rgb),0.2); font-size: 1.2rem;">▼</div>
+          <div style="text-align: center; padding: 8px 0; color: rgba(255,255,255,0.2); font-size: 1.2rem;">▼</div>
 
           <!-- Tier 4: Intelligence Layer -->
           <div style="padding: 20px 24px; background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.2); border-radius: 10px; text-align: center;">
-            <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.9); font-size: 1rem; margin-bottom: 6px;">Intelligence Layer</div>
-            <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.5);">8 Surfaces · Brand Fidelity Index · Priority Alerts · Recommendations</div>
+            <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.9); font-size: 1rem; margin-bottom: 6px;">Intelligence Layer</div>
+            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.5);">8 Surfaces · Brand Fidelity Index · Priority Alerts · Recommendations</div>
           </div>
         </div>
 
@@ -1670,78 +1665,78 @@
         <div style="margin: 32px 0;">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">CONSENSUS ALGORITHM</div>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.9); margin-bottom: 8px;">Convergence Detection</div>
-              <p style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.6; margin: 0;">When all three signal types agree on a trend direction, the system assigns elevated confidence (0.85–0.95). Cross-layer agreement is the strongest indicator of real market movement vs. noise.</p>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 8px;">Convergence Detection</div>
+              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">When all three signal types agree on a trend direction, the system assigns elevated confidence (0.85–0.95). Cross-layer agreement is the strongest indicator of real market movement vs. noise.</p>
             </div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.9); margin-bottom: 8px;">Conflict Resolution</div>
-              <p style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.6; margin: 0;">When signals diverge (e.g., sentiment positive but bookings declining), the engine produces a split-signal alert with each layer's individual confidence. This tells analysts where to dig deeper — divergence is signal, not failure.</p>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 8px;">Conflict Resolution</div>
+              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">When signals diverge (e.g., sentiment positive but bookings declining), the engine produces a split-signal alert with each layer's individual confidence. This tells analysts where to dig deeper — divergence is signal, not failure.</p>
             </div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.9); margin-bottom: 8px;">Temporal Weighting</div>
-              <p style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.6; margin: 0;">Behavioral signals lag attitudinal shifts by 2–4 weeks. The engine applies temporal decay curves that discount stale data while amplifying recent convergence. Signal recency is weighted alongside signal strength.</p>
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.9); margin-bottom: 8px;">Temporal Weighting</div>
+              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0;">Behavioral signals lag attitudinal shifts by 2–4 weeks. The engine applies temporal decay curves that discount stale data while amplifying recent convergence. Signal recency is weighted alongside signal strength.</p>
             </div>
           </div>
         </div>
 
         <!-- Data Flow (Visual) -->
-        <div style="margin: 32px 0; padding: 32px; background: rgba(0,0,0,0.4); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 12px;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(var(--base-rgb),0.4); margin-bottom: 24px;">DATA FLOW — SIGNAL TO SURFACE</div>
+        <div style="margin: 32px 0; padding: 32px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 24px;">DATA FLOW — SIGNAL TO SURFACE</div>
 
           <!-- Raw Data -->
           <div style="text-align: center; margin-bottom: 8px;">
-            <div style="display: inline-block; padding: 12px 32px; background: rgba(var(--base-rgb),0.04); border: 1px solid rgba(var(--base-rgb),0.1); border-radius: 8px;">
-              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(var(--base-rgb),0.85);">Raw Data</span>
+            <div style="display: inline-block; padding: 12px 32px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;">
+              <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: rgba(255,255,255,0.85);">Raw Data</span>
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(129,140,248,0.6); margin-left: 8px;">847+ daily streams</span>
             </div>
           </div>
-          <div style="text-align: center; padding: 6px 0; color: rgba(var(--base-rgb),0.15); font-size: 1.1rem;">▼</div>
+          <div style="text-align: center; padding: 6px 0; color: rgba(255,255,255,0.15); font-size: 1.1rem;">▼</div>
 
           <!-- Processing Pipelines -->
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 8px;">
             <div style="padding: 16px; background: rgba(129,140,248,0.06); border: 1px solid rgba(129,140,248,0.15); border-radius: 8px; text-align: center;">
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">NLP PIPELINE</div>
-              <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.6);">Sentiment · Emotion</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Sentiment · Emotion</div>
             </div>
             <div style="padding: 16px; background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.15); border-radius: 8px; text-align: center;">
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(52,211,153,0.6); margin-bottom: 6px;">STATS ENGINE</div>
-              <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.6);">Time Series · Anomaly</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">Time Series · Anomaly</div>
             </div>
             <div style="padding: 16px; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.15); border-radius: 8px; text-align: center;">
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(245,158,11,0.6); margin-bottom: 6px;">TOPIC MODEL</div>
-              <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.6);">NER · Classification</div>
+              <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6);">NER · Classification</div>
             </div>
           </div>
-          <div style="text-align: center; padding: 6px 0; color: rgba(var(--base-rgb),0.15); font-size: 1.1rem;">▼ &nbsp; ▼ &nbsp; ▼</div>
+          <div style="text-align: center; padding: 6px 0; color: rgba(255,255,255,0.15); font-size: 1.1rem;">▼ &nbsp; ▼ &nbsp; ▼</div>
 
           <!-- Normalization -->
-          <div style="padding: 16px 24px; background: rgba(var(--base-rgb),0.03); border: 1px solid rgba(var(--base-rgb),0.08); border-radius: 8px; text-align: center; margin-bottom: 8px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(var(--base-rgb),0.45); margin-bottom: 6px;">NORMALIZATION LAYER</div>
-            <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.55);">Propensity scores (0–1) · Confidence intervals · Source attribution · Recency timestamps</div>
+          <div style="padding: 16px 24px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; text-align: center; margin-bottom: 8px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.45); margin-bottom: 6px;">NORMALIZATION LAYER</div>
+            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.55);">Propensity scores (0–1) · Confidence intervals · Source attribution · Recency timestamps</div>
           </div>
-          <div style="text-align: center; padding: 6px 0; color: rgba(var(--base-rgb),0.15); font-size: 1.1rem;">▼</div>
+          <div style="text-align: center; padding: 6px 0; color: rgba(255,255,255,0.15); font-size: 1.1rem;">▼</div>
 
           <!-- Consensus -->
           <div style="max-width: 520px; margin: 0 auto 8px; padding: 16px 24px; background: linear-gradient(135deg, rgba(129,140,248,0.1), rgba(52,211,153,0.06)); border: 1px solid rgba(129,140,248,0.2); border-radius: 10px; text-align: center;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: rgba(129,140,248,0.6); margin-bottom: 6px;">CONSENSUS ENGINE</div>
-            <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.55);">Cross-layer correlation · Convergence scoring · Split-signal detection</div>
+            <div style="font-size: 0.8rem; color: rgba(255,255,255,0.55);">Cross-layer correlation · Convergence scoring · Split-signal detection</div>
           </div>
-          <div style="text-align: center; padding: 6px 0; color: rgba(var(--base-rgb),0.15); font-size: 1.1rem;">↙ &nbsp; ▼ &nbsp; ↘</div>
+          <div style="text-align: center; padding: 6px 0; color: rgba(255,255,255,0.15); font-size: 1.1rem;">↙ &nbsp; ▼ &nbsp; ↘</div>
 
           <!-- Outputs -->
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
             <div style="padding: 16px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 8px; text-align: center;">
               <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #34d399; font-size: 0.9rem;">Brand Fidelity</div>
-              <div style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); margin-top: 4px;">Composite Index</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">Composite Index</div>
             </div>
             <div style="padding: 16px; background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; text-align: center;">
               <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #ef4444; font-size: 0.9rem;">Priority Alerts</div>
-              <div style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); margin-top: 4px;">Divergence Flags</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">Divergence Flags</div>
             </div>
             <div style="padding: 16px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 8px; text-align: center;">
               <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #818cf8; font-size: 0.9rem;">8 Surfaces</div>
-              <div style="font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); margin-top: 4px;">Interactive Outputs</div>
+              <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-top: 4px;">Interactive Outputs</div>
             </div>
           </div>
         </div>
@@ -1755,48 +1750,48 @@
                 <i class="ph ph-brain" style="font-size: 1.1rem; color: #818cf8;"></i>
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.7);">NLP + SENTIMENT</span>
               </div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.6;">Anthropic Claude · Custom fine-tuned classifiers · Multi-language support</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Anthropic Claude · Custom fine-tuned classifiers · Multi-language support</div>
             </div>
             <div style="padding: 20px; background: rgba(52,211,153,0.04); border: 1px solid rgba(52,211,153,0.12); border-radius: 10px; border-left: 3px solid rgba(52,211,153,0.4);">
               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
                 <i class="ph ph-chart-line-up" style="font-size: 1.1rem; color: #34d399;"></i>
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(52,211,153,0.7);">BEHAVIORAL ANALYTICS</span>
               </div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.6;">Time-series analysis · Anomaly detection · Bayesian inference models</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Time-series analysis · Anomaly detection · Bayesian inference models</div>
             </div>
             <div style="padding: 20px; background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.12); border-radius: 10px; border-left: 3px solid rgba(245,158,11,0.4);">
               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
                 <i class="ph ph-globe" style="font-size: 1.1rem; color: #f59e0b;"></i>
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.7);">CULTURAL SIGNALS</span>
               </div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.6;">Named entity recognition · Topic modeling · Regulatory feed parsers</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Named entity recognition · Topic modeling · Regulatory feed parsers</div>
             </div>
             <div style="padding: 20px; background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.12); border-radius: 10px; border-left: 3px solid rgba(239,68,68,0.4);">
               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
                 <i class="ph ph-atom" style="font-size: 1.1rem; color: #ef4444;"></i>
                 <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(239,68,68,0.7);">SIMULATION</span>
               </div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.6;">Agent-based modeling · Monte Carlo · 650 heterogeneous agents · 500 iterations</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Agent-based modeling · Monte Carlo · 650 heterogeneous agents · 500 iterations</div>
             </div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.03); border: 1px solid rgba(var(--base-rgb),0.08); border-radius: 10px; border-left: 3px solid rgba(var(--base-rgb),0.2);">
+            <div style="padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; border-left: 3px solid rgba(255,255,255,0.2);">
               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                <i class="ph ph-database" style="font-size: 1.1rem; color: rgba(var(--base-rgb),0.6);"></i>
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(var(--base-rgb),0.5);">INFRASTRUCTURE</span>
+                <i class="ph ph-database" style="font-size: 1.1rem; color: rgba(255,255,255,0.6);"></i>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(255,255,255,0.5);">INFRASTRUCTURE</span>
               </div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.6;">Real-time signal ingestion · 847+ daily streams · Sub-second consensus scoring</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">Real-time signal ingestion · 847+ daily streams · Sub-second consensus scoring</div>
             </div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.03); border: 1px solid rgba(var(--base-rgb),0.08); border-radius: 10px; border-left: 3px solid rgba(var(--base-rgb),0.2);">
+            <div style="padding: 20px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; border-left: 3px solid rgba(255,255,255,0.2);">
               <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                <i class="ph ph-monitor" style="font-size: 1.1rem; color: rgba(var(--base-rgb),0.6);"></i>
-                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(var(--base-rgb),0.5);">OUTPUTS</span>
+                <i class="ph ph-monitor" style="font-size: 1.1rem; color: rgba(255,255,255,0.6);"></i>
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(255,255,255,0.5);">OUTPUTS</span>
               </div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.6;">8 interactive surfaces · Brand Fidelity composite · Glass Box traceability</div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">8 interactive surfaces · Brand Fidelity composite · Glass Box traceability</div>
             </div>
           </div>
         </div>
 
         <!-- Version / Changelog — Enhanced -->
-        <div style="margin: 32px 0; padding: 24px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
+        <div style="margin: 32px 0; padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 20px;">CHANGELOG</div>
 
           <!-- v10.0 Planned -->
@@ -1805,7 +1800,7 @@
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: rgba(245,158,11,0.9); font-weight: 600;">v10.0</span>
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(245,158,11,0.6); letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border: 1px solid rgba(245,158,11,0.3); border-radius: 3px;">PLANNED · Q3 2026</span>
             </div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.7;">
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.7;">
               Production deployment with real-time streaming architecture (event-driven ingestion replacing batch) · Horizontal scaling via Kubernetes · Multi-tenant support for brand/category isolation · Causal inference engine for dimension attribution · Synthetic control groups for A/B testing brand interventions · Mobile-native surfaces (iOS/Android) · SSO + RBAC access control · 99.9% SLA with auto-failover
             </div>
           </div>
@@ -1816,7 +1811,7 @@
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: rgba(52,211,153,0.9); font-weight: 600;">v9.0</span>
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(52,211,153,0.6); letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border: 1px solid rgba(52,211,153,0.3); border-radius: 3px;">CURRENT · MAR 2026</span>
             </div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.7); line-height: 1.7;">
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.7;">
               Brand Fidelity framework as 8th interactive surface · Consensus engine v3 with split-signal detection · Signal Terminal with expandable Glass Box drawers · Phosphor icon system · Rebuilt Command Center and Guided Analysis from signal-terminal template · Scenario Lab with 5 simulation modes (Insight, War Gaming, Focus Group, Signal Nexus, Brand Simulation) · Wizard step sync across all modes · Material Analyst AI overlay powered by Claude Sonnet
             </div>
           </div>
@@ -1827,46 +1822,46 @@
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: rgba(129,140,248,0.7); font-weight: 600;">v8.0</span>
               <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(129,140,248,0.4); letter-spacing: 0.1em; text-transform: uppercase;">JAN 2026</span>
             </div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.55); line-height: 1.7;">
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.7;">
               Agent-based simulation engine (650 heterogeneous agents, 500 Monte Carlo iterations) · Virtual Focus Group with AI-generated panelists · Signal Nexus cross-layer correlation · Guided Analysis with Anthropic API integration for Socratic questioning · Day-in-the-Life narrative surface · BIE brand share charting with legend
             </div>
           </div>
 
           <!-- v7.0 -->
-          <div style="padding: 16px; border-left: 3px solid rgba(var(--base-rgb),0.1); border-radius: 0 6px 6px 0;">
+          <div style="padding: 16px; border-left: 3px solid rgba(255,255,255,0.1); border-radius: 0 6px 6px 0;">
             <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 8px;">
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: rgba(var(--base-rgb),0.45); font-weight: 600;">v7.0</span>
-              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(var(--base-rgb),0.3); letter-spacing: 0.1em; text-transform: uppercase;">OCT 2025</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: rgba(255,255,255,0.45); font-weight: 600;">v7.0</span>
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase;">OCT 2025</span>
             </div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.4); line-height: 1.7;">
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7;">
               Command Center TL;DR morning briefing dashboard · Glass Box methodology transparency layer · Three-signal architecture (Human-Expressive, Behavioral, Cultural) · Confidence scoring with source triangulation · Strategic Brief with tier-based pricing model · Core team visualization
             </div>
           </div>
         </div>
 
         <!-- 01b.1 — Signal Ingestion Pipeline -->
-        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(var(--base-rgb),0.1);">
+        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">01b.1 — SIGNAL INGESTION PIPELINE</div>
-          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(var(--base-rgb),0.95); margin: 0 0 16px 0; font-weight: 600;">How 847+ Daily Data Streams Are Ingested</h3>
-          <p style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.7); line-height: 1.8; margin: 0 0 24px 0;">The ingestion layer acts as the funnel for all raw signal data. It classifies sources, validates against schema rules, deduplicates, applies freshness gates, and enforces rate limiting to prevent backpressure on downstream systems. Each stream is tagged with source type, timestamp, and reliability metadata.</p>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">How 847+ Daily Data Streams Are Ingested</h3>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">The ingestion layer acts as the funnel for all raw signal data. It classifies sources, validates against schema rules, deduplicates, applies freshness gates, and enforces rate limiting to prevent backpressure on downstream systems. Each stream is tagged with source type, timestamp, and reliability metadata.</p>
           
           <!-- Signal Ingestion Pipeline Visual -->
-          <div style="margin: 24px 0 32px; padding: 24px; background: rgba(0,0,0,0.3); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 12px;">
+          <div style="margin: 24px 0 32px; padding: 24px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.5); margin-bottom: 16px;">INGESTION PIPELINE OVERVIEW</div>
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
               <div style="text-align: center; padding: 20px 16px; background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); border-radius: 10px;">
                 <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #818cf8; font-size: 1.5rem; margin-bottom: 4px;">385</div>
-                <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.7); margin-bottom: 8px;">Primary Streams</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 8px;">Primary Streams</div>
                 <div style="display: inline-block; padding: 3px 10px; background: rgba(129,140,248,0.15); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.7);">&lt;5 min latency</div>
               </div>
               <div style="text-align: center; padding: 20px 16px; background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); border-radius: 10px;">
                 <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #34d399; font-size: 1.5rem; margin-bottom: 4px;">240</div>
-                <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.7); margin-bottom: 8px;">Secondary Streams</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 8px;">Secondary Streams</div>
                 <div style="display: inline-block; padding: 3px 10px; background: rgba(52,211,153,0.15); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(52,211,153,0.7);">5–30 min latency</div>
               </div>
               <div style="text-align: center; padding: 20px 16px; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 10px;">
                 <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; color: #f59e0b; font-size: 1.5rem; margin-bottom: 4px;">222</div>
-                <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.7); margin-bottom: 8px;">Tertiary Streams</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 8px;">Tertiary Streams</div>
                 <div style="display: inline-block; padding: 3px 10px; background: rgba(245,158,11,0.15); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(245,158,11,0.7);">30 min–6h latency</div>
               </div>
             </div>
@@ -1875,39 +1870,39 @@
           <div style="margin: 20px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">SOURCE CLASSIFICATION</div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
-              <div style="padding: 16px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
+              <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">PRIMARY SOURCES (Direct API)</div>
-                <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.6;">
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
                   • Stayworthy Review APIs (45 daily)<br>
                   • Guest Interview Transcripts (120 daily)<br>
                   • Booking Platform APIs (220 daily)<br>
-                  <span style="color: rgba(var(--base-rgb),0.5);">~385 streams · Latency: &lt;5min</span>
+                  <span style="color: rgba(255,255,255,0.5);">~385 streams · Latency: &lt;5min</span>
                 </div>
               </div>
-              <div style="padding: 16px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
+              <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">SECONDARY SOURCES (Aggregated)</div>
-                <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.6;">
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
                   • News Feed Aggregators (35 daily)<br>
                   • Social Media Sentiment Feeds (180 daily)<br>
                   • Market Analysis Reports (25 daily)<br>
-                  <span style="color: rgba(var(--base-rgb),0.5);">~240 streams · Latency: 5–30min</span>
+                  <span style="color: rgba(255,255,255,0.5);">~240 streams · Latency: 5–30min</span>
                 </div>
               </div>
-              <div style="padding: 16px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
+              <div style="padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.6); margin-bottom: 6px;">TERTIARY SOURCES (Derived)</div>
-                <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.6;">
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
                   • Regulatory Filing Parsers (60 daily)<br>
                   • Competitor Intelligence (32 daily)<br>
                   • Trend Correlation Feeds (145 daily)<br>
-                  <span style="color: rgba(var(--base-rgb),0.5);">~222 streams · Latency: 30min–6h</span>
+                  <span style="color: rgba(255,255,255,0.5);">~222 streams · Latency: 30min–6h</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div style="margin: 24px 0; padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
+          <div style="margin: 24px 0; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.6); margin-bottom: 12px;">VALIDATION & GATE LOGIC</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.75); line-height: 1.8;">
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.8;">
               <strong>Schema Validation:</strong> Each incoming signal is validated against source-specific schema. Malformed records are quarantined and logged.<br><br>
               <strong>Deduplication:</strong> Hash-based dedup window (24h rolling). Identical signals from same source within window are merged with timestamp aggregation.<br><br>
               <strong>Freshness Gates:</strong> Signals older than 48h are marked stale. Stale signals still ingested but weighted lower in consensus.<br><br>
@@ -1917,15 +1912,15 @@
         </div>
 
         <!-- 01b.2 — Processing & Enrichment -->
-        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(var(--base-rgb),0.1);">
+        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">01b.2 — PROCESSING & ENRICHMENT</div>
-          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(var(--base-rgb),0.95); margin: 0 0 16px 0; font-weight: 600;">NLP, Behavioral Analytics & Cultural Intelligence</h3>
-          <p style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.7); line-height: 1.8; margin: 0 0 24px 0;">Raw signals are enriched through three parallel processing pipelines: NLP for human sentiment and emotion, behavioral time-series for market dynamics, and cultural NER for regulatory and social context. Enriched signals are cross-referenced against historical baselines.</p>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">NLP, Behavioral Analytics & Cultural Intelligence</h3>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">Raw signals are enriched through three parallel processing pipelines: NLP for human sentiment and emotion, behavioral time-series for market dynamics, and cultural NER for regulatory and social context. Enriched signals are cross-referenced against historical baselines.</p>
           
           <div style="margin: 20px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">NLP PIPELINE</div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.8;">
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
                 <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">1. Tokenization</span> → Multilingual text segmentation with language detection. Handles 15+ languages natively.</div>
                 <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">2. Entity Extraction</span> → Named entity recognition for person, organization, location, product names. Custom gazetteer for hospitality domain (hotel chains, destinations, amenities).</div>
                 <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">3. Sentiment Classification</span> → Anthropic Claude fine-tuned on 50k+ hospitality reviews. Output: score 0–1 with subcomponents (service, cleanliness, value, location).</div>
@@ -1936,8 +1931,8 @@
 
           <div style="margin: 20px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">BEHAVIORAL ANALYTICS</div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.8;">
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
                 <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Time-Series Decomposition</span> → STL decomposition on booking volumes: trend, seasonality, remainder. Isolates signal from noise.</div>
                 <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Anomaly Detection</span> → Isolation Forest on 7-day rolling windows. Flags booking dips, search surges, or cancellation spikes >2σ from baseline.</div>
                 <div><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Trend Extraction</span> → Mann-Kendall trend test for monotonic direction. Confidence in trend presence reported separately from direction.</div>
@@ -1947,8 +1942,8 @@
 
           <div style="margin: 20px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">CULTURAL PROCESSING</div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.8;">
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
                 <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Topic Modeling</span> → Latent Dirichlet Allocation on social & news feeds. Identifies dominant themes (e.g., "sustainability", "pricing", "staff training").</div>
                 <div style="margin-bottom: 12px;"><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Regulatory NER</span> → Domain-specific entity extraction on regulatory filings and legal news. Flags compliance issues, legislative changes, certification updates.</div>
                 <div><span style="color: rgba(129,140,248,0.8); font-weight: 500;">Social Trend Clustering</span> → Groups related mentions across platforms. Detects emerging narratives before they spike in volume.</div>
@@ -1956,23 +1951,23 @@
             </div>
           </div>
 
-          <div style="margin: 20px 0; padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
+          <div style="margin: 20px 0; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.6); margin-bottom: 12px;">ENRICHMENT & BASELINE CROSS-REFERENCE</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.75); line-height: 1.8;">
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.8;">
               All enriched signals are compared against historical baselines (rolling 12-month): sentiment trends, booking seasonality, regulatory activity frequency. Deviation from baseline is flagged as anomaly coefficient (0–1). This enables detection of truly novel signals vs. expected cyclicity.
             </div>
           </div>
         </div>
 
         <!-- 01b.3 — Consensus Engine Deep Dive -->
-        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(var(--base-rgb),0.1);">
+        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">01b.3 — CONSENSUS ENGINE DEEP DIVE</div>
-          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(var(--base-rgb),0.95); margin: 0 0 16px 0; font-weight: 600;">Split-Signal Detection & Confidence Scoring</h3>
-          <p style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.7); line-height: 1.8; margin: 0 0 24px 0;">The consensus engine is where disagreement becomes intelligence. Rather than forcing agreement, it surfaces conflicts for human interpretation. Confidence scoring incorporates signal convergence, recency, and data volume.</p>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">Split-Signal Detection & Confidence Scoring</h3>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">The consensus engine is where disagreement becomes intelligence. Rather than forcing agreement, it surfaces conflicts for human interpretation. Confidence scoring incorporates signal convergence, recency, and data volume.</p>
           
-          <div style="margin: 24px 0; padding: 20px; background: rgba(0,0,0,0.4); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(var(--base-rgb),0.5); margin-bottom: 12px;">WORKED EXAMPLE: WHEN SENTIMENT & BEHAVIOR DIVERGE</div>
-            <pre style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; line-height: 1.6; color: rgba(var(--base-rgb),0.75); margin: 0; white-space: pre-wrap; overflow-x: auto;">Signal Input:
+          <div style="margin: 24px 0; padding: 20px; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(255,255,255,0.5); margin-bottom: 12px;">WORKED EXAMPLE: WHEN SENTIMENT & BEHAVIOR DIVERGE</div>
+            <pre style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; line-height: 1.6; color: rgba(255,255,255,0.75); margin: 0; white-space: pre-wrap; overflow-x: auto;">Signal Input:
 ├─ HUMAN PROCESSOR: Stayworthy reviews say "amazing experience" (+0.82 sentiment)
 ├─ BEHAVIORAL PROCESSOR: Booking volume drops 23% YoY, cancellations +15%
 └─ CULTURAL PROCESSOR: Regulatory pressure increases (2 new complaints filed)
@@ -1986,11 +1981,11 @@ Consensus Engine Output:
 
           <div style="margin: 24px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">CONFIDENCE SCORING FORMULA</div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: rgba(var(--base-rgb),0.8); margin-bottom: 16px; line-height: 1.8;">
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: rgba(255,255,255,0.8); margin-bottom: 16px; line-height: 1.8;">
 C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (volume_weight × sample_size)
               </div>
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.75); line-height: 1.8;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.8;">
                 <div style="margin-bottom: 12px;"><strong>signal_agreement:</strong> Correlation of normalized scores across 3 processors. Range 0–1. (1 = perfect consensus, 0 = complete divergence)</div>
                 <div style="margin-bottom: 12px;"><strong>freshness:</strong> 1 − (hours_since_signal / 48). Linearly decays to 0 after 48h. (Rewards recent data)</div>
                 <div style="margin-bottom: 12px;"><strong>sample_size:</strong> log(n_underlying_datapoints) / log(1000). Capped at 1. (More data = higher confidence)</div>
@@ -2005,31 +2000,31 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
               <div style="padding: 16px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); border-radius: 8px;">
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(34,197,94,0.8); margin-bottom: 8px;">HIGH CONFIDENCE</div>
-                <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8);">C &gt; 0.85</div>
-                <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.6); margin-top: 8px;">Strong convergence + recent data. Action-ready signals. Typical for sustained trends with 3+ processor agreement.</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">C &gt; 0.85</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Strong convergence + recent data. Action-ready signals. Typical for sustained trends with 3+ processor agreement.</div>
               </div>
               <div style="padding: 16px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px;">
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.8); margin-bottom: 8px;">MEDIUM CONFIDENCE</div>
-                <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8);">0.60 – 0.85</div>
-                <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.6); margin-top: 8px;">Mixed signals or partial processor agreement. Monitor & gather more evidence. Typical for emerging trends.</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">0.60 – 0.85</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Mixed signals or partial processor agreement. Monitor & gather more evidence. Typical for emerging trends.</div>
               </div>
               <div style="padding: 16px; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px;">
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(239,68,68,0.8); margin-bottom: 8px;">LOW CONFIDENCE</div>
-                <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8);">C &lt; 0.60</div>
-                <div style="font-size: 0.8rem; color: rgba(var(--base-rgb),0.6); margin-top: 8px;">Noise or isolated signals. Archive for pattern analysis. Escalate if multiple low-confidence alerts correlate.</div>
+                <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">C &lt; 0.60</div>
+                <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 8px;">Noise or isolated signals. Archive for pattern analysis. Escalate if multiple low-confidence alerts correlate.</div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- 01b.4 — Surface Delivery -->
-        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(var(--base-rgb),0.1);">
+        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">01b.4 — SURFACE DELIVERY</div>
-          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(var(--base-rgb),0.95); margin: 0 0 16px 0; font-weight: 600;">Routing Intelligence to 8 Surfaces</h3>
-          <p style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.7); line-height: 1.8; margin: 0 0 24px 0;">Consensus signals are routed to 8 specialized surfaces based on signal type, confidence, and audience. Command Center receives all high-confidence alerts first; other surfaces receive filtered, relevant subsets tailored to their domain.</p>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">Routing Intelligence to 8 Surfaces</h3>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">Consensus signals are routed to 8 specialized surfaces based on signal type, confidence, and audience. Command Center receives all high-confidence alerts first; other surfaces receive filtered, relevant subsets tailored to their domain.</p>
           
-          <div style="margin: 20px 0; padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.8;">
+          <div style="margin: 20px 0; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
               <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">1. Command Center</span> — All HIGH confidence alerts + split-signal conflicts. Real-time dashboard for executive decision-making.</div>
               <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">2. Guest Voice</span> — HUMAN processor signals (sentiment, emotion, NER). Thematic guest feedback aggregation & reply routing.</div>
               <div><span style="color: rgba(129,140,248,0.9); font-weight: 500;">3. Market Intelligence</span> — BEHAVIORAL processor signals (booking trends, anomalies). Booking forecasting & competitive movement detection.</div>
@@ -2041,9 +2036,9 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
             </div>
           </div>
 
-          <div style="margin: 20px 0; padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
+          <div style="margin: 20px 0; padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.6); margin-bottom: 12px;">PRIORITY ROUTING LOGIC</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.75); line-height: 1.8;">
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.8;">
               <strong>Tier 1 (Immediate to Command Center):</strong> Confidence > 0.85 OR split-signal detected<br><br>
               <strong>Tier 2 (Domain-specific surfaces):</strong> 0.60 < Confidence ≤ 0.85. Routed by signal processor type.<br><br>
               <strong>Tier 3 (Archive):</strong> Confidence ≤ 0.60. Stored for pattern mining & retroactive analysis.
@@ -2052,15 +2047,15 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
         </div>
 
         <!-- 01b.5 — Caching & Performance -->
-        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(var(--base-rgb),0.1);">
+        <div style="margin: 40px 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1);">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">01b.5 — CACHING & PERFORMANCE</div>
-          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(var(--base-rgb),0.95); margin: 0 0 16px 0; font-weight: 600;">Optimizing for Real-Time & Historical Analysis</h3>
-          <p style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.7); line-height: 1.8; margin: 0 0 24px 0;">BIE employs a two-tier caching strategy: fast rolling caches for real-time surfaces, and historical aggregates for trend analysis. Progressive loading ensures responsive UX even with large datasets.</p>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; color: rgba(255,255,255,0.95); margin: 0 0 16px 0; font-weight: 600;">Optimizing for Real-Time & Historical Analysis</h3>
+          <p style="font-size: 0.95rem; color: rgba(255,255,255,0.7); line-height: 1.8; margin: 0 0 24px 0;">BIE employs a two-tier caching strategy: fast rolling caches for real-time surfaces, and historical aggregates for trend analysis. Progressive loading ensures responsive UX even with large datasets.</p>
           
           <div style="margin: 20px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">SIGNAL CACHE (Real-Time)</div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.8;">
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
                 <div style="margin-bottom: 12px;"><strong>Window:</strong> 15-minute rolling buffer. Latest 847 signals kept in memory for instant query.</div>
                 <div style="margin-bottom: 12px;"><strong>TTL:</strong> 15 minutes. Older signals evicted and persisted to historical database.</div>
                 <div style="margin-bottom: 12px;"><strong>Served to:</strong> Command Center, Guest Voice, Market Intelligence (real-time feeds).</div>
@@ -2071,8 +2066,8 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
 
           <div style="margin: 20px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">HISTORICAL CACHE (Aggregates)</div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.8;">
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
                 <div style="margin-bottom: 12px;"><strong>Granularity:</strong> Daily aggregates (sentiment avg, booking totals, anomaly flags).</div>
                 <div style="margin-bottom: 12px;"><strong>Depth:</strong> 24 months rolling window. Beyond 24m, quarterly roll-ups.</div>
                 <div style="margin-bottom: 12px;"><strong>Served to:</strong> Brand Fidelity, Trend analysis, Virtual Focus Group (historical queries).</div>
@@ -2083,8 +2078,8 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
 
           <div style="margin: 20px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">COMPUTATION BUDGET</div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.8;">
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
                 <div style="margin-bottom: 12px;"><strong>Consensus Scoring Target:</strong> &lt;1 second per signal batch. Includes NLP, behavioral analysis, and confidence calculation.</div>
                 <div style="margin-bottom: 12px;"><strong>Surface Rendering Target:</strong> &lt;500ms from cache hit to user visible data.</div>
                 <div style="margin-bottom: 12px;"><strong>Historical Query Target:</strong> &lt;3 seconds for 12-month trend queries.</div>
@@ -2095,8 +2090,8 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
 
           <div style="margin: 20px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(129,140,248,0.7); margin-bottom: 16px;">PROGRESSIVE LOADING</div>
-            <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
-              <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.8); line-height: 1.8;">
+            <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.8;">
                 <div style="margin-bottom: 12px;"><strong>Phase 1 (0–100ms):</strong> Layout + cached header data. User sees dashboard skeleton.</div>
                 <div style="margin-bottom: 12px;"><strong>Phase 2 (100–500ms):</strong> Real-time signals + confidence scores populate. Primary widgets interactive.</div>
                 <div style="margin-bottom: 12px;"><strong>Phase 3 (500–2000ms):</strong> Historical data + trend charts render. Tooltips + drill-down ready.</div>
@@ -2112,48 +2107,48 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
       <section class="architecture-section deep-bg reveal">
         <div class="scene-label">01c. Integrations</div>
         <h2 class="scene-headline">External Connections & API Layer</h2>
-        <p style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.65); line-height: 1.8; max-width: 800px; margin-bottom: 32px;">The BIE connects to external data sources, AI services, and output channels through a structured API gateway. Every integration is authenticated, rate-limited, and logged for audit compliance.</p>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 800px; margin-bottom: 32px;">The BIE connects to external data sources, AI services, and output channels through a structured API gateway. Every integration is authenticated, rate-limited, and logged for audit compliance.</p>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 32px;">
           <!-- Data Source APIs -->
-          <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(52,211,153,0.4); border-radius: 0 8px 8px 0;">
+          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(52,211,153,0.4); border-radius: 0 8px 8px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(52,211,153,0.7); letter-spacing: 0.1em; margin-bottom: 12px;">DATA SOURCE APIs</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.7); line-height: 1.8;">
-              <strong style="color: rgba(var(--base-rgb),0.9);">Review Platforms:</strong> TripAdvisor, Google Reviews, Trustpilot, proprietary guest survey APIs<br>
-              <strong style="color: rgba(var(--base-rgb),0.9);">Booking APIs:</strong> OTA booking feeds, direct booking platform telemetry, pricing aggregators<br>
-              <strong style="color: rgba(var(--base-rgb),0.9);">Social Listening:</strong> Brandwatch, Sprinklr, native platform APIs (X/Twitter, Reddit, TikTok)<br>
-              <strong style="color: rgba(var(--base-rgb),0.9);">News & Regulatory:</strong> LexisNexis, Google News API, SEC/EDGAR filing parsers, DOT regulatory feeds<br>
-              <strong style="color: rgba(var(--base-rgb),0.9);">Competitive Intel:</strong> SimilarWeb, SEMrush, App Annie for behavioral market data
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.8;">
+              <strong style="color: rgba(255,255,255,0.9);">Review Platforms:</strong> TripAdvisor, Google Reviews, Trustpilot, proprietary guest survey APIs<br>
+              <strong style="color: rgba(255,255,255,0.9);">Booking APIs:</strong> OTA booking feeds, direct booking platform telemetry, pricing aggregators<br>
+              <strong style="color: rgba(255,255,255,0.9);">Social Listening:</strong> Brandwatch, Sprinklr, native platform APIs (X/Twitter, Reddit, TikTok)<br>
+              <strong style="color: rgba(255,255,255,0.9);">News & Regulatory:</strong> LexisNexis, Google News API, SEC/EDGAR filing parsers, DOT regulatory feeds<br>
+              <strong style="color: rgba(255,255,255,0.9);">Competitive Intel:</strong> SimilarWeb, SEMrush, App Annie for behavioral market data
             </div>
           </div>
 
           <!-- AI Services -->
-          <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(129,140,248,0.4); border-radius: 0 8px 8px 0;">
+          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(129,140,248,0.4); border-radius: 0 8px 8px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.7); letter-spacing: 0.1em; margin-bottom: 12px;">AI & ML SERVICES</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.7); line-height: 1.8;">
-              <strong style="color: rgba(var(--base-rgb),0.9);">NLP Engine:</strong> Anthropic Claude (Sonnet) for sentiment analysis, entity extraction, and Socratic guided analysis<br>
-              <strong style="color: rgba(var(--base-rgb),0.9);">Custom ML Models:</strong> Proprietary Brand Fidelity scoring model, anomaly detection (isolation forests), trend decomposition (STL)<br>
-              <strong style="color: rgba(var(--base-rgb),0.9);">Simulation:</strong> Agent-based modeling engine with Monte Carlo sampling (650 agents, 500 iterations per scenario)<br>
-              <strong style="color: rgba(var(--base-rgb),0.9);">Consensus Engine:</strong> Multi-signal convergence detection with temporal weighting and conflict resolution
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.8;">
+              <strong style="color: rgba(255,255,255,0.9);">NLP Engine:</strong> Anthropic Claude (Sonnet) for sentiment analysis, entity extraction, and Socratic guided analysis<br>
+              <strong style="color: rgba(255,255,255,0.9);">Custom ML Models:</strong> Proprietary Brand Fidelity scoring model, anomaly detection (isolation forests), trend decomposition (STL)<br>
+              <strong style="color: rgba(255,255,255,0.9);">Simulation:</strong> Agent-based modeling engine with Monte Carlo sampling (650 agents, 500 iterations per scenario)<br>
+              <strong style="color: rgba(255,255,255,0.9);">Consensus Engine:</strong> Multi-signal convergence detection with temporal weighting and conflict resolution
             </div>
           </div>
 
           <!-- Output Integrations -->
-          <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(245,158,11,0.4); border-radius: 0 8px 8px 0;">
+          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(245,158,11,0.4); border-radius: 0 8px 8px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.7); letter-spacing: 0.1em; margin-bottom: 12px;">OUTPUT INTEGRATIONS</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.7); line-height: 1.8;">
-              <strong style="color: rgba(var(--base-rgb),0.9);">Dashboard Embedding:</strong> iframe-embeddable surfaces for client intranets, SharePoint, Confluence<br>
-              <strong style="color: rgba(var(--base-rgb),0.9);">Alerts:</strong> Slack/Teams webhook integration for HIGH-severity signal notifications and daily briefings<br>
-              <strong style="color: rgba(var(--base-rgb),0.9);">Export:</strong> PDF brief generation, CSV data export, PowerPoint deck builder for strategic briefs<br>
-              <strong style="color: rgba(var(--base-rgb),0.9);">API Access:</strong> RESTful JSON API for programmatic signal queries, dimension scores, and simulation results
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.8;">
+              <strong style="color: rgba(255,255,255,0.9);">Dashboard Embedding:</strong> iframe-embeddable surfaces for client intranets, SharePoint, Confluence<br>
+              <strong style="color: rgba(255,255,255,0.9);">Alerts:</strong> Slack/Teams webhook integration for HIGH-severity signal notifications and daily briefings<br>
+              <strong style="color: rgba(255,255,255,0.9);">Export:</strong> PDF brief generation, CSV data export, PowerPoint deck builder for strategic briefs<br>
+              <strong style="color: rgba(255,255,255,0.9);">API Access:</strong> RESTful JSON API for programmatic signal queries, dimension scores, and simulation results
             </div>
           </div>
         </div>
 
         <!-- API Gateway Architecture -->
-        <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
+        <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.7); letter-spacing: 0.1em; margin-bottom: 12px;">API GATEWAY ARCHITECTURE</div>
-          <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.8;">
+          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.8;">
             All external connections route through a centralized API gateway handling authentication (OAuth 2.0 + API key), rate limiting (per-source configurable), circuit breaking (5xx auto-retry with exponential backoff), and request/response logging for audit trails. The gateway enforces schema validation on inbound data and applies PII redaction on outbound exports. In v10, this evolves into an event-driven mesh with per-tenant isolation.
           </div>
         </div>
@@ -2163,101 +2158,101 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
       <section class="architecture-section deep-bg reveal">
         <div class="scene-label">01d. Glass Box Architecture</div>
         <h2 class="scene-headline">From Black Box to Glass Box: Enterprise-Grade Transparency</h2>
-        <p style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.65); line-height: 1.8; max-width: 850px; margin-bottom: 16px;">For enterprise applications, the "Black Box" era of AI — where a prompt goes in and a result comes out with no explanation — is increasingly unacceptable. To meet the demands of auditability, compliance, and high-stakes decision-making, the BIE implements a Glass Box architecture.</p>
-        <p style="font-size: 0.9rem; color: rgba(var(--base-rgb),0.5); line-height: 1.7; max-width: 850px; margin-bottom: 36px;">Three interlocking mechanisms ensure ground-truth adherence: the Glass Box principle provides radical transparency, traceability creates the breadcrumb trail, and consensus agents form a council of experts that cross-verifies every output.</p>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 850px; margin-bottom: 16px;">For enterprise applications, the "Black Box" era of AI — where a prompt goes in and a result comes out with no explanation — is increasingly unacceptable. To meet the demands of auditability, compliance, and high-stakes decision-making, the BIE implements a Glass Box architecture.</p>
+        <p style="font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 850px; margin-bottom: 36px;">Three interlocking mechanisms ensure ground-truth adherence: the Glass Box principle provides radical transparency, traceability creates the breadcrumb trail, and consensus agents form a council of experts that cross-verifies every output.</p>
 
         <!-- Pillar 1: Glass Box Principle -->
-        <div style="margin-bottom: 28px; padding: 24px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(52,211,153,0.5); border-radius: 0 8px 8px 0;">
+        <div style="margin-bottom: 28px; padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(52,211,153,0.5); border-radius: 0 8px 8px 0;">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(52,211,153,0.7); letter-spacing: 0.12em; margin-bottom: 10px;">PILLAR 1</div>
-          <div style="font-size: 1.05rem; color: rgba(var(--base-rgb),0.9); font-weight: 500; margin-bottom: 12px;">The Glass Box Principle: Radical Transparency</div>
-          <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7; margin-bottom: 16px;">
+          <div style="font-size: 1.05rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 12px;">The Glass Box Principle: Radical Transparency</div>
+          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 16px;">
             The Glass Box principle is the antithesis of "just trust the AI." Instead of a single neural inference, the system uses modular workflows where every reasoning step is exposed. Every claim maps back to a specific document or data source. A human expert can look under the hood at any time to understand why a specific calculation was made — ensuring the model is not hallucinating or relying on outdated data.
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
             <div style="padding: 12px 16px; background: rgba(52,211,153,0.05); border-radius: 6px;">
               <div style="font-size: 0.8rem; font-weight: 600; color: rgba(52,211,153,0.8); margin-bottom: 4px;">Explicit Logic</div>
-              <div style="font-size: 0.78rem; color: rgba(var(--base-rgb),0.5); line-height: 1.6;">Chain-of-thought reasoning with exposed decision branches at every pipeline stage</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Chain-of-thought reasoning with exposed decision branches at every pipeline stage</div>
             </div>
             <div style="padding: 12px 16px; background: rgba(52,211,153,0.05); border-radius: 6px;">
               <div style="font-size: 0.8rem; font-weight: 600; color: rgba(52,211,153,0.8); margin-bottom: 4px;">Source Attribution</div>
-              <div style="font-size: 0.78rem; color: rgba(var(--base-rgb),0.5); line-height: 1.6;">Every claim linked to specific internal documents, database entries, or signal sources</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Every claim linked to specific internal documents, database entries, or signal sources</div>
             </div>
             <div style="padding: 12px 16px; background: rgba(52,211,153,0.05); border-radius: 6px;">
               <div style="font-size: 0.8rem; font-weight: 600; color: rgba(52,211,153,0.8); margin-bottom: 4px;">Auditability</div>
-              <div style="font-size: 0.78rem; color: rgba(var(--base-rgb),0.5); line-height: 1.6;">Complete inspection of any calculation or recommendation, ensuring no hallucination or stale data</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Complete inspection of any calculation or recommendation, ensuring no hallucination or stale data</div>
             </div>
           </div>
         </div>
 
         <!-- Pillar 2: Traceability -->
-        <div style="margin-bottom: 28px; padding: 24px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(129,140,248,0.5); border-radius: 0 8px 8px 0;">
+        <div style="margin-bottom: 28px; padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(129,140,248,0.5); border-radius: 0 8px 8px 0;">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.7); letter-spacing: 0.12em; margin-bottom: 10px;">PILLAR 2</div>
-          <div style="font-size: 1.05rem; color: rgba(var(--base-rgb),0.9); font-weight: 500; margin-bottom: 12px;">Traceability: The Breadcrumb Trail</div>
-          <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7; margin-bottom: 16px;">
+          <div style="font-size: 1.05rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 12px;">Traceability: The Breadcrumb Trail</div>
+          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 16px;">
             Traceability is the mechanism that powers the Glass Box. A single BIE output may involve searching thousands of signal sources, querying structured databases, and performing multiple mathematical calculations. For every output, there is a complete lineage:
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
             <div style="padding: 12px 16px; background: rgba(129,140,248,0.05); border-radius: 6px;">
               <div style="font-size: 0.8rem; font-weight: 600; color: rgba(129,140,248,0.8); margin-bottom: 4px;">Data Lineage</div>
-              <div style="font-size: 0.78rem; color: rgba(var(--base-rgb),0.5); line-height: 1.6;">Exactly which version of which document was used, when it was ingested, and how it was processed</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Exactly which version of which document was used, when it was ingested, and how it was processed</div>
             </div>
             <div style="padding: 12px 16px; background: rgba(129,140,248,0.05); border-radius: 6px;">
               <div style="font-size: 0.8rem; font-weight: 600; color: rgba(129,140,248,0.8); margin-bottom: 4px;">Process Lineage</div>
-              <div style="font-size: 0.78rem; color: rgba(var(--base-rgb),0.5); line-height: 1.6;">Which agents or functions were called, in what order, with what parameters</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Which agents or functions were called, in what order, with what parameters</div>
             </div>
             <div style="padding: 12px 16px; background: rgba(129,140,248,0.05); border-radius: 6px;">
               <div style="font-size: 0.8rem; font-weight: 600; color: rgba(129,140,248,0.8); margin-bottom: 4px;">Assumptions Log</div>
-              <div style="font-size: 0.78rem; color: rgba(var(--base-rgb),0.5); line-height: 1.6;">Clearly stated parameters (e.g., "assuming 5% inflation per Q4 Fiscal Policy document")</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.6;">Clearly stated parameters (e.g., "assuming 5% inflation per Q4 Fiscal Policy document")</div>
             </div>
           </div>
         </div>
 
         <!-- Pillar 3: Consensus Agents -->
-        <div style="margin-bottom: 28px; padding: 24px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(245,158,11,0.5); border-radius: 0 8px 8px 0;">
+        <div style="margin-bottom: 28px; padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(245,158,11,0.5); border-radius: 0 8px 8px 0;">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(245,158,11,0.7); letter-spacing: 0.12em; margin-bottom: 10px;">PILLAR 3</div>
-          <div style="font-size: 1.05rem; color: rgba(var(--base-rgb),0.9); font-weight: 500; margin-bottom: 12px;">Consensus Agents: The "Council of Experts"</div>
-          <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7; margin-bottom: 16px;">
+          <div style="font-size: 1.05rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 12px;">Consensus Agents: The "Council of Experts"</div>
+          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 16px;">
             Even with transparency, a single AI agent can make mistakes. To increase confidence in ground-truth adherence, the BIE employs a Multi-Agent System (MAS) using a Consensus Pattern. Multiple agents with different specialized roles perform tasks independently, then a Verifier agent cross-checks the outputs. If agents disagree, a Reflection loop triggers where agents justify their reasoning until consensus is reached.
           </div>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
             <div style="padding: 16px; background: rgba(245,158,11,0.04); border-radius: 6px;">
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.6); margin-bottom: 8px;">HOW IT WORKS</div>
-              <div style="font-size: 0.82rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7;">
-                <strong style="color: rgba(var(--base-rgb),0.8);">1. Diversity of Thought</strong> — Multiple agents deploy with specialized roles (legal compliance, financial accuracy, historical data analysis).<br>
-                <strong style="color: rgba(var(--base-rgb),0.8);">2. Independent Calculation</strong> — Each agent performs the task independently using the provided data.<br>
-                <strong style="color: rgba(var(--base-rgb),0.8);">3. Cross-Verification</strong> — A Verifier agent compares outputs and triggers Reflection loops on disagreement.<br>
-                <strong style="color: rgba(var(--base-rgb),0.8);">4. Confidence Scoring</strong> — Final output includes a confidence metric (e.g., "95% consensus across 3 independent agents").
+              <div style="font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
+                <strong style="color: rgba(255,255,255,0.8);">1. Diversity of Thought</strong> — Multiple agents deploy with specialized roles (legal compliance, financial accuracy, historical data analysis).<br>
+                <strong style="color: rgba(255,255,255,0.8);">2. Independent Calculation</strong> — Each agent performs the task independently using the provided data.<br>
+                <strong style="color: rgba(255,255,255,0.8);">3. Cross-Verification</strong> — A Verifier agent compares outputs and triggers Reflection loops on disagreement.<br>
+                <strong style="color: rgba(255,255,255,0.8);">4. Confidence Scoring</strong> — Final output includes a confidence metric (e.g., "95% consensus across 3 independent agents").
               </div>
             </div>
             <div style="padding: 16px; background: rgba(245,158,11,0.04); border-radius: 6px;">
               <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(245,158,11,0.6); margin-bottom: 8px;">BIE IMPLEMENTATION</div>
-              <div style="font-size: 0.82rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7;">
-                The Material Analyst employs consensus for strategic recommendations: a <strong style="color: rgba(var(--base-rgb),0.8);">Brand Guardian</strong> validates defensive positioning, a <strong style="color: rgba(var(--base-rgb),0.8);">Brand Guide</strong> proposes offensive strategies, and the <strong style="color: rgba(var(--base-rgb),0.8);">Fidelity Engine</strong> stress-tests both against the 6-dimension framework. Only recommendations that survive all three lenses appear in the Diagnostic → Attack → Defend → Bridge output.
+              <div style="font-size: 0.82rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
+                The Material Analyst employs consensus for strategic recommendations: a <strong style="color: rgba(255,255,255,0.8);">Brand Guardian</strong> validates defensive positioning, a <strong style="color: rgba(255,255,255,0.8);">Brand Guide</strong> proposes offensive strategies, and the <strong style="color: rgba(255,255,255,0.8);">Fidelity Engine</strong> stress-tests both against the 6-dimension framework. Only recommendations that survive all three lenses appear in the Diagnostic → Attack → Defend → Bridge output.
               </div>
             </div>
           </div>
         </div>
 
         <!-- Enterprise Value Proposition -->
-        <div style="padding: 24px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.08); border-radius: 8px;">
-          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(var(--base-rgb),0.4); letter-spacing: 0.12em; margin-bottom: 16px;">THE ENTERPRISE VALUE PROPOSITION</div>
-          <p style="font-size: 0.9rem; color: rgba(var(--base-rgb),0.65); line-height: 1.7; margin-bottom: 20px; max-width: 800px;">In the enterprise, confidence is the currency. You don't get confidence through better marketing; you get it through verifiable, repeatable, and transparent logic.</p>
+        <div style="padding: 24px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 0.12em; margin-bottom: 16px;">THE ENTERPRISE VALUE PROPOSITION</div>
+          <p style="font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.7; margin-bottom: 20px; max-width: 800px;">In the enterprise, confidence is the currency. You don't get confidence through better marketing; you get it through verifiable, repeatable, and transparent logic.</p>
           <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
             <div style="padding: 14px; background: rgba(52,211,153,0.04); border-left: 2px solid rgba(52,211,153,0.3); border-radius: 0 6px 6px 0;">
               <div style="font-size: 0.82rem; font-weight: 600; color: rgba(52,211,153,0.8); margin-bottom: 6px;">Glass Box</div>
-              <div style="font-size: 0.78rem; color: rgba(var(--base-rgb),0.5); line-height: 1.5;">Simplifies regulatory compliance (GDPR, EU AI Act) and internal audits</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Simplifies regulatory compliance (GDPR, EU AI Act) and internal audits</div>
             </div>
             <div style="padding: 14px; background: rgba(129,140,248,0.04); border-left: 2px solid rgba(129,140,248,0.3); border-radius: 0 6px 6px 0;">
               <div style="font-size: 0.82rem; font-weight: 600; color: rgba(129,140,248,0.8); margin-bottom: 6px;">Traceability</div>
-              <div style="font-size: 0.78rem; color: rgba(var(--base-rgb),0.5); line-height: 1.5;">Verify ground truth and reduce risk of costly business errors</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Verify ground truth and reduce risk of costly business errors</div>
             </div>
             <div style="padding: 14px; background: rgba(245,158,11,0.04); border-left: 2px solid rgba(245,158,11,0.3); border-radius: 0 6px 6px 0;">
               <div style="font-size: 0.82rem; font-weight: 600; color: rgba(245,158,11,0.8); margin-bottom: 6px;">Consensus Agents</div>
-              <div style="font-size: 0.78rem; color: rgba(var(--base-rgb),0.5); line-height: 1.5;">Minimize hallucinations via multi-point verification before final answer</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">Minimize hallucinations via multi-point verification before final answer</div>
             </div>
-            <div style="padding: 14px; background: rgba(var(--base-rgb),0.03); border-left: 2px solid rgba(var(--base-rgb),0.15); border-radius: 0 6px 6px 0;">
-              <div style="font-size: 0.82rem; font-weight: 600; color: rgba(var(--base-rgb),0.7); margin-bottom: 6px;">Transparent Math</div>
-              <div style="font-size: 0.78rem; color: rgba(var(--base-rgb),0.5); line-height: 1.5;">All calculations exposed as formulas, never hidden "magic numbers"</div>
+            <div style="padding: 14px; background: rgba(255,255,255,0.03); border-left: 2px solid rgba(255,255,255,0.15); border-radius: 0 6px 6px 0;">
+              <div style="font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px;">Transparent Math</div>
+              <div style="font-size: 0.78rem; color: rgba(255,255,255,0.5); line-height: 1.5;">All calculations exposed as formulas, never hidden "magic numbers"</div>
             </div>
           </div>
         </div>
@@ -2267,69 +2262,69 @@ C = (convergence_weight × signal_agreement) + (recency_weight × freshness) + (
       <section class="architecture-section deep-bg reveal">
         <div class="scene-label">01e. Roadmap</div>
         <h2 class="scene-headline">v10: Production-Grade Architecture</h2>
-        <p style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.65); line-height: 1.8; max-width: 800px; margin-bottom: 32px;">v9 proves the concept across 8 surfaces with 847+ signal streams. v10 transforms this into a production application built for enterprise scale, real-time streaming, and multi-tenant deployment.</p>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.8; max-width: 800px; margin-bottom: 32px;">v9 proves the concept across 8 surfaces with 847+ signal streams. v10 transforms this into a production application built for enterprise scale, real-time streaming, and multi-tenant deployment.</p>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px;">
           <!-- Real-Time Streaming -->
-          <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(52,211,153,0.4); border-radius: 0 8px 8px 0;">
+          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(52,211,153,0.4); border-radius: 0 8px 8px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(52,211,153,0.7); letter-spacing: 0.1em; margin-bottom: 8px;">Q3 2026</div>
-            <div style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.9); font-weight: 500; margin-bottom: 8px;">Real-Time Streaming Architecture</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7;">
+            <div style="font-size: 0.95rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 8px;">Real-Time Streaming Architecture</div>
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
               Replace batch ingestion with event-driven architecture (Kafka/Pulsar). Signals process in sub-second latency. WebSocket push to active dashboard sessions. Event sourcing for full replay capability and audit compliance.
             </div>
           </div>
 
           <!-- Horizontal Scaling -->
-          <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(129,140,248,0.4); border-radius: 0 8px 8px 0;">
+          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(129,140,248,0.4); border-radius: 0 8px 8px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.7); letter-spacing: 0.1em; margin-bottom: 8px;">Q3 2026</div>
-            <div style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.9); font-weight: 500; margin-bottom: 8px;">Horizontal Scaling via Kubernetes</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7;">
+            <div style="font-size: 0.95rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 8px;">Horizontal Scaling via Kubernetes</div>
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
               Containerized microservices (ingestion, processing, consensus, surface rendering) with auto-scaling based on signal volume. Target: handle 10x signal load (8,000+ streams) without degradation. Blue-green deployments for zero-downtime releases.
             </div>
           </div>
 
           <!-- Multi-Tenant -->
-          <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(245,158,11,0.4); border-radius: 0 8px 8px 0;">
+          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(245,158,11,0.4); border-radius: 0 8px 8px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(245,158,11,0.7); letter-spacing: 0.1em; margin-bottom: 8px;">Q4 2026</div>
-            <div style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.9); font-weight: 500; margin-bottom: 8px;">Multi-Tenant Brand/Category Support</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7;">
+            <div style="font-size: 0.95rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 8px;">Multi-Tenant Brand/Category Support</div>
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
               Tenant isolation at the data and compute layers. Each client brand gets its own signal namespace, competitive set configuration, and Brand Fidelity dimension weighting. Shared infrastructure, isolated intelligence. SSO + RBAC for team-based access control.
             </div>
           </div>
 
           <!-- Advanced ML -->
-          <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(239,68,68,0.4); border-radius: 0 8px 8px 0;">
+          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(239,68,68,0.4); border-radius: 0 8px 8px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(239,68,68,0.7); letter-spacing: 0.1em; margin-bottom: 8px;">Q4 2026</div>
-            <div style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.9); font-weight: 500; margin-bottom: 8px;">Causal Inference & Synthetic Controls</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7;">
+            <div style="font-size: 0.95rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 8px;">Causal Inference & Synthetic Controls</div>
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
               Move beyond correlation to causation. Causal inference models (DiD, instrumental variables) to attribute dimension changes to specific interventions. Synthetic control groups for A/B testing brand strategies without real-world contamination. Counterfactual scenario modeling.
             </div>
           </div>
 
           <!-- Mobile-Native -->
-          <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(52,211,153,0.4); border-radius: 0 8px 8px 0;">
+          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(52,211,153,0.4); border-radius: 0 8px 8px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(52,211,153,0.7); letter-spacing: 0.1em; margin-bottom: 8px;">Q1 2027</div>
-            <div style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.9); font-weight: 500; margin-bottom: 8px;">Mobile-Native Surfaces</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7;">
+            <div style="font-size: 0.95rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 8px;">Mobile-Native Surfaces</div>
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
               iOS and Android companion apps for executive briefings (Command Center TL;DR), push notifications for HIGH-severity signals, and on-the-go Guided Analysis. Optimized for glanceable intelligence during board meetings and travel.
             </div>
           </div>
 
           <!-- Observability -->
-          <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-left: 3px solid rgba(129,140,248,0.4); border-radius: 0 8px 8px 0;">
+          <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-left: 3px solid rgba(129,140,248,0.4); border-radius: 0 8px 8px 0;">
             <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(129,140,248,0.7); letter-spacing: 0.1em; margin-bottom: 8px;">Q3 2026</div>
-            <div style="font-size: 0.95rem; color: rgba(var(--base-rgb),0.9); font-weight: 500; margin-bottom: 8px;">Monitoring & Observability Stack</div>
-            <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.6); line-height: 1.7;">
+            <div style="font-size: 0.95rem; color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 8px;">Monitoring & Observability Stack</div>
+            <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6); line-height: 1.7;">
               Full observability with distributed tracing (OpenTelemetry), metrics (Prometheus/Grafana), and centralized logging (ELK). SLA monitoring with 99.9% uptime target. Automated alerting for pipeline health, signal freshness degradation, and consensus engine anomalies.
             </div>
           </div>
         </div>
 
         <!-- Production Deployment Model -->
-        <div style="padding: 20px; background: rgba(var(--base-rgb),0.02); border: 1px solid rgba(var(--base-rgb),0.06); border-radius: 8px;">
+        <div style="padding: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px;">
           <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(129,140,248,0.7); letter-spacing: 0.1em; margin-bottom: 12px;">PRODUCTION DEPLOYMENT MODEL</div>
-          <div style="font-size: 0.85rem; color: rgba(var(--base-rgb),0.65); line-height: 1.8;">
-            <strong style="color: rgba(var(--base-rgb),0.85);">Edge Ingestion → Central Processing → Distributed Surfaces.</strong> Signal collectors deploy at the edge (close to data sources) for low-latency capture. Central processing cluster handles NLP, consensus, and scoring. Intelligence surfaces are CDN-distributed static apps with API-backed dynamic content. This architecture minimizes latency for both data ingestion and user experience, while centralizing the computationally expensive consensus and ML workloads.
+          <div style="font-size: 0.85rem; color: rgba(255,255,255,0.65); line-height: 1.8;">
+            <strong style="color: rgba(255,255,255,0.85);">Edge Ingestion → Central Processing → Distributed Surfaces.</strong> Signal collectors deploy at the edge (close to data sources) for low-latency capture. Central processing cluster handles NLP, consensus, and scoring. Intelligence surfaces are CDN-distributed static apps with API-backed dynamic content. This architecture minimizes latency for both data ingestion and user experience, while centralizing the computationally expensive consensus and ML workloads.
           </div>
         </div>
       </section>

@@ -280,8 +280,8 @@ body:not(:has(.app-feed)) .analyst-panel {
   transition: background 0.2s ease, color 0.2s ease;
 }
 .feed-item--link:hover {
-  background: var(--overlay-6);
-  color: var(--text-secondary);
+  background: rgba(255,255,255,0.06);
+  color: var(--text-secondary, rgba(255,255,255,0.7));
 }
 .feed-item--link:hover .feed-item-source {
   color: var(--signal-behavioral);
@@ -392,7 +392,7 @@ body:not(:has(.app-feed)) .analyst-panel {
   opacity: 0;
   pointer-events: none;
   transition: all var(--duration-normal) var(--ease-out);
-  box-shadow: var(--shadow-panel);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.04);
   overflow: hidden;
 }
 .analyst-panel.open {
@@ -458,7 +458,7 @@ body:not(:has(.app-feed)) .analyst-panel {
 }
 .analyst-panel-close:hover {
   color: var(--text-primary);
-  background: var(--overlay-6);
+  background: rgba(255,255,255,0.06);
 }
 
 /* ── Mode Toggle ── */
@@ -488,7 +488,7 @@ body:not(:has(.app-feed)) .analyst-panel {
 }
 .mode-btn:hover {
   color: var(--text-secondary);
-  background: var(--overlay-4);
+  background: rgba(255,255,255,0.04);
 }
 .mode-btn.active {
   background: var(--brand-purple-dim);
@@ -513,7 +513,7 @@ body:not(:has(.app-feed)) .analyst-panel {
 .analyst-msg.system {
   color: var(--text-secondary);
   padding: 10px 14px;
-  background: var(--overlay-2);
+  background: rgba(255,255,255,0.02);
   border-left: 2px solid var(--signal-human);
   border-radius: 0 8px 8px 0;
 }
@@ -643,7 +643,7 @@ body:not(:has(.app-feed)) .analyst-panel {
   font-size: var(--text-nano);
   color: var(--text-muted);
   padding: 6px 10px;
-  background: var(--overlay-2);
+  background: rgba(255,255,255,0.02);
   border-radius: 4px;
   margin-top: 8px;
   line-height: 1.5;
@@ -732,7 +732,7 @@ body:not(:has(.app-feed)) .analyst-panel {
   gap: 5px;
   min-height: 24px;
   padding: 10px 14px;
-  background: var(--overlay-2);
+  background: rgba(255,255,255,0.02);
   border-left: 2px solid var(--signal-human);
   border-radius: 0 8px 8px 0;
 }
@@ -1212,7 +1212,7 @@ select {
 .mode-focus-group::-webkit-scrollbar-thumb,
 .mode-signal-nexus::-webkit-scrollbar-thumb,
 .mode-brand-sim::-webkit-scrollbar-thumb {
-  background: var(--overlay-10);
+  background: rgba(255,255,255,0.1);
   border-radius: 2px;
 }
 
@@ -1266,7 +1266,7 @@ select {
   max-width: var(--content-max, 1200px);
   margin: var(--space-lg) auto;
   font-size: var(--text-small, 0.875rem);
-  color: var(--text-secondary);
+  color: var(--text-secondary, rgba(255,255,255,0.5));
   line-height: 1.6;
 }
 .synthetic-brand-notice .notice-icon {
@@ -1296,9 +1296,9 @@ select {
   padding: 6px 12px;
   min-height: 44px;
   background: transparent;
-  border: 1px solid var(--overlay-8);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 4px;
-  color: var(--text-link);
+  color: rgba(255,255,255,0.4);
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.02em;
@@ -1307,9 +1307,9 @@ select {
   cursor: pointer;
 }
 .page-nav-cta:hover {
-  color: var(--text-link-hover);
-  border-color: var(--overlay-15);
-  background: var(--overlay-3);
+  color: rgba(255,255,255,0.7);
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.03);
 }
 .page-nav-cta i {
   font-size: 12px;
