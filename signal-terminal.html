@@ -435,7 +435,7 @@
       font-weight: 600;
     }
 
-    /* ── Brand Fidelity Dimension Badges ── */
+    /* ── Brand Score Dimension Badges ── */
     .st-signal-dimensions {
       display: flex;
       gap: 6px;
@@ -750,7 +750,7 @@
       <div class="nav-section-label">Methodology</div>
       <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon"><i class="ph ph-gear-six"></i></span> How It Works</a>
         <a href="brand-fidelity.html" class="nav-item" data-page="brand-fidelity">
-          <span class="nav-item-icon"><i class="ph ph-flower-lotus"></i></span> Brand Fidelity
+          <span class="nav-item-icon"><i class="ph ph-flower-lotus"></i></span> Brand Score
         </a>
     </div>
     <div class="nav-section">
@@ -1230,7 +1230,7 @@
       if (detectedDimensions.size > 0) {
         dimensionBadges = Array.from(detectedDimensions).map(dim => {
           const shortcode = dimensionShortcodes[dim] || 'BF';
-          return `<span class="signal-card-tag" title="Brand Fidelity: ${dim}">${shortcode}</span>`;
+          return `<span class="signal-card-tag" title="Brand Score: ${dim}">${shortcode}</span>`;
         }).join('');
       }
 

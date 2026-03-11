@@ -435,7 +435,7 @@ window.BIE = {
       'signal-terminal': "Signal Terminal active — monitoring `847 signals` across Human-Expressive, Behavioral, and Cultural layers. I can surface anomalies, convergences, or drill into any signal source.",
       'guided-analysis': "Ready for guided analysis. Tell me what you're trying to understand — a dimension, a competitive question, an audience segment — and I'll help you build a structured brief.",
       'scenario-lab': "Scenario Lab loaded — `650 agents`, 5 simulation modes. War gaming, brand simulation, focus groups, insight generation, or signal nexus. What strategy question are you testing?",
-      'brand-fidelity': "Brand Fidelity dashboard — 6 dimensions across two time horizons. Composite at `72` with a `-4` delta. I can diagnose any dimension, compare competitive positions, or explain the framework.",
+      'brand-fidelity': "Brand Score dashboard — 6 dimensions across two time horizons. Composite at `72` with a `-4` delta. I can diagnose any dimension, compare competitive positions, or explain the framework.",
       'day-in-the-life': "Day in the Life — see how BIE fits into real workflows. I can personalize this narrative for your specific role: strategist, analyst, or executive."
     };
 
@@ -714,7 +714,7 @@ window.BIE = {
       },
       competitor: {
         guide: `### Where's the real competitive opportunity?\n\n${competitorName} leads at \`74\`, but ${brandName} is closing at \`72\`. Look at *which* dimensions they're strong in vs. where the whitespace is.\n\n- **Personal** and **Meaningful** are both underdeveloped category-wide\n- ${competitorName} wins on Dependable (+8 vs category) and User Friendly (+6)\n- Neither brand owns the emotional loyalty space\n\n> Why do you think Personal and Meaningful are underserved across the whole category? What structural factor might explain that?`,
-        guardian: `### Diagnostic\n\n${competitorName} leads at \`74\` BF composite, driven by Dependable (+8 vs category) and User Friendly (+6). ${brandName}'s opportunity lies in **Meaningful** and **Personal**, both underserved category-wide.\n\n### Attack\n\nInvest in Personal (\`64, -8\`) through ML-driven recommendation personalization.\n\n### Defend\n\nProtect Salient (\`74\`) through brand recall campaigns in peak booking season.\n\n### Bridge\n\nMeaningful (\`66, -3\`) bridges functional satisfaction to emotional loyalty.\n\n◆ Brand Fidelity Report 2026 · Travel Category · N=24,000 · Confidence: HIGH`
+        guardian: `### Diagnostic\n\n${competitorName} leads at \`74\` BF composite, driven by Dependable (+8 vs category) and User Friendly (+6). ${brandName}'s opportunity lies in **Meaningful** and **Personal**, both underserved category-wide.\n\n### Attack\n\nInvest in Personal (\`64, -8\`) through ML-driven recommendation personalization.\n\n### Defend\n\nProtect Salient (\`74\`) through brand recall campaigns in peak booking season.\n\n### Bridge\n\nMeaningful (\`66, -3\`) bridges functional satisfaction to emotional loyalty.\n\n◆ Brand Score Report 2026 · Travel Category · N=24,000 · Confidence: HIGH`
       },
       'gen z': {
         guide: `### How do you read the Gen Z paradox?\n\nGen Z engagement with peer-reviewed content is up **34%** despite lower trust in brands overall. They don't trust *you* — but they trust *communities you host*.\n\n- How does this paradox inform the **Meaningful** dimension?\n- What would a community-first experience actually look like?\n- Can you shift perception from transactional to belonging?\n\n> If Gen Z trusts communities more than brands, what would it take to make your platform feel like a community rather than a marketplace?`,
@@ -726,7 +726,7 @@ window.BIE = {
       },
       fidelity: {
         guide: `### Why does Dependable matter more than Personal right now?\n\nLooking at the 6 dimensions, **Dependable** is the crisis point at \`58\`. It's an Over Time dimension — it anchors long-term loyalty.\n\n- A **6-point decline** over 2 quarters signals something systemic\n- Personal (-8) is the biggest single delta, but operates at shorter horizons\n- Dependable defines whether customers *return*\n\n> What does a sustained Dependable decline tell you about the operational experience? And why might fixing it matter more than improving Personal right now?`,
-        guardian: `### Diagnostic\n\n**Brand Fidelity — 6 Dimensions:**\n\n- In the Moment: User Friendly (\`72, -4\`) · Personal (\`64, -8\`) · Accessible (\`71, +1\`)\n- Over Time: Dependable (\`58, -6\`) · Meaningful (\`66, -3\`) · Salient (\`74, +2\`)\n\n### Key Insight\n\nDependable is the crisis dimension at \`58 (-6)\`. It anchors long-term loyalty and is dragging the composite. Personal (-8) is the biggest single delta but operates at shorter time horizons.\n\n◆ M+ Brand Fidelity Framework · 2X advocacy, 2.5X profitability, 3X differentiation · Confidence: HIGH`
+        guardian: `### Diagnostic\n\n**Brand Score — 6 Dimensions:**\n\n- In the Moment: User Friendly (\`72, -4\`) · Personal (\`64, -8\`) · Accessible (\`71, +1\`)\n- Over Time: Dependable (\`58, -6\`) · Meaningful (\`66, -3\`) · Salient (\`74, +2\`)\n\n### Key Insight\n\nDependable is the crisis dimension at \`58 (-6)\`. It anchors long-term loyalty and is dragging the composite. Personal (-8) is the biggest single delta but operates at shorter time horizons.\n\n◆ M+ Brand Score Framework · 2X advocacy, 2.5X profitability, 3X differentiation · Confidence: HIGH`
       },
       meaningful: {
         guide: `### What would make the brand *meaningful* — not just useful?\n\nMeaningful sits at \`66\` with a **-3 decline**. It's the bridge between functional satisfaction and emotional loyalty.\n\n- What would a "Stories Worth Staying For" content program change about behavior?\n- How do you measure success beyond engagement metrics?\n- Can you create belonging, not just transactions?\n\n> Brands with high Meaningful dimension scores see 2.8X higher advocacy rates. What's the fastest path to making your brand mean something beyond its utility?`,
@@ -745,8 +745,8 @@ window.BIE = {
       }
     }
 
-    const defaultGuide = "### Let me help you find the thread...\n\nWhat pattern do you notice first when you look at these dimensions? The Human-Expressive signals suggest one story, but Behavioral signals tell something different.\n\n> *Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Fidelity dimensions, Meaningful, or Dependable.*";
-    const defaultGuardian = "### Cross-referencing signal layers...\n\nThe Human-Expressive data suggests one pattern, but Behavioral signals tell a different story. Let me surface the specific data points and confidence scores.\n\n> *Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Fidelity dimensions, Meaningful, or Dependable.*";
+    const defaultGuide = "### Let me help you find the thread...\n\nWhat pattern do you notice first when you look at these dimensions? The Human-Expressive signals suggest one story, but Behavioral signals tell something different.\n\n> *Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Score dimensions, Meaningful, or Dependable.*";
+    const defaultGuardian = "### Cross-referencing signal layers...\n\nThe Human-Expressive data suggests one pattern, but Behavioral signals tell a different story. Let me surface the specific data points and confidence scores.\n\n> *Try asking about: trust gap, competitors, Gen Z, scenarios, Brand Score dimensions, Meaningful, or Dependable.*";
 
     return this.parseAnalystResponse(isGuide ? defaultGuide : defaultGuardian);
   },
@@ -879,13 +879,13 @@ window.BIE = {
         visual: 'pulse'
       },
       {
-        title: 'Brand Fidelity: Six Dimensions of Brand Fidelity',
+        title: 'Brand Score: Six Dimensions of Brand Score',
         description: 'Every insight maps to six measurable dimensions: three "In the Moment" (User Friendly, Personal, Accessible) and three "Over Time" (Dependable, Meaningful, Salient). Together, they reveal the full picture.',
         visual: 'dimensions'
       },
       {
         title: 'Intelligence That Moves With Your Day',
-        description: 'From your morning briefing to midnight autonomous scans, BIE surfaces the right insight at the right moment. Every surface connects through the Brand Fidelity thread.',
+        description: 'From your morning briefing to midnight autonomous scans, BIE surfaces the right insight at the right moment. Every surface connects through the Brand Score thread.',
         visual: 'timeline'
       },
       {
@@ -1050,10 +1050,10 @@ window.BIE = {
         `;
 
       case 'dimensions':
-        // Official Brand Fidelity wheel image
+        // Official Brand Score wheel image
         return `
           <div style="display: flex; align-items: center; justify-content: center;">
-            <img src="assets/images/fidelity-wheel.png" alt="Brand Fidelity Framework — Six Dimensions" style="max-width: 200px; width: 100%; height: auto; border-radius: 8px;">
+            <img src="assets/images/fidelity-wheel.png" alt="Brand Score Framework — Six Dimensions" style="max-width: 200px; width: 100%; height: auto; border-radius: 8px;">
           </div>
         `;
 
@@ -1350,7 +1350,7 @@ window.BIE = {
   }
 };
 
-/* ── Brand Fidelity Radar Chart Renderer ── */
+/* ── Brand Score Radar Chart Renderer ── */
 function renderRadarChart(containerId, data, options = {}) {
   const container = document.getElementById(containerId);
   if (!container) return;

@@ -515,7 +515,7 @@
       <div class="nav-section-label">Methodology</div>
       <a href="how-it-works.html" class="nav-item" data-page="how-it-works"><span class="nav-item-icon"><i class="ph ph-gear-six"></i></span> How It Works</a>
         <a href="brand-fidelity.html" class="nav-item" data-page="brand-fidelity">
-          <span class="nav-item-icon"><i class="ph ph-flower-lotus"></i></span> Brand Fidelity
+          <span class="nav-item-icon"><i class="ph ph-flower-lotus"></i></span> Brand Score
         </a>
     </div>
     <div class="nav-section">
@@ -676,7 +676,7 @@
         <div class="ga-brief-section">
           <div class="ga-brief-glass">
             <div class="ga-brief-glass-label">Glass Box</div>
-            <div id="brief-glass-text">M+ Brand Fidelity Report 2026 · N=24,000 respondents · Travel Category · Confidence: HIGH · Survey Period: Feb 15–Mar 4, 2026</div>
+            <div id="brief-glass-text">M+ Brand Score Report 2026 · N=24,000 respondents · Travel Category · Confidence: HIGH · Survey Period: Feb 15–Mar 4, 2026</div>
           </div>
         </div>
 
@@ -751,7 +751,7 @@ Your analysis framework:
 - Strategic: What should we do? (Attack / Defend / Bridge)
 
 You have access to Stayworthy brand data:
-- Brand Fidelity Composite: 72 (−4)
+- Brand Score Composite: 72 (−4)
 - Dimensions: User Friendly 72 (−4), Personal 64 (−8), Accessible 71 (+1), Dependable 58 (−6), Meaningful 66 (−3), Salient 74 (+2)
 - Key issue: 22-point expressive-behavioral gap
 - Competitive set: Booking.com 74, Marriott Homes 71, Vrbo 68
@@ -831,7 +831,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
 
       addMessage('topic-thread', 'analyst',
         `Good morning. I've been analyzing Stayworthy's signals overnight, and three patterns caught my attention. Before I share my analysis, I'd like to understand your focus today.<br><br><strong>What's the most pressing brand question on your mind right now?</strong>`,
-        'Data sourced from live Signal monitoring · M+ Brand Fidelity Model'
+        'Data sourced from live Signal monitoring · M+ Brand Score Model'
       );
 
       const loaders = {
@@ -878,7 +878,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
         appendQuestion('topic-thread', 'Question 1: Which competitive set should we analyze?', `
           <button class="ga-question-btn" onclick="answerCompetitive('set', 'top5')">
             <span class="ga-question-btn-label">Top 5 Competitors</span>
-            <span class="ga-question-btn-text">By Brand Fidelity composite score</span>
+            <span class="ga-question-btn-text">By Brand Score composite score</span>
           </button>
           <button class="ga-question-btn" onclick="answerCompetitive('set', 'direct')">
             <span class="ga-question-btn-label">Direct Competitors Only</span>
@@ -972,13 +972,13 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
     function answerCompetitive(question, answer) {
       conversationPath.push({ dimension: 'competitive', question, answer });
       if (question === 'set') {
-        const labels = { 'top5': 'Top 5 by Brand Fidelity', 'direct': 'Direct Competitors', 'disruptors': 'Category Disruptors' };
+        const labels = { 'top5': 'Top 5 by Brand Score', 'direct': 'Direct Competitors', 'disruptors': 'Category Disruptors' };
         addMessage('topic-thread', 'user', labels[answer]);
         setTimeout(() => {
-          appendQuestion('topic-thread', 'Question 2: Which Brand Fidelity dimension should we focus on?', `
+          appendQuestion('topic-thread', 'Question 2: Which Brand Score dimension should we focus on?', `
             <button class="ga-question-btn" onclick="answerCompetitive('dimension', 'composite')">
               <span class="ga-question-btn-label">Overall Composite</span>
-              <span class="ga-question-btn-text">Total Brand Fidelity score</span>
+              <span class="ga-question-btn-text">Total Brand Score score</span>
             </button>
             <button class="ga-question-btn" onclick="answerCompetitive('dimension', 'specific')">
               <span class="ga-question-btn-label">Specific Dimension</span>
@@ -1096,7 +1096,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
       const t = 'chat-thread';
       addMessage(t, 'analyst',
         `<strong>Your Focus:</strong> Brand Health across the 6 Fidelity dimensions<br><br><strong>Key Finding:</strong> Stayworthy's composite score has declined 4 points YTD to 72. Personal (−8) and Dependable (−6) show <em>crisis-level erosion</em>, while Salient (+2) remains a bright spot. This creates a critical gap: <strong>people still remember us, but don't trust us.</strong>`,
-        'Signals tracked: 847 live · Confidence: HIGH · Source: M+ Brand Fidelity Model'
+        'Signals tracked: 847 live · Confidence: HIGH · Source: M+ Brand Score Model'
       );
       setTimeout(() => {
         addMessage(t, 'analyst',
@@ -1116,8 +1116,8 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
     function loadCompetitiveChat() {
       const t = 'chat-thread';
       addMessage(t, 'analyst',
-        `<strong>Your Focus:</strong> Competitive positioning by Brand Fidelity<br><br><strong>The Landscape:</strong> Booking.com leads at 74.0, Stayworthy sits at 72.0 (nearly parity), but the gap is deceptive. Booking commands stronger presence in Accessible and Dependable. Where Stayworthy differentiates: <strong>Salient (+1 vs Booking)</strong> and emerging strength in Meaningful. The true competitive threat: Marriott Homes is closing fast at 71.0.`,
-        'Competitive Set: Top 5 by Brand Fidelity · Data Current: Mar 4, 2026'
+        `<strong>Your Focus:</strong> Competitive positioning by Brand Score<br><br><strong>The Landscape:</strong> Booking.com leads at 74.0, Stayworthy sits at 72.0 (nearly parity), but the gap is deceptive. Booking commands stronger presence in Accessible and Dependable. Where Stayworthy differentiates: <strong>Salient (+1 vs Booking)</strong> and emerging strength in Meaningful. The true competitive threat: Marriott Homes is closing fast at 71.0.`,
+        'Competitive Set: Top 5 by Brand Score · Data Current: Mar 4, 2026'
       );
       setTimeout(() => {
         addMessage(t, 'analyst',
@@ -1208,7 +1208,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
       });
 
       document.getElementById('question-text').innerHTML = b.question;
-      document.getElementById('brief-glass-text').innerHTML = b.glass || 'M+ Brand Fidelity Report 2026 · N=24,000 respondents · Travel Category · Confidence: HIGH · Survey Period: Feb 15–Mar 4, 2026';
+      document.getElementById('brief-glass-text').innerHTML = b.glass || 'M+ Brand Score Report 2026 · N=24,000 respondents · Travel Category · Confidence: HIGH · Survey Period: Feb 15–Mar 4, 2026';
       setState(STATE.OUTPUT);
       window.scrollTo(0, 0);
     }
@@ -1216,7 +1216,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
     function getBriefContent() {
       if (selectedDimension === 'brand-health') {
         return {
-          diagnostic: `Stayworthy's Brand Fidelity composite (72, −4 YTD) masks a <strong>two-speed deterioration:</strong> In-the-Moment dimensions (User Friendly 72, Personal 64, Accessible 71) are slipping due to friction in the booking experience. Personal shows crisis-level decline (−8), signaling a personalization deficit. Over-Time dimensions reveal decay in trust: Dependable (58, −6) and Meaningful (66, −3) are collapsing. Salient (74, +2) remains a competitive bright spot. <em>The core issue:</em> High awareness, low trust. Behavioral signals confirm: repeat booking rate down 3.2% weekly.`,
+          diagnostic: `Stayworthy's Brand Score composite (72, −4 YTD) masks a <strong>two-speed deterioration:</strong> In-the-Moment dimensions (User Friendly 72, Personal 64, Accessible 71) are slipping due to friction in the booking experience. Personal shows crisis-level decline (−8), signaling a personalization deficit. Over-Time dimensions reveal decay in trust: Dependable (58, −6) and Meaningful (66, −3) are collapsing. Salient (74, +2) remains a competitive bright spot. <em>The core issue:</em> High awareness, low trust. Behavioral signals confirm: repeat booking rate down 3.2% weekly.`,
           attack: `<strong>Offensive Play: Personalization-First Experience Redesign</strong><br>Attack Personal dimension through a rapid UX overhaul. Implement real-time price transparency (remove hidden final-cost surprise at checkout). Deploy context-aware recommendations based on booking history and stated preferences. Fast-track a loyalty program that recognizes and rewards repeat travelers with meaningful benefits (room upgrades, flexible cancellation). These moves repair the Accessible dimension and rebuild Personal trust. Messaging: "We remember you. Every stay, better."`,
           defend: `<strong>Protect: Salient Advantage & Dependable Foundation</strong><br>Your 74 Salient score is a moat. Defend it with consistent brand presence and earned media focus. Allocate budget to maintain top-of-mind awareness in Gen Z and Millennial core. For Dependable, establish a trust-building initiative: transparent communication on cancellation policies, 24/7 support visibility, customer review authenticity. Quick wins: customer testimonial campaign, "backed by 2M+ traveler reviews" positioning, money-back satisfaction guarantee.`,
           bridge: `<strong>How Attack Unlocks Defense:</strong> Fixing the pricing transparency (attack move) directly feeds Dependable rebuilding (defend move). When customers experience honest pricing and personalized recommendations, your reliability story becomes credible again. This also protects Salient by making your brand not just memorable, but trustworthy. The bridge is operational excellence: deliver on the promise, consistently.`,
@@ -1226,11 +1226,11 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             { title: 'Establish "Stayworthy Promise" Trust Program', description: ' Offer flexible cancellation, 24/7 support guarantee, satisfaction-back money guarantee. Market heavily in Gen Z and Millennial channels. Rebuild Dependable from behavioral level up. Target: ongoing.' }
           ],
           question: `If we rebuild Dependable and Personal by fixing the pricing and personalization experience, how do we measure success? Is repeat booking rate recovery to 38%+ within 90 days sufficient, or do we need Salient momentum to also turn positive?`,
-          glass: 'M+ Brand Fidelity Report 2026 · N=24,000 respondents · Travel Category · 6 Dimensions (User Friendly, Personal, Accessible, Dependable, Meaningful, Salient) · Confidence: HIGH · Survey Period: Feb 15–Mar 4, 2026'
+          glass: 'M+ Brand Score Report 2026 · N=24,000 respondents · Travel Category · 6 Dimensions (User Friendly, Personal, Accessible, Dependable, Meaningful, Salient) · Confidence: HIGH · Survey Period: Feb 15–Mar 4, 2026'
         };
       } else if (selectedDimension === 'competitive') {
         return {
-          diagnostic: `Stayworthy's 72 Brand Fidelity places you <strong>nearly parity with Booking.com (74)</strong>, but the gap hides structural weakness. Booking dominates Accessible (77 vs your 71) and Dependable (75 vs 58), capturing the "easy and trustworthy" positioning. Stayworthy edges out on Salient (your 74 vs their 73), meaning higher awareness. Marriott Homes (71) is closing fast, signaling hospitality incumbents are learning digital. The competitive set is compressing; differentiation is eroding unless you move.`,
+          diagnostic: `Stayworthy's 72 Brand Score places you <strong>nearly parity with Booking.com (74)</strong>, but the gap hides structural weakness. Booking dominates Accessible (77 vs your 71) and Dependable (75 vs 58), capturing the "easy and trustworthy" positioning. Stayworthy edges out on Salient (your 74 vs their 73), meaning higher awareness. Marriott Homes (71) is closing fast, signaling hospitality incumbents are learning digital. The competitive set is compressing; differentiation is eroding unless you move.`,
           attack: `<strong>Offensive Play: Own "Easy + Personal" Positioning</strong><br>Booking owns "easy + trustworthy" (high Accessible, Dependable). Attack on the personal dimension where they're weak. Stayworthy's Salient advantage means awareness is there; activate it by showing you <em>understand individual travelers better.</em> Build AI-driven recommendation engine ("Stays tailored to you"), curated collections by traveler type (solo, family, couples), and reviews filtered by traveler profile. This is a differentiation Booking's massive catalog can't match.`,
           defend: `<strong>Protect: Salient Leadership & Close the Accessible Gap</strong><br>Your 74 Salient is a real edge. Maintain aggressive brand marketing (OOH, digital, influencer) to widen the awareness gap vs competitors. For Accessible, the UX must match Booking's frictionless booking. Audit your funnel: are you losing conversion on mobile? Is your property search as responsive? Invest in mobile-first design and search speed. Messaging: "The easiest, smartest way to book your next stay."`,
           bridge: `<strong>How Attack Unlocks Defense:</strong> Personalization (attack) is achieved through better UX (part of Accessible defense). When your platform is as smooth as Booking <em>and</em> more personal, Salient converts to preference and loyalty.`,
@@ -1239,7 +1239,7 @@ Always end responses with a follow-up question. Keep responses concise (2-3 para
             { title: 'Audacious Speed Campaign: "Book in 30 Seconds"', description: ' Redesign funnel for mobile-first, single-tap saved preferences, one-click pay. Compare load times and conversion vs Booking. Market the speed advantage. Target: 60 days.' },
             { title: 'Influencer Takeover Series: "How I Travel"', description: ' Partner with micro-influencers (10k–100k followers) across segments (budget, luxury, family). Each week, different influencer curates their Stayworthy collection. Drives Salient. Target: ongoing.' }
           ],
-          question: `If we successfully own the "personalization + ease" positioning (vs Booking's generic + easy), can we justify a 2–3 point Brand Fidelity premium within 120 days, or is this a longer play requiring market education?`,
+          question: `If we successfully own the "personalization + ease" positioning (vs Booking's generic + easy), can we justify a 2–3 point Brand Score premium within 120 days, or is this a longer play requiring market education?`,
           glass: 'M+ Competitive Intelligence Report 2026 · Stayworthy (72) vs Booking.com (74), Marriott Homes (71), Vrbo (68), Airbnb (68.9) · SimilarWeb Traffic · Brandwatch Sentiment · Confidence: HIGH · Period: Rolling 90 days'
         };
       } else if (selectedDimension === 'segments') {

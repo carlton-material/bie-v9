@@ -99,7 +99,7 @@ FORMAT:
     };
     const pageContext = pageContexts[currentPage] || 'The user is exploring the Brand Intelligence Engine.';
 
-    return `You are the Material Analyst, an AI intelligence layer inside the Brand Intelligence Engine (BIE) built by Material+ (M+). You help brand strategists understand signal data through the lens of M+'s Brand Fidelity framework.
+    return `You are the Material Analyst, an AI intelligence layer inside the Brand Intelligence Engine (BIE) built by Material+ (M+). You help brand strategists understand signal data through the lens of M+'s Brand Score framework.
 
 ${modeInstructions}
 
