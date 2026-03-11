@@ -1332,7 +1332,7 @@ window.BIE = {
 
     const helpBtn = document.createElement('button');
     helpBtn.className = 'help-trigger';
-    helpBtn.innerHTML = '<i class="ph ph-question"></i>';
+    helpBtn.textContent = '?';
     helpBtn.title = 'Replay onboarding guide';
     helpBtn.setAttribute('aria-label', 'Help: replay onboarding');
 
