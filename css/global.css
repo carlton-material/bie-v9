@@ -1015,6 +1015,7 @@ body:not(:has(.app-feed)) .analyst-panel {
   padding: 0;
   line-height: 1;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .help-trigger:hover {
