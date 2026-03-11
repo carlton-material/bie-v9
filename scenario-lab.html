@@ -3980,7 +3980,7 @@
         // Render BF dimensions
         const dimensionPillsContainer = document.getElementById('dimension-pills');
         dimensionPillsContainer.innerHTML = '';
-        Object.entries(allDimensions).sort((a, b) => b[1] - a[1]).forEach((([dim, count])) => {
+        Object.entries(allDimensions).sort((a, b) => b[1] - a[1]).forEach(([dim, count]) => {
           const dimensionColor = this.getDimensionColor(dim);
           const pill = document.createElement('span');
           pill.className = `dimension-pill dimension-pill-${dimensionColor}`;
