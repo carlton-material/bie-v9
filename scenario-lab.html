@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brand Intelligence Engine - Scenario Lab</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=16">
+  <link rel="stylesheet" href="css/global.css?v=17">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
@@ -907,6 +907,242 @@
       color: rgba(255,255,255,0.7);
       border-color: var(--border-default);
     }
+
+    /* ── War Gaming Explainability Layer ── */
+    .wg-methodology-banner {
+      padding: 20px 24px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-left: 3px solid var(--brand-purple);
+      border-radius: 6px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .wg-methodology-banner .wg-meth-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--brand-purple-dim);
+      border-radius: 6px;
+      color: var(--brand-purple);
+      font-size: 1.1rem;
+    }
+    .wg-methodology-banner .wg-meth-body {
+      flex: 1;
+    }
+    .wg-methodology-banner .wg-meth-title {
+      font-family: var(--font-display);
+      font-size: var(--text-small);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .wg-methodology-banner .wg-meth-desc {
+      font-size: var(--text-small);
+      color: var(--text-tertiary);
+      line-height: 1.6;
+    }
+    .wg-methodology-banner .wg-meth-tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .wg-meth-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-subtle);
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+    .wg-meth-tag .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Scenario Card Enhancements */
+    .scenario-card-likelihood {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      color: rgba(255,255,255,0.55);
+    }
+    .likelihood-bar {
+      width: 48px;
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .likelihood-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 600ms var(--ease-out);
+    }
+    .scenario-card-signals {
+      display: flex;
+      gap: 6px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .scenario-signal-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.04em;
+      border: 1px solid;
+    }
+    .scenario-signal-tag.human { color: var(--signal-human); border-color: var(--signal-human-dim); background: rgba(129,140,248,0.06); }
+    .scenario-signal-tag.behavioral { color: var(--signal-behavioral); border-color: var(--signal-behavioral-dim); background: rgba(52,211,153,0.06); }
+    .scenario-signal-tag.cultural { color: var(--signal-cultural); border-color: var(--signal-cultural-dim); background: rgba(245,158,11,0.06); }
+
+    .scenario-card-why {
+      margin-top: 16px;
+      padding: 12px 14px;
+      background: rgba(116,90,255,0.04);
+      border: 1px solid rgba(116,90,255,0.12);
+      border-radius: 4px;
+      font-size: 0.7rem;
+      color: var(--text-tertiary);
+      line-height: 1.5;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+    .scenario-card-why .why-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--brand-purple);
+      margin-bottom: 0;
+      transition: margin var(--duration-fast);
+    }
+    .scenario-card-why.open .why-header { margin-bottom: 8px; }
+    .scenario-card-why .why-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms var(--ease-out);
+      color: var(--text-tertiary);
+    }
+    .scenario-card-why.open .why-body { max-height: 200px; }
+    .scenario-card-why .why-chevron {
+      transition: transform 200ms;
+      font-size: 0.6rem;
+    }
+    .scenario-card-why.open .why-chevron { transform: rotate(180deg); }
+
+    /* Strategic Output Explainability */
+    .output-label-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .output-label-row .output-label { margin-bottom: 0; }
+    .output-explainer-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.55rem;
+      cursor: help;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .output-explainer-icon:hover { border-color: var(--brand-purple); color: var(--brand-purple); }
+    .output-explainer-tooltip {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 260px;
+      padding: 12px 14px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 6px;
+      font-family: var(--font-body);
+      font-size: var(--text-nano);
+      color: var(--text-secondary);
+      line-height: 1.5;
+      z-index: 100;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      pointer-events: none;
+    }
+    .output-explainer-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--border-strong);
+    }
+    .output-explainer-icon:hover .output-explainer-tooltip { display: block; }
+
+    .output-dimension-impact {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .dimension-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      color: var(--text-secondary);
+    }
+    .dimension-chip .dim-arrow { font-weight: 700; }
+    .dimension-chip .dim-arrow.up { color: var(--signal-behavioral); }
+    .dimension-chip .dim-arrow.down { color: #ef4444; }
+    .dimension-chip .dim-arrow.flat { color: var(--text-muted); }
+
+    .output-confidence-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+      font-size: var(--text-nano);
+      letter-spacing: 0.04em;
+    }
+    .output-confidence-badge.high { background: rgba(52,211,153,0.1); color: var(--signal-behavioral); border: 1px solid rgba(52,211,153,0.2); }
+    .output-confidence-badge.medium { background: rgba(245,158,11,0.1); color: var(--signal-cultural); border: 1px solid rgba(245,158,11,0.2); }
+    .output-confidence-badge.low { background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.2); }
 
     /* Strategic Output Panel */
     .strategic-output {
@@ -2562,8 +2798,24 @@
         <div class="scenario-mode-label">War Gaming / Foresight</div>
         <div id="wg-intro-block">
           <h2 class="scenario-mode-headline">What Futures Should We Prepare For?</h2>
-          <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 16px; max-width: 700px; line-height: 1.6;">Explore three divergent futures. Click a scenario to run simulations and uncover strategic vectors: what to attack, what to defend, how to bridge from today to tomorrow.</p>
-          <div style="font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; margin-bottom: 40px;"><i class="ph ph-cursor-click" style="margin-right: 4px;"></i>Click any scenario card below to begin simulation</div>
+          <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 16px; max-width: 700px; line-height: 1.6;">The Brand Intelligence Engine continuously monitors macro, market, and competitive signals to generate plausible future scenarios. Each scenario is stress-tested against your brand's current fidelity dimensions using agent-based simulation — revealing what to attack, what to defend, and how to bridge from today to tomorrow.</p>
+
+          <!-- Methodology Banner -->
+          <div class="wg-methodology-banner">
+            <div class="wg-meth-icon"><i class="ph ph-brain"></i></div>
+            <div class="wg-meth-body">
+              <div class="wg-meth-title">How BIE Generates Scenarios</div>
+              <div class="wg-meth-desc">Scenarios are synthesized from three signal layers — not invented by analysts. The BIE engine identifies convergence patterns across regulatory, technological, and cultural trends, then projects plausible futures at 1-year, 3-year, and 5-year horizons. Probability scores reflect signal density and cross-source agreement.</div>
+              <div class="wg-meth-tags">
+                <span class="wg-meth-tag"><span class="tag-dot" style="background: var(--signal-human);"></span>Human-Expressive Signals</span>
+                <span class="wg-meth-tag"><span class="tag-dot" style="background: var(--signal-behavioral);"></span>Behavioral &amp; Market Signals</span>
+                <span class="wg-meth-tag"><span class="tag-dot" style="background: var(--signal-cultural);"></span>Cultural &amp; Contextual Signals</span>
+                <span class="wg-meth-tag"><span class="tag-dot" style="background: var(--brand-purple);"></span>650 ABM Agents · Bass Diffusion</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="font-family: var(--font-mono); font-size: 0.65rem; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; margin-bottom: 40px;"><i class="ph ph-cursor-click" style="margin-right: 4px;"></i>Click any scenario card below to begin strategic analysis</div>
         </div>
 
         <!-- ─── Phase 1: Select Future ─── -->
@@ -2573,17 +2825,29 @@
             <span class="scenario-card-badge">Share Shift</span>
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
               <h3 class="scenario-card-title" style="margin-bottom: 0;">2027: Regulatory Wave</h3>
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(255,255,255,0.55);">72% likely</div>
+              <div class="scenario-card-likelihood">
+                <div class="likelihood-bar"><div class="likelihood-bar-fill" style="width: 72%; background: var(--signal-behavioral);"></div></div>
+                72% likely
+              </div>
             </div>
             <p class="scenario-card-premise">EU-wide STR regulations mandate transparency. Barcelona model spreads to 15 major markets.</p>
+            <div class="scenario-card-signals">
+              <span class="scenario-signal-tag cultural">23 regulatory signals</span>
+              <span class="scenario-signal-tag behavioral">8 market shifts</span>
+              <span class="scenario-signal-tag human">12 sentiment shifts</span>
+            </div>
             <div class="scenario-card-impact">
               <strong>Impact:</strong> Category contraction 12–18%. Compliance-ready platforms gain trust advantage.
               <br><br>
-              <strong><span data-brand="name">Stayworthy</span> Play:</strong> First-mover on regulatory compliance - trust moat - Dependable dimension +8
+              <strong><span data-brand="name">Stayworthy</span> Play:</strong> First-mover on regulatory compliance — trust moat — Dependable dimension +8
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; font-size: var(--text-small);">
               <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.55); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #34d399; font-weight: 600;">+8 Dependable</span></div>
               <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.55); font-family: var(--font-mono);">Status</span><br><span style="color: #f59e0b; font-weight: 600;">NOT STARTED</span></div>
+            </div>
+            <div class="scenario-card-why" onclick="this.classList.toggle('open')">
+              <div class="why-header"><i class="ph ph-lightbulb"></i> Why this scenario? <span class="why-chevron">▾</span></div>
+              <div class="why-body">BIE detected 23 regulatory signals across EU markets in the past 90 days — 3.4x the baseline rate. Barcelona's STR framework is being cited as a model in 6 additional EU legislative proposals. Cross-referencing with behavioral data shows early platform compliance correlating with +12% booking intent.</div>
             </div>
             <div class="scenario-card-cta">Click to explore strategic response</div>
           </div>
@@ -2592,9 +2856,17 @@
             <span class="scenario-card-badge">Category Expansion</span>
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
               <h3 class="scenario-card-title" style="margin-bottom: 0;">2029: AI Concierge Era</h3>
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(255,255,255,0.55);">65% likely</div>
+              <div class="scenario-card-likelihood">
+                <div class="likelihood-bar"><div class="likelihood-bar-fill" style="width: 65%; background: var(--signal-cultural);"></div></div>
+                65% likely
+              </div>
             </div>
             <p class="scenario-card-premise">Agent-to-agent protocols become the default. Google and Apple AI talk to each other about who to recommend — your brand is disintermediated unless you signal value to the agents themselves.</p>
+            <div class="scenario-card-signals">
+              <span class="scenario-signal-tag behavioral">31 tech adoption signals</span>
+              <span class="scenario-signal-tag cultural">17 industry forecasts</span>
+              <span class="scenario-signal-tag human">9 consumer expectation shifts</span>
+            </div>
             <div class="scenario-card-impact">
               <strong>Impact:</strong> Category expands 25% as friction drops. Brand loyalty shifts from human perception to agent optimization. SEO stuffing for AI actually makes results worse — you need intentionally well-reasoned signal.
               <br><br>
@@ -2604,6 +2876,10 @@
               <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.55); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+7 Personal</span></div>
               <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.55); font-family: var(--font-mono);">Status</span><br><span style="color: #34d399; font-weight: 600;">IN PROGRESS</span></div>
             </div>
+            <div class="scenario-card-why" onclick="this.classList.toggle('open')">
+              <div class="why-header"><i class="ph ph-lightbulb"></i> Why this scenario? <span class="why-chevron">▾</span></div>
+              <div class="why-body">Google's Gemini and Apple Intelligence APIs show 340% YoY growth in travel-adjacent integrations. BIE behavioral signals show 31 agent-to-agent protocol developments in the past 120 days. Consumer survey data shows 42% of Gen Z travelers already prefer AI-curated recommendations over traditional search.</div>
+            </div>
             <div class="scenario-card-cta">Click to explore strategic response</div>
           </div>
 
@@ -2611,17 +2887,29 @@
             <span class="scenario-card-badge">Mixed</span>
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
               <h3 class="scenario-card-title" style="margin-bottom: 0;">2031: Decentralized Travel</h3>
-              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: rgba(255,255,255,0.55);">48% likely</div>
+              <div class="scenario-card-likelihood">
+                <div class="likelihood-bar"><div class="likelihood-bar-fill" style="width: 48%; background: #ef4444;"></div></div>
+                48% likely
+              </div>
             </div>
             <p class="scenario-card-premise">Blockchain-verified stays, peer-to-peer booking, community-owned platforms.</p>
+            <div class="scenario-card-signals">
+              <span class="scenario-signal-tag behavioral">14 Web3 adoption signals</span>
+              <span class="scenario-signal-tag cultural">11 decentralization trends</span>
+              <span class="scenario-signal-tag human">6 community sentiment shifts</span>
+            </div>
             <div class="scenario-card-impact">
               <strong>Impact:</strong> Traditional platforms lose 30% share. Trust becomes algorithmic.
               <br><br>
-              <strong><span data-brand="name">Stayworthy</span> Play:</strong> Hybrid model - centralized quality + decentralized community - Meaningful dimension critical
+              <strong><span data-brand="name">Stayworthy</span> Play:</strong> Hybrid model — centralized quality + decentralized community — Meaningful dimension critical
             </div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; font-size: var(--text-small);">
               <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.55); font-family: var(--font-mono);">BF Impact</span><br><span style="color: #818cf8; font-weight: 600;">+6 Meaningful</span></div>
               <div style="padding: 8px; background: var(--bg-glass); border-radius: 4px;"><span style="color: rgba(255,255,255,0.55); font-family: var(--font-mono);">Status</span><br><span style="color: #818cf8; font-weight: 600;">READY</span></div>
+            </div>
+            <div class="scenario-card-why" onclick="this.classList.toggle('open')">
+              <div class="why-header"><i class="ph ph-lightbulb"></i> Why this scenario? <span class="why-chevron">▾</span></div>
+              <div class="why-body">Web3 travel platforms grew 180% in transaction volume YoY, though from a small base. BIE cultural signals show decentralized reputation protocols emerging in 11 markets. The 48% probability reflects strong technological momentum but uncertain mainstream adoption — consumer surveys show only 18% awareness of blockchain-based travel options.</div>
             </div>
             <div class="scenario-card-cta">Click to explore strategic response</div>
           </div>
@@ -2632,37 +2920,73 @@
         <!-- ─── Phase 2: Analyze ─── -->
         <div class="wg-phase" data-wg-phase="2">
         <div class="strategic-output visible" id="strategic-output">
+          <!-- Scenario Context Header -->
+          <div id="wg-analysis-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border-subtle);">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.1em; text-transform: uppercase; color: var(--brand-purple); margin-bottom: 6px;">Strategic Analysis</div>
+              <h3 id="wg-analysis-title" style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; color: var(--text-primary); margin: 0;">Scenario Analysis</h3>
+            </div>
+            <div id="wg-analysis-confidence" style="text-align: right;">
+              <span class="output-confidence-badge high">◆ HIGH CONFIDENCE</span>
+              <div style="font-family: var(--font-mono); font-size: var(--text-nano); color: var(--text-muted); margin-top: 4px;">Cross-source agreement: 87%</div>
+            </div>
+          </div>
+
+          <!-- Projected Dimension Impacts -->
+          <div id="wg-dimension-impacts" style="margin-bottom: 32px;">
+            <div style="font-family: var(--font-mono); font-size: var(--text-nano); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px;">Projected Brand Score Impact</div>
+            <div class="output-dimension-impact" id="wg-dim-chips"></div>
+          </div>
+
           <div class="output-section">
-            <label class="output-label">Diagnostic</label>
+            <div class="output-label-row">
+              <label class="output-label">Diagnostic</label>
+              <span class="output-explainer-icon">?<span class="output-explainer-tooltip">The Diagnostic identifies the structural market shift this scenario creates. BIE cross-references regulatory, technological, and cultural signals to assess how the competitive landscape transforms — not just what changes, but what it means for brand positioning.</span></span>
+            </div>
             <div class="output-content" id="output-diagnostic"></div>
           </div>
 
           <div class="output-section">
-            <label class="output-label">Attack Vector</label>
+            <div class="output-label-row">
+              <label class="output-label">Attack Vector</label>
+              <span class="output-explainer-icon">?<span class="output-explainer-tooltip">The Attack Vector identifies where to gain ground. BIE analyzes which brand dimensions have the highest uplift potential under this scenario, then recommends proactive moves that capitalize on the market shift before competitors adapt.</span></span>
+            </div>
             <div class="output-content" id="output-attack"></div>
           </div>
 
           <div class="output-section">
-            <label class="output-label">Defend Vector</label>
+            <div class="output-label-row">
+              <label class="output-label">Defend Vector</label>
+              <span class="output-explainer-icon">?<span class="output-explainer-tooltip">The Defend Vector identifies what's at risk. BIE simulates competitive response patterns and identifies which current brand strengths are most vulnerable under this scenario — protecting the equity you've already built.</span></span>
+            </div>
             <div class="output-content" id="output-defend"></div>
           </div>
 
           <div class="output-section">
-            <label class="output-label">Bridge Strategy</label>
+            <div class="output-label-row">
+              <label class="output-label">Bridge Strategy</label>
+              <span class="output-explainer-icon">?<span class="output-explainer-tooltip">The Bridge Strategy connects today's position to the future opportunity. BIE maps the transition path — which dimensions to invest in now to be positioned when the scenario materializes. This is the "how to get there from here" recommendation.</span></span>
+            </div>
             <div class="output-content" id="output-bridge"></div>
           </div>
 
           <div class="output-section">
-            <label class="output-label">Recommended Actions</label>
+            <div class="output-label-row">
+              <label class="output-label">Recommended Actions</label>
+              <span class="output-explainer-icon">?<span class="output-explainer-tooltip">Prioritized action items derived from the strategic vectors. Each action is sequenced by urgency and maps to a specific brand dimension. Actions are calibrated by the ABM simulation to maximize scenario-adjusted ROI.</span></span>
+            </div>
             <div class="output-actions" id="output-actions"></div>
           </div>
 
           <div class="output-section">
-            <label class="output-label">Strategic Question for Leadership</label>
+            <div class="output-label-row">
+              <label class="output-label">Strategic Question for Leadership</label>
+              <span class="output-explainer-icon">?<span class="output-explainer-tooltip">BIE generates a key decision question — the single most impactful choice leadership faces under this scenario. Designed to focus executive discussion and surface implicit assumptions about competitive strategy.</span></span>
+            </div>
             <div class="output-question" id="output-question"></div>
           </div>
 
-          <div class="glass-box-inline">◆ BIE Simulation · 650 agents · 100 iterations · Bass diffusion + softmax utility · Confidence: HIGH</div>
+          <div class="glass-box-inline">◆ BIE Strategic Analysis · 3-signal fusion · Scenario probability weighted · Brand Representation Layer v2.1 · Confidence: HIGH</div>
 
           <!-- Wizard Navigation: User initiates progression -->
           <div class="wizard-nav" style="margin-top: 24px; display: flex; justify-content: flex-end; gap: 12px;">
@@ -3102,7 +3426,7 @@
   <!-- SCRIPTS -->
   <script src="js/analyst-llm.js"></script>
   <script src="js/api-client.js?v=3"></script>
-  <script src="js/app.js?v=16"></script>
+  <script src="js/app.js?v=17"></script>
   <script src="js/brand-sim.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script>
@@ -3316,6 +3640,59 @@
         actionsEl.innerHTML = output.actions.map(action => `<div class="output-action">${action}</div>`).join('');
 
         document.getElementById('output-question').textContent = output.question;
+
+        // Populate analysis header
+        const scenarioTitles = {
+          regulatory: '2027: Regulatory Wave',
+          'ai-concierge': '2029: AI Concierge Era',
+          decentralized: '2031: Decentralized Travel'
+        };
+        const titleEl = document.getElementById('wg-analysis-title');
+        if (titleEl) titleEl.textContent = scenarioTitles[scenario] || 'Scenario Analysis';
+
+        // Populate dimension impact chips
+        const dimImpacts = {
+          regulatory: [
+            { dim: 'Dependable', change: '+8', dir: 'up' },
+            { dim: 'Salient', change: '+2', dir: 'up' },
+            { dim: 'Meaningful', change: '+3', dir: 'up' },
+            { dim: 'Personal', change: '−1', dir: 'down' },
+            { dim: 'Immersive', change: '0', dir: 'flat' }
+          ],
+          'ai-concierge': [
+            { dim: 'Personal', change: '+7', dir: 'up' },
+            { dim: 'Meaningful', change: '+4', dir: 'up' },
+            { dim: 'Immersive', change: '+3', dir: 'up' },
+            { dim: 'Dependable', change: '−2', dir: 'down' },
+            { dim: 'Salient', change: '+1', dir: 'up' }
+          ],
+          decentralized: [
+            { dim: 'Meaningful', change: '+6', dir: 'up' },
+            { dim: 'Dependable', change: '+3', dir: 'up' },
+            { dim: 'Personal', change: '+2', dir: 'up' },
+            { dim: 'Salient', change: '−3', dir: 'down' },
+            { dim: 'Immersive', change: '+1', dir: 'up' }
+          ]
+        };
+        const chipsEl = document.getElementById('wg-dim-chips');
+        if (chipsEl && dimImpacts[scenario]) {
+          chipsEl.innerHTML = dimImpacts[scenario].map(d =>
+            `<div class="dimension-chip"><span class="dim-arrow ${d.dir}">${d.dir === 'up' ? '▲' : d.dir === 'down' ? '▼' : '—'}</span>${d.dim} <span style="font-weight:600;">${d.change}</span></div>`
+          ).join('');
+        }
+
+        // Update confidence based on scenario
+        const confEl = document.getElementById('wg-analysis-confidence');
+        if (confEl) {
+          const confData = {
+            regulatory: { level: 'high', pct: '87%', label: 'HIGH CONFIDENCE' },
+            'ai-concierge': { level: 'high', pct: '79%', label: 'HIGH CONFIDENCE' },
+            decentralized: { level: 'medium', pct: '62%', label: 'MEDIUM CONFIDENCE' }
+          };
+          const conf = confData[scenario] || confData.regulatory;
+          confEl.innerHTML = `<span class="output-confidence-badge ${conf.level}">◆ ${conf.label}</span><div style="font-family: var(--font-mono); font-size: var(--text-nano); color: var(--text-muted); margin-top: 4px;">Cross-source agreement: ${conf.pct}</div>`;
+        }
+
         // Visibility now handled by wg-phase pane system
       },
 
