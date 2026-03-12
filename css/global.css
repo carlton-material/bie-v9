@@ -762,6 +762,21 @@ body:not(:has(.app-feed)) .analyst-panel {
   border-left-color: var(--signal-behavioral);
 }
 
+/* Example conversation styling */
+.analyst-msg.example-msg {
+  opacity: 0.6;
+  font-size: 0.85em;
+}
+.analyst-msg.example-msg:hover {
+  opacity: 0.85;
+}
+.analyst-msg.example-label {
+  padding: 0.25rem 0;
+  background: none;
+  border: none;
+  border-left: none;
+}
+
 /* Mode toggle active states */
 .mode-btn[data-mode="guide"].active {
   background: rgba(129, 140, 248, 0.12);
