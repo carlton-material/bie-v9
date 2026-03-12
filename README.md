@@ -10,7 +10,7 @@
 
 ## What This Is
 
-The Brand Intelligence Engine (BIE) replaces traditional quarterly brand tracking with a **continuous, multi-signal intelligence system**. It ingests three parallel signal streams — what people *say* (Human-Expressive), what people *do* (Behavioral), and what the world *does around them* (Cultural) — and synthesizes them into a unified Brand Fidelity score across six loyalty drivers.
+The Brand Intelligence Engine (BIE) replaces traditional quarterly brand tracking with a **continuous, multi-signal intelligence system**. It ingests three parallel signal streams — what people *say* (Human-Expressive), what people *do* (Behavioral), and what the world *does around them* (Cultural) — and synthesizes them into a unified Brand Score across six loyalty drivers.
 
 This repo contains the **interactive prototype** — 8 interconnected HTML surfaces that demonstrate the platform's architecture, data model, and UX vision using Stayworthy (fictional short-term rental brand) as the client case.
 
@@ -28,12 +28,12 @@ This repo contains the **interactive prototype** — 8 interconnected HTML surfa
 |---------|------|---------|
 | **Strategic Brief** | `index.html` | Executive overview — the case for reinvention |
 | **Day in the Life** | `day-in-the-life.html` | Cinematic scrollytelling — 6 moments from dawn to midnight |
-| **Brand Fidelity** | `brand-fidelity.html` | Six-driver framework — In the Moment + Over Time dimensions |
-| **How It Works** | `how-it-works.html` | Glass Box methodology — architecture, confidence, sources, framework |
-| **Command Center** | `command-center.html` | Morning intelligence brief — BF composite, radar, alerts, patterns |
+| **Brand Score** | `brand-fidelity.html` | Six-driver framework — In the Moment + Over Time |
+| **How It Works** | `how-it-works.html` | Glass Box methodology — architecture, confidence, sources |
+| **Command Center** | `command-center.html` | Morning intelligence brief — composite score, radar, alerts |
 | **Signal Terminal** | `signal-terminal.html` | Live signal feed — filterable by type, severity, brand |
 | **Guided Analysis** | `guided-analysis.html` | AI-assisted analysis — structured questions, driver exploration |
-| **Scenario Lab** | `scenario-lab.html` | Simulation engine — funnels, war gaming, focus groups, Fidelity LIVE |
+| **Scenario Lab** | `scenario-lab.html` | Simulation engine — funnels, war gaming, focus groups, Brand Score LIVE |
 
 ---
 
@@ -52,9 +52,9 @@ This repo contains the **interactive prototype** — 8 interconnected HTML surfa
 </details>
 
 <details>
-<summary>Brand Fidelity — Six Drivers of Brand Truth</summary>
+<summary>Brand Score — Six Drivers of Brand Truth</summary>
 
-![Brand Fidelity](docs/screenshots/brand-fidelity.png)
+![Brand Score](docs/screenshots/brand-fidelity.png)
 </details>
 
 <details>
@@ -82,7 +82,7 @@ This repo contains the **interactive prototype** — 8 interconnected HTML surfa
 </details>
 
 <details>
-<summary>Scenario Lab — Simulation & Fidelity LIVE</summary>
+<summary>Scenario Lab — Simulation & Brand Score LIVE</summary>
 
 ![Scenario Lab](docs/screenshots/scenario-lab.png)
 </details>
@@ -113,7 +113,8 @@ No build step. No dependencies. Pure HTML/CSS/JS.
 bie-v9/
 ├── index.html                 # Strategic Brief (entry point)
 ├── day-in-the-life.html       # Cinematic scrollytelling
-├── how-it-works.html          # Glass Box methodology (6 inline panels)
+├── brand-fidelity.html        # Brand Score framework
+├── how-it-works.html          # Glass Box methodology
 ├── command-center.html        # Morning intelligence brief
 ├── signal-terminal.html       # Live signal feed
 ├── guided-analysis.html       # AI-assisted analysis
@@ -124,15 +125,24 @@ bie-v9/
 │   ├── components.css         # Cards, badges, charts, panels
 │   └── glass-box.css          # Glass Box transparency system
 ├── js/
-│   └── app.js                 # Shared behaviors — nav, analyst, Glass Box
+│   ├── app.js                 # Core — nav, Material Analyst, Glass Box
+│   ├── analyst-llm.js         # Claude Haiku LLM integration
+│   ├── api-client.js          # RSS feed client (5 sources)
+│   └── brand-sim.js           # Agent-based simulation engine (650 agents)
 ├── data/
 │   ├── stayworthy.json        # Client brand data
+│   ├── brands.json            # Competitive set definitions
+│   ├── brand-sim-config.json  # Simulation parameters
 │   ├── signals-metadata.json  # Signal source definitions
 │   └── synthetic-cohorts.json # Simulation cohort data
 ├── assets/
-│   └── logos/                 # Brand marks
+│   ├── logos/                 # Brand marks (Material+, Stayworthy)
+│   └── images/                # Framework diagrams
 └── docs/
-    └── screenshots/           # QA captures for reference
+    ├── screenshots/           # QA captures for all 8 surfaces
+    ├── DATA-EXTENSIBILITY.md  # Multi-brand architecture ADR
+    ├── ARCHITECTURE.md        # System design reference
+    └── VISION.md              # Product direction & strategy
 ```
 
 ### Design System
@@ -144,7 +154,7 @@ bie-v9/
 
 ### Data Model
 
-**Brand Fidelity — 6 Drivers of Loyalty**
+**Brand Score — 6 Drivers of Loyalty**
 
 | Dimension | Driver | Score | Δ |
 |-----------|--------|-------|---|
@@ -162,6 +172,18 @@ bie-v9/
 - Cultural → Salient, Accessible
 
 **Source Tier Weightage**: Primary 40% · Secondary 30% · Tertiary 20% · Internal 10%
+
+---
+
+## Material Analyst
+
+The Material Analyst is an AI chat panel present on every surface, powered by Claude Haiku. It operates in two modes:
+
+**Ask Mode** — Socratic questioning. The analyst guides the user through structured discovery, asking clarifying questions about the brand, the customer, and the implications of the data. Each follow-up is contextual to the surface and the user's previous responses.
+
+**Explore Mode** — Diagnostic analysis. The analyst identifies patterns, anomalies, and opportunities in the Brand Score drivers and signals. It highlights weak spots (Dependable at 58), correlations (Personal declining -8 while Salient rises +2), and actionable insights tied to data sources.
+
+Both modes operate on a tiered conversation system with intelligent fallbacks. If the LLM times out or fails, the analyst degrades gracefully to static guidance cards with the same Socratic and diagnostic structure, ensuring the surface remains functional during board presentations.
 
 ---
 
@@ -184,28 +206,13 @@ Every feature maps to a discrete, verifiable unit: one Glass Box panel, one Scen
 
 ---
 
-## TODO
+## Key Documents
 
-### Next Sprint — UI/UX Overhaul
-- [ ] Scrape Material+ case studies for storytelling/layout inspiration
-- [ ] Elevate Strategic Brief with editorial storytelling modules
-- [ ] Refine micro-interactions and hover states across all surfaces
-- [ ] Add onboarding flow persistence (localStorage)
-- [ ] Responsive breakpoints for tablet presentation mode
-
-### Growth Vectors
-- [ ] **Live data integration** — Connect to real APIs (social listening, web analytics, CRM)
-- [ ] **Client configurability** — Driver weights, signal sources, alert thresholds
-- [ ] **Export engine** — PDF briefs, PPTX decks, scheduled email digests
-- [ ] **Multi-brand support** — Compare brands within a category
-- [ ] **AI narrative generation** — LLM-powered insight summaries with citations
-- [ ] **Scenario simulation backend** — Monte Carlo + agent-based modeling
-
-### Inspirations
-- [Rare Volume](https://rarevolume.com) — Data visualization, cinematic data storytelling
-- [Material+ Case Studies](https://www.materialplus.io/case-study/) — Editorial storytelling, layout modules
-- [Observable](https://observablehq.com) — Interactive data exploration
-- [Stripe Press](https://press.stripe.com) — Premium editorial web design
+- **[ARCHITECTURE.md](docs/ARCHITECTURE.md)** — System design, module dependencies, Glass Box mechanics
+- **[VISION.md](docs/VISION.md)** — Product strategy, roadmap, and long-term direction
+- **[DATA-EXTENSIBILITY.md](docs/DATA-EXTENSIBILITY.md)** — Multi-brand support architecture and data schema ADR
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — Development workflow, testing, and submission guidelines
+- **[ONBOARDING.md](ONBOARDING.md)** — New team member setup and codebase orientation
 
 ---
 
@@ -224,7 +231,7 @@ sprint/sprint-number        # Sprint bundles
 type(scope): description
 
 feat(signal-nexus): add 3-panel layout with trajectory charts
-fix(command-center): correct BF composite count-up animation
+fix(command-center): correct Brand Score composite count-up animation
 refine(ditl): elevate scroll-triggered scene reveals
 docs(readme): add architecture section and screenshots
 ```

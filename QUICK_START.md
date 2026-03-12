@@ -25,7 +25,7 @@
 - **System Prompt**: AI gets brand data, drivers, signals, and current page context
 - **Streaming**: Response appears character-by-character
 - **Fallback**: If API fails, uses hardcoded responses automatically
-- **Modes**: Toggle between "Guide" (Socratic questions) and "Guardian" (direct analysis)
+- **Modes**: Toggle between "Ask" (Socratic questions) and "Explore" (direct analysis)
 
 ## What the AI Knows
 
