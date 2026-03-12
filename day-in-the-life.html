@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Day in the Life - Brand Intelligence Engine v9</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=20">
+  <link rel="stylesheet" href="css/global.css?v=21">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
@@ -2034,10 +2034,14 @@
 
         scenes.forEach(scene => this.sceneObserver.observe(scene));
 
-        // Click dots to scroll to scene
+        // Click dots to scroll to scene (within .app-content only)
+        const appContent = document.querySelector('.app-content');
         dots.forEach((dot, index) => {
           dot.addEventListener('click', () => {
-            scenes[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (appContent) {
+              const sceneTop = scenes[index].offsetTop - (appContent.clientHeight / 3);
+              appContent.scrollTo({ top: sceneTop, behavior: 'smooth' });
+            }
           });
         });
       },

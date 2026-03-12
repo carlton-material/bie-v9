@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Brand Intelligence Engine - Scenario Lab</title>
   <link rel="stylesheet" href="css/tokens.css?v=2">
-  <link rel="stylesheet" href="css/global.css?v=20">
+  <link rel="stylesheet" href="css/global.css?v=21">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/glass-box.css">
   <style>
@@ -1895,7 +1895,7 @@
 
     /* ═══════════════════════════════════════════════════════════
        MODE 4: SIGNAL NEXUS - Multi-Signal Intelligence View
-       Inspired by Proto04 Fidelity LIVE + Rare Volume
+       Inspired by Proto04 Brand Score LIVE + Rare Volume
        ═══════════════════════════════════════════════════════════ */
 
     .mode-signal-nexus {
@@ -2375,7 +2375,7 @@
             <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.55); font-weight: 400; margin-top: 2px;">Explore 3 divergent futures, simulate responses</span>
           </button>
           <button class="scenario-mode-btn" data-mode="signal-nexus">
-            <span class="live-dot"></span>Fidelity LIVE
+            <span class="live-dot"></span>Brand Score LIVE
             <span style="display: block; font-size: 0.65rem; color: rgba(255,255,255,0.55); font-weight: 400; margin-top: 2px;">Real-time signal convergence across 3 layers</span>
           </button>
           <button class="scenario-mode-btn" data-mode="brand-sim">
@@ -2417,7 +2417,7 @@
         <option value="" disabled selected>Choose a scenario...</option>
         <option value="insight">Insight / Nearsight — Funnel analysis + focus group</option>
         <option value="wargame">War Gaming / Foresight — Scenario planning</option>
-        <option value="fidelity-live">Fidelity LIVE — Real-time signal convergence</option>
+        <option value="brand-score-live">Brand Score LIVE — Real-time signal convergence</option>
         <option value="brand-sim">Strategic Scenario Lab — Full simulation</option>
       </select>
       <button class="begin-analysis-btn" onclick="BIE.startSelectedScenario()">Begin Analysis →</button>
@@ -3010,7 +3010,7 @@
            MODE 4: SIGNAL NEXUS
            ══════════════════════════════════════════════════════════ -->
       <div class="scenario-mode mode-signal-nexus" data-mode="signal-nexus">
-        <div class="scenario-mode-label">Fidelity LIVE · Multi-Signal Intelligence</div>
+        <div class="scenario-mode-label">Brand Score LIVE · Multi-Signal Intelligence</div>
         <h2 class="scenario-mode-headline" style="font-family: var(--font-display); font-size: 2rem; font-weight: 300; color: var(--text-primary); margin-bottom: 16px;">How Signals Converge Into Intelligence</h2>
         <p style="font-family: var(--font-body); font-size: var(--text-small); color: rgba(255,255,255,0.75); margin-bottom: 40px; max-width: 700px; line-height: 1.6;">Three parallel signal streams - what people say, what they do, and what the world is doing around them - converge into a unified Brand Score score. Real-time. Always live.</p>
         
@@ -3266,7 +3266,7 @@
   <!-- SCRIPTS -->
   <script src="js/analyst-llm.js"></script>
   <script src="js/api-client.js?v=3"></script>
-  <script src="js/app.js?v=20"></script>
+  <script src="js/app.js?v=21"></script>
   <script src="js/brand-sim.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script>
@@ -5052,9 +5052,12 @@
           // Hide intro text on phases 2-4, show only on phase 1
           const intro = document.getElementById('wg-intro-block');
           if (intro) intro.style.display = stepNum === 1 ? '' : 'none';
-          // Scroll the wargame mode container into view
+          // Scroll the wargame mode container into view (within .app-content only)
           const wgMode = document.querySelector('.mode-wargame');
-          if (wgMode) wgMode.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (wgMode) {
+            const appContent = document.querySelector('.app-content');
+            if (appContent) appContent.scrollTo({ top: wgMode.offsetTop, behavior: 'smooth' });
+          }
         }
       }
     }
@@ -5257,9 +5260,12 @@
       const panel = document.querySelector(`[data-mode="${mode}"] .step-panel[data-step="${step}"]`);
       if (panel) panel.style.display = 'block';
       
-      // Scroll to top of mode
+      // Scroll to top of mode (within .app-content only — never window)
       const modeEl = document.querySelector(`[data-mode="${mode}"]`);
-      if (modeEl) modeEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (modeEl) {
+        const appContent = document.querySelector('.app-content');
+        if (appContent) appContent.scrollTo({ top: modeEl.offsetTop, behavior: 'smooth' });
+      }
     }
 
     function runSimulation(mode) {
@@ -5312,8 +5318,9 @@
         if (trigger) trigger.textContent = 'Configure below ↓';
         if (trigger) trigger.disabled = true;
         if (trigger) trigger.style.opacity = '0.5';
-        // Smooth scroll to panels
-        panels.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Smooth scroll to panels (within .app-content only)
+        const appContent = document.querySelector('.app-content');
+        if (appContent) appContent.scrollTo({ top: panels.offsetTop, behavior: 'smooth' });
       }
     };
 
@@ -5371,7 +5378,7 @@
         'insight': 'insight',
         'wargame': 'wargame',
         'focus-group': 'focus-group',
-        'fidelity-live': 'signal-nexus',
+        'brand-score-live': 'signal-nexus',
         'brand-sim': 'brand-sim'
       };
       
